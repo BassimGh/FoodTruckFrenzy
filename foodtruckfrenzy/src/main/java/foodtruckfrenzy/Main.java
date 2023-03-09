@@ -1,6 +1,5 @@
 package foodtruckfrenzy;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -9,23 +8,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Main {
-    private static final int ROWS = 5;
-    private static final int COLS = 5;
-    protected static final int CELL_SIZE = 50;
-    private static final int FRAME_WIDTH = COLS * CELL_SIZE;
-    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE;
+    private static final int ROWS = 10;
+    private static final int COLS = 10;
+    protected static final int CELL_SIZE = 32;
+    private static final int FRAME_WIDTH = COLS * CELL_SIZE + 15;
+    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 25;
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
-    private static final Cell redSquare = new Cell(0, 0, Color.RED);
+    private static final Cell mainCharacterCell = new Cell(0, 0, new MainCharacter());
 
     public static void main(String[] args) {
+
+        
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                grid[i][j] = new Cell(i, j, Color.WHITE);
+                grid[i][j] = new Cell(i, j, ItemFactory.create(MapLayout.layout[i][j]));
             }
         }
 
-        JFrame frame = new JFrame("Grid");
+        JFrame frame = new JFrame("Food Truck Frenzy");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
@@ -38,7 +39,7 @@ public class Main {
                         grid[i][j].draw(g);
                     }
                 }
-                redSquare.draw(g);
+                mainCharacterCell.draw(g);
             }
         };
         panel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
@@ -48,16 +49,16 @@ public class Main {
                 int keyCode = e.getKeyCode();
                 switch (keyCode) {
                     case KeyEvent.VK_UP:
-                        moveRedSquare(-1, 0);
+                        moveMainCharacter(-1, 0);
                         break;
                     case KeyEvent.VK_DOWN:
-                        moveRedSquare(1, 0);
+                        moveMainCharacter(1, 0);
                         break;
                     case KeyEvent.VK_LEFT:
-                        moveRedSquare(0, -1);
+                        moveMainCharacter(0, -1);
                         break;
                     case KeyEvent.VK_RIGHT:
-                        moveRedSquare(0, 1);
+                        moveMainCharacter(0, 1);
                         break;
                 }
                 panel.repaint();
@@ -77,12 +78,19 @@ public class Main {
         frame.setVisible(true);
     }
 
-    private static void moveRedSquare(int dRow, int dCol) {
-        int newRedRow = redSquare.getRow() + dRow;
-        int newRedCol = redSquare.getCol() + dCol;
-        if (newRedRow >= 0 && newRedRow < ROWS && newRedCol >= 0 && newRedCol < COLS) {
-            redSquare.setRow(newRedRow);
-            redSquare.setCol(newRedCol);
+    private static void moveMainCharacter(int downRow, int downCol) {
+        int newMainCharacterRow = mainCharacterCell.getRow() + downRow;
+        int newMainCharacterCol = mainCharacterCell.getCol() + downCol;
+
+        if (newMainCharacterRow < 0 || newMainCharacterRow >= ROWS || newMainCharacterCol < 0 || newMainCharacterCol >= COLS) {
+            return;
         }
+
+        if ( grid[newMainCharacterRow][newMainCharacterCol].isObstruction()) {
+            return;
+        }
+
+        mainCharacterCell.setRow(newMainCharacterRow);
+        mainCharacterCell.setCol(newMainCharacterCol);
     }
 }
