@@ -1,37 +1,40 @@
 package foodtruckfrenzy;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Cell {
-    private int row;
-    private int col;
-    private Color color;
+    private int _row;
+    private int _col;
+    private Drawable _item;
 
-    public Cell(int row, int col, Color color) {
-        this.row = row;
-        this.col = col;
-        this.color = color;
+    public Cell(int row, int col, Drawable item) {
+        _row = row;
+        _col = col;
+        _item = item;
     }
 
     public int getRow() {
-        return row;
+        return _row;
     }
 
     public void setRow(int row) {
-        this.row = row;
+        this._row = row;
     }
 
     public int getCol() {
-        return col;
+        return _col;
     }
 
     public void setCol(int col) {
-        this.col = col;
+        _col = col;
     }
 
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillRect(col * Main.CELL_SIZE, row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
+        g.setColor(_item.getGraphic());
+        g.fillRect(_col * Main.CELL_SIZE, _row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
+    }
+
+    public boolean isObstruction() {
+        return _item instanceof Obstruction;
     }
 }
