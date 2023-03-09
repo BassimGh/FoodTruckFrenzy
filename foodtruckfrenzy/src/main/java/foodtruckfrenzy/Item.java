@@ -1,5 +1,3 @@
 package foodtruckfrenzy;
 
-public abstract class Item extends Drawable {
-    
-}
+public abstract class Item extends Drawable {}

@@ -2,24 +2,29 @@ package foodtruckfrenzy;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Main {
-    private static final int ROWS = 10;
-    private static final int COLS = 10;
-    protected static final int CELL_SIZE = 32;
+    private static final int ROWS = 10; // Number of grid rows
+    private static final int COLS = 10; // Number of grid columns
+    protected static final int CELL_SIZE = 32; // Size of each grid cell
     private static final int FRAME_WIDTH = COLS * CELL_SIZE + 15;
     private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 25;
+    private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
-    private static final Cell mainCharacterCell = new Cell(0, 0, new MainCharacter());
+    private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
 
+    private static Direction queuedDirection = Direction.NULL;
     public static void main(String[] args) {
 
-        
+        // Initialize grid with starting values
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 grid[i][j] = new Cell(i, j, ItemFactory.create(MapLayout.layout[i][j]));
@@ -34,11 +39,15 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+
+                // Loop which draws the entire grid
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
                         grid[i][j].draw(g);
                     }
                 }
+
+                // Draw vehicles ontop of grid
                 mainCharacterCell.draw(g);
             }
         };
@@ -49,16 +58,16 @@ public class Main {
                 int keyCode = e.getKeyCode();
                 switch (keyCode) {
                     case KeyEvent.VK_UP:
-                        moveMainCharacter(-1, 0);
+                        queuedDirection = Direction.UP;
                         break;
                     case KeyEvent.VK_DOWN:
-                        moveMainCharacter(1, 0);
+                        queuedDirection = Direction.DOWN;
                         break;
                     case KeyEvent.VK_LEFT:
-                        moveMainCharacter(0, -1);
+                        queuedDirection = Direction.LEFT;
                         break;
                     case KeyEvent.VK_RIGHT:
-                        moveMainCharacter(0, 1);
+                        queuedDirection = Direction.RIGHT;
                         break;
                 }
                 panel.repaint();
@@ -70,8 +79,38 @@ public class Main {
             @Override
             public void keyReleased(KeyEvent e) {}
         });
+
+        Timer timer = new Timer(TIMER_DELAY, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                switch (queuedDirection) {
+                    case UP:
+                        moveMainCharacter(-1, 0);
+                        break;
+                    case DOWN:
+                        moveMainCharacter(1, 0);
+                        break;
+                    case LEFT:
+                        moveMainCharacter(0, -1);
+                        break;
+                    case RIGHT:
+                        moveMainCharacter(0, 1);
+                        break;
+                    case NULL:
+                        break;
+                    default:
+                        throw new IllegalStateException();
+                }
+                panel.repaint();
+            }
+        });
+
         panel.setFocusable(true);
         panel.requestFocusInWindow();
+
+        timer.start();
 
         frame.add(panel);
         frame.pack();
@@ -92,5 +131,6 @@ public class Main {
 
         mainCharacterCell.setRow(newMainCharacterRow);
         mainCharacterCell.setCol(newMainCharacterCol);
+        queuedDirection = Direction.NULL;
     }
 }
