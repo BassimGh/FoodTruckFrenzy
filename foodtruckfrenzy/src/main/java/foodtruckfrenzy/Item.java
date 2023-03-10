@@ -1,10 +1,10 @@
 package foodtruckfrenzy;
 
-public abstract class Item extends BoardElement {
-    private int _value;
-    
-    public Item(int value) {
-        _value = value;
+public abstract class Item extends Cell {
+
+    public Item(int row, int col, Grid grid) {
+        super(row, col, grid);
     }
+    
 
 }

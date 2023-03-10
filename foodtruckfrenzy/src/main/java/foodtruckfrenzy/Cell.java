@@ -1,17 +1,11 @@
 package foodtruckfrenzy;
 
-import java.awt.Graphics2D;
+public abstract class Cell extends Drawable {
 
-
-public class Cell {
-    private int _row;
-    private int _col;
-    private Drawable _item;
-
-    public Cell(int row, int col, Drawable item) {
+    public Cell(int row, int col, Grid grid ) {
         _row = row;
         _col = col;
-        _item = item;
+        _grid = grid;
     }
 
     public int getRow() {
@@ -30,12 +24,8 @@ public class Cell {
         _col = col;
     }
 
-    public void draw(Graphics2D g2d) {
-        g2d.setColor(_item.getGraphic());
-        g2d.fillRect(_col * Main.CELL_SIZE, _row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
+    public boolean isObstruction() {
+        return this instanceof Obstruction;
     }
 
-    public boolean isObstruction() {
-        return _item instanceof Obstruction;
-    }
 }
