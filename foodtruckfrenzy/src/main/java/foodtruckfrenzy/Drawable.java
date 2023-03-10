@@ -5,6 +5,7 @@ import java.awt.Color;
 
 public abstract class Drawable {
 
+    Grid _grid;
     int _col;
     int _row;
 

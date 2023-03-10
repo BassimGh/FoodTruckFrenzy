@@ -2,9 +2,10 @@ package foodtruckfrenzy;
 
 public abstract class Cell extends Drawable {
 
-    public Cell(int row, int col) {
+    public Cell(int row, int col, Grid grid ) {
         _row = row;
         _col = col;
+        _grid = grid;
     }
 
     public int getRow() {
