@@ -20,8 +20,8 @@ public class Main {
     private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + SCOREBOARD_HEIGHT + 37;
     private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
 
-    private static final Cell[][] grid = new Cell[ROWS][COLS];
-    private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
+    static final Cell[][] grid = new Cell[ROWS][COLS];
+    private static final Vehicle mainCharacter = new FoodTruck(0, 0);
 
     public static void main(String[] args) {
 
@@ -47,7 +47,7 @@ public class Main {
                         grid[i][j].draw(g2d);
                     }
                 }
-                mainCharacterCell.draw(g2d);
+                mainCharacter.draw(g2d);
             }
         };
         gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
@@ -88,15 +88,15 @@ public class Main {
     }
 
     private static void moveMainCharacter(int downRow, int downCol) {
-        int newMainCharacterRow = mainCharacterCell.getRow() + downRow;
-        int newMainCharacterCol = mainCharacterCell.getCol() + downCol;
+        int newMainCharacterRow = mainCharacter.getRow() + downRow;
+        int newMainCharacterCol = mainCharacter.getCol() + downCol;
 
         // Check if main character is at the edge of the screen
         if (newMainCharacterRow < 0 || newMainCharacterRow >= ROWS || newMainCharacterCol < 0 || newMainCharacterCol >= COLS) { return; }
 
         if ( grid[newMainCharacterRow][newMainCharacterCol].isObstruction()) { return; }
 
-        mainCharacterCell.setRow(newMainCharacterRow);
-        mainCharacterCell.setCol(newMainCharacterCol);
+        mainCharacter.setRow(newMainCharacterRow);
+        mainCharacter.setCol(newMainCharacterCol);
     }
 }

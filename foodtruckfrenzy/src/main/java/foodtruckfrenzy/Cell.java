@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 public class Cell {
     private int _row;
     private int _col;
-    private Drawable _item;
+    private BoardElement _item;
 
-    public Cell(int row, int col, Drawable item) {
+    public Cell(int row, int col, BoardElement item) {
         _row = row;
         _col = col;
         _item = item;
