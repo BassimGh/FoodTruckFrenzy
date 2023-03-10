@@ -12,23 +12,23 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Main {
-    static final int ROWS = 20; // Number of grid rows
-    static final int COLS = 25; // Number of grid columns
-    static final int CELL_SIZE = 32; // Size of each grid cell
-    private static final int SCOREBOARD_HEIGHT = 25;
-    private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
-    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + SCOREBOARD_HEIGHT + 37;
-    private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
 
-    static final Cell[][] grid = new Cell[ROWS][COLS];
+
+    static final Grid grid = new Grid();
+
+    private static final int SCOREBOARD_HEIGHT = 25;
+    private static final int FRAME_WIDTH = grid.getCols() * grid.getCellSize() + 14;
+    private static final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize() + SCOREBOARD_HEIGHT + 37;
+    private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
     private static final Vehicle mainCharacter = new FoodTruck(0, 0);
 
     public static void main(String[] args) {
 
+        MapLayout layout = new MapLayout(grid.getRows(), grid.getCols());
         // Initialize grid with starting values
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLS; j++) {
-                grid[i][j] =  BoardElementFactory.create(MapLayout.layout[i][j], i, j);
+        for (int i = 0; i < grid.getRows(); i++) {
+            for (int j = 0; j < grid.getCols(); j++) {
+                grid.setCell(i, j, BoardElementFactory.create(layout.getElementAt(i, j), i, j));
             }
         }
 
@@ -42,12 +42,12 @@ public class Main {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g.create();
 
-                for (int i = 0; i < ROWS; i++) {
-                    for (int j = 0; j < COLS; j++) {
-                        grid[i][j].draw(g2d, CELL_SIZE);
+                for (int i = 0; i < grid.getRows(); i++) {
+                    for (int j = 0; j < grid.getCols(); j++) {
+                        grid.drawCell(i,j,g2d);
                     }
                 }
-                mainCharacter.draw(g2d, CELL_SIZE);
+                mainCharacter.draw(g2d, grid.getCellSize());
             }
         };
         gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
@@ -92,9 +92,9 @@ public class Main {
         int newMainCharacterCol = mainCharacter.getCol() + downCol;
 
         // Check if main character is at the edge of the screen
-        if (newMainCharacterRow < 0 || newMainCharacterRow >= ROWS || newMainCharacterCol < 0 || newMainCharacterCol >= COLS) { return; }
+        if (newMainCharacterRow < 0 || newMainCharacterRow >= grid.getRows() || newMainCharacterCol < 0 || newMainCharacterCol >= grid.getCols()) { return; }
 
-        if ( grid[newMainCharacterRow][newMainCharacterCol].isObstruction()) { return; }
+        if ( grid.isObstruction(newMainCharacterRow, newMainCharacterCol)) { return; }
 
         mainCharacter.setRow(newMainCharacterRow);
         mainCharacter.setCol(newMainCharacterCol);
