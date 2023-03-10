@@ -14,8 +14,8 @@ public class Main {
     private static final int ROWS = 10; // Number of grid rows
     private static final int COLS = 10; // Number of grid columns
     protected static final int CELL_SIZE = 32; // Size of each grid cell
-    private static final int FRAME_WIDTH = COLS * CELL_SIZE + 15;
-    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 25;
+    private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
+    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 37;
     private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
@@ -52,6 +52,7 @@ public class Main {
             }
         };
         panel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+
         panel.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -70,7 +71,6 @@ public class Main {
                         queuedDirection = Direction.RIGHT;
                         break;
                 }
-                panel.repaint();
             }
 
             @Override
@@ -84,7 +84,6 @@ public class Main {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 switch (queuedDirection) {
                     case UP:
                         moveMainCharacter(-1, 0);
@@ -121,6 +120,7 @@ public class Main {
         int newMainCharacterRow = mainCharacterCell.getRow() + downRow;
         int newMainCharacterCol = mainCharacterCell.getCol() + downCol;
 
+        // Check if main character is at the edge of the screen
         if (newMainCharacterRow < 0 || newMainCharacterRow >= ROWS || newMainCharacterCol < 0 || newMainCharacterCol >= COLS) {
             return;
         }
