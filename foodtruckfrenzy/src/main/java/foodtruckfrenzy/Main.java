@@ -27,7 +27,7 @@ public class Main {
         // Initialize grid with starting values
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                grid[i][j] = new Cell(i, j, ItemFactory.create(MapLayout.layout[i][j]));
+                grid[i][j] = new Cell(i, j, BoardElementFactory.create(MapLayout.layout[i][j]));
             }
         }
 

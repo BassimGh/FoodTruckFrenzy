@@ -2,7 +2,7 @@ package foodtruckfrenzy;
 
 import java.awt.Color;
 
-public class Obstruction extends Item {
+public class Obstruction extends BoardElement {
 
     @Override
     public Color getGraphic() {
