@@ -5,8 +5,8 @@ import java.awt.Color;
 
 public abstract class Drawable {
 
-    private int _col;
-    private int _row;
+    int _col;
+    int _row;
 
     public abstract Color getGraphic();
 
