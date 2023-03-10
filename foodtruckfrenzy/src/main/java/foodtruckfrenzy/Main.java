@@ -36,7 +36,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
-        final JPanel panel = new JPanel() {
+        final JPanel gamePanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -50,10 +50,10 @@ public class Main {
                 mainCharacterCell.draw(g2d);
             }
         };
-        panel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
         KeyboardHandler keyboardHandler = new KeyboardHandler();
-        panel.addKeyListener(keyboardHandler);
+        gamePanel.addKeyListener(keyboardHandler);
 
         Timer timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
@@ -66,7 +66,7 @@ public class Main {
                     moveMainCharacter(0, -1);
                 if (keyboardHandler.rightPressed())
                     moveMainCharacter(0, 1);
-                panel.repaint();
+                gamePanel.repaint();
             }
         });
 
@@ -75,14 +75,14 @@ public class Main {
         JLabel scoreLabel = new JLabel("Score: 0");
         scoreboardPanel.add(scoreLabel);
         
-        panel.setFocusable(true);
-        panel.requestFocusInWindow();
+        gamePanel.setFocusable(true);
+        gamePanel.requestFocusInWindow();
 
         timer.start();
 
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().add(scoreboardPanel, BorderLayout.NORTH);
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
