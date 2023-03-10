@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class Obstruction extends Cell {
 
-    public Obstruction(int row, int col) {
-        super(row, col);
+    public Obstruction(int row, int col, Grid grid) {
+        super(row, col, grid);
     }
 
     @Override

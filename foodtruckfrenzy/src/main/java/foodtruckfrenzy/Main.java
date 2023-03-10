@@ -20,7 +20,7 @@ public class Main {
     private static final int FRAME_WIDTH = grid.getCols() * grid.getCellSize() + 14;
     private static final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize() + SCOREBOARD_HEIGHT + 37;
     private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
-    private static final Vehicle mainCharacter = new FoodTruck(0, 0);
+    private static final Vehicle mainCharacter = new FoodTruck(0, 0, grid);
 
     public static void main(String[] args) {
 
@@ -28,7 +28,7 @@ public class Main {
         // Initialize grid with starting values
         for (int i = 0; i < grid.getRows(); i++) {
             for (int j = 0; j < grid.getCols(); j++) {
-                grid.setCell(i, j, BoardElementFactory.create(layout.getElementAt(i, j), i, j));
+                grid.setCell(i, j, BoardElementFactory.create(layout.getElementAt(i, j), i, j, grid));
             }
         }
 
@@ -59,13 +59,13 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (keyboardHandler.upPressed())
-                    moveMainCharacter(-1, 0);
+                    mainCharacter.moveUp();
                 if (keyboardHandler.downPressed())
-                    moveMainCharacter(1, 0);
+                    mainCharacter.moveDown();
                 if (keyboardHandler.leftPressed())
-                    moveMainCharacter(0, -1);
+                    mainCharacter.moveLeft();
                 if (keyboardHandler.rightPressed())
-                    moveMainCharacter(0, 1);
+                    mainCharacter.moveRight();
                 gamePanel.repaint();
             }
         });
@@ -85,18 +85,5 @@ public class Main {
         frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    private static void moveMainCharacter(int downRow, int downCol) {
-        int newMainCharacterRow = mainCharacter.getRow() + downRow;
-        int newMainCharacterCol = mainCharacter.getCol() + downCol;
-
-        // Check if main character is at the edge of the screen
-        if (newMainCharacterRow < 0 || newMainCharacterRow >= grid.getRows() || newMainCharacterCol < 0 || newMainCharacterCol >= grid.getCols()) { return; }
-
-        if ( grid.isObstruction(newMainCharacterRow, newMainCharacterCol)) { return; }
-
-        mainCharacter.setRow(newMainCharacterRow);
-        mainCharacter.setCol(newMainCharacterCol);
     }
 }
