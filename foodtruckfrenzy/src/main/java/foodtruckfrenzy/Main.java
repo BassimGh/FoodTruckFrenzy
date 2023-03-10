@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,10 +23,6 @@ public class Main {
     private static final Cell[][] grid = new Cell[ROWS][COLS];
     private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
 
-    private static boolean upPressed = false;
-    private static boolean downPressed = false;
-    private static boolean rightPressed = false;
-    private static boolean leftPressed = false;
     public static void main(String[] args) {
 
         // Initialize grid with starting values
@@ -46,75 +40,31 @@ public class Main {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-
                 Graphics2D g2d = (Graphics2D) g.create();
-                
-                // Loop which draws the entire grid
+
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
                         grid[i][j].draw(g2d);
                     }
                 }
-
-                // Draw vehicles ontop of grid
                 mainCharacterCell.draw(g2d);
             }
         };
         panel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
-        panel.addKeyListener(new KeyListener() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                int keyCode = e.getKeyCode();
-                switch (keyCode) {
-                    case KeyEvent.VK_UP:
-                        upPressed = true;
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        downPressed = true;                        
-                        break;
-                    case KeyEvent.VK_LEFT:
-                        leftPressed = true;
-                        break;
-                    case KeyEvent.VK_RIGHT:
-                        rightPressed = true;
-                        break;
-                }
-            }
-
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                int keyCode = e.getKeyCode();
-                switch (keyCode) {
-                    case KeyEvent.VK_UP:
-                        upPressed = false;
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        downPressed = false;
-                        break;
-                    case KeyEvent.VK_LEFT:
-                        leftPressed = false;
-                        break;
-                    case KeyEvent.VK_RIGHT:
-                        rightPressed = false;
-                        break;
-                }
-            }
-        });
+        KeyboardHandler keyboardHandler = new KeyboardHandler();
+        panel.addKeyListener(keyboardHandler);
 
         Timer timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (upPressed)
+                if (keyboardHandler.upPressed())
                     moveMainCharacter(-1, 0);
-                if (downPressed)
+                if (keyboardHandler.downPressed())
                     moveMainCharacter(1, 0);
-                if (leftPressed)
+                if (keyboardHandler.leftPressed())
                     moveMainCharacter(0, -1);
-                if (rightPressed)
+                if (keyboardHandler.rightPressed())
                     moveMainCharacter(0, 1);
                 panel.repaint();
             }
@@ -142,13 +92,9 @@ public class Main {
         int newMainCharacterCol = mainCharacterCell.getCol() + downCol;
 
         // Check if main character is at the edge of the screen
-        if (newMainCharacterRow < 0 || newMainCharacterRow >= ROWS || newMainCharacterCol < 0 || newMainCharacterCol >= COLS) {
-            return;
-        }
+        if (newMainCharacterRow < 0 || newMainCharacterRow >= ROWS || newMainCharacterCol < 0 || newMainCharacterCol >= COLS) { return; }
 
-        if ( grid[newMainCharacterRow][newMainCharacterCol].isObstruction()) {
-            return;
-        }
+        if ( grid[newMainCharacterRow][newMainCharacterCol].isObstruction()) { return; }
 
         mainCharacterCell.setRow(newMainCharacterRow);
         mainCharacterCell.setCol(newMainCharacterCol);
