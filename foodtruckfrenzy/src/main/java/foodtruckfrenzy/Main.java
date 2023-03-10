@@ -20,10 +20,10 @@ public class Main {
     private static final int SCOREBOARD_HEIGHT = 25;
     private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
     private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + SCOREBOARD_HEIGHT + 37;
-    private static final int TIMER_DELAY = 25; // Tick timer delay in milliseconds
+    private static final int TIMER_DELAY = 10; // Tick timer delay in milliseconds
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
-    private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck(0,0));
+    private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
 
     private static Direction queuedDirection = Direction.NULL;
     public static void main(String[] args) {
