@@ -11,12 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Main {
-    static final int ROWS = 10; // Number of grid rows
-    static final int COLS = 10; // Number of grid columns
+    static final int ROWS = 25; // Number of grid rows
+    static final int COLS = 25; // Number of grid columns
     static final int CELL_SIZE = 32; // Size of each grid cell
     private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
     private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 37;
-    private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
+    private static final int TIMER_DELAY = 25; // Tick timer delay in milliseconds
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
     private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
