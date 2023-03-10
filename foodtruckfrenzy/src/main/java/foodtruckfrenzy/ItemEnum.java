@@ -1,6 +1,8 @@
 package foodtruckfrenzy;
 
+// R: Road
+// O: Obstruction
 public enum ItemEnum {
-    ROAD,
-    OBSTRUCTION
+    R,
+    O
 }

@@ -3,9 +3,9 @@ package foodtruckfrenzy;
 public class ItemFactory {
     public static Item create(ItemEnum type) {
         switch (type) {
-            case ROAD:
+            case R:
                 return new Road();
-            case OBSTRUCTION:
+            case O:
                 return new Obstruction();
             default:
                 throw new IllegalArgumentException();

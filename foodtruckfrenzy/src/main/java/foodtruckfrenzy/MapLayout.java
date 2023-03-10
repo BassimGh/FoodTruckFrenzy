@@ -10,7 +10,7 @@ public class MapLayout {
     static {
         InputStream inputStream = MapLayout.class.getResourceAsStream("layout.txt");
         Scanner scanner = new Scanner(inputStream);
-        layout = new ItemEnum[10][10];
+        layout = new ItemEnum[Main.ROWS][Main.COLS];
         int row = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

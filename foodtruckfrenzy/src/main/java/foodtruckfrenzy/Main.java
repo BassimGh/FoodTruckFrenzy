@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Main {
-    private static final int ROWS = 10; // Number of grid rows
-    private static final int COLS = 10; // Number of grid columns
-    protected static final int CELL_SIZE = 32; // Size of each grid cell
+    static final int ROWS = 10; // Number of grid rows
+    static final int COLS = 10; // Number of grid columns
+    static final int CELL_SIZE = 32; // Size of each grid cell
     private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
     private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 37;
     private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
