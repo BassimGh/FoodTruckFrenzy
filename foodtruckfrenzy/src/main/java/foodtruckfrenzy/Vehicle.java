@@ -1,11 +1,6 @@
 package foodtruckfrenzy;
 
-
-
 public abstract class Vehicle extends Drawable {
-    
-    private int _row;
-    private int _col;
 
     public Vehicle(int row, int col) {
         _row = row;
