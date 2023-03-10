@@ -20,12 +20,15 @@ public class Main {
     private static final int SCOREBOARD_HEIGHT = 25;
     private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
     private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + SCOREBOARD_HEIGHT + 37;
-    private static final int TIMER_DELAY = 10; // Tick timer delay in milliseconds
+    private static final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
     private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
 
-    private static Direction queuedDirection = Direction.NULL;
+    private static boolean upPressed = false;
+    private static boolean downPressed = false;
+    private static boolean rightPressed = false;
+    private static boolean leftPressed = false;
     public static void main(String[] args) {
 
         // Initialize grid with starting values
@@ -65,16 +68,16 @@ public class Main {
                 int keyCode = e.getKeyCode();
                 switch (keyCode) {
                     case KeyEvent.VK_UP:
-                        queuedDirection = Direction.UP;
+                        upPressed = true;
                         break;
                     case KeyEvent.VK_DOWN:
-                        queuedDirection = Direction.DOWN;
+                        downPressed = true;                        
                         break;
                     case KeyEvent.VK_LEFT:
-                        queuedDirection = Direction.LEFT;
+                        leftPressed = true;
                         break;
                     case KeyEvent.VK_RIGHT:
-                        queuedDirection = Direction.RIGHT;
+                        rightPressed = true;
                         break;
                 }
             }
@@ -83,31 +86,36 @@ public class Main {
             public void keyTyped(KeyEvent e) {}
 
             @Override
-            public void keyReleased(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+                switch (keyCode) {
+                    case KeyEvent.VK_UP:
+                        upPressed = false;
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        downPressed = false;
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        leftPressed = false;
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        rightPressed = false;
+                        break;
+                }
+            }
         });
 
         Timer timer = new Timer(TIMER_DELAY, new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (queuedDirection) {
-                    case UP:
-                        moveMainCharacter(-1, 0);
-                        break;
-                    case DOWN:
-                        moveMainCharacter(1, 0);
-                        break;
-                    case LEFT:
-                        moveMainCharacter(0, -1);
-                        break;
-                    case RIGHT:
-                        moveMainCharacter(0, 1);
-                        break;
-                    case NULL:
-                        break;
-                    default:
-                        throw new IllegalStateException();
-                }
+                if (upPressed)
+                    moveMainCharacter(-1, 0);
+                if (downPressed)
+                    moveMainCharacter(1, 0);
+                if (leftPressed)
+                    moveMainCharacter(0, -1);
+                if (rightPressed)
+                    moveMainCharacter(0, 1);
                 panel.repaint();
             }
         });
@@ -144,6 +152,5 @@ public class Main {
 
         mainCharacterCell.setRow(newMainCharacterRow);
         mainCharacterCell.setCol(newMainCharacterCol);
-        queuedDirection = Direction.NULL;
     }
 }
