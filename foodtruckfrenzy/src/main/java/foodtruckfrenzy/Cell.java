@@ -1,6 +1,7 @@
 package foodtruckfrenzy;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 
 public class Cell {
     private int _row;
@@ -29,9 +30,9 @@ public class Cell {
         _col = col;
     }
 
-    public void draw(Graphics g) {
-        g.setColor(_item.getGraphic());
-        g.fillRect(_col * Main.CELL_SIZE, _row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
+    public void draw(Graphics2D g2d) {
+        g2d.setColor(_item.getGraphic());
+        g2d.fillRect(_col * Main.CELL_SIZE, _row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
     }
 
     public boolean isObstruction() {

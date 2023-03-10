@@ -1,25 +1,29 @@
 package foodtruckfrenzy;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Main {
-    static final int ROWS = 25; // Number of grid rows
+    static final int ROWS = 20; // Number of grid rows
     static final int COLS = 25; // Number of grid columns
     static final int CELL_SIZE = 32; // Size of each grid cell
+    private static final int SCOREBOARD_HEIGHT = 25;
     private static final int FRAME_WIDTH = COLS * CELL_SIZE + 14;
-    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + 37;
+    private static final int FRAME_HEIGHT = ROWS * CELL_SIZE + SCOREBOARD_HEIGHT + 37;
     private static final int TIMER_DELAY = 25; // Tick timer delay in milliseconds
 
     private static final Cell[][] grid = new Cell[ROWS][COLS];
-    private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck());
+    private static final Cell mainCharacterCell = new Cell(0, 0, new FoodTruck(0,0));
 
     private static Direction queuedDirection = Direction.NULL;
     public static void main(String[] args) {
@@ -40,15 +44,17 @@ public class Main {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
+                Graphics2D g2d = (Graphics2D) g.create();
+                
                 // Loop which draws the entire grid
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
-                        grid[i][j].draw(g);
+                        grid[i][j].draw(g2d);
                     }
                 }
 
                 // Draw vehicles ontop of grid
-                mainCharacterCell.draw(g);
+                mainCharacterCell.draw(g2d);
             }
         };
         panel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
@@ -106,12 +112,19 @@ public class Main {
             }
         });
 
+        JPanel scoreboardPanel = new JPanel();
+        scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
+        JLabel scoreLabel = new JLabel("Score: 0");
+        scoreboardPanel.add(scoreLabel);
+        
         panel.setFocusable(true);
         panel.requestFocusInWindow();
 
         timer.start();
 
-        frame.add(panel);
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(scoreboardPanel, BorderLayout.NORTH);
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
