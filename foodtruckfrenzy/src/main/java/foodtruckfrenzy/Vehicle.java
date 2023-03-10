@@ -1,8 +1,8 @@
 package foodtruckfrenzy;
 
-import java.awt.Graphics2D;
 
-public abstract class Vehicle implements Graphical {
+
+public abstract class Vehicle extends Drawable {
     
     private int _row;
     private int _col;
@@ -27,11 +27,5 @@ public abstract class Vehicle implements Graphical {
     public void setCol(int col) {
         _col = col;
     }
-
-    public void draw(Graphics2D g2d) {
-        g2d.setColor(this.getGraphic());
-        g2d.fillRect(_col * Main.CELL_SIZE, _row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
-    }
-
 
 }

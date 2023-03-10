@@ -1,3 +1,3 @@
 package foodtruckfrenzy;
 
-public abstract class BoardElement implements Graphical {}
+public abstract class BoardElement extends Drawable {}

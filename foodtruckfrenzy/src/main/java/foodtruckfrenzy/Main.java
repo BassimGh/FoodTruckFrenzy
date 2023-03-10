@@ -44,10 +44,10 @@ public class Main {
 
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
-                        grid[i][j].draw(g2d);
+                        grid[i][j].draw(g2d, CELL_SIZE);
                     }
                 }
-                mainCharacter.draw(g2d);
+                mainCharacter.draw(g2d, CELL_SIZE);
             }
         };
         gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));

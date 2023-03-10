@@ -1,9 +1,10 @@
 package foodtruckfrenzy;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 
-public class Cell {
+public class Cell extends Drawable {
     private int _row;
     private int _col;
     private BoardElement _item;
@@ -30,12 +31,17 @@ public class Cell {
         _col = col;
     }
 
-    public void draw(Graphics2D g2d) {
-        g2d.setColor(_item.getGraphic());
-        g2d.fillRect(_col * Main.CELL_SIZE, _row * Main.CELL_SIZE, Main.CELL_SIZE, Main.CELL_SIZE);
-    }
-
     public boolean isObstruction() {
         return _item instanceof Obstruction;
+    }
+
+    @Override
+    public void draw(Graphics2D g2d, int cellSize) {
+        _item.draw(g2d, cellSize);
+    }
+
+    @Override
+    public Color getGraphic() {
+        return _item.getGraphic();
     }
 }
