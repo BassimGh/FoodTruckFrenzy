@@ -4,10 +4,12 @@ public abstract class Vehicle extends Drawable {
 
     private int SPEED = 1;
 
-    public Vehicle(int row, int col, Grid grid) {
+    public Vehicle(int row, int col, Grid grid, String imageName) {
+        super(imageName);
         _row = row;
         _col = col;
         _grid = grid;
+
     }
 
     public int getRow() {

@@ -8,17 +8,17 @@ public class Grid {
     private final int COLS = 25; // Number of grid columns
     private final int CELL_SIZE = 32; // Size of each grid cell
     
-    private Cell[][] grid;
+    private BoardElement[][] grid;
 
     public Grid() {
-        grid = new Cell[ROWS][COLS];
+        grid = new BoardElement[ROWS][COLS];
     }
 
-    public Cell getCell(int row, int col) {
+    public BoardElement getCell(int row, int col) {
         return grid[row][col];
     }
 
-    public void setCell(int row, int col, Cell cell) {
+    public void setCell(int row, int col, BoardElement cell) {
         grid[row][col] = cell;
     }
 

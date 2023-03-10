@@ -11,19 +11,14 @@ public abstract class Drawable {
 
     private Image image;
 
-    public Drawable() {
-        image = new ImageIcon("src/main/resources/foodtruckfrenzy/foodtruck.png").getImage();
-    }
+    public Drawable(String imageName) {
 
-    public abstract Color getGraphic();
+        image = new ImageIcon("src/main/resources/foodtruckfrenzy/"+imageName).getImage();
+    }
 
     public void draw(Graphics2D g2d, int cellSize) {
-        g2d.setColor(this.getGraphic());
-        g2d.fillRect(_col * cellSize, _row * cellSize, cellSize, cellSize);
-    }
-
-    public void drawImage(Graphics2D g2d, int cellSize) {
         g2d.drawImage(image, _col * cellSize, _row * cellSize, cellSize, cellSize, null);
     }
+
 
 }

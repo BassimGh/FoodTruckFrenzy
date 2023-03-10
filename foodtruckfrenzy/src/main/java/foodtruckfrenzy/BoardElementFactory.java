@@ -1,7 +1,7 @@
 package foodtruckfrenzy;
 
 public class BoardElementFactory {
-    public static Cell create(BoardElementEnum type, int row, int col, Grid grid) {
+    public static BoardElement create(BoardElementEnum type, int row, int col, Grid grid) {
         switch (type) {
             case R:
                 return new Road(row, col, grid);

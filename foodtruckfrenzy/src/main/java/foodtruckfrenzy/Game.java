@@ -53,7 +53,7 @@ public class Game {
                         grid.drawCell(i,j,g2d);
                     }
                 }
-                mainCharacter.drawImage(g2d, grid.getCellSize());
+                mainCharacter.draw(g2d, grid.getCellSize());
             }
         };
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
