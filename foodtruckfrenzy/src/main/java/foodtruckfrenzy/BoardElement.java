@@ -1,8 +1,9 @@
 package foodtruckfrenzy;
 
-public abstract class Cell extends Drawable {
+public abstract class BoardElement extends Drawable {
 
-    public Cell(int row, int col, Grid grid ) {
+    public BoardElement(int row, int col, Grid grid, String imageName) {
+        super(imageName);
         _row = row;
         _col = col;
         _grid = grid;
