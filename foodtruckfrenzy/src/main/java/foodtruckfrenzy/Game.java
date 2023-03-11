@@ -6,18 +6,21 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.Color;
 
 public class Game {
     
     private Grid grid = new Grid();
 
     private final int SCOREBOARD_HEIGHT = 30;
-    private final int FRAME_WIDTH = grid.getCols() * grid.getCellSize() + 14;
-    private final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize() + SCOREBOARD_HEIGHT + 37;
+    private final int FRAME_WIDTH = grid.getCols() * grid.getCellSize();
+    private final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize();
     private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
     private final Vehicle mainCharacter = new FoodTruck(0, 0, grid);
 
@@ -40,7 +43,13 @@ public class Game {
 
         _frame = new JFrame("Food Truck Frenzy");
         _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _frame.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        _frame.setResizable(true);
+
+        JPanel contentPane = new JPanel(new BorderLayout());
+        contentPane.setBackground(Color.BLACK);
+        contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10)); // add black border with a width of 10 pixels
+
+        _frame.setContentPane(contentPane);
 
         _gamePanel = new JPanel() {
             @Override
@@ -58,6 +67,7 @@ public class Game {
         };
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
+        contentPane.add(_gamePanel, BorderLayout.CENTER);
         _keyboardHandler = new KeyboardHandler();
         _gamePanel.addKeyListener(_keyboardHandler);
 
@@ -89,7 +99,6 @@ public class Game {
         _frame.getContentPane().add(_gamePanel, BorderLayout.CENTER);
         _frame.pack();
         _frame.setVisible(true);
-        _frame.setResizable(false);
         _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }

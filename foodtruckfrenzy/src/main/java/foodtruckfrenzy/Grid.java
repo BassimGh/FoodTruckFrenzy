@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 
 public class Grid {
 
-    private final int ROWS = 25; // Number of grid rows
-    private final int COLS = 48; // Number of grid columns
+    private final int ROWS = 20; // Number of grid rows
+    private final int COLS = 40; // Number of grid columns
     private final int CELL_SIZE = 32; // Size of each grid cell
     
     private BoardElement[][] grid;
