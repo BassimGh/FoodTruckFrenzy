@@ -4,6 +4,6 @@ public class SpeedTrap extends Trap {
 
 
     public SpeedTrap(int row, int col) {
-        super(row, col, "foodtruck.png");
+        super(row, col, DrawableEnum.FOODTRUCK);
     } 
 }

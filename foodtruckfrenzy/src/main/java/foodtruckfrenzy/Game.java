@@ -33,11 +33,10 @@ public class Game {
 
     public Game() {
        
-        MapLayout layout = new MapLayout(grid.getRows(), grid.getCols());
         // Initialize grid with starting values
         for (int i = 0; i < grid.getRows(); i++) {
             for (int j = 0; j < grid.getCols(); j++) {
-                grid.setCell(i, j, BoardElementFactory.create(layout.getElementAt(i, j), i, j));
+                grid.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
             }
         }
 
@@ -64,7 +63,7 @@ public class Game {
                         grid.drawCell(i,j,g2d);
                     }
                 }
-                mainCharacter.draw(g2d, grid.getCellSize());
+                mainCharacter.draw(g2d);
             }
         };
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
