@@ -15,7 +15,7 @@ public class Game {
     
     private Grid grid = new Grid();
 
-    private final int SCOREBOARD_HEIGHT = 25;
+    private final int SCOREBOARD_HEIGHT = 30;
     private final int FRAME_WIDTH = grid.getCols() * grid.getCellSize() + 14;
     private final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize() + SCOREBOARD_HEIGHT + 37;
     private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
@@ -89,6 +89,8 @@ public class Game {
         _frame.getContentPane().add(_gamePanel, BorderLayout.CENTER);
         _frame.pack();
         _frame.setVisible(true);
+        _frame.setResizable(false);
+        _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
 
