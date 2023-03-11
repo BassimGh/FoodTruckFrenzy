@@ -51,4 +51,23 @@ public class FoodTruck extends Drawable {
         this.setCol(newCol);
     }
 
+    // getters and setters for score
+    public int getScore() {
+
+        return this.score; 
+    }
+
+
+    public void increaseScore(int score) {
+
+        this.score += score;
+
+    }
+
+    public void decreaseScore(int score) {
+
+        this.score -= score; 
+
+    }
+
 }
