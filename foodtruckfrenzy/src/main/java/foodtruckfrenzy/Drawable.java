@@ -1,7 +1,9 @@
 package foodtruckfrenzy;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class Drawable {
 
@@ -10,10 +12,18 @@ public abstract class Drawable {
     private Image image;
 
     public Drawable(int row, int col, String imageName) {
-
         _row = row;
         _col = col;
-        image = new ImageIcon("src/main/resources/foodtruckfrenzy/"+imageName).getImage();
+
+        // Load the image as an input stream from inside the jar file
+        InputStream imageStream = getClass().getResourceAsStream("/foodtruckfrenzy/" + imageName);
+
+        try {
+            // Use ImageIO to read the image from the input stream
+            image = ImageIO.read(imageStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getRow() {
