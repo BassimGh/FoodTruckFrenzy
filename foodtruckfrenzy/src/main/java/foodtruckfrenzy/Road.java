@@ -1,12 +1,8 @@
 package foodtruckfrenzy;
 
-import java.awt.Color;
-
 public class Road extends BoardElement {
 
-    @Override
-    public Color getGraphic() {
-        return Color.BLUE;
+    public Road(int row, int col, Grid grid) {
+        super(row, col, grid, "road.png");
     }
-    
 }

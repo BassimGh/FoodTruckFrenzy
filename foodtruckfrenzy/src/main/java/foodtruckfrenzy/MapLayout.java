@@ -5,12 +5,13 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLayout {
-    protected static final BoardElementEnum[][] layout;
 
-    static {
+    private BoardElementEnum[][] layout;
+
+    public MapLayout(int rows, int cols) {
         InputStream inputStream = MapLayout.class.getResourceAsStream("layout.txt");
         Scanner scanner = new Scanner(inputStream);
-        layout = new BoardElementEnum[Main.ROWS][Main.COLS];
+        layout = new BoardElementEnum[rows][cols];
         int row = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -21,5 +22,9 @@ public class MapLayout {
             row++;
         }
         scanner.close();
+    }
+
+    public BoardElementEnum getElementAt(int row, int col) {
+        return layout[row][col];
     }
 }

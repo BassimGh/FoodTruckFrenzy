@@ -1,12 +1,8 @@
 package foodtruckfrenzy;
 
-import java.awt.Color;
-
 public class Obstruction extends BoardElement {
 
-    @Override
-    public Color getGraphic() {
-        return Color.BLACK;
-    }
-    
+    public Obstruction(int row, int col, Grid grid) {
+        super(row, col, grid, "house.png");
+    }   
 }
