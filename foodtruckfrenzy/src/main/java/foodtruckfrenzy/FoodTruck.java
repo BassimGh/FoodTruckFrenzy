@@ -4,6 +4,7 @@ public class FoodTruck extends Drawable {
 
     private int SPEED = 1;
     private Grid _grid;
+    public int score = 0; 
 
     public FoodTruck(int row, int col, Grid grid) {
         super(row, col, DrawableEnum.FOODTRUCK);
