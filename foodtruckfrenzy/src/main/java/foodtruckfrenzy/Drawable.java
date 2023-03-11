@@ -20,5 +20,4 @@ public abstract class Drawable {
         g2d.drawImage(image, _col * cellSize, _row * cellSize, cellSize, cellSize, null);
     }
 
-
 }
