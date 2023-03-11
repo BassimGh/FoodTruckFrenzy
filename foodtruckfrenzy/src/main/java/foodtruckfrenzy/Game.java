@@ -50,6 +50,8 @@ public class Game {
         contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10)); // add black border with a width of 10 pixels
 
         _frame.setContentPane(contentPane);
+        
+        
 
         _gamePanel = new JPanel() {
             @Override
