@@ -1,6 +1,6 @@
 package foodtruckfrenzy;
 
-public class PotHole extends Obstacle {
+public class PotHole extends Trap {
 
     
     public PotHole(int row, int col, Grid grid) {

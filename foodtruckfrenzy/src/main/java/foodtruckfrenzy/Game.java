@@ -22,7 +22,7 @@ public class Game {
     private final int FRAME_WIDTH = grid.getCols() * grid.getCellSize();
     private final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize();
     private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
-    private final Vehicle mainCharacter = new FoodTruck(0, 0, grid);
+    private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
 
     private final JFrame _frame;
     private final JPanel _gamePanel;

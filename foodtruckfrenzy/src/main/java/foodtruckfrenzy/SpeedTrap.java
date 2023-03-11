@@ -1,6 +1,6 @@
 package foodtruckfrenzy;
 
-public class SpeedTrap extends Obstacle {
+public class SpeedTrap extends Trap {
 
 
     public SpeedTrap(int row, int col, Grid grid) {
