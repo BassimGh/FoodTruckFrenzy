@@ -6,7 +6,7 @@ public class FoodTruck extends Drawable {
     private Grid _grid;
 
     public FoodTruck(int row, int col, Grid grid) {
-        super(row, col, "foodtruck.png");
+        super(row, col, DrawableEnum.FOODTRUCK);
         _grid = grid;
     }
 

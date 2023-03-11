@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 
 public class Grid {
 
-    private final int ROWS = 20; // Number of grid rows
-    private final int COLS = 40; // Number of grid columns
-    private final int CELL_SIZE = 32; // Size of each grid cell
+    final static int ROWS = 20; // Number of grid rows
+    final static int COLS = 40; // Number of grid columns
+    final static int CELL_SIZE = 32; // Size of each grid cell
     
     private BoardElement[][] grid;
 
@@ -23,7 +23,7 @@ public class Grid {
     }
 
     public void drawCell(int row, int col, Graphics2D g2d) {
-        grid[row][col].draw(g2d, CELL_SIZE);
+        grid[row][col].draw(g2d);
     }
 
     public boolean isObstruction(int row, int col) {

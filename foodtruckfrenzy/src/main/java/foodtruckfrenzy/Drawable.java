@@ -1,19 +1,17 @@
 package foodtruckfrenzy;
 
-import javax.swing.*;
 import java.awt.*;
 
 public abstract class Drawable {
 
     private int _row;
     private int _col;
-    private Image image;
+    private Image _image;
 
-    public Drawable(int row, int col, String imageName) {
-
+    public Drawable(int row, int col, DrawableEnum type) {
+        _image = SpriteLoader.getImage(type);
         _row = row;
         _col = col;
-        image = new ImageIcon("src/main/resources/foodtruckfrenzy/"+imageName).getImage();
     }
 
     public int getRow() {
@@ -32,8 +30,8 @@ public abstract class Drawable {
         _col = col;
     }
 
-    public void draw(Graphics2D g2d, int cellSize) {
-        g2d.drawImage(image, _col * cellSize, _row * cellSize, cellSize, cellSize, null);
+    public void draw(Graphics2D g2d) {
+        g2d.drawImage(_image, _col * Grid.CELL_SIZE, _row * Grid.CELL_SIZE, Grid.CELL_SIZE, Grid.CELL_SIZE, null);
     }
 
 }

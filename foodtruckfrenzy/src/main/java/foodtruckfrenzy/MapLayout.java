@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class MapLayout {
 
-    private BoardElementEnum[][] layout;
+    private static BoardElementEnum[][] layout;
 
-    public MapLayout(int rows, int cols) {
+    static {
         InputStream inputStream = MapLayout.class.getResourceAsStream("layout.txt");
         Scanner scanner = new Scanner(inputStream);
-        layout = new BoardElementEnum[rows][cols];
+        layout = new BoardElementEnum[Grid.ROWS][Grid.COLS];
         int row = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -24,7 +24,7 @@ public class MapLayout {
         scanner.close();
     }
 
-    public BoardElementEnum getElementAt(int row, int col) {
+    public static BoardElementEnum getElementAt(int row, int col) {
         return layout[row][col];
     }
 }
