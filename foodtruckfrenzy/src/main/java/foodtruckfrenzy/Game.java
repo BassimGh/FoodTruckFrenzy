@@ -37,7 +37,7 @@ public class Game {
         // Initialize grid with starting values
         for (int i = 0; i < grid.getRows(); i++) {
             for (int j = 0; j < grid.getCols(); j++) {
-                grid.setCell(i, j, BoardElementFactory.create(layout.getElementAt(i, j), i, j, grid));
+                grid.setCell(i, j, BoardElementFactory.create(layout.getElementAt(i, j), i, j));
             }
         }
 

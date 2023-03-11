@@ -3,69 +3,51 @@ package foodtruckfrenzy;
 public class FoodTruck extends Drawable {
 
     private int SPEED = 1;
+    private Grid _grid;
 
     public FoodTruck(int row, int col, Grid grid) {
-        super("foodtruck.png");
-        _row = row;
-        _col = col;
+        super(row, col, "foodtruck.png");
         _grid = grid;
-
-    }
-
-    public int getRow() {
-        return _row;
-    }
-
-    public int getCol() {
-        return _col;
-    }
-
-    public void setRow(int row) {
-        _row = row;
-    }
-
-    public void setCol(int col) {
-        _col = col;
     }
 
     public void moveUp() {
-        int newRow = _row -SPEED;
+        int newRow = this.getRow() - SPEED;
 
         if (newRow < 0) { return; }
 
-        if (_grid.isObstruction(newRow, _col)) { return; }
+        if (_grid.isObstruction(newRow, this.getCol())) { return; }
 
-        _row = newRow;
+        this.setRow(newRow);
     }
 
     public void moveDown() {
-        int newRow = _row + SPEED;
+        int newRow = this.getRow() + SPEED;
 
         if (newRow >= _grid.getRows()) { return; }
 
-        if (_grid.isObstruction(newRow, _col)) { return; }
+        if (_grid.isObstruction(newRow, this.getCol())) { return; }
 
-        _row = newRow;
+        this.setRow(newRow);
     }
 
     public void moveRight() {
-        int newCol = _col + SPEED;
+        int newCol = this.getCol() + SPEED;
 
         if (newCol >= _grid.getCols()) { return; }
 
-        if (_grid.isObstruction(_row, newCol)) { return; }
+        if (_grid.isObstruction(this.getRow(), newCol)) { return; }
 
-        _col = newCol;
+        this.setCol(newCol);
     }
 
     public void moveLeft() {
-        int newCol = _col - SPEED;
+        int newCol = this.getCol() - SPEED;
 
         if (newCol < 0 ) { return; }
 
-        if (_grid.isObstruction(_row, newCol)) { return; }
+        if (_grid.isObstruction(this.getRow(), newCol)) { return; }
 
-        _col = newCol;
+        this.setCol(newCol);
     }
 
 }
