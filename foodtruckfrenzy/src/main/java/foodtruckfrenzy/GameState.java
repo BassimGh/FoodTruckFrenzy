@@ -1,3 +1,5 @@
+package foodtruckfrenzy;
+
 public class GameState {
     //3 game states
     public static final int PlayState = 1;
