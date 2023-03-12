@@ -86,5 +86,4 @@ public class Game {
     public void stopTimer() {
         _timer.stop();
     }
-
 }
