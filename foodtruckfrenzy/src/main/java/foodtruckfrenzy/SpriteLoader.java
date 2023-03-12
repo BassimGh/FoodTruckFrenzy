@@ -40,6 +40,15 @@ public class SpriteLoader {
             _imagesHashMap.put(DrawableEnum.VERTICAL_ROAD, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadVertical.png")));
             _imagesHashMap.put(DrawableEnum.FOUR_WAY_INTERSECT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadFourWay.png")));
 
+            _imagesHashMap.put(DrawableEnum.SOUTH_EAST_CORNER, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadSouthEastCorner.png")));
+            _imagesHashMap.put(DrawableEnum.SOUTH_WEST_CORNER, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadSouthWestCorner.png")));
+            _imagesHashMap.put(DrawableEnum.NORTH_EAST_CORNER, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadNorthEastCorner.png")));
+            _imagesHashMap.put(DrawableEnum.NORTH_WEST_CORNER, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadNorthWestCorner.png")));
+            
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_NORTH, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWayNorth.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_EAST, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWayEast.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_SOUTH, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWaySouth.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_WEST, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWayWest.png")));
 
         } catch (Exception e) {
             System.err.println("Error when loading sprite files with SpriteLoader:");
