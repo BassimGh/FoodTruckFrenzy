@@ -13,6 +13,7 @@ public abstract class Drawable {
         _type = type;
         _row = row;
         _col = col;
+        _image = SpriteLoader.getImage(this._type);
     }
 
     public int getRow() {
@@ -33,10 +34,10 @@ public abstract class Drawable {
 
     public void setType(DrawableEnum type) {
         _type = type;
+        _image = SpriteLoader.getImage(this._type);
     }
 
     public void draw(Graphics2D g2d) {
-        _image = SpriteLoader.getImage(this._type);
         g2d.drawImage(_image, _col * Grid.CELL_SIZE, _row * Grid.CELL_SIZE, Grid.CELL_SIZE, Grid.CELL_SIZE, null);
     }
 

@@ -2,12 +2,10 @@ package foodtruckfrenzy;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class SpriteLoader {
 
-    private static Image _foodTruckImage;
     private static Image _foodTruckUpImage;
     private static Image _foodTruckDownImage;
     private static Image _foodTruckLeftImage;
@@ -20,7 +18,6 @@ public class SpriteLoader {
     static {
             
         try {
-            InputStream foodTruckStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruck.png");
             InputStream foodTruckUpStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckUp.png");
             InputStream foodTruckDownStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckDown.png");
             InputStream foodTruckLeftStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckLeft.png");
@@ -31,7 +28,6 @@ public class SpriteLoader {
             InputStream speedTrapStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/speedtrap.png");
             InputStream potHoleStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/pothole.png");
 
-            _foodTruckImage = ImageIO.read(foodTruckStream);
             _foodTruckUpImage = ImageIO.read(foodTruckUpStream);
             _foodTruckDownImage = ImageIO.read(foodTruckDownStream);
             _foodTruckLeftImage = ImageIO.read(foodTruckLeftStream);
@@ -41,7 +37,7 @@ public class SpriteLoader {
             _speedTrapImage = ImageIO.read(speedTrapStream);
             _potHoleImage = ImageIO.read(potHoleStream);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error when loading sprite files with SpriteLoader:");
             e.printStackTrace();
         }  
@@ -50,8 +46,6 @@ public class SpriteLoader {
     public static Image getImage(DrawableEnum type) {
 
         switch(type) {
-            case FOODTRUCK:
-                return _foodTruckImage;
             case FOODTRUCK_UP:
                 return _foodTruckUpImage;
             case FOODTRUCK_DOWN:
