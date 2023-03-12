@@ -7,7 +7,7 @@ public class Obstruction extends BoardElement {
     }
 
     @Override
-    public int interact() {
+    public ScoreValue interact() {
         throw new UnsupportedOperationException(" 'interact' method called on an obstruction");
     }   
 }

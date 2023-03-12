@@ -30,7 +30,7 @@ public class Grid {
         return grid[row][col].isObstruction();
     }
 
-    public int interact(int row, int col) {
+    public ScoreValue interact(int row, int col) {
 
         return getCell(row, col).interact();
     }

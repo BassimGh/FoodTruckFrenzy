@@ -3,7 +3,7 @@ package foodtruckfrenzy;
 public class FoodTruck extends Vehicle {
 
     // scoreboard attributes
-    private String ingredients = "Potato!";
+    private String ingredients = "";
     private int damage;
     private int fines;
     private int score;
@@ -20,7 +20,7 @@ public class FoodTruck extends Vehicle {
         this.setType(DrawableEnum.FOODTRUCK_UP);
 
         if (moved)
-            this.getGrid().interact(this.getRow(), this.getCol());
+            interact();
 
         return moved;
     }
@@ -31,7 +31,7 @@ public class FoodTruck extends Vehicle {
         this.setType(DrawableEnum.FOODTRUCK_DOWN);
 
         if (moved)
-            this.getGrid().interact(this.getRow(), this.getCol());
+            interact();
 
         return moved;
     }
@@ -42,7 +42,7 @@ public class FoodTruck extends Vehicle {
         this.setType(DrawableEnum.FOODTRUCK_RIGHT);
         
         if (moved)
-            this.getGrid().interact(this.getRow(), this.getCol());
+            interact();
 
         return moved;
     }
@@ -53,9 +53,37 @@ public class FoodTruck extends Vehicle {
         this.setType(DrawableEnum.FOODTRUCK_LEFT);
 
         if (moved)
-            this.getGrid().interact(this.getRow(), this.getCol());
+            interact();
 
         return moved;
+    }
+
+    private void interact() {
+        ScoreValue scoreValue = this.getGrid().interact(this.getRow(), this.getCol());
+
+        if (scoreValue == null) 
+            return;
+
+        int value = scoreValue.getValue();
+        ScoreType scoreType = scoreValue.getScoreType();
+
+        this.score += value;
+
+        switch(scoreType) {
+            case FOOD:
+                setIngredients("Potato");
+                break;
+            case DAMAGE:
+                addDamage(value);
+                break;
+            case SPEED:
+                addFines(value);
+            case BONUS:
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void setIngredients(String ingredient) {
@@ -70,9 +98,9 @@ public class FoodTruck extends Vehicle {
     
     }
 
-    public void setDamage(int damage) {
+    public void addDamage(int damage) {
 
-        this.damage += damage;
+        this.damage -= damage;
 
     } 
 
@@ -82,9 +110,9 @@ public class FoodTruck extends Vehicle {
     
     }
 
-    public void setFines(int fine) {
+    public void addFines(int fine) {
         
-        this.fines += fine;
+        this.fines -= fine;
     
     }
 

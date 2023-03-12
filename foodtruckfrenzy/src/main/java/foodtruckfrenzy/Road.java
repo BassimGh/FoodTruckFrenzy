@@ -20,12 +20,13 @@ public class Road extends BoardElement {
     }
 
     @Override
-    public int interact() {
+    public ScoreValue interact() {
         
         if (_item == null)
-            return 0;
+            return null;
 
         int value = _item.getValue();
+        ScoreType scoreType = _item.getScoreType();
 
         System.out.println("Interacted with value of " + value);
 
@@ -33,7 +34,6 @@ public class Road extends BoardElement {
             _item = null;
         }
 
-        return value;
-        
+        return new ScoreValue(scoreType, value);
     }
 }

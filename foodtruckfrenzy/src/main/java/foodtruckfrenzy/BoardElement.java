@@ -10,6 +10,6 @@ public abstract class BoardElement extends Drawable {
         return this instanceof Obstruction;
     }
 
-    public abstract int interact();
+    public abstract ScoreValue interact();
 
 }
