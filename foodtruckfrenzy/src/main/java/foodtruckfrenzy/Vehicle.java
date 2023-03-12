@@ -20,7 +20,6 @@ public class Vehicle extends Drawable {
         _grid.interact(newRow, this.getCol());
 
         this.setRow(newRow);
-        this.setType(DrawableEnum.FOODTRUCK_UP);
     }
 
     public void moveDown() {
@@ -33,7 +32,6 @@ public class Vehicle extends Drawable {
         _grid.interact(newRow, this.getCol());
 
         this.setRow(newRow);
-        this.setType(DrawableEnum.FOODTRUCK_DOWN);
     }
 
     public void moveRight() {
@@ -46,7 +44,6 @@ public class Vehicle extends Drawable {
         _grid.interact(this.getRow(), newCol);
 
         this.setCol(newCol);
-        this.setType(DrawableEnum.FOODTRUCK_RIGHT);
     }
 
     public void moveLeft() {
@@ -59,7 +56,6 @@ public class Vehicle extends Drawable {
         _grid.interact(this.getRow(), newCol);
 
         this.setCol(newCol);
-        this.setType(DrawableEnum.FOODTRUCK_LEFT);
     }
 
 }

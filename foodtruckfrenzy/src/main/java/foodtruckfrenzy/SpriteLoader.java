@@ -10,6 +10,10 @@ public class SpriteLoader {
     private static Image _foodTruckDownImage;
     private static Image _foodTruckLeftImage;
     private static Image _foodTruckRightImage;
+    private static Image _copUpImage;
+    private static Image _copDownImage;
+    private static Image _copLeftImage;
+    private static Image _copRightImage;
     private static Image _roadImage;
     private static Image _obstructionImage;
     private static Image _speedTrapImage;
@@ -23,6 +27,11 @@ public class SpriteLoader {
             InputStream foodTruckLeftStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckLeft.png");
             InputStream foodTruckRightStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckRight.png");
             
+            InputStream copUpStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png");
+            InputStream copDownStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png");
+            InputStream copLeftStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png");
+            InputStream copRightStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png");
+            
             InputStream roadStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/road.png");
             InputStream obstructionStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house.png");
             InputStream speedTrapStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/speedtrap.png");
@@ -32,6 +41,12 @@ public class SpriteLoader {
             _foodTruckDownImage = ImageIO.read(foodTruckDownStream);
             _foodTruckLeftImage = ImageIO.read(foodTruckLeftStream);
             _foodTruckRightImage = ImageIO.read(foodTruckRightStream);
+            
+            _copUpImage = ImageIO.read(copUpStream);
+            _copDownImage = ImageIO.read(copDownStream);
+            _copLeftImage = ImageIO.read(copLeftStream);
+            _copRightImage = ImageIO.read(copRightStream);
+
             _roadImage = ImageIO.read(roadStream);
             _obstructionImage = ImageIO.read(obstructionStream);
             _speedTrapImage = ImageIO.read(speedTrapStream);
@@ -54,6 +69,14 @@ public class SpriteLoader {
                 return _foodTruckLeftImage;
             case FOODTRUCK_RIGHT:
                 return _foodTruckRightImage;
+            case COP_UP:
+                return _copUpImage;
+            case COP_DOWN:
+                return _copDownImage;
+            case COP_LEFT:
+                return _copLeftImage;
+            case COP_RIGHT:
+                return _copRightImage;
             case ROAD:
                 return _roadImage;
             case OBSTRUCTION:

@@ -24,6 +24,7 @@ public class Game {
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
     private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
     private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
+    private final Cop cop = new Cop(6, 2, grid, mainCharacter);
 
     private final JFrame _frame;
     private final JPanel _gamePanel;
@@ -67,6 +68,7 @@ public class Game {
                     }
                 }
                 mainCharacter.draw(g2d);
+                cop.draw(g2d);
             }
         };
 
@@ -103,6 +105,7 @@ public class Game {
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cop.chaseTruck();
                 if (_keyboardHandler.upPressed())
                     mainCharacter.moveUp();
                 if (_keyboardHandler.downPressed())
