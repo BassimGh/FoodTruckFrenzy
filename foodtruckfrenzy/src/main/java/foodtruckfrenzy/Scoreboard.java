@@ -23,23 +23,30 @@ public class Scoreboard extends JPanel {
     private JLabel ingredientsLabel = new JLabel("Ingredients: ");
     private JLabel damageLabel = new JLabel("Damage: "); 
     private JLabel fineLabel = new JLabel("Fines: ");
-    private JLabel timeLabel = new JLabel("Time: ");
+    private JLabel timeLabel = new JLabel();
 
     private Timer timer;
     private int second;
 
+    private FoodTruck player;
     private String ingredients = "Potato!";
     private int damage;
     private int fines;
     private int time;
     private int score;
+
+    
+
+
     
     public Scoreboard() {
+        // TO DO: update food truck constructor 
         
-        this.add(scoreLabel);
+        // this.player = new FoodTruck();
         this.add(ingredientsLabel);
         this.add(damageLabel);
         this.add(fineLabel);
+        this.add(scoreLabel);
         this.add(timeLabel);
 
         second = 0;
@@ -48,6 +55,10 @@ public class Scoreboard extends JPanel {
         
     }
 
+    public void update() {
+        
+        // scoreLabel.setText("Score: " + player.getScore());
+    }
 
     public void setIngredients(String ingredient) {
         
@@ -97,6 +108,7 @@ public class Scoreboard extends JPanel {
 
     } 
 
+    // add minutes and seconds
     public void simpleTimer() {
         timer = new Timer(1000, new ActionListener() {
             @Override

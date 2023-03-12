@@ -112,7 +112,7 @@ public class Game {
                 if (_keyboardHandler.rightPressed())
                     mainCharacter.moveRight();
                 _gamePanel.repaint();
-                // call _scoreboard.repaint() 
+                // call _scoreboard.update() 
             }
         });
 
