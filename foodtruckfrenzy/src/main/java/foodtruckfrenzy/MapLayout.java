@@ -9,7 +9,7 @@ public class MapLayout {
     private static BoardElementEnum[][] layout;
 
     static {
-        InputStream inputStream = MapLayout.class.getResourceAsStream("layout.txt");
+        InputStream inputStream = MapLayout.class.getResourceAsStream("layout.csv");
         Scanner scanner = new Scanner(inputStream);
         layout = new BoardElementEnum[Grid.ROWS][Grid.COLS];
         int row = 0;

@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 public class Grid {
 
     final static int ROWS = 20; // Number of grid rows
-    final static int COLS = 40; // Number of grid columns
+    final static int COLS = 41; // Number of grid columns
     final static int CELL_SIZE = 32; // Size of each grid cell
     
     private BoardElement[][] grid;

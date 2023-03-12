@@ -12,7 +12,7 @@ public class Game {
     private final int SCOREBOARD_HEIGHT = 30;
     private final int FRAME_WIDTH = Grid.COLS * Grid.CELL_SIZE;
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
-    private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
+    private final int TIMER_DELAY = 75; // Tick timer delay in milliseconds
 
     private final JFrame _frame;
     private final KeyboardHandler _keyboardHandler;

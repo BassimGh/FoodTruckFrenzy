@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 public class GamePanel extends JPanel {
     
     private Grid grid = new Grid();
-    private final FoodTruck _mainCharacter = new FoodTruck(0, 0, grid);
+    private final FoodTruck _mainCharacter = new FoodTruck(3, 0, grid);
     private final Cop _cop = new Cop(6, 2, grid, _mainCharacter);
 
     public GamePanel() {
