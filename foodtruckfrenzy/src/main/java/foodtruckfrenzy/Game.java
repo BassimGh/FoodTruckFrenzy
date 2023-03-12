@@ -90,7 +90,7 @@ public class Game {
         _scoreboardPanel = new JPanel();
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
 
-
+        
         JLabel scoreLabel = new JLabel("0");
         _scoreboardPanel.add(scoreLabel);
         
