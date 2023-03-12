@@ -13,11 +13,11 @@ public class SpriteLoader {
 
     static {
 
-        InputStream foodTruckStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruck.png");
-        InputStream roadStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/road.png");
-        InputStream obstructionStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house.png");
-
         try {
+            InputStream foodTruckStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruck.png");
+            InputStream roadStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/road.png");
+            InputStream obstructionStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house.png");
+            
             _foodTruckImage = ImageIO.read(foodTruckStream);
             _roadImage = ImageIO.read(roadStream);
             _obstructionImage = ImageIO.read(obstructionStream);
