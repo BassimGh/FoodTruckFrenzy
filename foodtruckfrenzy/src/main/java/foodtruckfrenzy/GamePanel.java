@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 public class GamePanel extends JPanel {
     
     private Grid grid = new Grid();
-    private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
-    private final Cop cop = new Cop(6, 2, grid, mainCharacter);
+    private final FoodTruck _mainCharacter = new FoodTruck(0, 0, grid);
+    private final Cop _cop = new Cop(6, 2, grid, _mainCharacter);
 
     public GamePanel() {
 
@@ -30,15 +30,15 @@ public class GamePanel extends JPanel {
                 grid.drawCell(i,j,g2d);
             }
         }
-        mainCharacter.draw(g2d);
-        cop.draw(g2d);
+        _mainCharacter.draw(g2d);
+        _cop.draw(g2d);
     }
 
-    public FoodTruck getMainCharacter() {
-        return mainCharacter;
+    public FoodTruck get_mainCharacter() {
+        return _mainCharacter;
     }
 
-    public Cop getCop() {
-        return cop;
+    public Cop get_cop() {
+        return _cop;
     }
 }
