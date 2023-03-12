@@ -2,8 +2,14 @@ package foodtruckfrenzy;
 
 // O: Obstruction
 // S: Speed Trap
+
 // P: Pot Hole
+// L: Pot Hole Vertical
+
+
 // F: Food
+// R: Food Vertical
+
 
 // H: Horizontal Road
 // V: Vertical Road
@@ -37,5 +43,7 @@ public enum BoardElementEnum {
     O,
     S,
     P,
-    F
+    F,
+    R,
+    L
 }

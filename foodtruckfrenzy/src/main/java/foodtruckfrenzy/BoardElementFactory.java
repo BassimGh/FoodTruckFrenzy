@@ -35,8 +35,13 @@ public class BoardElementFactory {
                 return new Road(row, col, new SpeedTrap(row, col), DrawableEnum.HORIZONTAL_ROAD);
             case P:
                 return new Road(row, col, new PotHole(row, col), DrawableEnum.HORIZONTAL_ROAD);
+            case L:
+                return new Road(row, col, new PotHole(row, col), DrawableEnum.VERTICAL_ROAD);
             case F:
                 return new Road(row, col, new Food(row, col), DrawableEnum.HORIZONTAL_ROAD);
+            case R:
+                return new Road(row, col, new Food(row, col), DrawableEnum.VERTICAL_ROAD);
+            
             default:
                 throw new IllegalArgumentException();
         }
