@@ -108,6 +108,7 @@ public class PauseScreen extends JPanel {
         
         resumeButton.setPreferredSize(new Dimension(100, 50));
         exitButton.setPreferredSize(new Dimension(100, 50));
+        this.setBackground(Color.BLACK);
 
         buttonPanel.setVisible(true); // force display the panel
 

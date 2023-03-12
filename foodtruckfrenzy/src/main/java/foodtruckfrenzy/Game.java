@@ -55,7 +55,6 @@ public class Game {
 
         _mainPanel.add(gameAndScorePane, "game");
 
-
         ActionListener resumeListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,9 +69,8 @@ public class Game {
                 _frame.dispose();
             }
         };
-
-
         JPanel pausePanel = new PauseScreen(resumeListener, restartListener);
+
         _mainPanel.add(pausePanel, "pause");
         _frame.setContentPane(_mainPanel);
         _layout = (CardLayout) _mainPanel.getLayout();
@@ -87,7 +85,6 @@ public class Game {
             public void actionPerformed(ActionEvent e) {
 
                 if (!_paused) {
-
                     if (_keyboardHandler.pause())
                         pause();
 
