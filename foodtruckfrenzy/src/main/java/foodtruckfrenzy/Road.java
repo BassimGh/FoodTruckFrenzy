@@ -18,4 +18,22 @@ public class Road extends BoardElement {
         if (!(_item == null))
             _item.draw(g2d);
     }
+
+    @Override
+    public int interact() {
+        
+        if (_item == null)
+            return 0;
+
+        int value = _item.getValue();
+
+        System.out.println("Interacted with value of " + value);
+
+        if (value>0) {
+            _item = null;
+        }
+
+        return value;
+        
+    }
 }

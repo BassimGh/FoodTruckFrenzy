@@ -4,9 +4,11 @@ package foodtruckfrenzy;
 // O: Obstruction
 // S: Speed Trap
 // P: Pot Hole
+// F: Food
 public enum BoardElementEnum {
     R,
     O,
     S,
-    P
+    P,
+    F
 }

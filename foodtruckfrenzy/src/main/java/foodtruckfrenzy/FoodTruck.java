@@ -15,27 +15,43 @@ public class FoodTruck extends Vehicle {
     }
 
     @Override
-    public void moveUp() {
-        super.moveUp();
-        //interaction here
+    public boolean moveUp() {
+        boolean moved = super.moveUp();
+
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     @Override
-    public void moveDown() {
-        super.moveDown();
-        //interaction here
+    public boolean moveDown() {
+        boolean moved = super.moveDown();
+
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     @Override
-    public void moveRight() {
-        super.moveRight();
-        //interaction here
+    public boolean moveRight() {
+        boolean moved = super.moveRight();
+        
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     @Override
-    public void moveLeft() {
-        super.moveLeft();
-        //interaction here
+    public boolean moveLeft() {
+        boolean moved = super.moveLeft();
+
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     public void setIngredients(String ingredient) {
