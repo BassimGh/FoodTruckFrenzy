@@ -12,5 +12,6 @@ public enum DrawableEnum {
     ROAD,
     OBSTRUCTION,
     SPEED_TRAP,
-    POT_HOLE
+    POT_HOLE,
+    FOOD
 }

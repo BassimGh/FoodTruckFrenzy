@@ -10,52 +10,61 @@ public class Vehicle extends Drawable {
         _grid = grid;
     }
 
-    public void moveUp() {
+    public boolean moveUp() {
         int newRow = this.getRow() - SPEED;
 
-        if (newRow < 0) { return; }
+        if (newRow < 0) { return false; }
 
-        if (_grid.isObstruction(newRow, this.getCol())) { return; }
-
-        _grid.interact(newRow, this.getCol());
+        if (_grid.isObstruction(newRow, this.getCol())) { return false; }
 
         this.setRow(newRow);
+        this.setType(DrawableEnum.FOODTRUCK_UP);
+
+        return true;
     }
 
-    public void moveDown() {
+    public boolean moveDown() {
         int newRow = this.getRow() + SPEED;
 
-        if (newRow >= Grid.ROWS) { return; }
+        if (newRow >= Grid.ROWS) { return false; }
 
-        if (_grid.isObstruction(newRow, this.getCol())) { return; }
-        
-        _grid.interact(newRow, this.getCol());
+        if (_grid.isObstruction(newRow, this.getCol())) { return false; }
 
         this.setRow(newRow);
+        this.setType(DrawableEnum.FOODTRUCK_DOWN);
+
+        return true;
     }
 
-    public void moveRight() {
+    public boolean moveRight() {
         int newCol = this.getCol() + SPEED;
 
-        if (newCol >= Grid.COLS) { return; }
+        if (newCol >= Grid.COLS) { return false; }
 
-        if (_grid.isObstruction(this.getRow(), newCol)) { return; }
-
-        _grid.interact(this.getRow(), newCol);
+        if (_grid.isObstruction(this.getRow(), newCol)) { return false; }
 
         this.setCol(newCol);
+        this.setType(DrawableEnum.FOODTRUCK_RIGHT);
+
+        return true;
     }
 
-    public void moveLeft() {
+    public boolean moveLeft() {
         int newCol = this.getCol() - SPEED;
 
-        if (newCol < 0 ) { return; }
+        if (newCol < 0 ) { return false; }
 
-        if (_grid.isObstruction(this.getRow(), newCol)) { return; }
-
-        _grid.interact(this.getRow(), newCol);
+        if (_grid.isObstruction(this.getRow(), newCol)) { return false; }
 
         this.setCol(newCol);
+        this.setType(DrawableEnum.FOODTRUCK_LEFT);
+
+        return true;
     }
+
+    public Grid getGrid() {
+        return _grid;
+    }
+
 
 }

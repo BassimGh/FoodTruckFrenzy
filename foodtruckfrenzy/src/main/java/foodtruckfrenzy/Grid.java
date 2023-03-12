@@ -32,8 +32,7 @@ public class Grid {
 
     public int interact(int row, int col) {
 
-        // System.out.println("Interaction with tile " + row + " - " + col);
-        return 0;
+        return getCell(row, col).interact();
     }
 
 }

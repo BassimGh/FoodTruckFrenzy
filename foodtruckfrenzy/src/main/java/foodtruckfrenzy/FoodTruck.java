@@ -2,38 +2,110 @@ package foodtruckfrenzy;
 
 public class FoodTruck extends Vehicle {
 
-    public int score = 0; 
+    // scoreboard attributes
+    private String ingredients = "Potato!";
+    private int damage;
+    private int fines;
+    private int score;
+    
+
 
     public FoodTruck(int row, int col, Grid grid) {
         super(row, col, grid, DrawableEnum.FOODTRUCK_RIGHT);
     }
 
     @Override
-    public void moveUp() {
-        super.moveUp();
+    public boolean moveUp() {
+        boolean moved = super.moveUp();
         this.setType(DrawableEnum.FOODTRUCK_UP);
-        //interaction here
+
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     @Override
-    public void moveDown() {
-        super.moveDown();
+    public boolean moveDown() {
+        boolean moved = super.moveDown();
         this.setType(DrawableEnum.FOODTRUCK_DOWN);
-        //interaction here
+
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     @Override
-    public void moveRight() {
-        super.moveRight();
+    public boolean moveRight() {
+        boolean moved = super.moveRight();
         this.setType(DrawableEnum.FOODTRUCK_RIGHT);
-        //interaction here
+        
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
 
     @Override
-    public void moveLeft() {
-        super.moveLeft();
+    public boolean moveLeft() {
+        boolean moved = super.moveLeft();
         this.setType(DrawableEnum.FOODTRUCK_LEFT);
-        //interaction here
+
+        if (moved)
+            this.getGrid().interact(this.getRow(), this.getCol());
+
+        return moved;
     }
+
+    public void setIngredients(String ingredient) {
+        
+        this.ingredients += ingredient + " ";
+    
+    }
+
+    public String getIngredients() {
+        
+        return this.ingredients;
+    
+    }
+
+    public void setDamage(int damage) {
+
+        this.damage += damage;
+
+    } 
+
+    public int getDamage() {
+
+        return this.damage;
+    
+    }
+
+    public void setFines(int fine) {
+        
+        this.fines += fine;
+    
+    }
+
+    public int getFines() {
+
+        return this.fines;
+
+    }
+
+    public String getScore() {
+
+        return Integer.toString(this.score);
+
+    }
+
+    public void calculateScore() {
+
+        this.score = this.score - fines - damage;
+
+    } 
+
+
 
 }
