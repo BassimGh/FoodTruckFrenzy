@@ -17,17 +17,12 @@ import java.awt.Color;
 
 public class Game {
     
-    private Grid grid = new Grid();
-
     private final int SCOREBOARD_HEIGHT = 30;
     private final int FRAME_WIDTH = Grid.COLS * Grid.CELL_SIZE;
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
     private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
-    private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
-    private final Cop cop = new Cop(6, 2, grid, mainCharacter);
 
     private final JFrame _frame;
-    private final JPanel _gamePanel;
     private final KeyboardHandler _keyboardHandler;
     private final Timer _timer;
     private final Scoreboard _scoreboardPanel;
@@ -36,12 +31,6 @@ public class Game {
 // game constructor
     public Game() {
        
-        // Initialize grid with starting values
-        for (int i = 0; i < Grid.ROWS; i++) {
-            for (int j = 0; j < Grid.COLS; j++) {
-                grid.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
-            }
-        }
 
         // create new title frame
         _frame = new JFrame("Food Truck Frenzy");
@@ -54,23 +43,9 @@ public class Game {
 
         _frame.setContentPane(contentPane);
         
-        // create panel for the map
-        _gamePanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g.create();
-
-                for (int i = 0; i < Grid.ROWS; i++) {
-                    for (int j = 0; j < Grid.COLS; j++) {
-                        grid.drawCell(i,j,g2d);
-                    }
-                }
-                mainCharacter.draw(g2d);
-                cop.draw(g2d);
-            }
-        };
-
+        GamePanel _gamePanel = new GamePanel();
+        FoodTruck mainCharacter = _gamePanel.getMainCharacter();
+        Cop cop = _gamePanel.getCop();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
@@ -104,7 +79,7 @@ public class Game {
                     mainCharacter.moveLeft();
                 if (_keyboardHandler.rightPressed())
                     mainCharacter.moveRight();
-                    
+
                 cop.chaseTruck();
                 _gamePanel.repaint();
                 _scoreboardPanel.update(); 
