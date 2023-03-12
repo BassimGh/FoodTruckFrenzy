@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                JFrame frame = new JFrame("Title Screen Test");
+                JFrame frame = new JFrame("Food Truck Frenzy");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 ActionListener startListener = new ActionListener() {
