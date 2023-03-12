@@ -76,16 +76,8 @@ public class Game {
         _keyboardHandler = new KeyboardHandler();
         _gamePanel.addKeyListener(_keyboardHandler);
 
-  
         _scoreboardPanel = new Scoreboard(mainCharacter); 
-    
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
-
-        // JLabel scoreLabel = new JLabel("Score: " + scoreboard.getScore(), SwingConstants.LEFT);
-        // JLabel ingredientLabel = new JLabel("Ingredients: " + scoreboard.getIngredients(), SwingConstants.CENTER);
-        
-        // _scoreboardPanel.add(ingredientLabel); 
-        // _scoreboardPanel.add(scoreLabel);
         
         _gamePanel.setFocusable(true);
         _gamePanel.requestFocusInWindow();
@@ -95,7 +87,7 @@ public class Game {
         _frame.getContentPane().add(_gamePanel, BorderLayout.CENTER);
         _frame.pack();
         _frame.setVisible(true);
-        _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
 
