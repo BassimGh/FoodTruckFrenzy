@@ -3,7 +3,7 @@ package foodtruckfrenzy;
 public class BoardElementFactory {
     public static BoardElement create(BoardElementEnum type, int row, int col) {
         switch (type) {
-            case R:
+            case H:
                 return new Road(row, col, null);
             case O:
                 return new Obstruction(row, col);

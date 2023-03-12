@@ -7,7 +7,7 @@ public class Road extends BoardElement {
     private Item _item;
 
     public Road(int row, int col, Item item) {
-        super(row, col, DrawableEnum.ROAD);
+        super(row, col, DrawableEnum.HORIZONTAL_ROAD);
         _item = item;
     }
 
