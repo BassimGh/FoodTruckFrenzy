@@ -24,8 +24,7 @@ public class Game {
     private boolean _paused = false;
 
     public Game() {
-       
-
+    
         _mainPanel = new JPanel(new CardLayout());
 
         _frame = new JFrame("Food Truck Frenzy");

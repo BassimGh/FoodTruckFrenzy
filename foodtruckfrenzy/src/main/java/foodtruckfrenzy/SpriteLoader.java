@@ -2,7 +2,6 @@ package foodtruckfrenzy;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.HashMap;
