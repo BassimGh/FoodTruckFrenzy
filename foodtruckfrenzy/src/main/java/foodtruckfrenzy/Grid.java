@@ -30,18 +30,10 @@ public class Grid {
         return grid[row][col].isObstruction();
     }
 
+    public int interact(int row, int col) {
 
-    public int getRows() {
-        return ROWS;
+        // System.out.println("Interaction with tile " + row + " - " + col);
+        return 0;
     }
-
-    public int getCols() {
-        return COLS;
-    }
-
-    public int getCellSize() {
-        return CELL_SIZE;
-    }
-
 
 }
