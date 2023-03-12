@@ -57,7 +57,7 @@ public class Scoreboard extends JPanel {
     // scoreboard is updated based on players food trucks stats
         ingredientsLabel.setText("Ingredients: " + player.getIngredients());
         damageLabel.setText("Damage: " + player.getDamage());
-        fineLabel.setText("Damages: " + player.getDamage());
+        fineLabel.setText("Fines: " + player.getFines());
         scoreLabel.setText("Score: " + player.getScore());
 
     }
