@@ -13,27 +13,31 @@ public class Cop extends Vehicle{
     }
 
     @Override
-    public void moveUp() {
-        super.moveUp();
+    public boolean moveUp() {
+        boolean moved = super.moveUp();
         this.setType(DrawableEnum.COP_UP);
+        return moved;
     }
 
     @Override
-    public void moveDown() {
-        super.moveDown();
+    public boolean moveDown() {
+        boolean moved = super.moveDown();
         this.setType(DrawableEnum.COP_DOWN);
+        return moved;
     }
 
     @Override
-    public void moveLeft() {
-        super.moveLeft();
+    public boolean moveLeft() {
+        boolean moved = super.moveLeft();
         this.setType(DrawableEnum.COP_LEFT);
+        return moved;
     }
 
     @Override
-    public void moveRight() {
-        super.moveRight();
+    public boolean moveRight() {
+        boolean moved = super.moveRight();
         this.setType(DrawableEnum.COP_RIGHT);
+        return moved;
     }
 
     public void chaseTruck() {
