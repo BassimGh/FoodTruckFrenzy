@@ -54,7 +54,7 @@ public class FoodTruck extends Drawable {
     // getters and setters for score
     public int getScore() {
 
-        return this.score; 
+        return score; 
     }
 
 
