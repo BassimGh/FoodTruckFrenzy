@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
-
 public class Scoreboard extends JPanel {
 
             /* components of the scoreboard 
@@ -47,16 +46,6 @@ public class Scoreboard extends JPanel {
         simpleTimer();
         this.timer.start();
         
-    }
-
-    public void simpleTimer() {
-        timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                second++;
-                timeLabel.setText("Timer: " + second);
-            }
-            });
     }
 
 
@@ -102,12 +91,22 @@ public class Scoreboard extends JPanel {
 
     }
 
-
     public void calculateScore() {
 
         this.score = this.score - fines - damage;
 
     } 
+
+    public void simpleTimer() {
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                second++;
+                timeLabel.setText("Timer Elapsed: " + second);
+            }
+            });
+    }
+    
 }
 
 
