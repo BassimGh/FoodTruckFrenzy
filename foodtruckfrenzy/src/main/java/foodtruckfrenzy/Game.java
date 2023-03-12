@@ -20,8 +20,8 @@ public class Game {
     private Grid grid = new Grid();
 
     private final int SCOREBOARD_HEIGHT = 30;
-    private final int FRAME_WIDTH = grid.getCols() * grid.getCellSize();
-    private final int FRAME_HEIGHT = grid.getRows() * grid.getCellSize();
+    private final int FRAME_WIDTH = Grid.COLS * Grid.CELL_SIZE;
+    private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
     private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
     private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
 
@@ -37,8 +37,8 @@ public class Game {
     public Game() {
        
         // Initialize grid with starting values
-        for (int i = 0; i < grid.getRows(); i++) {
-            for (int j = 0; j < grid.getCols(); j++) {
+        for (int i = 0; i < Grid.ROWS; i++) {
+            for (int j = 0; j < Grid.COLS; j++) {
                 grid.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
             }
         }
@@ -61,8 +61,8 @@ public class Game {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g.create();
 
-                for (int i = 0; i < grid.getRows(); i++) {
-                    for (int j = 0; j < grid.getCols(); j++) {
+                for (int i = 0; i < Grid.ROWS; i++) {
+                    for (int j = 0; j < Grid.COLS; j++) {
                         grid.drawCell(i,j,g2d);
                     }
                 }
