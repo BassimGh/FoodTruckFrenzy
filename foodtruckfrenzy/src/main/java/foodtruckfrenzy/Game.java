@@ -58,13 +58,17 @@ public class Game {
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (_keyboardHandler.upPressed())
+
+                if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
                     mainCharacter.moveUp();
-                if (_keyboardHandler.downPressed())
+
+                if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed())
                     mainCharacter.moveDown();
-                if (_keyboardHandler.leftPressed())
+
+                if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
                     mainCharacter.moveLeft();
-                if (_keyboardHandler.rightPressed())
+                    
+                if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed())
                     mainCharacter.moveRight();
 
                 cop.chaseTruck();
