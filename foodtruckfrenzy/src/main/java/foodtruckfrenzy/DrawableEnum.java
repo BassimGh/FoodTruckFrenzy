@@ -7,5 +7,7 @@ public enum DrawableEnum {
     FOODTRUCK_LEFT,
     FOODTRUCK_RIGHT,
     ROAD,
-    OBSTRUCTION
+    OBSTRUCTION,
+    SPEED_TRAP,
+    POT_HOLE
 }

@@ -14,14 +14,13 @@ public class SpriteLoader {
     private static Image _foodTruckRightImage;
     private static Image _roadImage;
     private static Image _obstructionImage;
+    private static Image _speedTrapImage;
+    private static Image _potHoleImage;
 
     static {
+        try {
 
         InputStream foodTruckStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruck.png");
-        InputStream foodTruckUpStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckUp.png");
-        InputStream foodTruckDownStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckDown.png");
-        InputStream foodTruckLeftStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckLeft.png");
-        InputStream foodTruckRightStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckRight.png");
         InputStream roadStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/road.png");
         InputStream obstructionStream = SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house.png");
 
@@ -33,8 +32,11 @@ public class SpriteLoader {
             _foodTruckRightImage = ImageIO.read(foodTruckRightStream);
             _roadImage = ImageIO.read(roadStream);
             _obstructionImage = ImageIO.read(obstructionStream);
+            _speedTrapImage = ImageIO.read(speedTrapStream);
+            _potHoleImage = ImageIO.read(potHoleStream);
 
         } catch (IOException e) {
+            System.err.println("Error when loading sprite files with SpriteLoader:");
             e.printStackTrace();
         }  
     }
@@ -56,6 +58,10 @@ public class SpriteLoader {
                 return _roadImage;
             case OBSTRUCTION:
                 return _obstructionImage;
+            case SPEED_TRAP:
+                return _speedTrapImage;
+            case POT_HOLE:
+                return _potHoleImage;
             default:
                 throw new IllegalArgumentException();
         }
