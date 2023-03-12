@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import java.awt.Color;
 
@@ -32,7 +33,7 @@ public class Game {
 
     private Scoreboard scoreboard = new Scoreboard();
 
-
+// game constructor
     public Game() {
        
         // Initialize grid with starting values
@@ -42,6 +43,7 @@ public class Game {
             }
         }
 
+        // create new title frame
         _frame = new JFrame("Food Truck Frenzy");
         _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _frame.setResizable(true);
@@ -52,8 +54,7 @@ public class Game {
 
         _frame.setContentPane(contentPane);
         
-        
-
+        // create panel for the map
         _gamePanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -68,11 +69,36 @@ public class Game {
                 mainCharacter.draw(g2d);
             }
         };
+
+
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 
         contentPane.add(_gamePanel, BorderLayout.CENTER);
         _keyboardHandler = new KeyboardHandler();
         _gamePanel.addKeyListener(_keyboardHandler);
+
+  
+        _scoreboardPanel = new Scoreboard(); 
+    
+        _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
+
+        // JLabel scoreLabel = new JLabel("Score: " + scoreboard.getScore(), SwingConstants.LEFT);
+        // JLabel ingredientLabel = new JLabel("Ingredients: " + scoreboard.getIngredients(), SwingConstants.CENTER);
+        
+        // _scoreboardPanel.add(ingredientLabel); 
+        // _scoreboardPanel.add(scoreLabel);
+        
+        _gamePanel.setFocusable(true);
+        _gamePanel.requestFocusInWindow();
+
+        _frame.getContentPane().setLayout(new BorderLayout());
+        _frame.getContentPane().add(_scoreboardPanel, BorderLayout.NORTH);
+        _frame.getContentPane().add(_gamePanel, BorderLayout.CENTER);
+        _frame.pack();
+        _frame.setVisible(true);
+        _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+
 
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
@@ -86,28 +112,9 @@ public class Game {
                 if (_keyboardHandler.rightPressed())
                     mainCharacter.moveRight();
                 _gamePanel.repaint();
+                // call _scoreboard.repaint() 
             }
         });
-
-        _scoreboardPanel = new JPanel();
-        _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
-
-        
-        
-        
-        JLabel scoreLabel = new JLabel(scoreboard.getScore());
-        JLabel ingredientLabel = new JLabel()
-        _scoreboardPanel.add(scoreLabel);
-        
-        _gamePanel.setFocusable(true);
-        _gamePanel.requestFocusInWindow();
-
-        _frame.getContentPane().setLayout(new BorderLayout());
-        _frame.getContentPane().add(_scoreboardPanel, BorderLayout.NORTH);
-        _frame.getContentPane().add(_gamePanel, BorderLayout.CENTER);
-        _frame.pack();
-        _frame.setVisible(true);
-        _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
 
