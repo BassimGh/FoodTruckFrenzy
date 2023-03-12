@@ -1,14 +1,49 @@
 package foodtruckfrenzy;
 
-// R: Road
 // O: Obstruction
 // S: Speed Trap
+
 // P: Pot Hole
+// L: Pot Hole Vertical
+
+
 // F: Food
+// R: Food Vertical
+
+
+// H: Horizontal Road
+// V: Vertical Road
+// X: 4 way intersect
+
+// U: North-West corner
+// I: North-East corner
+// J: South-East corner
+// K: South-West corner
+
+// N: North three-way
+// B: East three-way
+// M: South three-way
+// C: West three-way 
+
 public enum BoardElementEnum {
-    R,
+    H,
+    V,
+    X,
+
+    U,
+    I,
+    J,
+    K,
+    
+    N,
+    B,
+    M,
+    C,
+
     O,
     S,
     P,
-    F
+    F,
+    R,
+    L
 }
