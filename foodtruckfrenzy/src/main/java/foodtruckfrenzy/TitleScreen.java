@@ -7,21 +7,31 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.imageio.ImageIO;
 
 public class TitleScreen extends JPanel {
     private BufferedImage backgroundImage;
+    private BufferedImage startImage;
+    private BufferedImage exitImage;
     private JButton startButton;
     private JButton exitButton;
 
     public TitleScreen(ActionListener startListener, ActionListener exitListener) {
         try {
-            backgroundImage = ImageIO.read(new File("src/main/resources/foodtruckfrenzy/background.png")); // replace with your image file name and location
-            backgroundImage = resize(backgroundImage, 800, 600); // resize the image to fit the entire TitleScreen window
+            InputStream backgroundInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/background.png");
+            InputStream startInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/start.png");
+            InputStream exitInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/exit.png");
+
+            backgroundImage = ImageIO.read(backgroundInputStream);
+            backgroundImage = resize(backgroundImage, 800, 600);
+            startImage = ImageIO.read(startInputStream);
+            exitImage = ImageIO.read(exitInputStream);
+
         } catch (IOException e) {
-            System.out.println("Error loading background image:");
+            System.err.println("Error loading image");
             e.printStackTrace();
         }
 
@@ -48,7 +58,7 @@ public class TitleScreen extends JPanel {
         gbc.insets = new Insets(0, 0, 20, 0); // add some spacing between the buttons
         gbc.anchor = GridBagConstraints.CENTER;
 
-        startButton = new JButton(new ImageIcon("src/main/resources/foodtruckfrenzy/start.png"));
+        startButton = new JButton(new ImageIcon(startImage));
         startButton.addActionListener(startListener);
         startButton.setPreferredSize(new Dimension(100, 50));
         startButton.setBorder(null); // remove the button border
@@ -68,7 +78,7 @@ public class TitleScreen extends JPanel {
         buttonPanel.add(startButton, gbc);
 
         gbc.gridy++;
-        exitButton = new JButton(new ImageIcon("src/main/resources/foodtruckfrenzy/exit.png"));
+        exitButton = new JButton(new ImageIcon(exitImage));
         exitButton.addActionListener(exitListener);
         exitButton.setPreferredSize(new Dimension(100, 50));
         exitButton.setBorder(null); // remove the button border
