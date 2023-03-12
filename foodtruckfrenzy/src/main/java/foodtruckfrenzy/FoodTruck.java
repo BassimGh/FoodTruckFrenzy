@@ -18,6 +18,7 @@ public class FoodTruck extends Drawable {
         if (_grid.isObstruction(newRow, this.getCol())) { return; }
 
         this.setRow(newRow);
+        this.setType(DrawableEnum.FOODTRUCK_UP);
     }
 
     public void moveDown() {
@@ -28,6 +29,7 @@ public class FoodTruck extends Drawable {
         if (_grid.isObstruction(newRow, this.getCol())) { return; }
 
         this.setRow(newRow);
+        this.setType(DrawableEnum.FOODTRUCK_DOWN);
     }
 
     public void moveRight() {
@@ -38,6 +40,7 @@ public class FoodTruck extends Drawable {
         if (_grid.isObstruction(this.getRow(), newCol)) { return; }
 
         this.setCol(newCol);
+        this.setType(DrawableEnum.FOODTRUCK_RIGHT);
     }
 
     public void moveLeft() {
@@ -48,6 +51,7 @@ public class FoodTruck extends Drawable {
         if (_grid.isObstruction(this.getRow(), newCol)) { return; }
 
         this.setCol(newCol);
+        this.setType(DrawableEnum.FOODTRUCK_LEFT);
     }
 
 }
