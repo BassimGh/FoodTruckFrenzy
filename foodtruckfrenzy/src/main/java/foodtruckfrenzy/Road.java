@@ -29,6 +29,10 @@ public class Road extends BoardElement {
 
         System.out.println("Interacted with value of " + value);
 
+        if (value>0) {
+            _item = null;
+        }
+
         return value;
         
     }

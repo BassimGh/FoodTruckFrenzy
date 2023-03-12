@@ -11,6 +11,8 @@ public class BoardElementFactory {
                 return new Road(row, col, new SpeedTrap(row, col));
             case P:
                 return new Road(row, col, new PotHole(row, col));
+            case F:
+                return new Road(row, col, new Food(row, col));
             default:
                 throw new IllegalArgumentException();
         }
