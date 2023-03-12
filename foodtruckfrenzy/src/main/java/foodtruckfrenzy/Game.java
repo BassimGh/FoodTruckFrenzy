@@ -96,7 +96,6 @@ public class Game {
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cop.chaseTruck();
                 if (_keyboardHandler.upPressed())
                     mainCharacter.moveUp();
                 if (_keyboardHandler.downPressed())
@@ -105,8 +104,11 @@ public class Game {
                     mainCharacter.moveLeft();
                 if (_keyboardHandler.rightPressed())
                     mainCharacter.moveRight();
+                    
+                cop.chaseTruck();
                 _gamePanel.repaint();
                 _scoreboardPanel.update(); 
+
             }
         });
 
