@@ -9,6 +9,7 @@ public class KeyboardHandler implements KeyListener {
     private boolean _downPressed = false;
     private boolean _rightPressed = false;
     private boolean _leftPressed = false;
+    private boolean _pause = false;
 
     public boolean upPressed() {
         return _upPressed;
@@ -26,6 +27,19 @@ public class KeyboardHandler implements KeyListener {
         return _leftPressed;
     }
 
+    public boolean pause() {
+        return _pause;
+    }
+
+    public void resetKeys() {
+        _upPressed = false;
+        _downPressed = false;
+        _rightPressed = false;
+        _leftPressed = false;
+        _pause = false;
+
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -41,6 +55,9 @@ public class KeyboardHandler implements KeyListener {
                 break;
             case KeyEvent.VK_RIGHT:
                 _rightPressed = true;
+                break;
+            case KeyEvent.VK_P:
+                _pause = true;
                 break;
         }
     }
@@ -61,9 +78,13 @@ public class KeyboardHandler implements KeyListener {
             case KeyEvent.VK_RIGHT:
                 _rightPressed = false;
                 break;
+            case KeyEvent.VK_P:
+                _pause = false;
+                break;
         }
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 }

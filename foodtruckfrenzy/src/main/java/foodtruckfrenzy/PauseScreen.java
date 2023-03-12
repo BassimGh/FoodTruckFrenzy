@@ -7,21 +7,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.io.InputStream;
 
 public class PauseScreen extends JPanel {
     private BufferedImage backgroundImage;
+    private BufferedImage resumeImage;
+    private BufferedImage exitImage;
     private JButton resumeButton;
     private JButton exitButton;
 
     public PauseScreen(ActionListener resumeListener, ActionListener exitListener, Game game) {
         try {
-            backgroundImage = ImageIO.read(new File("background.png")); // replace with your image file name and location
+            InputStream backgroundInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/background.png");
+            InputStream resumeInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/resume.png");
+            InputStream exitInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/exit.png");
+
+            backgroundImage = ImageIO.read(backgroundInputStream);
             backgroundImage = resize(backgroundImage, 800, 600); // resize the image to fit the entire PauseScreen window
+            resumeImage = ImageIO.read(resumeInputStream);
+            exitImage = ImageIO.read(exitInputStream);
         } catch (IOException e) {
-            System.out.println("Error loading background image:");
+            System.err.println("Error loading background image:");
             e.printStackTrace();
         }
 
@@ -48,13 +56,13 @@ public class PauseScreen extends JPanel {
         gbc.insets = new Insets(0, 0, 20, 0); // add some spacing between the buttons
         gbc.anchor = GridBagConstraints.CENTER;
 
-        resumeButton = new JButton(new ImageIcon("resume.png"));
-        resumeButton.addActionListener(resumeListener);
+        resumeButton = new JButton(new ImageIcon(resumeImage));
+        // resumeButton.addActionListener(resumeListener);
         resumeButton.setPreferredSize(new Dimension(100, 50));
         resumeButton.setBorder(null); // remove the button border
         resumeButton.setFocusPainted(false); // remove the focus paint
         resumeButton.setContentAreaFilled(false); // make the content area painted directly on top of the button background
-        resumeButton.addActionListener(e -> game.startTimer());
+        resumeButton.addActionListener(e -> game.resume());
         resumeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -69,7 +77,7 @@ public class PauseScreen extends JPanel {
         buttonPanel.add(resumeButton, gbc);
 
         gbc.gridy++;
-        exitButton = new JButton(new ImageIcon("exit.png"));
+        exitButton = new JButton(new ImageIcon(exitImage));
         exitButton.addActionListener(exitListener);
         exitButton.setPreferredSize(new Dimension(100, 50));
         exitButton.setBorder(null); // remove the button border

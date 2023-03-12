@@ -17,11 +17,17 @@ public class Game {
     private final JFrame _frame;
     private final KeyboardHandler _keyboardHandler;
     private final Timer _timer;
+    private final JPanel _mainPanel;
     private final Scoreboard _scoreboardPanel;
     private final GamePanel _gamePanel;
+    private final CardLayout _layout;
+    private boolean _paused = false;
 
     public Game() {
        
+
+        _mainPanel = new JPanel(new CardLayout());
+
         _frame = new JFrame("Food Truck Frenzy");
         _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _frame.setResizable(true);
@@ -30,8 +36,6 @@ public class Game {
         contentPane.setBackground(Color.BLACK);
         contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
-        _frame.setContentPane(contentPane);
-        
         _gamePanel = new GamePanel();
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
         Cop cop = _gamePanel.get_cop();
@@ -40,17 +44,22 @@ public class Game {
         _gamePanel.setFocusable(true);
         _gamePanel.requestFocusInWindow();
 
-        contentPane.add(_gamePanel, BorderLayout.CENTER);
+        _scoreboardPanel = new Scoreboard(mainCharacter); 
+        _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
 
         _keyboardHandler = new KeyboardHandler();
         _gamePanel.addKeyListener(_keyboardHandler);
 
-        _scoreboardPanel = new Scoreboard(mainCharacter); 
-        _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
+        contentPane.add(_gamePanel, BorderLayout.CENTER);
+        contentPane.add(_scoreboardPanel, BorderLayout.NORTH);
 
-        _frame.getContentPane().setLayout(new BorderLayout());
-        _frame.getContentPane().add(_scoreboardPanel, BorderLayout.NORTH);
-        _frame.getContentPane().add(_gamePanel, BorderLayout.CENTER);
+        _mainPanel.add(contentPane, "game");
+        JPanel pausePanel = new PauseScreen(null, null, this);
+        _mainPanel.add(pausePanel, "pause");
+        _frame.setContentPane(_mainPanel);
+        _layout = (CardLayout) _mainPanel.getLayout();
+        _layout.show(_mainPanel, "game");
+
         _frame.pack();
         _frame.setVisible(true);
         // _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -59,21 +68,29 @@ public class Game {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
-                    mainCharacter.moveUp();
+                if (!_paused) {
 
-                if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed())
-                    mainCharacter.moveDown();
+                    if (_keyboardHandler.pause())
+                        pause();
 
-                if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
-                    mainCharacter.moveLeft();
-                    
-                if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed())
-                    mainCharacter.moveRight();
+                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
+                        mainCharacter.moveUp();
 
-                cop.chaseTruck();
-                _gamePanel.repaint();
-                _scoreboardPanel.update(); 
+                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed())
+                        mainCharacter.moveDown();
+
+                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
+                        mainCharacter.moveLeft();
+                        
+                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed())
+                        mainCharacter.moveRight();
+
+                    cop.chaseTruck();
+                    _gamePanel.repaint();
+                    _scoreboardPanel.update(); 
+                    // pauseGame();
+                }
+
             }
         });
 
@@ -83,7 +100,19 @@ public class Game {
         _timer.start();
     }
 
-    public void stopTimer() {
-        _timer.stop();
+    public void pause() {
+        _keyboardHandler.resetKeys();
+        _paused = true;
+        _layout.show(_mainPanel, "pause");
+
+        _gamePanel.setFocusable(true);
+        _gamePanel.requestFocusInWindow();
+    }
+
+    public void resume() {
+        _paused = false;
+        _layout.show(_mainPanel, "game");
+        _gamePanel.setFocusable(true);
+        _gamePanel.requestFocusInWindow();
     }
 }
