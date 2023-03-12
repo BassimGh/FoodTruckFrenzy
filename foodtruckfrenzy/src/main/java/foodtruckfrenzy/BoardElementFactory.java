@@ -8,9 +8,9 @@ public class BoardElementFactory {
             case O:
                 return new Obstruction(row, col);
             case S:
-                return new Road(row, col, DrawableEnum.SPEED_TRAP);
+                return new Road(row, col, new SpeedTrap(row, col));
             case P:
-                return new Road(row, col, DrawableEnum.POT_HOLE);
+                return new Road(row, col, new PotHole(row, col));
             default:
                 throw new IllegalArgumentException();
         }
