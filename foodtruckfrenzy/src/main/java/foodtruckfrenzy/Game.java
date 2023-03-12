@@ -29,9 +29,8 @@ public class Game {
     private final JPanel _gamePanel;
     private final KeyboardHandler _keyboardHandler;
     private final Timer _timer;
-    private final JPanel _scoreboardPanel;
+    private final Scoreboard _scoreboardPanel;
 
-    private Scoreboard scoreboard = new Scoreboard();
 
 // game constructor
     public Game() {
@@ -78,7 +77,7 @@ public class Game {
         _gamePanel.addKeyListener(_keyboardHandler);
 
   
-        _scoreboardPanel = new Scoreboard(); 
+        _scoreboardPanel = new Scoreboard(mainCharacter); 
     
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
 
@@ -112,7 +111,7 @@ public class Game {
                 if (_keyboardHandler.rightPressed())
                     mainCharacter.moveRight();
                 _gamePanel.repaint();
-                // call _scoreboard.update() 
+                _scoreboardPanel.update(); 
             }
         });
 

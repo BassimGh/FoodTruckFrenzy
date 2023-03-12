@@ -10,13 +10,13 @@ import javax.swing.Timer;
 
 public class Scoreboard extends JPanel {
 
-            /* components of the scoreboard 
-            1. ingredients collected:  displayed as array of icons
-            2. Damage:                 records damage inflicted from obstacles
-            3. Speed Fines:            records speed fines from speed traps
-            4. Time:                   records time elapsed
-            5. Score:                  current score
-        **/
+    /* components of the scoreboard 
+    1. ingredients collected:  displayed as array of icons
+    2. Damage:                 records damage inflicted from obstacles
+    3. Speed Fines:            records speed fines from speed traps
+    4. Time:                   records time elapsed
+    5. Score:                  current score
+    **/
 
 
     private JLabel scoreLabel = new JLabel("Score: ");
@@ -32,15 +32,11 @@ public class Scoreboard extends JPanel {
     private String ingredients = "Potato!";
     private int damage;
     private int fines;
-    private int time;
     private int score;
 
     
-    
-    public Scoreboard() {
-        // TO DO: update food truck constructor 
-        
-        // this.player = new FoodTruck();
+    public Scoreboard(FoodTruck player) {        
+        this.player = player;  
         this.add(ingredientsLabel);
         this.add(damageLabel);
         this.add(fineLabel);
@@ -53,59 +49,17 @@ public class Scoreboard extends JPanel {
         
     }
 
+    
     public void update() {
-
-        // scoreLabel.setText("Score: " + player.getScore());
-    }
-
-    public void setIngredients(String ingredient) {
-        
-        this.ingredients += ingredient + " ";
-    
-    }
-
-    public String getIngredients() {
-        
-        return this.ingredients;
-    
-    }
-
-    public void setDamage(int damage) {
-
-        this.damage += damage;
-
-    } 
-
-    public int getDamage() {
-
-        return this.damage;
-    
-    }
-
-    public void setFines(int fine) {
-        
-        this.fines += fine;
-    
-    }
-
-    public int getFines() {
-
-        return this.fines;
+    // scoreboard is updated based on players food trucks stats
+        ingredientsLabel.setText("Ingredients: " + player.getIngredients());
+        damageLabel.setText("Damage: " + player.getDamage());
+        fineLabel.setText("Damages: " + player.getDamage());
+        scoreLabel.setText("Score: " + player.getScore());
 
     }
 
-    public String getScore() {
-
-        return Integer.toString(this.score);
-
-    }
-
-    public void calculateScore() {
-
-        this.score = this.score - fines - damage;
-
-    } 
-
+   
     // add minutes and seconds
     public void simpleTimer() {
         timer = new Timer(1000, new ActionListener() {
