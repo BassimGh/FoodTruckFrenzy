@@ -26,7 +26,9 @@ public class Scoreboard extends JPanel {
     private JLabel timeLabel = new JLabel();
 
     private Timer timer;
-    private int second;
+    private int minute;
+    private int second; 
+    
 
     private FoodTruck player;
     private String ingredients = "Potato!";
@@ -43,7 +45,8 @@ public class Scoreboard extends JPanel {
         this.add(scoreLabel);
         this.add(timeLabel);
 
-        second = 0;
+        second = 00;
+        minute = 00;
         simpleTimer();
         this.timer.start();
         
@@ -62,11 +65,16 @@ public class Scoreboard extends JPanel {
    
     // add minutes and seconds
     public void simpleTimer() {
+
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 second++;
-                timeLabel.setText("Timer Elapsed: " + second);
+                if (second == 60) {
+                    minute++;
+                    second = 0;
+                }
+                timeLabel.setText("Time: " + String.format("%02d",minute) + ":" + String.format("%02d", second));
             }
             });
     }
