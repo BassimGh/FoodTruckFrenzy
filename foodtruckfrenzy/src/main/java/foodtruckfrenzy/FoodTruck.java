@@ -2,10 +2,6 @@ package foodtruckfrenzy;
 
 public class FoodTruck extends Vehicle {
 
-    private int SPEED = 1;
-    private Grid _grid;
-
-
     // scoreboard attributes
     private String ingredients = "Potato!";
     private int damage;
