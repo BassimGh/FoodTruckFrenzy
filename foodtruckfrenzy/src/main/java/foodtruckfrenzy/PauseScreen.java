@@ -18,7 +18,7 @@ public class PauseScreen extends JPanel {
     private JButton resumeButton;
     private JButton exitButton;
 
-    public PauseScreen(ActionListener resumeListener, ActionListener exitListener, Game game) {
+    public PauseScreen(ActionListener resumeListener, ActionListener exitListener) {
         try {
             InputStream backgroundInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/background.png");
             InputStream resumeInputStream = TitleScreen.class.getResourceAsStream("/foodtruckfrenzy/resume.png");
@@ -57,12 +57,11 @@ public class PauseScreen extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
 
         resumeButton = new JButton(new ImageIcon(resumeImage));
-        // resumeButton.addActionListener(resumeListener);
+        resumeButton.addActionListener(resumeListener);
         resumeButton.setPreferredSize(new Dimension(100, 50));
         resumeButton.setBorder(null); // remove the button border
         resumeButton.setFocusPainted(false); // remove the focus paint
         resumeButton.setContentAreaFilled(false); // make the content area painted directly on top of the button background
-        resumeButton.addActionListener(e -> game.resume());
         resumeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

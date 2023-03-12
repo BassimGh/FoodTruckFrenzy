@@ -32,9 +32,9 @@ public class Game {
         _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _frame.setResizable(true);
 
-        JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.setBackground(Color.BLACK);
-        contentPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+        JPanel gameAndScorePane = new JPanel(new BorderLayout());
+        gameAndScorePane.setBackground(Color.BLACK);
+        gameAndScorePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
         _gamePanel = new GamePanel();
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
@@ -50,11 +50,29 @@ public class Game {
         _keyboardHandler = new KeyboardHandler();
         _gamePanel.addKeyListener(_keyboardHandler);
 
-        contentPane.add(_gamePanel, BorderLayout.CENTER);
-        contentPane.add(_scoreboardPanel, BorderLayout.NORTH);
+        gameAndScorePane.add(_gamePanel, BorderLayout.CENTER);
+        gameAndScorePane.add(_scoreboardPanel, BorderLayout.NORTH);
 
-        _mainPanel.add(contentPane, "game");
-        JPanel pausePanel = new PauseScreen(null, null, this);
+        _mainPanel.add(gameAndScorePane, "game");
+
+
+        ActionListener resumeListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resume();
+            }
+        };
+
+        ActionListener restartListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.main(null);
+                _frame.dispose();
+            }
+        };
+
+
+        JPanel pausePanel = new PauseScreen(resumeListener, restartListener);
         _mainPanel.add(pausePanel, "pause");
         _frame.setContentPane(_mainPanel);
         _layout = (CardLayout) _mainPanel.getLayout();
@@ -88,9 +106,7 @@ public class Game {
                     cop.chaseTruck();
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
-                    // pauseGame();
                 }
-
             }
         });
 
