@@ -9,13 +9,13 @@ public class Scoreboard {
 
     public void setIngredients(String ingredient) {
         
-        ingredients += ingredient + " ";
+        this.ingredients += ingredient + " ";
     
     }
 
     public String getIngredients() {
         
-        return ingredients;
+        return this.ingredients;
     
     }
 
@@ -27,32 +27,33 @@ public class Scoreboard {
 
     public int getDamage() {
 
-        return damage;
+        return this.damage;
     
     }
 
     public void setFines(int fine) {
         
-        fines += fine;
+        this.fines += fine;
     
     }
 
     public int getFines() {
 
-        return fines;
+        return this.fines;
 
     }
 
-    public int getScore() {
+    public String getScore() {
 
-        return score;
+        return Integer.toString(this.score);
 
     }
+
 
     public void calculateScore() {
 
-        score = score - fines - damage;
-        
+        this.score = this.score - fines - damage;
+
     } 
 }
 

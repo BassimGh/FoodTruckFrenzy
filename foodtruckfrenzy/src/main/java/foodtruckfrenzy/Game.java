@@ -30,6 +30,8 @@ public class Game {
     private final Timer _timer;
     private final JPanel _scoreboardPanel;
 
+    private Scoreboard scoreboard = new Scoreboard();
+
 
     public Game() {
        
@@ -91,7 +93,10 @@ public class Game {
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
 
         
-        JLabel scoreLabel = new JLabel("0");
+        
+        
+        JLabel scoreLabel = new JLabel(scoreboard.getScore());
+        JLabel ingredientLabel = new JLabel()
         _scoreboardPanel.add(scoreLabel);
         
         _gamePanel.setFocusable(true);
