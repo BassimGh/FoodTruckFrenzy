@@ -13,6 +13,7 @@ public class FoodTruck extends Drawable {
     private int score;
     
 
+
     public FoodTruck(int row, int col, Grid grid) {
         super(row, col, DrawableEnum.FOODTRUCK);
         _grid = grid;

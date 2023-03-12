@@ -36,8 +36,6 @@ public class Scoreboard extends JPanel {
     private int score;
 
     
-
-
     
     public Scoreboard() {
         // TO DO: update food truck constructor 
@@ -56,7 +54,7 @@ public class Scoreboard extends JPanel {
     }
 
     public void update() {
-        
+
         // scoreLabel.setText("Score: " + player.getScore());
     }
 
