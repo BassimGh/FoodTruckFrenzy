@@ -1,7 +1,13 @@
 package foodtruckfrenzy;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
+
 
 public class Scoreboard extends JPanel {
 
@@ -20,6 +26,9 @@ public class Scoreboard extends JPanel {
     private JLabel fineLabel = new JLabel("Fines: ");
     private JLabel timeLabel = new JLabel("Time: ");
 
+    private Timer timer;
+    private int second;
+
     private String ingredients = "Potato!";
     private int damage;
     private int fines;
@@ -34,7 +43,20 @@ public class Scoreboard extends JPanel {
         this.add(fineLabel);
         this.add(timeLabel);
 
+        second = 0;
+        simpleTimer();
+        this.timer.start();
         
+    }
+
+    public void simpleTimer() {
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                second++;
+                timeLabel.setText("Timer: " + second);
+            }
+            });
     }
 
 
