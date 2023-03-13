@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import javafx.geometry.Pos;
-
 public class Cop extends Vehicle{
 
     private FoodTruck foodtruck;
