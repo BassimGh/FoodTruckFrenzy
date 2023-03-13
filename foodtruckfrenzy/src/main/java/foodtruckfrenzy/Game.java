@@ -12,7 +12,9 @@ public class Game {
     private final int SCOREBOARD_HEIGHT = 100;
     private final int FRAME_WIDTH = Grid.COLS * Grid.CELL_SIZE;
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
-    private final int TIMER_DELAY = 75; // Tick timer delay in milliseconds
+    private final int TIMER_DELAY = 1000; // Tick timer delay in milliseconds
+    private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
+    private final Cop cop;
 
     private final JFrame _frame;
     private final KeyboardHandler _keyboardHandler;
@@ -27,6 +29,8 @@ public class Game {
     
         Food.resetCount();
         _mainPanel = new JPanel(new CardLayout());
+        // Initialize cops
+        cop = new Cop(5, 5, grid, mainCharacter);
 
         _frame = new JFrame("Food Truck Frenzy");
         _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
