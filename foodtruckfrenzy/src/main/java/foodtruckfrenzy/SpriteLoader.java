@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class SpriteLoader {
 
     private static ArrayList<Image> _houseImages = new ArrayList<Image>();
+    private static ArrayList<Image> _foodImages = new ArrayList<Image>();
     private static HashMap<DrawableEnum, Image> _imagesHashMap = new HashMap<>();
 
     private static Random random = new Random();
@@ -29,13 +30,21 @@ public class SpriteLoader {
 
             _imagesHashMap.put(DrawableEnum.SPEED_TRAP, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/speedtrap.png")));
             _imagesHashMap.put(DrawableEnum.POT_HOLE, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/pothole.png")));
-            _imagesHashMap.put(DrawableEnum.FOOD, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/potato.png")));
             _imagesHashMap.put(DrawableEnum.RECIPE, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/recipe.png")));
 
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house1.png")));
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house2.png")));
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house3.png")));
-
+            
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/potato.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/apple.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/steak.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/chicken.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/cherry.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/icecream.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/egg.png")));
+            _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/can.png")));
+            
             _imagesHashMap.put(DrawableEnum.HORIZONTAL_ROAD, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadHorizontal.png")));
             _imagesHashMap.put(DrawableEnum.VERTICAL_ROAD, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadVertical.png")));
             _imagesHashMap.put(DrawableEnum.FOUR_WAY_INTERSECT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadFourWay.png")));
@@ -49,7 +58,6 @@ public class SpriteLoader {
             _imagesHashMap.put(DrawableEnum.THREE_WAY_EAST, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWayEast.png")));
             _imagesHashMap.put(DrawableEnum.THREE_WAY_SOUTH, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWaySouth.png")));
             _imagesHashMap.put(DrawableEnum.THREE_WAY_WEST, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/roadThreeWayWest.png")));
-
         } catch (Exception e) {
             System.err.println("Error when loading sprite files with SpriteLoader:");
             e.printStackTrace();
@@ -59,8 +67,11 @@ public class SpriteLoader {
     public static Image getImage(DrawableEnum type) {
 
         if (type == DrawableEnum.OBSTRUCTION) {
-            int randomNumber = random.nextInt(3);
+            int randomNumber = random.nextInt(_houseImages.size());
             return _houseImages.get(randomNumber);
+        } else if (type == DrawableEnum.FOOD) {
+            int randomNumber = random.nextInt(_foodImages.size());
+            return _foodImages.get(randomNumber);
         }
     
         return _imagesHashMap.get(type);
