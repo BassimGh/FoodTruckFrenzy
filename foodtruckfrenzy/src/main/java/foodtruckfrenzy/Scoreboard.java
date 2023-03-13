@@ -101,6 +101,7 @@ public class Scoreboard extends JPanel {
     public void update() {
 
         _ingredientsLabel.setText("Ingredients Collected: " + player.getIngredientsFound() + "/" + Food.getCount());
+        _recipesLabel.setText("Recipes Found: " + player.getRecipesFound() + "/" + Recipe.getCount());
         _damageLabel.setText("Damages: " + player.getDamage());
         _fineLabel.setText("Speed Fines: " + player.getFines());
         _scoreTotal.setText(player.getScore());
