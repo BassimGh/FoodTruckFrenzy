@@ -81,6 +81,7 @@ public class FoodTruck extends Vehicle {
                 break;
             case SPEED:
                 addFines(value);
+                break;
             case BONUS:
                 recipesFound++;
                 break;
