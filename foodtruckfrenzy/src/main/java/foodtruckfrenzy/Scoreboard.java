@@ -17,10 +17,14 @@ public class Scoreboard extends JPanel {
     
     Font sbFont1 = new Font("Comic Sans MS", Font.PLAIN, 16);
     Font sbFont2 = new Font("Comic Sans MS", Font.PLAIN, 22);
-    Font sbFont3 = new Font("Comic Sans MS", Font.BOLD, 40);
-    // Font sbFont1 = new Font("Comic Sans MS", Font.PLAIN, 22);
+    Font sbFont3 = new Font("Comic Sans MS", Font.BOLD, 44);
     
     Color backGroundColor = new Color(54, 65, 79);
+    Color red = new Color(227, 0, 39);
+    Color yellow = new Color(255, 240, 75);
+    Color starCommandBlue = new Color(0, 123, 184);
+    Color green = new Color(80, 255, 90);
+    Color white = Color.WHITE;
     
     private JPanel collectablesPanel = new JPanel();
     private JPanel scorePanel = new JPanel();
@@ -40,6 +44,8 @@ public class Scoreboard extends JPanel {
     private int ingredientsDiscoverable;
     private int recipesFound;
     private int recipesDiscoverable;
+    private int damage;
+    private int fines;
     
 
     private Timer _timer;
@@ -59,15 +65,15 @@ public class Scoreboard extends JPanel {
         collectablesPanel.setLayout(new GridLayout(4, 1));
         collectablesPanel.setBackground(backGroundColor);
         _ingredientsLabel.setFont(sbFont1);
-        _ingredientsLabel.setForeground(Color.WHITE);
+        _ingredientsLabel.setForeground(white);
         _recipesLabel.setFont(sbFont1);
-        _recipesLabel.setForeground(Color.WHITE);
+        _recipesLabel.setForeground(white);
         _fineLabel.setFont(sbFont1);
-        _fineLabel.setForeground(Color.WHITE);
+        _fineLabel.setForeground(white);
         _timeLabel.setFont(sbFont1);
-        _timeLabel.setForeground(Color.WHITE); 
+        _timeLabel.setForeground(white); 
         _damageLabel.setFont(sbFont1);
-        _damageLabel.setForeground(Color.WHITE);
+        _damageLabel.setForeground(white);
 
         collectablesPanel.add(_ingredientsLabel); 
         collectablesPanel.add(_recipesLabel);
@@ -78,8 +84,9 @@ public class Scoreboard extends JPanel {
         scorePanel.setLayout(new FlowLayout());
         scorePanel.setBackground(backGroundColor);
         _scoreLabel.setFont(sbFont3);       
-        _scoreLabel.setForeground(Color.WHITE);
+        _scoreLabel.setForeground(white);
         _scoreTotal.setFont(sbFont3);
+        _scoreTotal.setForeground(white);
 
         scorePanel.add(_scoreLabel);
         scorePanel.add(_scoreTotal);
@@ -89,9 +96,9 @@ public class Scoreboard extends JPanel {
         timePanel.setLayout(new GridLayout(2, 1, 10, 10));
         timePanel.setBackground(backGroundColor);
         _timeLabel.setFont(sbFont2);
-        _timeLabel.setForeground(Color.WHITE);      
+        _timeLabel.setForeground(white);      
         _pauseInstructions.setFont(sbFont1);
-        _pauseInstructions.setForeground(Color.WHITE);
+        _pauseInstructions.setForeground(white);
     
         timePanel.add(_timeLabel);
         timePanel.add(_pauseInstructions);
@@ -116,23 +123,25 @@ public class Scoreboard extends JPanel {
         score = player.getScoreInt();
         ingredientsFound = player.getIngredientsFound();
         recipesFound = player.getRecipesFound();
+        damage = player.getDamage();
+        fines = player.getFines();
 
         if(score < 0) {
-            _scoreTotal.setForeground(Color.RED);
+            _scoreTotal.setForeground(red);
+        }
+        if (score > 0) {
+            _scoreTotal.setForeground(yellow);
         }
         if (ingredientsFound == ingredientsDiscoverable) {
-            _ingredientsLabel.setForeground(Color.GREEN);
+            _ingredientsLabel.setForeground(green);
         }
         if (recipesFound == recipesDiscoverable) {
-            _recipesLabel.setForeground(Color.GREEN);
+            _recipesLabel.setForeground(green);
         }
-        else {
-            _scoreTotal.setForeground(Color.YELLOW);
-        }
-            _ingredientsLabel.setText("Ingredients: " + player.getIngredientsFound() + "/" + Food.getCount());
-            _recipesLabel.setText("Recipes: " + player.getRecipesFound() + "/" + Recipe.getCount());
-            _damageLabel.setText("Damages: " + player.getDamage());
-            _fineLabel.setText("Speed Fines: " + player.getFines());
+            _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+            _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+            _damageLabel.setText("Damages: " + damage);
+            _fineLabel.setText("Speed Fines: " + fines);
             _scoreTotal.setText(player.getScore());
       
     }
