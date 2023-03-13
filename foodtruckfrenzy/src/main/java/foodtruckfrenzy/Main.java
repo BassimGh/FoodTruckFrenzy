@@ -32,12 +32,13 @@ public class Main {
                     }
                 };
 
-                TitleScreen titleScreen = new TitleScreen(startListener, exitListener);
-                frame.getContentPane().add(titleScreen);
+                Screen titleScreen = new TitleScreen(startListener, exitListener);
 
+                frame.getContentPane().add(titleScreen);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
+
             }
         });
     }
