@@ -25,6 +25,7 @@ public class Game {
 
     public Game() {
     
+        Food.resetCount();
         _mainPanel = new JPanel(new CardLayout());
 
         _frame = new JFrame("Food Truck Frenzy");
