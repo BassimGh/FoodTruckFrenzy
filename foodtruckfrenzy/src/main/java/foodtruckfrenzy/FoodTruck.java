@@ -8,6 +8,7 @@ public class FoodTruck extends Vehicle {
     private int fines;
     private int score;
     
+    private int ingredientsFound, recipesFound;
 
 
 
@@ -73,6 +74,7 @@ public class FoodTruck extends Vehicle {
         switch(scoreType) {
             case FOOD:
                 setIngredients("Potato");
+                ingredientsFound++;
                 break;
             case DAMAGE:
                 addDamage(value);
@@ -94,9 +96,9 @@ public class FoodTruck extends Vehicle {
     
     }
 
-    public String getIngredients() {
+    public int getIngredientsFound() {
        
-        return this.ingredients;
+        return this.ingredientsFound;
     
     }
 
