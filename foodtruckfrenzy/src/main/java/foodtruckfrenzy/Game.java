@@ -42,6 +42,7 @@ public class Game {
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
+        _gamePanel.setBackground(new Color(54, 65, 79));
         _gamePanel.requestFocusInWindow();
 
         _scoreboardPanel = new Scoreboard(mainCharacter); 
