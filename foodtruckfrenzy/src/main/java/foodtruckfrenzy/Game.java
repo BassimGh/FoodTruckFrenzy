@@ -117,13 +117,11 @@ public class Game {
 
     public void startTimer() {
         _timer.start();
-        _scoreboardPanel.startTimer();
     }
 
     public void pause() {
         _keyboardHandler.resetKeys();
         _paused = true;
-        _scoreboardPanel.pauseTimer();
         _layout.show(_mainPanel, "pause");
 
         _gamePanel.setFocusable(true);
@@ -132,7 +130,6 @@ public class Game {
 
     public void resume() {
         _paused = false;
-        _scoreboardPanel.resumeTimer();
         _layout.show(_mainPanel, "game");
         _gamePanel.setFocusable(true);
         _gamePanel.requestFocusInWindow();
