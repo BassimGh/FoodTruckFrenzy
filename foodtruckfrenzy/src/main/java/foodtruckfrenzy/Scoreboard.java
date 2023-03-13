@@ -14,14 +14,15 @@ public class Scoreboard extends JPanel {
     4. Time:                   records time elapsed
     5. Score:                  current score
     **/
-    Font smolBoiFont = new Font("Comic Sans MS", Font.PLAIN, 22);
-    Font bigBoiFont = new Font("Comic Sans MS", Font.BOLD, 40);
-    // Font smallerFont = new Font("Comic Sans MS", Font.PLAIN, 22);
+    
+    Font sbFont1 = new Font("Comic Sans MS", Font.PLAIN, 16);
+    Font sbFont2 = new Font("Comic Sans MS", Font.PLAIN, 22);
+    Font sbFont3 = new Font("Comic Sans MS", Font.BOLD, 40);
+    // Font sbFont1 = new Font("Comic Sans MS", Font.PLAIN, 22);
     
     Color backGroundColor = new Color(54, 65, 79);
     
     private JPanel collectablesPanel = new JPanel();
-    private JPanel negativePointsPanel = new JPanel();
     private JPanel scorePanel = new JPanel();
     private JPanel timePanel = new JPanel();
     
@@ -32,7 +33,6 @@ public class Scoreboard extends JPanel {
     private JLabel _damageLabel = new JLabel("Damage: "); 
     private JLabel _fineLabel = new JLabel("Fines: ");
     private JLabel _timeLabel = new JLabel("Time: 00:00");
-
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
     private Timer _timer;
@@ -41,96 +41,77 @@ public class Scoreboard extends JPanel {
 
     private boolean _paused = false;
     
-
     private FoodTruck player;
 
-    
-    
     public Scoreboard(FoodTruck player) {
         
+        setLayout(new BorderLayout(10, 10));
+        setBackground(backGroundColor);
 
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // added border for debugging
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
- 
-        // left column-------- ingredients and recipess
-        collectablesPanel.setLayout(new GridLayout(2, 2, 25, 8));
+        // left column-------- ingredients and recipes
+        collectablesPanel.setLayout(new GridLayout(4, 1));
         collectablesPanel.setBackground(backGroundColor);
-        _ingredientsLabel.setFont(smolBoiFont);
+        _ingredientsLabel.setFont(sbFont1);
         _ingredientsLabel.setForeground(Color.WHITE);
-        _recipesLabel.setFont(smolBoiFont);
+        _recipesLabel.setFont(sbFont1);
         _recipesLabel.setForeground(Color.WHITE);
-        //centre left--------- damage and fines
-        negativePointsPanel.setLayout(new GridLayout(2, 1, 25, 16));
-        negativePointsPanel.setBackground(backGroundColor);
-        _fineLabel.setFont(smolBoiFont);
+        _fineLabel.setFont(sbFont1);
         _fineLabel.setForeground(Color.WHITE);
-        _timeLabel.setFont(smolBoiFont);
+        _timeLabel.setFont(sbFont1);
         _timeLabel.setForeground(Color.WHITE); 
-        _damageLabel.setFont(smolBoiFont);
+        _damageLabel.setFont(sbFont1);
         _damageLabel.setForeground(Color.WHITE);
-        // negativePointsPanel.add(_fineLabel);
-        // negativePointsPanel.add(_damageLabel);
-        collectablesPanel.add(_ingredientsLabel);
-        collectablesPanel.add(_fineLabel);
+
+        collectablesPanel.add(_ingredientsLabel); 
         collectablesPanel.add(_recipesLabel);
+        collectablesPanel.add(_fineLabel);
         collectablesPanel.add(_damageLabel);
 
-
-        
         //Centre Column -------- Score
         scorePanel.setLayout(new FlowLayout());
         scorePanel.setBackground(backGroundColor);
-        _scoreLabel.setFont(bigBoiFont);       
+        _scoreLabel.setFont(sbFont3);       
         _scoreLabel.setForeground(Color.WHITE);
-        _scoreTotal.setFont(bigBoiFont);
+        _scoreTotal.setFont(sbFont3);
+
+        scorePanel.add(_scoreLabel);
+        scorePanel.add(_scoreTotal);
 
 
         // Right Column -------- Time / Pause Instr.
         timePanel.setLayout(new GridLayout(2, 1, 10, 10));
         timePanel.setBackground(backGroundColor);
-        _timeLabel.setFont(smolBoiFont);
-        _timeLabel.setForeground(Color.WHITE);
-        scorePanel.add(_scoreLabel);
-        scorePanel.add(_scoreTotal);
-        timePanel.add(_timeLabel);
-        _pauseInstructions.setFont(smolBoiFont);
+        _timeLabel.setFont(sbFont2);
+        _timeLabel.setForeground(Color.WHITE);      
+        _pauseInstructions.setFont(sbFont1);
         _pauseInstructions.setForeground(Color.WHITE);
+    
+        timePanel.add(_timeLabel);
         timePanel.add(_pauseInstructions);
         
-        gbc.gridx = 0; // first column
-        gbc.gridy = 0; // first row
-        gbc.anchor = GridBagConstraints.WEST; // left align   
-        // gbc.insets = new Insets(10, 0, 10, 20); 
-        add(collectablesPanel, gbc);
-
-        // add(negativePointsPanel);
-        gbc.gridx = 1; // second column
-        gbc.anchor = GridBagConstraints.CENTER; // centre align 
-        // gbc.insets = new Insets(10, 10, 10, 10);
-        add(scorePanel, gbc);
-
-        gbc.gridx = 2; // third column
-        gbc.anchor = GridBagConstraints.EAST; // right align
-        // gbc.insets = new Insets(10, 20, 10, 0);
-        add(timePanel, gbc);
-
-        
-        setBackground(backGroundColor);
-        this.player = player;  
+        // adding 3 columns to scoreboard
+        add(collectablesPanel, BorderLayout.WEST);
+        add(scorePanel, BorderLayout.CENTER);
+        add(timePanel, BorderLayout.EAST);
+      
+        this.player = player;  // assign player to fetch data from
         _second = 00;
         _minute = 00;
         simpleTimer();
         _timer.start();
-
     }
 
     
     public void update() {
         
         int score = player.getScoreInt();
+        int ingredientsFound = player.getIngredientsFound();
+        int recipesFound = player.getRecipesFound();
         if(score < 0) {
             _scoreTotal.setForeground(Color.RED);
+        }
+        if () {
+
         }
         else {
             _scoreTotal.setForeground(Color.YELLOW);
