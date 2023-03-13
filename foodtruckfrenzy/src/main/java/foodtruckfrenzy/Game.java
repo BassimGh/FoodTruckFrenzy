@@ -89,6 +89,7 @@ public class Game {
                     if (_keyboardHandler.pause())
                         pause();
 
+
                     if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
                         mainCharacter.moveUp();
 
@@ -100,6 +101,10 @@ public class Game {
                         
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed())
                         mainCharacter.moveRight();
+
+                    if (mainCharacter.getScoreInt() < 0) {
+                        loss();
+                    }
 
                     cop.chaseTruck();
                     _gamePanel.repaint();
@@ -128,5 +133,9 @@ public class Game {
         _layout.show(_mainPanel, "game");
         _gamePanel.setFocusable(true);
         _gamePanel.requestFocusInWindow();
+    }
+
+    private void loss() {
+        System.out.println("Negative score, game loss");
     }
 }

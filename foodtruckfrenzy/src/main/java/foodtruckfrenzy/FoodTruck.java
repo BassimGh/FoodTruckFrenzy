@@ -130,6 +130,10 @@ public class FoodTruck extends Vehicle {
 
     }
 
+    public int getScoreInt() {
+        return this.score;
+    }
+
     public void calculateScore() {
 
         this.score = this.score - fines - damage;
