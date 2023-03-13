@@ -13,6 +13,7 @@ public enum DrawableEnum {
     SPEED_TRAP,
     POT_HOLE,
     FOOD,
+    RECIPE,
 
     HORIZONTAL_ROAD,
     VERTICAL_ROAD,

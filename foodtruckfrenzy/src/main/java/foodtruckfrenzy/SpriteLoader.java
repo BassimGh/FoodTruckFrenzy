@@ -30,6 +30,7 @@ public class SpriteLoader {
             _imagesHashMap.put(DrawableEnum.SPEED_TRAP, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/speedtrap.png")));
             _imagesHashMap.put(DrawableEnum.POT_HOLE, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/pothole.png")));
             _imagesHashMap.put(DrawableEnum.FOOD, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/food.png")));
+            _imagesHashMap.put(DrawableEnum.RECIPE, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/recipe.png")));
 
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house1.png")));
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house2.png")));
