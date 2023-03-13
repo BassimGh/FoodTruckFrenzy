@@ -1,18 +1,27 @@
 package foodtruckfrenzy;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import javafx.geometry.Pos;
 
 public class Cop extends Vehicle{
 
     private FoodTruck foodtruck;
 
-    private int targetX;
-    private int targetY;
+    private ArrayList<Position> queue = new ArrayList<>();
+    private ArrayList<Position> visited = new ArrayList<>();
+    private ArrayList<Direction> directions = new ArrayList<>();
 
-    public Cop(int row, int col, Grid grid, FoodTruck target) {
+    private Position target;
+
+    public Cop(int row, int col, Grid grid, FoodTruck player) {
         super(row, col, grid, DrawableEnum.COP_RIGHT);
-        targetX = target.getCol();
-        targetY = target.getRow();
+        this.foodtruck = player;
+        target = new Position(player.getRow(), player.getCol(), null);
+        queue.add(new Position(row, col, null));
+        getDirections();
     }
 
     @Override
@@ -44,61 +53,113 @@ public class Cop extends Vehicle{
     }
 
     public void chaseTruck() {
-        this.moveRight();
-        int currentX = this.getRow();
-        int currentY = this.getCol();
+        // target.row = foodtruck.getRow();
+        // target.col = foodtruck.getCol();
+        // target.prev = queue.get(queue.size() - 1);
 
-        int targetX = foodtruck.getCol();
-        int targetY = foodtruck.getRow();
-
-        getPath();
-
-        // while (!(currentX == targetX && currentY == targetY)) {
-        //     move();
-        // }
+        // queue.add(target);
+        // getDirections();
+        if (!directions.isEmpty()) {
+            if (directions.get(0) == Direction.UP)
+                moveUp();
+            if (directions.get(0) == Direction.DOWN)
+                moveDown();
+            if (directions.get(0) == Direction.LEFT)
+                moveLeft();
+            if (directions.get(0) == Direction.RIGHT)
+                moveRight();
+            directions.remove(0);
+        } else {
+            System.out.println("directions is empty");
+        }
     }
 
-    public void getPath() {
-        Position currentPosition = new Position(this.getCol(), this.getRow());
-        ArrayList<Direction> allDirections = new ArrayList<>();
-        allDirections.add(Direction.UP);
-        allDirections.add(Direction.DOWN);
-        allDirections.add(Direction.LEFT);
-        allDirections.add(Direction.RIGHT);
+    public void getDirections() {
+        // ArrayList<Direction> directions = new ArrayList<>();
+        ArrayList<Position> path = new ArrayList<>();
+        
+        Position currentPos = queue.get(0);
+        while (!(currentPos.row == target.row && currentPos.col == target.col)) {
+            currentPos = queue.get(0);
+            checkAdjacentCells(currentPos);
+            visited.add(currentPos);
 
-        ArrayList<Position> visited = new ArrayList<>();
-        ArrayList<Position> toVisit = new ArrayList<>(); 
+            queue.remove(0);
+        }
+        System.out.println("GOT PATH");
+        path = getPath(currentPos);
 
-        toVisit.add(currentPosition);
-        visited.add(currentPosition);
+        System.out.println("--- Start Queue -----");
+        for (Position p : path) {
+            if (p != null )System.out.println(p.col + " " + p.row);
+        }
+        System.out.println("#################################");
+        
+        // Converts set of coordinates to set of directions
+        for (int i = 0; i < path.size() - 1; i++) {
+            // get direction UP
+            if (path.get(i).row > path.get(i + 1).row && path.get(i).col == path.get(i + 1).col)
+                directions.add(Direction.UP);
 
-        while (!allDirections.isEmpty()) {
-            if (isValidMove(allDirections.get(0))) {
-                toVisit.add()
-            }
-            allDirections.remove(0);
+            // get direction DOWN
+            if (path.get(i).row < path.get(i + 1).row && path.get(i).col == path.get(i + 1).col)
+                directions.add(Direction.DOWN);
+
+            // get direction LEFT
+            if (path.get(i).row == path.get(i + 1).row && path.get(i).col > path.get(i + 1).col)
+                directions.add(Direction.LEFT);
+
+            // get direction RIGHT
+            if (path.get(i).row > path.get(i + 1).row && path.get(i).col < path.get(i + 1).col)
+                directions.add(Direction.RIGHT);
         }
 
+        System.out.println("--- Start Queue -----");
+        for (Direction d : directions) {
+            System.out.println(d);
+        }
+        System.out.println("#################################");
+
+        System.out.println("got directions");
     }
 
-    public Direction isValidMove(Direction direction) {
-        if (direction == Direction.UP && targetY - 1 > 0 &&
-            this.getGrid().getCell(targetX, targetY - 1).isObstruction())
-                return Direction.UP;
+    public ArrayList<Position> getPath(Position pos) {
+        ArrayList<Position> path = new ArrayList<>();
 
-        if (direction == Direction.DOWN && targetY + 1 < Grid.ROWS &&
-            this.getGrid().getCell(targetX, targetY + 1).isObstruction())
-                return Direction.DOWN;
+        path.add(pos);
+        while (!(pos.row == this.getRow() && pos.col == this.getCol())) {
+            path.add(pos.prev);
+            pos = pos.prev;
+            if (pos == null)
+                break;
+        }
 
-        if (direction == Direction.LEFT && targetX - 1 > 0 &&
-            this.getGrid().getCell(targetX - 1, targetY).isObstruction())
-                return Direction.LEFT;
+        Collections.reverse(path);
 
-        if (direction == Direction.RIGHT && targetX + 1 < Grid.COLS &&
-            this.getGrid().getCell(targetX + 1, targetY).isObstruction())
-                return Direction.RIGHT;
-
-        return null;
+        return path;
     }
 
+    public void checkAdjacentCells(Position pos) {
+
+        // check upper adjacent cell
+        if (pos.row - 1 >= 0 && !visited.contains(new Position(pos.row - 1, pos.col, pos)) 
+        && !this.getGrid().getCell(pos.row - 1, pos.col).isObstruction())
+            queue.add(new Position(pos.row - 1, pos.col, pos));
+
+        // check lower adjacent cell
+        if (pos.row + 1 < Grid.ROWS && !visited.contains(new Position(pos.row + 1, pos.col, pos)) 
+        && !this.getGrid().getCell(pos.row + 1, pos.col).isObstruction())
+            queue.add(new Position(pos.row + 1, pos.col, pos));
+
+        // check left adjacent cell
+        if (pos.col - 1 >= 0 && !visited.contains(new Position(pos.row, pos.col - 1, pos)) 
+        && !this.getGrid().getCell(pos.row, pos.col - 1).isObstruction())
+            queue.add(new Position(pos.row, pos.col - 1, pos));
+
+        // check right adjacent cell
+        if (pos.col + 1 < Grid.COLS && !visited.contains(new Position(pos.row, pos.col + 1, pos)) 
+        && !this.getGrid().getCell(pos.row, pos.col + 1).isObstruction())
+            queue.add(new Position(pos.row, pos.col + 1, pos));
+
+    }
 }
