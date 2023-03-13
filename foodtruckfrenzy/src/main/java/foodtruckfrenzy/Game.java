@@ -22,9 +22,9 @@ public class Game {
     private final int SCOREBOARD_HEIGHT = 30;
     private final int FRAME_WIDTH = Grid.COLS * Grid.CELL_SIZE;
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
-    private final int TIMER_DELAY = 50; // Tick timer delay in milliseconds
+    private final int TIMER_DELAY = 1000; // Tick timer delay in milliseconds
     private final FoodTruck mainCharacter = new FoodTruck(0, 0, grid);
-    private final Cop cop = new Cop(6, 2, grid, mainCharacter);
+    private final Cop cop;
 
     private final JFrame _frame;
     private final JPanel _gamePanel;
@@ -42,6 +42,8 @@ public class Game {
                 grid.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
             }
         }
+        // Initialize cops
+        cop = new Cop(5, 5, grid, mainCharacter);
 
         // create new title frame
         _frame = new JFrame("Food Truck Frenzy");
