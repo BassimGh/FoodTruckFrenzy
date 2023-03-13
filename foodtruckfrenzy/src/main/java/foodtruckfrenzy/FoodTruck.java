@@ -10,6 +10,7 @@ public class FoodTruck extends Vehicle {
     
 
 
+
     public FoodTruck(int row, int col, Grid grid) {
         super(row, col, grid, DrawableEnum.FOODTRUCK_RIGHT);
     }
@@ -87,13 +88,14 @@ public class FoodTruck extends Vehicle {
     }
 
     public void setIngredients(String ingredient) {
-        
+       
         this.ingredients += ingredient + " ";
+
     
     }
 
     public String getIngredients() {
-        
+       
         return this.ingredients;
     
     }

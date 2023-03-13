@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Color;
 
 
 import javax.swing.SwingConstants;
@@ -29,14 +30,24 @@ public class Scoreboard extends JPanel {
     4. Time:                   records time elapsed
     5. Score:                  current score
     **/
-
+    Font font = new Font("Arial", Font.BOLD, 18);
+    Color backGroundColor = new Color(54, 65, 79);
+    
+    private JPanel ingredientsPanel = new JPanel();
+    private JPanel scorePanel = new JPanel();
+    private JPanel negativePointsPanel = new JPanel();
+    
     private JLabel _scoreLabel = new JLabel("Score: ");
+    private JLabel _scoreTotal = new JLabel();
     private JLabel _ingredientsLabel = new JLabel("Ingredients: ");
+    private JLabel _ingredientsIcons = new JLabel("");
     private JLabel _damageLabel = new JLabel("Damage: "); 
     private JLabel _fineLabel = new JLabel("Fines: ");
     private JLabel _timeLabel = new JLabel();
 
-    // private ImageIcon[] ingredientIcons = new ImageIcon[10];
+    
+ 
+     private ImageIcon[] foodIcons = new ImageIcon[10];
     // private JLabel ingredientIcon1 = new JLabel();
     // private JLabel ingredientIcon2 = new JLabel();
     // private JLabel ingredientIcon3 = new JLabel();
@@ -53,20 +64,49 @@ public class Scoreboard extends JPanel {
     
     
     public Scoreboard(FoodTruck player) {
-        
-        
-        this.setLayout(new GridLayout(2, 4));
+                
+        this.setLayout(new GridLayout(1, 4));
 
-        this.add(_ingredientsLabel);
-        this.add(_scoreLabel);
-        this.add(_fineLabel);
+        this.ingredientsPanel.setLayout(new GridLayout(2, 1));
+        this.ingredientsPanel.setBackground(backGroundColor);
+        this._ingredientsLabel.setFont(font);
+        this._ingredientsLabel.setForeground(Color.WHITE);
+        this._ingredientsIcons.setFont(font);
+        this._ingredientsIcons.setForeground(Color.WHITE);
+        this.ingredientsPanel.add(_ingredientsLabel);
+        this.ingredientsPanel.add(_ingredientsIcons);
+
+        this.scorePanel.setLayout(new GridLayout(2, 1));
+        this.scorePanel.setBackground(backGroundColor);
+        this._scoreLabel.setFont(font);       
+        this._scoreLabel.setForeground(Color.WHITE);
+        this._scoreTotal.setFont(font);
+        this._scoreTotal.setForeground(new Color(241, 215, 77)); // yellow
+        this.scorePanel.add(_scoreLabel);
+        this.scorePanel.add(_scoreTotal);
+
+        this.negativePointsPanel.setLayout(new GridLayout(2, 1));
+        this.negativePointsPanel.setBackground(backGroundColor);
+        this._fineLabel.setFont(font);
+        this._fineLabel.setForeground(Color.WHITE);
+        this._timeLabel.setFont(font);
+        this._timeLabel.setForeground(Color.WHITE); 
+        this._damageLabel.setFont(font);
+        this._damageLabel.setForeground(Color.WHITE);
+        this.negativePointsPanel.add(_fineLabel);
+        this.negativePointsPanel.add(_damageLabel);
+        
+
+        this.add(ingredientsPanel);
+        this.add(scorePanel);
+        this.add(negativePointsPanel);
         this.add(_timeLabel);
-        this.add(_damageLabel);
-        
 
+        
+        this.setBackground(backGroundColor);
         this.player = player;  
-        _second = 00;
-        _minute = 00;
+        this._second = 00;
+        this._minute = 00;
         simpleTimer();
         this._timer.start();
 
@@ -81,12 +121,26 @@ public class Scoreboard extends JPanel {
     }
 
     
+    public void buildIconPanel() {
+
+        // creates an icon panel
+        // adds icons to the panel of food that has been caught
+        // addds panel to the scoreboard
+
+        JPanel iconPanel = new JPanel();
+        iconPanel.setLayout(new GridLayout(1, 20));
+        // ImageIcon icon = new ImageIcon();
+        JLabel iconLabel = new JLabel(player.getIngredients());
+        this.add(iconLabel);
+    }
+
     public void update() {
     // scoreboard is updated based on players food trucks stats
-        _ingredientsLabel.setText("Ingredients Collected: " + player.getIngredients());
+        _ingredientsIcons.setText("" + player.getIngredients());
+        // buildIconPanel();
         _damageLabel.setText("Damages: " + player.getDamage());
         _fineLabel.setText("Speed Fines: " + player.getFines());
-        _scoreLabel.setText("Score: " + player.getScore());
+        _scoreTotal.setText(player.getScore());
     }
 
 
