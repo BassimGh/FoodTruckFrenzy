@@ -82,6 +82,7 @@ public class FoodTruck extends Vehicle {
             case SPEED:
                 addFines(value);
             case BONUS:
+                recipesFound++;
                 break;
             default:
                 break;
@@ -100,6 +101,11 @@ public class FoodTruck extends Vehicle {
        
         return this.ingredientsFound;
     
+    }
+
+    public int getRecipesFound() {
+
+        return this.recipesFound;
     }
 
     public void addDamage(int damage) {
