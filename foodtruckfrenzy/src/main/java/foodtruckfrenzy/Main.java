@@ -39,6 +39,23 @@ public class Main {
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
 
+                /* ADD THIS TO END GAME STATE TO DISPLAY WIN OR LOSS
+                Screen gameLostScreen = new GameLostScreen(startListener, exitListener,1,2,3,4,5);
+
+                // Add the GameLost screen object to the JFrame
+                frame.getContentPane().add(gameLostScreen);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+        
+                Screen gameWonScreen = new GameWonScreen(startListener, exitListener,1,2,3,4,5);
+        
+                // Add the GameLost screen object to the JFrame
+                frame.getContentPane().add(gameWonScreen);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true); */
+
             }
         });
     }
