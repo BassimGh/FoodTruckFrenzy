@@ -35,6 +35,13 @@ public class Scoreboard extends JPanel {
     private JLabel _timeLabel = new JLabel("Time: 00:00");
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
+    private int score;
+    private int ingredientsFound;
+    private int ingredientsDiscoverable;
+    private int recipesFound;
+    private int recipesDiscoverable;
+    
+
     private Timer _timer;
     private int _minute;
     private int _second; 
@@ -95,6 +102,8 @@ public class Scoreboard extends JPanel {
         add(timePanel, BorderLayout.EAST);
       
         this.player = player;  // assign player to fetch data from
+        ingredientsDiscoverable = Food.getCount();
+        recipesDiscoverable = Recipe.getCount();
         _second = 00;
         _minute = 00;
         simpleTimer();
@@ -104,14 +113,18 @@ public class Scoreboard extends JPanel {
     
     public void update() {
         
-        int score = player.getScoreInt();
-        int ingredientsFound = player.getIngredientsFound();
-        int recipesFound = player.getRecipesFound();
+        score = player.getScoreInt();
+        ingredientsFound = player.getIngredientsFound();
+        recipesFound = player.getRecipesFound();
+
         if(score < 0) {
             _scoreTotal.setForeground(Color.RED);
         }
-        if () {
-
+        if (ingredientsFound == ingredientsDiscoverable) {
+            _ingredientsLabel.setForeground(Color.GREEN);
+        }
+        if (recipesFound == recipesDiscoverable) {
+            _recipesLabel.setForeground(Color.GREEN);
         }
         else {
             _scoreTotal.setForeground(Color.YELLOW);
