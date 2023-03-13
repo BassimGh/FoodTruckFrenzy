@@ -45,15 +45,19 @@ public class KeyboardHandler implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
                 _upPressed = true;
                 break;
             case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
                 _downPressed = true;
                 break;
             case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
                 _leftPressed = true;
                 break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 _rightPressed = true;
                 break;
             case KeyEvent.VK_P:
@@ -67,15 +71,19 @@ public class KeyboardHandler implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
                 _upPressed = false;
                 break;
             case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:
                 _downPressed = false;
                 break;
             case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
                 _leftPressed = false;
                 break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 _rightPressed = false;
                 break;
             case KeyEvent.VK_P:
