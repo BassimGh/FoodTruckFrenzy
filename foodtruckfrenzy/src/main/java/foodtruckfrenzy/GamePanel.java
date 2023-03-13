@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 public class GamePanel extends JPanel {
     
     private Grid grid = new Grid();
-    private final FoodTruck _mainCharacter = new FoodTruck(3, 0, grid);
-    private final Cop _cop = new Cop(6, 2, grid, _mainCharacter);
+    private final FoodTruck _mainCharacter;
+    private final Cop _cop;
 
     public GamePanel() {
 
@@ -18,6 +18,9 @@ public class GamePanel extends JPanel {
                 grid.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
             }
         }
+
+        _mainCharacter = new FoodTruck(3, 0, grid);
+        _cop = new Cop(6, 2, grid, _mainCharacter);
     }
 
     @Override
