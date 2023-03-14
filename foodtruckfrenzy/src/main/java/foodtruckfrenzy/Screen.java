@@ -26,6 +26,8 @@ public class Screen extends JPanel {
     protected BufferedImage exitImage;
     private JButton resumeButton;
     private JButton exitButton;
+    protected int width;
+    protected int height;
 
     /**
      * Constructs a new Screen object with the specified ActionListener objects and image paths.
@@ -36,7 +38,7 @@ public class Screen extends JPanel {
      * @param exitImagePath the path to the "exit" button image file
      */
 
-    public Screen(ActionListener resumeListener, ActionListener exitListener, String bgImagePath, String startImagePath, String exitImagePath) {
+    public Screen(ActionListener resumeListener, ActionListener exitListener, String bgImagePath, String startImagePath, String exitImagePath,int width,int height) {
         /**
          * Loads the images from the given file paths and resizes them to the correct dimensions for background and the two buttons
          * @throws IOException if there is a read or resize error 
@@ -46,7 +48,7 @@ public class Screen extends JPanel {
             InputStream startInputStream = Screen.class.getResourceAsStream(startImagePath);
             InputStream exitInputStream = Screen.class.getResourceAsStream(exitImagePath);
             backgroundImage = ImageIO.read(backgroundInputStream);
-            backgroundImage = resize(backgroundImage, 800, 600);
+            backgroundImage = resize(backgroundImage, width, height);
             startImage = ImageIO.read(startInputStream);
             startImage = resize(startImage, 100, 50);
             exitImage = ImageIO.read(exitInputStream);
@@ -194,8 +196,7 @@ public class Screen extends JPanel {
     }
 
     /**
-     * gets the preferred size 
-     * @return the correct dimensions
+     * gets the preferred size
      */
     @Override
     public Dimension getPreferredSize() {
