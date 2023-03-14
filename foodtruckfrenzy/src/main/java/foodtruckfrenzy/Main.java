@@ -39,6 +39,34 @@ public class Main {
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
 
+                /*
+                Screen gameWonScreen = new GameWonScreen(startListener, exitListener, Scoreboard);
+
+                // Create a new JFrame for the gameWonScreen
+                JFrame gameWonFrame = new JFrame("Game Won!");
+
+                gameWonFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                // Add the gameWonScreen JPanel to the content pane of the gameWonFrame
+                gameWonFrame.getContentPane().add(gameWonScreen);
+                gameWonFrame.pack();
+                gameWonFrame.setLocationRelativeTo(null);
+                gameWonFrame.setVisible(true);
+
+                Screen gameLostScreen = new GameLostScreen(startListener, exitListener, Scoreboard);
+
+                // Create a new JFrame for the gameLostScreen
+                JFrame gameLostFrame = new JFrame("Game Lost!");
+
+                gameLostFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                // Add the gameWonScreen JPanel to the content pane of the gameLostFrame
+                gameLostFrame.getContentPane().add(gameLostScreen);
+                gameLostFrame.pack();
+                gameLostFrame.setLocationRelativeTo(null);
+                gameLostFrame.setVisible(true); */
+
+                
+
+
                 /* ADD THIS TO END GAME STATE TO DISPLAY WIN OR LOSS
                 Screen gameLostScreen = new GameLostScreen(startListener, exitListener,1,2,3,4,5);
 
