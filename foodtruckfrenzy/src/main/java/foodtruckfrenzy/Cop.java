@@ -52,11 +52,32 @@ public class Cop extends Vehicle{
     public void chaseTruck() {
         target.row = foodtruck.getRow();
         target.col = foodtruck.getCol();
-        if (!queue.isEmpty())
-            target.prev = queue.get(queue.size() - 1);
 
-        queue.add(target);
-        getDirections();
+        System.out.println("--- Queue -----");
+        for (Position q : queue) {
+            if (q != null )System.out.println(q.col + " " + q.row);
+            else System.out.println("null");
+        }
+        System.out.println("-##");
+
+        if (!queue.isEmpty())
+            target.prev = queue.get(0);
+        
+        // System.out.println("target pos \t" + target.col + " " + target.row);
+        // System.out.println("previous pos \t" + target.prev.col + " " + target.prev.row);
+        // System.out.println("\n");
+        // System.out.println("--- Queue -----");
+        // for (Position q : queue) {
+        //     if (q != null )System.out.println(q.col + " " + q.row);
+        // }
+        // System.out.println("#################################");
+
+        if (!(target.row == target.prev.row && target.col == target.prev.col)) {
+            System.out.println("getting directinons");
+            queue.add(target);
+            getDirections();
+        }
+
         if (!directions.isEmpty()) {
             if (directions.get(0) == Direction.UP)
                 moveUp();
@@ -67,8 +88,6 @@ public class Cop extends Vehicle{
             if (directions.get(0) == Direction.RIGHT)
                 moveRight();
             directions.remove(0);
-        } else {
-            System.out.println("directions is empty");
         }
     }
 
@@ -77,8 +96,8 @@ public class Cop extends Vehicle{
         ArrayList<Position> path = new ArrayList<>();
         
         Position currentPos = queue.get(0);
+        System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
 
-        System.out.println("Position ref: " + currentPos.col + " " + currentPos.row);
         while (!(currentPos.row == target.row && currentPos.col == target.col)) {
             currentPos = queue.get(0);
             checkAdjacentCells(currentPos);
@@ -86,17 +105,28 @@ public class Cop extends Vehicle{
 
             queue.remove(0);
         }
+        // Position lastPos = queue.get(queue.size()-1);
+        queue.clear();
+        queue.add(currentPos);
         System.out.println("QUeue size: " + queue.size());
-        System.out.println("GOT PATH");
-        path = getPath(currentPos);
-
-        System.out.println("--- Start Queue -----");
-        for (Position p : path) {
-            if (p != null )System.out.println(p.col + " " + p.row);
+        System.out.println("Last element: " + queue.get(queue.size() - 1).col + " " + queue.get(queue.size() - 1).row);
+        System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
+        
+        System.out.println("--- Queue -----");
+        for (Position q : queue) {
+            if (q != null )System.out.println(q.col + " " + q.row);
         }
         System.out.println("#################################");
         
-        if (!path.isEmpty()) {
+        path = getPath(currentPos);
+
+        System.out.println("--- Path -----");
+        for (Position p : path) {
+            System.out.println(p.col + " " + p.row);
+        }
+        System.out.println("#################################");
+        
+        // if (path.size() > 0) {
             // Converts set of coordinates to set of directions
             for (int i = 0; i < path.size() - 1; i++) {
                 // get direction UP
@@ -112,18 +142,16 @@ public class Cop extends Vehicle{
                     directions.add(Direction.LEFT);
 
                 // get direction RIGHT
-                if (path.get(i).row > path.get(i + 1).row && path.get(i).col < path.get(i + 1).col)
+                if (path.get(i).row == path.get(i + 1).row && path.get(i).col < path.get(i + 1).col)
                     directions.add(Direction.RIGHT);
             }
-        }
+        // }
 
-        System.out.println("--- Start Queue -----");
+        System.out.println("--- Directions -----");
         for (Direction d : directions) {
             System.out.println(d);
         }
         System.out.println("#################################");
-
-        System.out.println("got directions");
     }
 
     public ArrayList<Position> getPath(Position pos) {
