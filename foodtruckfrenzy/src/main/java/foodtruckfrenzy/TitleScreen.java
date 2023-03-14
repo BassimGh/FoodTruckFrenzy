@@ -12,6 +12,8 @@ public class TitleScreen extends Screen {
      * 
      * @param startListener The ActionListener to handle start button events.
      * @param exitListener The ActionListener to handle exit button events.
+     * @param 800 The Desired width of the display
+     * @param 600 the Desired height of the display
      */
 
     public TitleScreen(ActionListener startListener, ActionListener exitListener) {
