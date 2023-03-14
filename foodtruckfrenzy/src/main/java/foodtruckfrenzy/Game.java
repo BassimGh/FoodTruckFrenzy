@@ -107,10 +107,16 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = mainCharacter.moveRight();
 
-                    System.out.println(timerIndex);
+                    // System.out.println(timerIndex);
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
+                    
+                    for (Cop cop : cops) {
+                        if (cop.getCol() == mainCharacter.getCol() && cop.getRow() == mainCharacter.getRow()) {
+                            loss();
+                        }
+                    }
                     
                     if (!isAllCopsSpawned) {
                         cops.get(0).trackTruck();

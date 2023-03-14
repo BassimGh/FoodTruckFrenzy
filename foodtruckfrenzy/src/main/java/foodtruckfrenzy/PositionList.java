@@ -1,8 +1,8 @@
 package foodtruckfrenzy;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class PositionList extends ArrayList<Position> {
+public class PositionList extends LinkedList<Position> {
     public boolean containsPos(Position pos) {
         if (this.isEmpty()) return false;
 

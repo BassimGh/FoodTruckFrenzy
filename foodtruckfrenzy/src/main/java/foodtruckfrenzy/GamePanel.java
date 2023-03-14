@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
         _mainCharacter = new FoodTruck(3, 0, grid);
         _cops.add(new Cop(8, 13, grid, _mainCharacter));
         _cops.add(new Cop(17, 40, grid, _mainCharacter));
-        _cops.add(new Cop(3, 0, grid, _mainCharacter));
+        _cops.add(new Cop(10, 0, grid, _mainCharacter));
     }
 
     @Override

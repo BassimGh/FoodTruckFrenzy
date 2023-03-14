@@ -1,15 +1,17 @@
 package foodtruckfrenzy;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Cop extends Vehicle{
 
     private FoodTruck foodtruck;
 
-    private ArrayList<Position> queue = new ArrayList<>();
+    private List<Position> queue = new LinkedList<>();
     private PositionList visited = new PositionList();
-    private ArrayList<Direction> directions = new ArrayList<>();
+    private List<Direction> directions = new LinkedList<>();
 
     private Position target;
     private Position searchOrigin;
@@ -99,7 +101,7 @@ public class Cop extends Vehicle{
     public void getDirections() {
         target = new Position(foodtruck.getRow(), foodtruck.getCol(), null);
         // ArrayList<Direction> directions = new ArrayList<>();
-        ArrayList<Position> path = new ArrayList<>();
+        List<Position> path = new LinkedList<>();
         
         Position currentPos = queue.get(0);
         System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
@@ -161,8 +163,8 @@ public class Cop extends Vehicle{
         System.out.println("#################################");
     }
 
-    public ArrayList<Position> getPath(Position pos) {
-        ArrayList<Position> path = new ArrayList<>();
+    public List<Position> getPath(Position pos) {
+        List<Position> path = new LinkedList<>();
 
         path.add(pos);
         while (!(pos.row == searchOrigin.row && pos.col == searchOrigin.col)) {
