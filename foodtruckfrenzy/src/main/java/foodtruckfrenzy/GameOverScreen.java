@@ -25,7 +25,7 @@ public class GameOverScreen extends Screen {
      * @param scoreboard The Scoreboard object to display the final score, values, and time on the screen.
      */
     public GameOverScreen(ActionListener startListener, ActionListener exitListener, String bgImagePath, String restartImagePath, String exitImagePath, Scoreboard scoreboard) {
-        super(startListener, exitListener, bgImagePath, restartImagePath, exitImagePath);
+        super(startListener, exitListener, bgImagePath, restartImagePath, exitImagePath, 800, 600);
 
         /**
          * Gets the final scores from the Scoreboard object
