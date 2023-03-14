@@ -11,8 +11,8 @@ public class PauseScreen extends Screen {
      * Constructs a PauseScreen object with the specified ActionListeners for the resume and restart buttons.
      * Constructs the PauseScreen object with the file paths for the paused background, resume button, and restart button images.
      * 
-     * @param resumeListener The ActionListener to handle resume button events.
-     * @param restartListener The ActionListener to handle restart button events.
+     * @param startListener The ActionListener to handle resume button events.
+     * @param exitListener The ActionListener to handle restart button events.
      */
 
     public PauseScreen(ActionListener startListener, ActionListener exitListener) {
