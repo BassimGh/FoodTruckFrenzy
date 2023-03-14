@@ -2,10 +2,10 @@ package foodtruckfrenzy;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
-import java.awt.Color;
 
 public class Game {
     
@@ -39,6 +39,10 @@ public class Game {
         _gamePanel = new GamePanel();
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
         Cop cop = _gamePanel.get_cop();
+        // ArrayList<Cop> cops = new ArrayList<>();
+        // cops.add(_gamePanel.get_cop());
+        // cops.add(_gamePanel.get_cop());
+        // cops.add(_gamePanel.get_cop());
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
@@ -89,17 +93,16 @@ public class Game {
                     if (_keyboardHandler.pause())
                         pause();
 
-
-                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
+                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
                         mainCharacter.moveUp();
 
-                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed())
+                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
                         mainCharacter.moveDown();
 
-                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
+                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
                         mainCharacter.moveLeft();
                         
-                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed())
+                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
                         mainCharacter.moveRight();
 
                     if (mainCharacter.getScoreInt() < 0) {

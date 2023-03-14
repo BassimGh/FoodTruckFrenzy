@@ -12,6 +12,7 @@ public class Cop extends Vehicle{
     private ArrayList<Direction> directions = new ArrayList<>();
 
     private Position target;
+    private Position searchOrigin;
 
     public Cop(int row, int col, Grid grid, FoodTruck player) {
         super(row, col, grid, DrawableEnum.COP_RIGHT);
@@ -19,6 +20,7 @@ public class Cop extends Vehicle{
         target = new Position(player.getRow(), player.getCol(), null);
         queue.add(new Position(row, col, null));
         System.out.println("\n ONLY SHOULD PRINT ONCE \n");
+        searchOrigin = new Position(row, col, null);
         getDirections();
     }
 
@@ -51,15 +53,15 @@ public class Cop extends Vehicle{
     }
 
     public void chaseTruck() {
+        System.out.println(directions.size());
         target.row = foodtruck.getRow();
         target.col = foodtruck.getCol();
 
-        System.out.println("--- Queue -----");
-        for (Position q : queue) {
-            if (q != null )System.out.println(q.col + " " + q.row);
-            else System.out.println("null");
-        }
-        System.out.println("-##");
+        // System.out.println("--- Queue -----");
+        // for (Position q : queue) {
+        //     if (q != null )System.out.println(q.col + " " + q.row);
+        //     else System.out.println("null");
+        // }
 
         if (!queue.isEmpty())
             target.prev = queue.get(0);
@@ -73,12 +75,6 @@ public class Cop extends Vehicle{
         // }
         // System.out.println("#################################");
 
-        if (!(target.row == target.prev.row && target.col == target.prev.col)) {
-            System.out.println("getting directinons");
-            queue.add(new Position(target.row, target.col, target.prev));
-            getDirections();
-        }
-
         if (!directions.isEmpty()) {
             if (directions.get(0) == Direction.UP)
                 moveUp();
@@ -89,6 +85,12 @@ public class Cop extends Vehicle{
             if (directions.get(0) == Direction.RIGHT)
                 moveRight();
             directions.remove(0);
+        }
+
+        if (!(target.row == target.prev.row && target.col == target.prev.col)) {
+            System.out.println("getting directinons");
+            queue.add(new Position(target.row, target.col, target.prev));
+            getDirections();
         }
     }
 
@@ -128,7 +130,7 @@ public class Cop extends Vehicle{
         }
         System.out.println("#################################");
         
-        // if (path.size() > 0) {
+        if (path.size() > 0) {
             // Converts set of coordinates to set of directions
             for (int i = 0; i < path.size() - 1; i++) {
                 // get direction UP
@@ -147,7 +149,7 @@ public class Cop extends Vehicle{
                 if (path.get(i).row == path.get(i + 1).row && path.get(i).col < path.get(i + 1).col)
                     directions.add(Direction.RIGHT);
             }
-        // }
+        }
 
         System.out.println("--- Directions -----");
         for (Direction d : directions) {
@@ -160,15 +162,15 @@ public class Cop extends Vehicle{
         ArrayList<Position> path = new ArrayList<>();
 
         path.add(pos);
-        while (!(pos.row == this.getRow() && pos.col == this.getCol())) {
+        while (!(pos.row == searchOrigin.row && pos.col == searchOrigin.col)) {
             path.add(pos.prev);
             pos = pos.prev;
             if (pos == null)
                 break;
         }
-
         Collections.reverse(path);
 
+        searchOrigin = path.get(path.size() - 1);
         return path;
     }
 
