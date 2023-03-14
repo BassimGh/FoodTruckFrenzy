@@ -220,7 +220,6 @@ public class Game {
      * Shows a new GAME_LOST screen Frame
      */
     private void loss() {
-        System.out.println("Game lost");
         new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
         _frame.dispose();
         _timer.stop();
