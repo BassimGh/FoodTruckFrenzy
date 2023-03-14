@@ -2,10 +2,10 @@ package foodtruckfrenzy;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
-import java.awt.Color;
 
 public class Game {
     
@@ -23,8 +23,10 @@ public class Game {
     private final CardLayout _layout;
     private boolean _paused = false;
 
+    private int timerIndex;
+
     public Game() {
-    
+        timerIndex = 0;
         Food.resetCount();
         Recipe.resetCount();
         _mainPanel = new JPanel(new CardLayout());
@@ -39,7 +41,8 @@ public class Game {
 
         _gamePanel = new GamePanel();
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
-        Cop cop = _gamePanel.get_cop();
+        // Cop cop = _gamePanel.get_cop();
+        ArrayList<Cop> cops = _gamePanel.get_cops();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
@@ -91,24 +94,33 @@ public class Game {
                     if (_keyboardHandler.pause())
                         pause();
 
-
-                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
+                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
                         mainCharacter.moveUp();
 
-                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed())
+                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
                         mainCharacter.moveDown();
 
-                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
+                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
                         mainCharacter.moveLeft();
                         
-                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed())
+                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
                         mainCharacter.moveRight();
 
                     if (mainCharacter.getScoreInt() < 0) {
                         loss();
                     }
 
-                    cop.chaseTruck();
+                    System.out.println(timerIndex);
+                    timerIndex ++;
+                    if (timerIndex > Integer.MAX_VALUE - 1)
+                        timerIndex = 0;
+                    
+                    for (Cop cop : cops) {
+                        cop.trackTruck();
+                        if (timerIndex % 2 == 0)
+                            cop.chaseTruck();
+                    }
+
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
                 }
