@@ -13,6 +13,8 @@ public class PauseScreen extends Screen {
      * 
      * @param startListener The ActionListener to handle resume button events.
      * @param exitListener The ActionListener to handle restart button events.
+     * @param 1312 The Desired width of the display
+     * @param 740 the Desired height of the display
      */
 
     public PauseScreen(ActionListener startListener, ActionListener exitListener) {

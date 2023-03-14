@@ -36,6 +36,8 @@ public class Screen extends JPanel {
      * @param bgImagePath the path to the background image file
      * @param startImagePath the path to the "start" button image file
      * @param exitImagePath the path to the "exit" button image file
+     * @param width The Desired width of the display
+     * @param height the Desired height of the display
      */
 
     public Screen(ActionListener resumeListener, ActionListener exitListener, String bgImagePath, String startImagePath, String exitImagePath,int width,int height) {
