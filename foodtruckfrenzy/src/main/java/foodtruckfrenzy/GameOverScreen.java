@@ -10,8 +10,8 @@ public class GameOverScreen extends Screen {
     public GameOverScreen(ActionListener startListener, ActionListener exitListener, String bgImagePath, String restartImagePath, String exitImagePath, Scoreboard scoreboard) {
         super(startListener, exitListener, bgImagePath, restartImagePath, exitImagePath);
   
-        int ingredientsFound = scoreboard.getDamage();
-        int recipesFound = scoreboard.getDamage();
+        int ingredientsFound = scoreboard.getIngredientsFound();
+        int recipesFound = scoreboard.getRecipesFound();
         int damage = scoreboard.getDamage();
         int fines = scoreboard.getFines();
         int score = scoreboard.getScore();
