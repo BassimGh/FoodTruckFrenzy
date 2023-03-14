@@ -3,7 +3,6 @@ package foodtruckfrenzy;
 public class FoodTruck extends Vehicle {
 
     // scoreboard attributes
-    private String ingredients = "";
     private int damage;
     private int fines;
     private int score;
@@ -73,7 +72,6 @@ public class FoodTruck extends Vehicle {
 
         switch(scoreType) {
             case FOOD:
-                setIngredients("Potato");
                 ingredientsFound++;
                 break;
             case DAMAGE:
@@ -89,13 +87,6 @@ public class FoodTruck extends Vehicle {
                 break;
         }
 
-    }
-
-    public void setIngredients(String ingredient) {
-       
-        this.ingredients += ingredient + " ";
-
-    
     }
 
     public int getIngredientsFound() {
