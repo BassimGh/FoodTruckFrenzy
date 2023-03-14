@@ -2,9 +2,14 @@ package foodtruckfrenzy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+
+/**
+ * The Main Class sets up and displays the initial window frame and event listeners for the Title Screen of the Food Truck Frenzy game.
+ * It has the option to Start or Exit the Game
+ * @param args arguments passed to the program
+ */
 
 public class Main {
 
@@ -15,6 +20,10 @@ public class Main {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 ActionListener startListener = new ActionListener() {
+                    /**
+                     * Is invoked when the start button is clicked
+                     * @param e is the action event that occurred
+                     */
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Start button clicked");
@@ -25,6 +34,10 @@ public class Main {
                 };
 
                 ActionListener exitListener = new ActionListener() {
+                    /**
+                     * Is invoked when the exit button is clicked
+                     * @param e is the action event that occurred
+                     */
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         System.out.println("Exit button clicked");
@@ -32,57 +45,19 @@ public class Main {
                     }
                 };
 
+                /**
+                 * Creates a new instance of TitleScreen and initializes it with the given startListener and exitListener.
+                 * @param startListener an ActionListener that will be called when the start button on the title screen is clicked
+                 * @param exitListener an ActionListener that will be called when the exit button on the title screen is clicked
+                 * @return a new instance of TitleScreen with the given action listeners
+                 */
+
                 Screen titleScreen = new TitleScreen(startListener, exitListener);
 
                 frame.getContentPane().add(titleScreen);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
-
-                /*
-                Screen gameWonScreen = new GameWonScreen(startListener, exitListener, Scoreboard);
-
-                // Create a new JFrame for the gameWonScreen
-                JFrame gameWonFrame = new JFrame("Game Won!");
-
-                gameWonFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                // Add the gameWonScreen JPanel to the content pane of the gameWonFrame
-                gameWonFrame.getContentPane().add(gameWonScreen);
-                gameWonFrame.pack();
-                gameWonFrame.setLocationRelativeTo(null);
-                gameWonFrame.setVisible(true);
-
-                Screen gameLostScreen = new GameLostScreen(startListener, exitListener, Scoreboard);
-
-                // Create a new JFrame for the gameLostScreen
-                JFrame gameLostFrame = new JFrame("Game Lost!");
-
-                gameLostFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                // Add the gameWonScreen JPanel to the content pane of the gameLostFrame
-                gameLostFrame.getContentPane().add(gameLostScreen);
-                gameLostFrame.pack();
-                gameLostFrame.setLocationRelativeTo(null);
-                gameLostFrame.setVisible(true); */
-
-                
-
-
-                /* ADD THIS TO END GAME STATE TO DISPLAY WIN OR LOSS
-                Screen gameLostScreen = new GameLostScreen(startListener, exitListener,1,2,3,4,5);
-
-                // Add the GameLost screen object to the JFrame
-                frame.getContentPane().add(gameLostScreen);
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-        
-                Screen gameWonScreen = new GameWonScreen(startListener, exitListener,1,2,3,4,5);
-        
-                // Add the GameLost screen object to the JFrame
-                frame.getContentPane().add(gameWonScreen);
-                frame.pack();
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true); */
 
             }
         });
