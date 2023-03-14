@@ -139,17 +139,16 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = mainCharacter.moveRight();
 
-                    // System.out.println(timerIndex);
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
                     
+                    // Check if there is a collision after player movement
+                    if (checkCopCharacterCollision(cops, mainCharacter)) {
+                        loss();
+                    }
+
                     for (Cop cop : cops) {
-
-                        if (cop.getCol() == mainCharacter.getCol() && cop.getRow() == mainCharacter.getRow()) {
-                            loss();
-                        }
-
                         cop.trackTruck();
                     }
 
@@ -161,7 +160,12 @@ public class Game {
                     if (timerIndex % 3 == 0) {
                         cops.get(2).chaseTruck();
                     }
-                    
+
+                    // Check if there is a collision after cop movement
+                    if (checkCopCharacterCollision(cops, mainCharacter)) {
+                        loss();
+                    }
+
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
 
@@ -169,7 +173,7 @@ public class Game {
                         loss();
                     }
 
-                    if (mainCharacter.getCol() == 40 && mainCharacter.getRow() == 16 && mainCharacter.getIngredientsFound() >= Food.getCount()) {
+                    if (checkWinCondition(mainCharacter)) {
                         win();
                     }
 
@@ -216,6 +220,7 @@ public class Game {
      * Shows a new GAME_LOST screen Frame
      */
     private void loss() {
+        System.out.println("Game lost");
         new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
         _frame.dispose();
         _timer.stop();
@@ -230,6 +235,33 @@ public class Game {
         new Frame(ScreenType.GAME_WON, _scoreboardPanel);
         _frame.dispose();
         _timer.stop();
+    }
+
+    /**
+     * checks if the specified FoodTruck object is in the same grid location as any of the Cop objects in the specified array
+     * @param cops Cop object ArrayList
+     * @param foodTruck FoodTruck object to check collisons
+     * @return true if there is a collison between the foodTruck or any Cop in the array, false if not or if an argument is null
+     */
+    private boolean checkCopCharacterCollision(ArrayList<Cop> cops, FoodTruck foodTruck) {
+        
+        if (cops == null || foodTruck == null)
+            return false;
+
+        for (Cop cop : cops)
+            if (cop.getCol() == foodTruck.getCol() && cop.getRow() == foodTruck.getRow())
+                return true;
+        
+        return false;
+    }
+
+    /**
+     * Check win condition for the game, if foodTruck collected all Food items in the system and is on tile row 16, column 40
+     * @param foodTruck foodTruck corresponding to player being checked for a win
+     * @return true if there is a successful win, otherwise false
+     */
+    private boolean checkWinCondition(FoodTruck foodTruck) {
+        return foodTruck.getCol() == 40 && foodTruck.getRow() == 16 && foodTruck.getIngredientsFound() >= Food.getCount();
     }
 
 }
