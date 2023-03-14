@@ -18,6 +18,7 @@ public enum DrawableEnum {
     POT_HOLE,
     FOOD,
     RECIPE,
+    PICKUP_GLITTER,
 
     HORIZONTAL_ROAD,
     VERTICAL_ROAD,

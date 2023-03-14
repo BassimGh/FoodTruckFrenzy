@@ -51,7 +51,7 @@ public class Road extends BoardElement {
         ScoreType scoreType = _item.getScoreType();
 
         if (value>0) {
-            _item = null;
+            _item = new Glitter(this.getRow(), this.getCol());
         }
 
         return new ScoreValue(scoreType, value);
