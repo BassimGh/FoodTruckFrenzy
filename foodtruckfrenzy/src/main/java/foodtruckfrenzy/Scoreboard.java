@@ -20,7 +20,6 @@ public class Scoreboard extends JPanel {
     private final Color _backGroundColor = new Color(54, 65, 79); 
     private final Color _red = new Color(227, 0, 39);
     private final Color _yellow = new Color(255, 240, 75);
-    private final Color _blue = new Color(0, 123, 184);
     private final Color _green = new Color(80, 255, 90);
     private final Color _white = Color.WHITE;
     

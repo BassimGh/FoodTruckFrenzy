@@ -41,6 +41,9 @@ public class SpriteLoader {
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house1.png")));
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house2.png")));
             _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house3.png")));
+            _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house4.png")));
+            _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house5.png")));
+            _houseImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/house6.png")));
             
             _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/potato.png")));
             _foodImages.add(ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/apple.png")));

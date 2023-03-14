@@ -194,7 +194,8 @@ public class Screen extends JPanel {
     }
 
     /**
-     * gets the preferred size
+     * gets the preferred size 
+     * @return the correct dimensions
      */
     @Override
     public Dimension getPreferredSize() {

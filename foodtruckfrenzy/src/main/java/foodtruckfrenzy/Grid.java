@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 /**
  * Grid class is an object which acts as a game grid
  * This object will store a 2d array of BoardElements in a predetermined size which can be set and updated accordingly
+ * The class provides methods to retrieve, set, and interact with BoardElements on the grid, and to draw cells on the graphics context.
  */
 public class Grid {
 
