@@ -94,17 +94,18 @@ public class Game {
                     if (_keyboardHandler.pause())
                         pause();
 
-                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
-                        mainCharacter.moveUp();
+                    boolean moved = false;
+                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed() && !moved)
+                        moved = mainCharacter.moveUp();
 
-                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed())
-                        mainCharacter.moveDown();
+                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed() && !moved)
+                        moved = mainCharacter.moveDown();
 
-                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
-                        mainCharacter.moveLeft();
+                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed() && !moved)
+                        moved = mainCharacter.moveLeft();
                         
-                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !_keyboardHandler.upPressed() && !_keyboardHandler.downPressed())
-                        mainCharacter.moveRight();
+                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
+                        moved = mainCharacter.moveRight();
 
                     if (mainCharacter.getScoreInt() < 0) {
                         loss();
