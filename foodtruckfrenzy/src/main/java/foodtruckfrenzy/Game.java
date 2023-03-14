@@ -144,7 +144,7 @@ public class Game {
                         timerIndex = 0;
                     
                     // Check if there is a collision after player movement
-                    if (checkCopCharacterCollision(cops, mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
                         loss();
                     }
 
@@ -162,18 +162,18 @@ public class Game {
                     }
 
                     // Check if there is a collision after cop movement
-                    if (checkCopCharacterCollision(cops, mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
                         loss();
                     }
 
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
 
-                    if (mainCharacter.getScoreInt() < 0) {
+                    if (!_paused && mainCharacter.getScoreInt() < 0) {
                         loss();
                     }
 
-                    if (checkWinCondition(mainCharacter)) {
+                    if (!_paused && checkWinCondition(mainCharacter)) {
                         win();
                     }
 
@@ -218,22 +218,26 @@ public class Game {
      * Function to be called when the game ends in a loss
      * Kills the frame and timer
      * Shows a new GAME_LOST screen Frame
+     * Sets paused to true to prevent further loop progression
      */
     private void loss() {
-        new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
-        _frame.dispose();
+        _paused = true;
         _timer.stop();
+        _frame.dispose();
+        new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
     }
 
     /**
      * Function to be called when the game ends in a win
      * Kills the frame and timer
      * Shows a new GAME_WON screen Frame
+     * Sets paused to true to prevent further loop progression
      */
     private void win() {
-        new Frame(ScreenType.GAME_WON, _scoreboardPanel);
-        _frame.dispose();
+        _paused = true;
         _timer.stop();
+        _frame.dispose();
+        new Frame(ScreenType.GAME_WON, _scoreboardPanel);
     }
 
     /**
