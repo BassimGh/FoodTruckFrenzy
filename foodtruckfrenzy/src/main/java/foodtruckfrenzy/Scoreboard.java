@@ -182,6 +182,15 @@ public class Scoreboard extends JPanel {
         _timer.restart();
     }
 
+
+    public int getIngredientsFound() {
+        return ingredientsFound;
+    }
+
+    public int getRecipesFound() {
+        return recipesFound;
+    }
+
     public int getDamage() {
         return damage;
     }
@@ -197,6 +206,8 @@ public class Scoreboard extends JPanel {
     public String getTime() {
         return timeElapsed;
     }
+
+
 
 }
 
