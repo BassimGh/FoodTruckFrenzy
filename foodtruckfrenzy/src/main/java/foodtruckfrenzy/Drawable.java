@@ -2,6 +2,8 @@ package foodtruckfrenzy;
 
 import java.awt.*;
 
+import javax.swing.ImageIcon;
+
 /**
  * This abstract Drawable class represents everything that can have a sprite to be drawn
  */
@@ -9,7 +11,7 @@ public abstract class Drawable {
 
     private int _row;
     private int _col;
-    private Image _image;
+    private ImageIcon _image;
     private DrawableEnum _type;
 
     /**
@@ -72,7 +74,7 @@ public abstract class Drawable {
      * @param g2d Graphics2D object corresponding to the specified grid
      */
     public void draw(Graphics2D g2d) {
-        g2d.drawImage(_image, _col * Grid.CELL_SIZE, _row * Grid.CELL_SIZE, Grid.CELL_SIZE, Grid.CELL_SIZE, null);
+        g2d.drawImage(_image.getImage(), _col * Grid.CELL_SIZE, _row * Grid.CELL_SIZE, Grid.CELL_SIZE, Grid.CELL_SIZE, null);
     }
 
 }

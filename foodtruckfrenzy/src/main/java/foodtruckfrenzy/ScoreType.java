@@ -6,10 +6,12 @@ package foodtruckfrenzy;
  * SPEED refers to speed trap fines
  * FOOD refers to picked up ingredients
  * BONUS refers to picked up recipies
+ * NULL refers to no score
  */
 public enum ScoreType {
     DAMAGE,
     SPEED,
     FOOD,
-    BONUS
+    BONUS,
+    NULL
 }
