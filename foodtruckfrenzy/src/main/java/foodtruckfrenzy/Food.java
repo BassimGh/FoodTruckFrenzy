@@ -4,7 +4,7 @@ public class Food extends Item {
 
     private static int _count = 0;
     public Food(int row, int col) {
-        super(row, col, DrawableEnum.FOOD, 250, ScoreType.FOOD);
+        super(row, col, DrawableEnum.FOOD, 200, ScoreType.FOOD);
         Food._count++;
     }
 

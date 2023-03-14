@@ -43,6 +43,7 @@ public class Game {
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
         // Cop cop = _gamePanel.get_cop();
         ArrayList<Cop> cops = _gamePanel.get_cops();
+        cops.get(0).getDirections();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
@@ -105,18 +106,29 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = mainCharacter.moveRight();
 
-
-                    System.out.println(timerIndex);
+                    // System.out.println(timerIndex);
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
                     
                     for (Cop cop : cops) {
+
+                        if (cop.getCol() == mainCharacter.getCol() && cop.getRow() == mainCharacter.getRow()) {
+                            loss();
+                        }
+
                         cop.trackTruck();
-                        if (timerIndex % 2 == 0)
-                            cop.chaseTruck();
                     }
 
+                    if (timerIndex % 2 == 0) {
+                        cops.get(0).chaseTruck();
+                        cops.get(1).chaseTruck();
+                    }
+
+                    if (timerIndex % 3 == 0) {
+                        cops.get(2).chaseTruck();
+                    }
+                    
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
 

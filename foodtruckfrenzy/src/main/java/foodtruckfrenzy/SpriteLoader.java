@@ -29,10 +29,10 @@ public class SpriteLoader {
             _imagesHashMap.put(DrawableEnum.FOODTRUCK_RIGHT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckRight.png")));
             _imagesHashMap.put(DrawableEnum.FOODTRUCK_LEFT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/foodtruckLeft.png")));
             
-            _imagesHashMap.put(DrawableEnum.COP_UP, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png")));
-            _imagesHashMap.put(DrawableEnum.COP_DOWN, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png")));
-            _imagesHashMap.put(DrawableEnum.COP_RIGHT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png")));
-            _imagesHashMap.put(DrawableEnum.COP_LEFT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCar.png")));
+            _imagesHashMap.put(DrawableEnum.COP_UP, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCarUp.png")));
+            _imagesHashMap.put(DrawableEnum.COP_DOWN, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCarDown.png")));
+            _imagesHashMap.put(DrawableEnum.COP_RIGHT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCarRight.png")));
+            _imagesHashMap.put(DrawableEnum.COP_LEFT, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/copCarLeft.png")));
 
             _imagesHashMap.put(DrawableEnum.SPEED_TRAP, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/speedtrap.png")));
             _imagesHashMap.put(DrawableEnum.POT_HOLE, ImageIO.read(SpriteLoader.class.getResourceAsStream("/foodtruckfrenzy/pothole.png")));

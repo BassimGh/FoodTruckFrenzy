@@ -3,7 +3,7 @@ package foodtruckfrenzy;
 public class Recipe extends Item {
     public static int _count = 0;
     public Recipe(int row, int col) {
-        super(row, col, DrawableEnum.RECIPE, 1000, ScoreType.BONUS);
+        super(row, col, DrawableEnum.RECIPE, 400, ScoreType.BONUS);
         Recipe._count++;
     }
 
