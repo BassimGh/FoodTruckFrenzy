@@ -194,7 +194,7 @@ public class Game {
      * Pauses the game and shows the pause menu 
      * While suspending the game loop through a boolean value update
      */
-    public void pause() {
+    private void pause() {
         _keyboardHandler.resetKeys();
         _paused = true;
         _layout.show(_mainPanel, "pause");
@@ -207,7 +207,7 @@ public class Game {
      * Resumes the game and shows the game panel 
      * While resuming the game loop through a boolean value update
      */
-    public void resume() {
+    private void resume() {
         _paused = false;
         _layout.show(_mainPanel, "game");
         _gamePanel.setFocusable(true);
