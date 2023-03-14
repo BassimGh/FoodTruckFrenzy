@@ -83,7 +83,7 @@ public class Game {
 
         _frame.pack();
         _frame.setVisible(true);
-        
+
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,9 +105,6 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = mainCharacter.moveRight();
 
-                    if (mainCharacter.getScoreInt() < 0) {
-                        loss();
-                    }
 
                     System.out.println(timerIndex);
                     timerIndex ++;
@@ -122,6 +119,11 @@ public class Game {
 
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
+
+                    if (mainCharacter.getScoreInt() < 0) {
+                        loss();
+                    }
+
                 }
             }
         });
