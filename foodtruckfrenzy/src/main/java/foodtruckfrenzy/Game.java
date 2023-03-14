@@ -83,9 +83,7 @@ public class Game {
 
         _frame.pack();
         _frame.setVisible(true);
-        // _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-
+        
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -151,11 +149,8 @@ public class Game {
     }
 
     private void loss() {
-        System.out.println("Negative score, game loss");
+        new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
+        _frame.dispose();
+        _timer.stop();
     }
 }
-
-/* When you want to display a Win or Loss screen use either of these:
- new GameOverDisplay(ScreenType.GAME_WON, resumeListener, restartListener, _scoreboardPanel);
- new GameOverDisplay(ScreenType.GAME_LOST, resumeListener, restartListener, _scoreboardPanel);
- */
