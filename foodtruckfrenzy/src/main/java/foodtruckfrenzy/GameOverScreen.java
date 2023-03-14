@@ -23,6 +23,8 @@ public class GameOverScreen extends Screen {
      * @param restartImagePath The file path for the restart button image.
      * @param exitImagePath The file path for the exit button image.
      * @param scoreboard The Scoreboard object to display the final score, values, and time on the screen.
+     * @param 800 The Desired width of the display
+     * @param 600 the Desired height of the display
      */
     public GameOverScreen(ActionListener startListener, ActionListener exitListener, String bgImagePath, String restartImagePath, String exitImagePath, Scoreboard scoreboard) {
         super(startListener, exitListener, bgImagePath, restartImagePath, exitImagePath, 800, 600);
