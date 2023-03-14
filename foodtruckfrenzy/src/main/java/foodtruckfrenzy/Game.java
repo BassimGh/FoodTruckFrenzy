@@ -83,8 +83,6 @@ public class Game {
 
         _frame.pack();
         _frame.setVisible(true);
-        // _frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
 
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
@@ -107,9 +105,6 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = mainCharacter.moveRight();
 
-                    if (mainCharacter.getScoreInt() < 0) {
-                        loss();
-                    }
 
                     System.out.println(timerIndex);
                     timerIndex ++;
@@ -124,6 +119,15 @@ public class Game {
 
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
+
+                    if (mainCharacter.getScoreInt() < 0) {
+                        loss();
+                    }
+
+                    if (mainCharacter.getCol() == 40 && mainCharacter.getRow() == 16 && mainCharacter.getIngredientsFound() >= Food.getCount()) {
+                        win();
+                    }
+
                 }
             }
         });
@@ -151,11 +155,15 @@ public class Game {
     }
 
     private void loss() {
-        System.out.println("Negative score, game loss");
+        new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
+        _frame.dispose();
+        _timer.stop();
     }
-}
 
-/* When you want to display a Win or Loss screen use either of these:
- new GameOverDisplay(ScreenType.GAME_WON, resumeListener, restartListener, _scoreboardPanel);
- new GameOverDisplay(ScreenType.GAME_LOST, resumeListener, restartListener, _scoreboardPanel);
- */
+    private void win() {
+        new Frame(ScreenType.GAME_WON, _scoreboardPanel);
+        _frame.dispose();
+        _timer.stop();
+    }
+
+}
