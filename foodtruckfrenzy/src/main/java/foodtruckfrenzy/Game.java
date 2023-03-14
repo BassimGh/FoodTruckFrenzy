@@ -23,8 +23,10 @@ public class Game {
     private final CardLayout _layout;
     private boolean _paused = false;
 
+    private int timerIndex;
+
     public Game() {
-    
+        timerIndex = 0;
         Food.resetCount();
         _mainPanel = new JPanel(new CardLayout());
 
@@ -38,11 +40,8 @@ public class Game {
 
         _gamePanel = new GamePanel();
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
-        Cop cop = _gamePanel.get_cop();
-        // ArrayList<Cop> cops = new ArrayList<>();
-        // cops.add(_gamePanel.get_cop());
-        // cops.add(_gamePanel.get_cop());
-        // cops.add(_gamePanel.get_cop());
+        // Cop cop = _gamePanel.get_cop();
+        ArrayList<Cop> cops = _gamePanel.get_cops();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
@@ -109,7 +108,17 @@ public class Game {
                         loss();
                     }
 
-                    cop.chaseTruck();
+                    System.out.println(timerIndex);
+                    timerIndex ++;
+                    if (timerIndex > Integer.MAX_VALUE - 1)
+                        timerIndex = 0;
+                    
+                    for (Cop cop : cops) {
+                        cop.trackTruck();
+                        if (timerIndex % 2 == 0)
+                            cop.chaseTruck();
+                    }
+
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
                 }

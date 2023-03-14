@@ -52,7 +52,7 @@ public class Cop extends Vehicle{
         return moved;
     }
 
-    public void chaseTruck() {
+    public void trackTruck() {
         System.out.println(directions.size());
         target.row = foodtruck.getRow();
         target.col = foodtruck.getCol();
@@ -75,6 +75,14 @@ public class Cop extends Vehicle{
         // }
         // System.out.println("#################################");
 
+        if (!(target.row == target.prev.row && target.col == target.prev.col)) {
+            System.out.println("getting directinons");
+            queue.add(new Position(target.row, target.col, target.prev));
+            getDirections();
+        }
+    }
+
+    public void chaseTruck() {
         if (!directions.isEmpty()) {
             if (directions.get(0) == Direction.UP)
                 moveUp();
@@ -85,12 +93,6 @@ public class Cop extends Vehicle{
             if (directions.get(0) == Direction.RIGHT)
                 moveRight();
             directions.remove(0);
-        }
-
-        if (!(target.row == target.prev.row && target.col == target.prev.col)) {
-            System.out.println("getting directinons");
-            queue.add(new Position(target.row, target.col, target.prev));
-            getDirections();
         }
     }
 

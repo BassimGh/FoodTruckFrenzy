@@ -3,12 +3,14 @@ package foodtruckfrenzy;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GamePanel extends JPanel {
     
     private Grid grid = new Grid();
     private final FoodTruck _mainCharacter;
-    private final Cop _cop;
+    private final ArrayList<Cop> _cops = new ArrayList<>();
 
     public GamePanel() {
 
@@ -20,7 +22,9 @@ public class GamePanel extends JPanel {
         }
 
         _mainCharacter = new FoodTruck(3, 0, grid);
-        _cop = new Cop(15, 19, grid, _mainCharacter);
+        _cops.add(new Cop(8, 13, grid, _mainCharacter));
+        _cops.add(new Cop(18, 3, grid, _mainCharacter));
+        _cops.add(new Cop(15, 14, grid, _mainCharacter));
     }
 
     @Override
@@ -34,14 +38,17 @@ public class GamePanel extends JPanel {
             }
         }
         _mainCharacter.draw(g2d);
-        _cop.draw(g2d);
+        
+        for (Cop cop : _cops) {
+            cop.draw(g2d);
+        }
     }
 
     public FoodTruck get_mainCharacter() {
         return _mainCharacter;
     }
 
-    public Cop get_cop() {
-        return _cop;
+    public ArrayList<Cop> get_cops() {
+        return _cops;
     }
 }
