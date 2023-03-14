@@ -1,5 +1,10 @@
 package foodtruckfrenzy;
 
+/**
+ * Represents a Cop object that moves around on the grid autonomously following the foodtruck
+ * Inherits from the Vehicle class for its movement
+ */
+
 // import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -16,6 +21,12 @@ public class Cop extends Vehicle{
     private Position target;
     private Position searchOrigin;
 
+    /**
+     * Creates a new Cop object at the specified row and column of the grid.
+     * @param row the row of the cop's starting position.
+     * @param col the column of the cop's starting position.
+     * @param grid the grid object that the cop will be moving on.
+     */
     public Cop(int row, int col, Grid grid, FoodTruck player) {
         super(row, col, grid, DrawableEnum.COP_RIGHT);
         this.foodtruck = player;
@@ -26,6 +37,10 @@ public class Cop extends Vehicle{
         getDirections();
     }
 
+    /**
+     * Moves the cop car up one cell on the grid and updates its sprite accordingly.
+     * @return true if the cop car was able to move up, false otherwise.
+     */
     @Override
     public boolean moveUp() {
         boolean moved = super.moveUp();
@@ -33,6 +48,10 @@ public class Cop extends Vehicle{
         return moved;
     }
 
+    /**
+     * Moves the cop car down one cell on the grid and updates its sprite accordingly.
+     * @return true if the cop car was able to move down, false otherwise.
+     */
     @Override
     public boolean moveDown() {
         boolean moved = super.moveDown();
@@ -40,6 +59,10 @@ public class Cop extends Vehicle{
         return moved;
     }
 
+    /**
+     * Moves the cop car left one cell on the grid and updates its sprite accordingly.
+     * @return true if the cop car was able to move left, false otherwise.
+     */
     @Override
     public boolean moveLeft() {
         boolean moved = super.moveLeft();
@@ -47,6 +70,10 @@ public class Cop extends Vehicle{
         return moved;
     }
 
+    /**
+     * Moves the cop car right one cell on the grid and updates its sprite accordingly.
+     * @return true if the cop car was able to move right, false otherwise.
+     */
     @Override
     public boolean moveRight() {
         boolean moved = super.moveRight();
@@ -54,6 +81,10 @@ public class Cop extends Vehicle{
         return moved;
     }
 
+    /**
+     * Tracks the movements of the food truck and appends to the list of directions
+     * for the cop to follow the food truck
+     */
     public void trackTruck() {
         // System.out.println(directions.size());
         target.row = foodtruck.getRow();
@@ -84,6 +115,10 @@ public class Cop extends Vehicle{
         }
     }
 
+    /**
+     * Calls move the corresponding move functions to move the cop car according to the
+     * next value in the directions list.
+     */
     public void chaseTruck() {
         if (!directions.isEmpty()) {
             if (directions.get(0) == Direction.UP)
@@ -98,6 +133,12 @@ public class Cop extends Vehicle{
         }
     }
 
+    /**
+     * Gets the food truck position, gathers cooredinates towards the food truck through getPath()
+     * and converts coordinate values to up/down/left/right directions to be appended to the 
+     * directions arrayList.
+     * Alrogirhtm is implemented with a breadth-first search.
+     */
     public void getDirections() {
         target = new Position(foodtruck.getRow(), foodtruck.getCol(), null);
         // ArrayList<Direction> directions = new ArrayList<>();
@@ -163,6 +204,12 @@ public class Cop extends Vehicle{
         // System.out.println("#################################");
     }
 
+    /**
+     * Traces back from the node at the target position (food truck) and records
+     * coordinates leading to the food truck.
+     * @return ArrayList of Position objects containing ordered coordinates the path
+     * from the origin (cop) to the food truck.
+     */
     public List<Position> getPath(Position pos) {
         List<Position> path = new LinkedList<>();
 
@@ -179,6 +226,10 @@ public class Cop extends Vehicle{
         return path;
     }
 
+    /**
+     * Checks whether adjeacent cells of a given position are roads and adds them
+     * to the queue for the depth-first search if they are.
+     */
     public void checkAdjacentCells(Position pos) {
 
         // check upper adjacent cell
