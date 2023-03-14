@@ -21,9 +21,9 @@ public class Cop extends Vehicle{
         this.foodtruck = player;
         target = new Position(player.getRow(), player.getCol(), null);
         queue.add(new Position(row, col, null));
-        System.out.println("\n ONLY SHOULD PRINT ONCE \n");
+        // System.out.println("\n ONLY SHOULD PRINT ONCE \n");
         searchOrigin = new Position(row, col, null);
-        // getDirections();
+        getDirections();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Cop extends Vehicle{
     }
 
     public void trackTruck() {
-        System.out.println(directions.size());
+        // System.out.println(directions.size());
         target.row = foodtruck.getRow();
         target.col = foodtruck.getCol();
 
@@ -78,7 +78,7 @@ public class Cop extends Vehicle{
         // System.out.println("#################################");
 
         if (!(target.row == target.prev.row && target.col == target.prev.col)) {
-            System.out.println("getting directinons");
+            // System.out.println("getting directinons");
             queue.add(new Position(target.row, target.col, target.prev));
             getDirections();
         }
@@ -104,7 +104,7 @@ public class Cop extends Vehicle{
         List<Position> path = new LinkedList<>();
         
         Position currentPos = queue.get(0);
-        System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
+        // System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
 
         while (!(currentPos.row == target.row && currentPos.col == target.col)) {
             currentPos = queue.get(0);
@@ -116,24 +116,24 @@ public class Cop extends Vehicle{
         // Position lastPos = queue.get(queue.size()-1);
         queue.clear();
         queue.add(currentPos);
-        System.out.println("QUeue size: " + queue.size());
-        System.out.println("Last element: " + queue.get(queue.size() - 1).col + " " + queue.get(queue.size() - 1).row);
-        System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
+        // System.out.println("Queue size: " + queue.size());
+        // System.out.println("Last element: " + queue.get(queue.size() - 1).col + " " + queue.get(queue.size() - 1).row);
+        // System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
         
-        System.out.println("--- Queue -----");
-        for (Position q : queue) {
-            if (q != null )System.out.println(q.col + " " + q.row);
-        }
-        System.out.println("#################################");
+        // System.out.println("--- Queue -----");
+        // for (Position q : queue) {
+        //     if (q != null )System.out.println(q.col + " " + q.row);
+        // }
+        // System.out.println("#################################");
         
         path = getPath(currentPos);
 
-        System.out.println("--- Path -----");
-        for (Position p : path) {
-            if (p != null)System.out.println(p.col + " " + p.row);
-            else System.out.println("null");
-        }
-        System.out.println("#################################");
+        // System.out.println("--- Path -----");
+        // for (Position p : path) {
+        //     if (p != null)System.out.println(p.col + " " + p.row);
+        //     else System.out.println("null");
+        // }
+        // System.out.println("#################################");
         
         if (path.size() > 0) {
             // Converts set of coordinates to set of directions
@@ -156,11 +156,11 @@ public class Cop extends Vehicle{
             }
         }
 
-        System.out.println("--- Directions -----");
-        for (Direction d : directions) {
-            System.out.println(d);
-        }
-        System.out.println("#################################");
+        // System.out.println("--- Directions -----");
+        // for (Direction d : directions) {
+        //     System.out.println(d);
+        // }
+        // System.out.println("#################################");
     }
 
     public List<Position> getPath(Position pos) {

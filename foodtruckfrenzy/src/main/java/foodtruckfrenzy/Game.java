@@ -22,7 +22,6 @@ public class Game {
     private final GamePanel _gamePanel;
     private final CardLayout _layout;
     private boolean _paused = false;
-    private boolean isAllCopsSpawned = false;
 
     private int timerIndex;
 
@@ -113,32 +112,23 @@ public class Game {
                         timerIndex = 0;
                     
                     for (Cop cop : cops) {
+
                         if (cop.getCol() == mainCharacter.getCol() && cop.getRow() == mainCharacter.getRow()) {
                             loss();
                         }
-                    }
-                    
-                    if (!isAllCopsSpawned) {
-                        cops.get(0).trackTruck();
-                        if (timerIndex % 2 == 0)
-                            cops.get(0).chaseTruck();
-                        if (timerIndex > 30) {
-                            cops.get(1).getDirections();
-                            cops.get(2).getDirections();
-                            isAllCopsSpawned = true;
-                        }
-                    } else {
-                        for (Cop cop : cops) {
-                            cop.trackTruck();
-                        }
-                        if (timerIndex % 2 == 0) {
-                            cops.get(0).chaseTruck();
-                            cops.get(1).chaseTruck();
-                        }
-                        if (timerIndex % 3 == 0)
-                            cops.get(2).chaseTruck();
+
+                        cop.trackTruck();
                     }
 
+                    if (timerIndex % 2 == 0) {
+                        cops.get(0).chaseTruck();
+                        cops.get(1).chaseTruck();
+                    }
+
+                    if (timerIndex % 3 == 0) {
+                        cops.get(2).chaseTruck();
+                    }
+                    
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
 
