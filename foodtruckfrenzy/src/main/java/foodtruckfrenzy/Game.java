@@ -22,6 +22,7 @@ public class Game {
     private final GamePanel _gamePanel;
     private final CardLayout _layout;
     private boolean _paused = false;
+    private boolean isAllCopsSpawned = false;
 
     private int timerIndex;
 
@@ -43,6 +44,7 @@ public class Game {
         FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
         // Cop cop = _gamePanel.get_cop();
         ArrayList<Cop> cops = _gamePanel.get_cops();
+        cops.get(0).getDirections();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
@@ -105,16 +107,30 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = mainCharacter.moveRight();
 
-
                     System.out.println(timerIndex);
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
                     
-                    for (Cop cop : cops) {
-                        cop.trackTruck();
+                    if (!isAllCopsSpawned) {
+                        cops.get(0).trackTruck();
                         if (timerIndex % 2 == 0)
-                            cop.chaseTruck();
+                            cops.get(0).chaseTruck();
+                        if (timerIndex > 30) {
+                            cops.get(1).getDirections();
+                            cops.get(2).getDirections();
+                            isAllCopsSpawned = true;
+                        }
+                    } else {
+                        for (Cop cop : cops) {
+                            cop.trackTruck();
+                        }
+                        if (timerIndex % 2 == 0) {
+                            cops.get(0).chaseTruck();
+                            cops.get(1).chaseTruck();
+                        }
+                        if (timerIndex % 3 == 0)
+                            cops.get(2).chaseTruck();
                     }
 
                     _gamePanel.repaint();

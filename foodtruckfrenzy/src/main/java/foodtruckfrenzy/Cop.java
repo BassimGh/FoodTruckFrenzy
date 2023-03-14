@@ -21,7 +21,7 @@ public class Cop extends Vehicle{
         queue.add(new Position(row, col, null));
         System.out.println("\n ONLY SHOULD PRINT ONCE \n");
         searchOrigin = new Position(row, col, null);
-        getDirections();
+        // getDirections();
     }
 
     @Override
@@ -97,6 +97,7 @@ public class Cop extends Vehicle{
     }
 
     public void getDirections() {
+        target = new Position(foodtruck.getRow(), foodtruck.getCol(), null);
         // ArrayList<Direction> directions = new ArrayList<>();
         ArrayList<Position> path = new ArrayList<>();
         
