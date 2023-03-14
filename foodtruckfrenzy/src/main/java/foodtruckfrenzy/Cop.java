@@ -18,6 +18,7 @@ public class Cop extends Vehicle{
         this.foodtruck = player;
         target = new Position(player.getRow(), player.getCol(), null);
         queue.add(new Position(row, col, null));
+        System.out.println("\n ONLY SHOULD PRINT ONCE \n");
         getDirections();
     }
 
@@ -74,7 +75,7 @@ public class Cop extends Vehicle{
 
         if (!(target.row == target.prev.row && target.col == target.prev.col)) {
             System.out.println("getting directinons");
-            queue.add(target);
+            queue.add(new Position(target.row, target.col, target.prev));
             getDirections();
         }
 
@@ -122,7 +123,8 @@ public class Cop extends Vehicle{
 
         System.out.println("--- Path -----");
         for (Position p : path) {
-            System.out.println(p.col + " " + p.row);
+            if (p != null)System.out.println(p.col + " " + p.row);
+            else System.out.println("null");
         }
         System.out.println("#################################");
         
