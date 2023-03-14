@@ -1,31 +1,34 @@
 package foodtruckfrenzy;
 
-// O: Obstruction
-// S: Speed Trap
-// Q: Recipe
+/**
+ * Enum which contains the shorthand codes for all the board elements which can be created
+ * These elements are to be read from the layout.csv file and translated using the board element factory
+ * The mapping is as follows:
+ * 
+    O: Obstruction
+    S: Speed Trap
+    Q: Recipe
 
-// P: Pot Hole
-// L: Pot Hole Vertical
+    P: Pot Hole
+    L: Pot Hole Vertical
 
+    F: Food
+    R: Food Vertical
 
-// F: Food
-// R: Food Vertical
+    H: Horizontal Road
+    V: Vertical Road
+    X: 4 way intersect
 
+    U: North-West corner
+    I: North-East corner
+    J: South-East corner
+    K: South-West corner
 
-// H: Horizontal Road
-// V: Vertical Road
-// X: 4 way intersect
-
-// U: North-West corner
-// I: North-East corner
-// J: South-East corner
-// K: South-West corner
-
-// N: North three-way
-// B: East three-way
-// M: South three-way
-// C: West three-way 
-
+    N: North three-way
+    B: East three-way
+    M: South three-way
+    C: West three-way 
+ */
 public enum BoardElementEnum {
     H,
     V,

@@ -6,8 +6,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.HashMap;
 
+/**
+ * SpriteLoader preloads all the sprites for the Drawable objects at load time
+ * This is used so the images are only loaded once to increase performance
+ * The images are stored in a hash map and returned when getImage is called
+ */
 public class SpriteLoader {
 
+    // house and food are ArrayLists because they have multiple images for the same object, selected at random
     private static ArrayList<Image> _houseImages = new ArrayList<Image>();
     private static ArrayList<Image> _foodImages = new ArrayList<Image>();
     private static HashMap<DrawableEnum, Image> _imagesHashMap = new HashMap<>();
@@ -64,6 +70,12 @@ public class SpriteLoader {
         }  
     }
 
+    /**
+     * Returns the appropriate sprite image requested from the hash map
+     * or randomly from either the house or food ArrayLists if applicable
+     * @param type DrawableEnum type of Drawable sprite that we need the image for
+     * @return The appropriate Image as requested
+     */
     public static Image getImage(DrawableEnum type) {
 
         if (type == DrawableEnum.OBSTRUCTION) {
