@@ -1,15 +1,31 @@
 package foodtruckfrenzy;
 
+/**
+ * Represents a Vehicle object that capable of around on the grid
+ * Inherits from the Drawable to be displayed
+ */
+
 public class Vehicle extends Drawable {
 
     private int SPEED = 1;
     private Grid _grid;
 
+    /**
+     * Creates a new vehicle object at the specified row and column of the grid.
+     * @param row the row of the vehicle's starting position.
+     * @param col the column of the vehicle's starting position.
+     * @param grid the grid object that the vehicle will be moving on.
+     * @param type the grid object that the vehicle will be moving on.
+     */
     public Vehicle(int row, int col, Grid grid, DrawableEnum type) {
         super(row, col, type);
         _grid = grid;
     }
 
+    /**
+     * Moves the vehicle up one cell on the grid.
+     * @return true if the vehicle was able to move up, false otherwise.
+     */
     public boolean moveUp() {
         int newRow = this.getRow() - SPEED;
 
@@ -23,6 +39,10 @@ public class Vehicle extends Drawable {
         return true;
     }
 
+    /**
+     * Moves the vehicle up one cell on the grid.
+     * @return true if the vehicle was able to move up, false otherwise.
+     */
     public boolean moveDown() {
         int newRow = this.getRow() + SPEED;
 
@@ -36,6 +56,10 @@ public class Vehicle extends Drawable {
         return true;
     }
 
+    /**
+     * Moves the vehicle up one cell on the grid.
+     * @return true if the vehicle was able to move up, false otherwise.
+     */
     public boolean moveRight() {
         int newCol = this.getCol() + SPEED;
 
@@ -49,6 +73,10 @@ public class Vehicle extends Drawable {
         return true;
     }
 
+    /**
+     * Moves the vehicle up one cell on the grid.
+     * @return true if the vehicle was able to move up, false otherwise.
+     */
     public boolean moveLeft() {
         int newCol = this.getCol() - SPEED;
 
@@ -62,6 +90,10 @@ public class Vehicle extends Drawable {
         return true;
     }
 
+    /**
+     * Gets the game grid
+     * @return game grid
+     */
     public Grid getGrid() {
         return _grid;
     }
