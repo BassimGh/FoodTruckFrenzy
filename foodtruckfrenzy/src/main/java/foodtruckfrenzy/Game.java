@@ -124,6 +124,10 @@ public class Game {
                         loss();
                     }
 
+                    if (mainCharacter.getCol() == 40 && mainCharacter.getRow() == 16 && mainCharacter.getIngredientsFound() >= Food.getCount()) {
+                        win();
+                    }
+
                 }
             }
         });
@@ -155,4 +159,11 @@ public class Game {
         _frame.dispose();
         _timer.stop();
     }
+
+    private void win() {
+        new Frame(ScreenType.GAME_WON, _scoreboardPanel);
+        _frame.dispose();
+        _timer.stop();
+    }
+
 }
