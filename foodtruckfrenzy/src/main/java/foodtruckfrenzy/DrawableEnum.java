@@ -1,5 +1,9 @@
 package foodtruckfrenzy;
 
+/**
+ * Enum representing all things Drawable in this game
+ * Each entry corresponds to a unique sprite
+ */
 public enum DrawableEnum {
     FOODTRUCK_UP,
     FOODTRUCK_DOWN,

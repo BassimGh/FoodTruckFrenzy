@@ -1,6 +1,17 @@
 package foodtruckfrenzy;
 
+/**
+ * Factory method class which allows for the creation of various board elements
+ * These BoardElements can contain different graphics or items depending on the type
+ */
 public class BoardElementFactory {
+    /**
+     * Creates BoardElement object based on specified parameters
+     * @param type BoardElementEnum to be converted into a BoardElement
+     * @param row row that the new BoardElement will be on a grid
+     * @param col column that the new BoardElement will be on a grid
+     * @return new Boardelement object based off specified parameters
+     */
     public static BoardElement create(BoardElementEnum type, int row, int col) {
         switch (type) {
             case H:

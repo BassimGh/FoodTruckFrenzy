@@ -7,12 +7,18 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+/*
+ * This class is the logic behind the game
+ * Creating a new instance of this class creates a new game with everything
+ * Includes the Frame, all panels, the charactes and everything
+ * Potentially should be refactored to a singleton object as only one of these should exist at a time
+ */
 public class Game {
     
     private final int SCOREBOARD_HEIGHT = 100;
     private final int FRAME_WIDTH = Grid.COLS * Grid.CELL_SIZE;
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
-    private final int TIMER_DELAY = 75; // Tick timer delay in milliseconds    private final Cop cop;
+    private final int TIMER_DELAY = 75; // in milliseconds
 
     private final JFrame _frame;
     private final KeyboardHandler _keyboardHandler;
@@ -25,10 +31,27 @@ public class Game {
 
     private int timerIndex;
 
+    /*
+     * Game constructor
+     * Creates everything needed to run the game instance
+     */
     public Game() {
         timerIndex = 0;
         Food.resetCount();
         Recipe.resetCount();
+
+        /**
+         * This frame is setup as follows:
+         * CardLayout mainPanel which is the content pane
+         * CardLayout mainPanel contains the gameAndScorePanel
+         * CardLayout mainPanel contains the pausePanel
+         * gameAndScorePanel contains the gamePanel and scoreboardPanel
+         * KeyBoard listner is attached to the gamePanel which is given focus
+         * On start, flip CardLaout mainPanel to gameAndScorePanel
+         * On pause, flip CardLayout mainPanel to pausePanel
+         * On resume, flip CardLaout mainPanel back to gameAndScorePanel
+         */
+
         _mainPanel = new JPanel(new CardLayout());
 
         _frame = new JFrame("Food Truck Frenzy");
@@ -40,9 +63,8 @@ public class Game {
         gameAndScorePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
         _gamePanel = new GamePanel();
-        FoodTruck mainCharacter = _gamePanel.get_mainCharacter();
-        // Cop cop = _gamePanel.get_cop();
-        ArrayList<Cop> cops = _gamePanel.get_cops();
+        FoodTruck mainCharacter = _gamePanel.getMainCharacter();
+        ArrayList<Cop> cops = _gamePanel.getCops();
         cops.get(0).getDirections();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
@@ -61,6 +83,9 @@ public class Game {
 
         _mainPanel.add(gameAndScorePane, "game");
 
+        /**
+         * Action listener for the pause menu which resumes the game on interaction
+         */
         ActionListener resumeListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +93,9 @@ public class Game {
             }
         };
 
+        /**
+         * Action listener for the pause menu which goes to the title screen on interaction
+         */
         ActionListener restartListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,6 +113,11 @@ public class Game {
         _frame.pack();
         _frame.setVisible(true);
 
+        /*
+         * Game tick timer which controls all game running logic
+         * Controls player movement and cop movement
+         * Checks for win and loss condidions
+         */
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -146,10 +179,17 @@ public class Game {
 
     }
 
+    /**
+     * Starts the game timer, effectively starting the game
+     */
     public void startTimer() {
         _timer.start();
     }
 
+    /**
+     * Pauses the game and shows the pause menu 
+     * While suspending the game loop through a boolean value update
+     */
     public void pause() {
         _keyboardHandler.resetKeys();
         _paused = true;
@@ -159,6 +199,10 @@ public class Game {
         _gamePanel.requestFocusInWindow();
     }
 
+    /**
+     * Resumes the game and shows the game panel 
+     * While resuming the game loop through a boolean value update
+     */
     public void resume() {
         _paused = false;
         _layout.show(_mainPanel, "game");
@@ -166,12 +210,22 @@ public class Game {
         _gamePanel.requestFocusInWindow();
     }
 
+    /**
+     * Function to be called when the game ends in a loss
+     * Kills the frame and timer
+     * Shows a new GAME_LOST screen Frame
+     */
     private void loss() {
         new Frame(ScreenType.GAME_LOST, _scoreboardPanel);
         _frame.dispose();
         _timer.stop();
     }
 
+    /**
+     * Function to be called when the game ends in a win
+     * Kills the frame and timer
+     * Shows a new GAME_WON screen Frame
+     */
     private void win() {
         new Frame(ScreenType.GAME_WON, _scoreboardPanel);
         _frame.dispose();

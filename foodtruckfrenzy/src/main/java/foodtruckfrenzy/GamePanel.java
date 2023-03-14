@@ -5,15 +5,23 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+/**
+ * GamePanel class is the visual aspect of the game
+ * This class creates all the FoodTruck, Cop, BoardElements and places them on the grid
+ * This class reads from the MapLayout
+ */
 public class GamePanel extends JPanel {
     
     private Grid grid = new Grid();
     private final FoodTruck _mainCharacter;
     private final ArrayList<Cop> _cops = new ArrayList<>();
 
+    /**
+     * GamePanel constructor which does all the creation of the FoodTruck, Cop, BoardElements
+     * Initializes and places them on the grid
+     */
     public GamePanel() {
 
-        // Initialize grid with starting values
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
                 grid.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
@@ -26,6 +34,10 @@ public class GamePanel extends JPanel {
         _cops.add(new Cop(19, 13, grid, _mainCharacter));
     }
 
+    /**
+     * Override the JPanel paint component to be called when the panel repaints
+     * @param g Graphics object corresponding to the grid
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -43,11 +55,19 @@ public class GamePanel extends JPanel {
         }
     }
 
-    public FoodTruck get_mainCharacter() {
+    /**
+     * Gets the main character object
+     * @return FoodTruck object corresponding to the main character
+     */
+    public FoodTruck getMainCharacter() {
         return _mainCharacter;
     }
 
-    public ArrayList<Cop> get_cops() {
+    /**
+     * Gets all the cop objects
+     * @return ArrayList<Cop> object corresponding to the lsit of cops
+     */
+    public ArrayList<Cop> getCops() {
         return _cops;
     }
 }
