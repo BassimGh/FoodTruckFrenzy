@@ -28,7 +28,7 @@ public class Road extends BoardElement {
         int value = _item.getValue();
         ScoreType scoreType = _item.getScoreType();
 
-        System.out.println("Interacted with value of " + value);
+        // System.out.println("Interacted with value of " + value);
 
         if (value>0) {
             _item = null;
