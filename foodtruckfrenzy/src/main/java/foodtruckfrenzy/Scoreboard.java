@@ -46,6 +46,7 @@ public class Scoreboard extends JPanel {
     private int recipesDiscoverable;
     private int damage;
     private int fines;
+    private String timeElapsed;
     
 
     private Timer _timer;
@@ -157,7 +158,8 @@ public class Scoreboard extends JPanel {
                         _minute++;
                         _second = 0;
                     }
-                    _timeLabel.setText("Time: " + String.format("%02d",_minute) + ":" + String.format("%02d", _second));
+                    timeElapsed = String.format("%02d",_minute) + ":" + String.format("%02d", _second);
+                    _timeLabel.setText("Time: " + timeElapsed);
                 }
             }
         });
@@ -180,6 +182,21 @@ public class Scoreboard extends JPanel {
         _timer.restart();
     }
 
-}
+    public int getDamage() {
+        return damage;
+    }
 
+    public int getFines() {
+        return fines;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getTime() {
+        return timeElapsed;
+    }
+
+}
 
