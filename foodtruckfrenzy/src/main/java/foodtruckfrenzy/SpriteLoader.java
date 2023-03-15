@@ -26,50 +26,50 @@ public class SpriteLoader {
             
         try {
 
-            _imagesHashMap.put(DrawableEnum.FOODTRUCK_UP, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/foodTruckUp.png")));
-            _imagesHashMap.put(DrawableEnum.FOODTRUCK_DOWN, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/foodTruckDown.png")));
-            _imagesHashMap.put(DrawableEnum.FOODTRUCK_RIGHT, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/foodTruckRight.png")));
-            _imagesHashMap.put(DrawableEnum.FOODTRUCK_LEFT, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/foodTruckLeft.png")));
+            _imagesHashMap.put(DrawableEnum.FOODTRUCK_UP, new ImageIcon(SpriteLoader.class.getResource("foodTruckUp.png")));
+            _imagesHashMap.put(DrawableEnum.FOODTRUCK_DOWN, new ImageIcon(SpriteLoader.class.getResource("foodTruckDown.png")));
+            _imagesHashMap.put(DrawableEnum.FOODTRUCK_RIGHT, new ImageIcon(SpriteLoader.class.getResource("foodTruckRight.png")));
+            _imagesHashMap.put(DrawableEnum.FOODTRUCK_LEFT, new ImageIcon(SpriteLoader.class.getResource("foodTruckLeft.png")));
             
-            _imagesHashMap.put(DrawableEnum.COP_UP, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/copCarUp.gif")));
-            _imagesHashMap.put(DrawableEnum.COP_DOWN, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/copCarDown.gif")));
-            _imagesHashMap.put(DrawableEnum.COP_RIGHT, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/copCarRight.gif")));
-            _imagesHashMap.put(DrawableEnum.COP_LEFT, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/copCarLeft.gif")));
+            _imagesHashMap.put(DrawableEnum.COP_UP, new ImageIcon(SpriteLoader.class.getResource("copCarUp.gif")));
+            _imagesHashMap.put(DrawableEnum.COP_DOWN, new ImageIcon(SpriteLoader.class.getResource("copCarDown.gif")));
+            _imagesHashMap.put(DrawableEnum.COP_RIGHT, new ImageIcon(SpriteLoader.class.getResource("copCarRight.gif")));
+            _imagesHashMap.put(DrawableEnum.COP_LEFT, new ImageIcon(SpriteLoader.class.getResource("copCarLeft.gif")));
 
-            _imagesHashMap.put(DrawableEnum.SPEED_TRAP, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/speedtrap.png")));
-            _imagesHashMap.put(DrawableEnum.POT_HOLE, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/pothole.png")));
-            _imagesHashMap.put(DrawableEnum.RECIPE, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/recipe.png")));
-            _imagesHashMap.put(DrawableEnum.PICKUP_GLITTER, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/pickupGlitter.gif")));
+            _imagesHashMap.put(DrawableEnum.SPEED_TRAP, new ImageIcon(SpriteLoader.class.getResource("speedtrap.png")));
+            _imagesHashMap.put(DrawableEnum.POT_HOLE, new ImageIcon(SpriteLoader.class.getResource("pothole.png")));
+            _imagesHashMap.put(DrawableEnum.RECIPE, new ImageIcon(SpriteLoader.class.getResource("recipe.png")));
+            _imagesHashMap.put(DrawableEnum.PICKUP_GLITTER, new ImageIcon(SpriteLoader.class.getResource("pickupGlitter.gif")));
 
-            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/house1.png")));
-            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/house2.png")));
-            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/house3.png")));
-            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/house4.png")));
-            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/house5.png")));
-            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/house6.png")));
+            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("house1.png")));
+            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("house2.png")));
+            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("house3.png")));
+            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("house4.png")));
+            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("house5.png")));
+            _houseImages.add(new ImageIcon(SpriteLoader.class.getResource("house6.png")));
             
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/potato.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/apple.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/steak.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/chicken.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/cherry.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/icecream.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/egg.png")));
-            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/can.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("potato.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("apple.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("steak.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("chicken.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("cherry.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("icecream.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("egg.png")));
+            _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("can.png")));
             
-            _imagesHashMap.put(DrawableEnum.HORIZONTAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadHorizontal.png")));
-            _imagesHashMap.put(DrawableEnum.VERTICAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadVertical.png")));
-            _imagesHashMap.put(DrawableEnum.FOUR_WAY_INTERSECT, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadFourWay.png")));
+            _imagesHashMap.put(DrawableEnum.HORIZONTAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("roadHorizontal.png")));
+            _imagesHashMap.put(DrawableEnum.VERTICAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("roadVertical.png")));
+            _imagesHashMap.put(DrawableEnum.FOUR_WAY_INTERSECT, new ImageIcon(SpriteLoader.class.getResource("roadFourWay.png")));
 
-            _imagesHashMap.put(DrawableEnum.SOUTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadSouthEastCorner.png")));
-            _imagesHashMap.put(DrawableEnum.SOUTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadSouthWestCorner.png")));
-            _imagesHashMap.put(DrawableEnum.NORTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadNorthEastCorner.png")));
-            _imagesHashMap.put(DrawableEnum.NORTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadNorthWestCorner.png")));
+            _imagesHashMap.put(DrawableEnum.SOUTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadSouthEastCorner.png")));
+            _imagesHashMap.put(DrawableEnum.SOUTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadSouthWestCorner.png")));
+            _imagesHashMap.put(DrawableEnum.NORTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadNorthEastCorner.png")));
+            _imagesHashMap.put(DrawableEnum.NORTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadNorthWestCorner.png")));
             
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_NORTH, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadThreeWayNorth.png")));
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_EAST, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadThreeWayEast.png")));
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_SOUTH, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadThreeWaySouth.png")));
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_WEST, new ImageIcon(SpriteLoader.class.getResource("/foodtruckfrenzy/roadThreeWayWest.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_NORTH, new ImageIcon(SpriteLoader.class.getResource("roadThreeWayNorth.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_EAST, new ImageIcon(SpriteLoader.class.getResource("roadThreeWayEast.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_SOUTH, new ImageIcon(SpriteLoader.class.getResource("roadThreeWaySouth.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_WEST, new ImageIcon(SpriteLoader.class.getResource("roadThreeWayWest.png")));
         } catch (Exception e) {
             System.err.println("Error when loading sprite files with SpriteLoader:");
             e.printStackTrace();
