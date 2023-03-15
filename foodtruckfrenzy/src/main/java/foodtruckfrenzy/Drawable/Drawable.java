@@ -4,8 +4,8 @@ import java.awt.*;
 
 import javax.swing.ImageIcon;
 
-import foodtruckfrenzy.Grid;
 import foodtruckfrenzy.SpriteLoader;
+import foodtruckfrenzy.GameFramework.Grid;
 
 /**
  * This abstract Drawable class represents everything that can have a sprite to be drawn

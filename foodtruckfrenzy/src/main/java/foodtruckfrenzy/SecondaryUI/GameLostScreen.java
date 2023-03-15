@@ -2,7 +2,7 @@ package foodtruckfrenzy.SecondaryUI;
 
 import java.awt.event.ActionListener;
 
-import foodtruckfrenzy.Scoreboard;
+import foodtruckfrenzy.GameFramework.Scoreboard;
 
 /**
  * The GameLostScreen class extends the GameOverScreen class to display a screen for when the game is lost.

@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.GameFramework;
 
 import java.awt.Graphics2D;
 

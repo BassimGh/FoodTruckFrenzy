@@ -4,9 +4,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
-import foodtruckfrenzy.Game;
 import foodtruckfrenzy.Main;
-import foodtruckfrenzy.Scoreboard;
+import foodtruckfrenzy.GameFramework.Game;
+import foodtruckfrenzy.GameFramework.Scoreboard;
 
 /**
  * The Frame class sets up the JFrame for the TitleScreen, GameLostScreen, and GameWonScreen to be displayed

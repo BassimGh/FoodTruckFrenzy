@@ -1,9 +1,9 @@
 package foodtruckfrenzy.Drawable.Vehicle;
 
-import foodtruckfrenzy.Grid;
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.Drawable.Item.ScoreType;
 import foodtruckfrenzy.Drawable.Item.ScoreValue;
+import foodtruckfrenzy.GameFramework.Grid;
 
 /**
  * Represents a Food Truck object that can move around a grid and interact with different score values on the grid.

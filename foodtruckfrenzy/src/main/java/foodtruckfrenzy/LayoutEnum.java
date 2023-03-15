@@ -29,7 +29,7 @@ package foodtruckfrenzy;
     M: South three-way
     C: West three-way 
  */
-public enum BoardElementEnum {
+public enum LayoutEnum {
     H,
     V,
     X,

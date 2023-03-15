@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.GameFramework;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+import foodtruckfrenzy.KeyboardHandler;
+import foodtruckfrenzy.Main;
 import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
