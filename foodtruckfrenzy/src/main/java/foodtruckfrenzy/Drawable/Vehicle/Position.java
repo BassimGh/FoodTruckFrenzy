@@ -1,6 +1,6 @@
 package foodtruckfrenzy.Drawable.Vehicle;
 
-public class Position {
+class Position {
 
     public Position(int row, int col, Position prev) {
         this.row = row;

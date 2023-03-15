@@ -29,7 +29,7 @@ package foodtruckfrenzy.Helper;
     M: South three-way
     C: West three-way 
  */
-public enum LayoutEnum {
+enum LayoutEnum {
     H,
     V,
     X,

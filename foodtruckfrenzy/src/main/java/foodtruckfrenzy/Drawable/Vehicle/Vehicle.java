@@ -9,7 +9,7 @@ import foodtruckfrenzy.GameFramework.Grid;
  * Inherits from the Drawable to be displayed
  */
 
-public class Vehicle extends Drawable {
+class Vehicle extends Drawable {
 
     private int SPEED = 1;
     private Grid _grid;

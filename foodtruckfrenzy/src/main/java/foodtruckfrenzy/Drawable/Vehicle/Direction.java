@@ -1,6 +1,6 @@
 package foodtruckfrenzy.Drawable.Vehicle;
 
-public enum Direction {
+enum Direction {
     UP,
     DOWN,
     LEFT,

@@ -2,7 +2,7 @@ package foodtruckfrenzy.Drawable.Vehicle;
 
 import java.util.LinkedList;
 
-public class PositionList extends LinkedList<Position> {
+class PositionList extends LinkedList<Position> {
     public boolean containsPos(Position pos) {
         if (this.isEmpty()) return false;
 
