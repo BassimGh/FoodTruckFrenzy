@@ -3,7 +3,6 @@ package foodtruckfrenzy.Helper;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import foodtruckfrenzy.LayoutEnum;
 import foodtruckfrenzy.GameFramework.Grid;
 
 /**

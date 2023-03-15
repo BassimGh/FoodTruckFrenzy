@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Helper;
 
 /**
  * Enum which contains the shorthand codes for all the board elements which can be created

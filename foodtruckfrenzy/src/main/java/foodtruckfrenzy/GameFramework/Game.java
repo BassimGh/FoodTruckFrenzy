@@ -7,12 +7,12 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
-import foodtruckfrenzy.KeyboardHandler;
 import foodtruckfrenzy.Main;
 import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
+import foodtruckfrenzy.Helper.KeyboardHandler;
 import foodtruckfrenzy.SecondaryUI.Frame;
 import foodtruckfrenzy.SecondaryUI.PauseScreen;
 import foodtruckfrenzy.SecondaryUI.ScreenType;

@@ -2,9 +2,9 @@ package foodtruckfrenzy.GameFramework;
 
 import javax.swing.JPanel;
 
-import foodtruckfrenzy.BoardElementFactory;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
+import foodtruckfrenzy.Helper.BoardElementFactory;
 import foodtruckfrenzy.Helper.MapLayout;
 
 import java.awt.Graphics;

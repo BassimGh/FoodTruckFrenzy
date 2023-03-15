@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Helper;
 
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.Drawable.BoardElement.Obstruction;
