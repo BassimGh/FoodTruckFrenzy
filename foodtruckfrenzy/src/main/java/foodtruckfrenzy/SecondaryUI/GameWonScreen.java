@@ -19,6 +19,6 @@ public class GameWonScreen extends GameOverScreen {
      * @param scoreboard The Scoreboard object to display the final score, values, and time on the screen.
      */
     public GameWonScreen(ActionListener startListener, ActionListener exitListener, Scoreboard scoreboard) {
-        super(startListener, exitListener, "/foodtruckfrenzy/youwin.png", "/foodtruckfrenzy/restart.png", "/foodtruckfrenzy/exit.png", scoreboard);
+        super(startListener, exitListener, "youwin.png", "restart.png", "exit.png", scoreboard);
     }
 }

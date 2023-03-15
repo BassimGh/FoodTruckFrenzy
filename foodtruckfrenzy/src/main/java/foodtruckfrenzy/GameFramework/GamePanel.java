@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * This class creates all the FoodTruck, Cop, BoardElements and places them on the grid
  * This class reads from the MapLayout
  */
-public class GamePanel extends JPanel {
+class GamePanel extends JPanel {
     
     private Grid grid = new Grid();
     private final FoodTruck _mainCharacter;

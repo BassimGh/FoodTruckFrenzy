@@ -1,9 +1,7 @@
 package foodtruckfrenzy.Sprite;
 
-import javax.swing.ImageIcon;
-
 import foodtruckfrenzy.Drawable.DrawableEnum;
-
+import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.HashMap;
@@ -57,19 +55,19 @@ public class SpriteLoader {
             _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("egg.png")));
             _foodImages.add(new ImageIcon(SpriteLoader.class.getResource("can.png")));
             
-            _imagesHashMap.put(DrawableEnum.HORIZONTAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("roadHorizontal.png")));
-            _imagesHashMap.put(DrawableEnum.VERTICAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("roadVertical.png")));
-            _imagesHashMap.put(DrawableEnum.FOUR_WAY_INTERSECT, new ImageIcon(SpriteLoader.class.getResource("roadFourWay.png")));
+            _imagesHashMap.put(DrawableEnum.HORIZONTAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("road/Horizontal.png")));
+            _imagesHashMap.put(DrawableEnum.VERTICAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("road/Vertical.png")));
+            _imagesHashMap.put(DrawableEnum.FOUR_WAY_INTERSECT, new ImageIcon(SpriteLoader.class.getResource("road/FourWay.png")));
 
-            _imagesHashMap.put(DrawableEnum.SOUTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadSouthEastCorner.png")));
-            _imagesHashMap.put(DrawableEnum.SOUTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadSouthWestCorner.png")));
-            _imagesHashMap.put(DrawableEnum.NORTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadNorthEastCorner.png")));
-            _imagesHashMap.put(DrawableEnum.NORTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("roadNorthWestCorner.png")));
+            _imagesHashMap.put(DrawableEnum.SOUTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("road/SouthEastCorner.png")));
+            _imagesHashMap.put(DrawableEnum.SOUTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("road/SouthWestCorner.png")));
+            _imagesHashMap.put(DrawableEnum.NORTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("road/NorthEastCorner.png")));
+            _imagesHashMap.put(DrawableEnum.NORTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("road/NorthWestCorner.png")));
             
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_NORTH, new ImageIcon(SpriteLoader.class.getResource("roadThreeWayNorth.png")));
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_EAST, new ImageIcon(SpriteLoader.class.getResource("roadThreeWayEast.png")));
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_SOUTH, new ImageIcon(SpriteLoader.class.getResource("roadThreeWaySouth.png")));
-            _imagesHashMap.put(DrawableEnum.THREE_WAY_WEST, new ImageIcon(SpriteLoader.class.getResource("roadThreeWayWest.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_NORTH, new ImageIcon(SpriteLoader.class.getResource("road/ThreeWayNorth.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_EAST, new ImageIcon(SpriteLoader.class.getResource("road/ThreeWayEast.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_SOUTH, new ImageIcon(SpriteLoader.class.getResource("road/ThreeWaySouth.png")));
+            _imagesHashMap.put(DrawableEnum.THREE_WAY_WEST, new ImageIcon(SpriteLoader.class.getResource("road/ThreeWayWest.png")));
         } catch (Exception e) {
             System.err.println("Error when loading sprite files with SpriteLoader:");
             e.printStackTrace();
