@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Vehicle;
 
 import java.util.LinkedList;
 

@@ -1,4 +1,8 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.BoardElement;
+
+import foodtruckfrenzy.Drawable.Drawable;
+import foodtruckfrenzy.Drawable.DrawableEnum;
+import foodtruckfrenzy.Drawable.Item.ScoreValue;
 
 /**
  * Abstract class for the most low level objects that can be stored on the board grid

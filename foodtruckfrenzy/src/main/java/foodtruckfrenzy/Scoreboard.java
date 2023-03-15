@@ -5,6 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 
+import foodtruckfrenzy.Drawable.Item.Food;
+import foodtruckfrenzy.Drawable.Item.Recipe;
+import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
+
 /**
  * The Scoreboard class is responsible for displaying the current score and game progress.
  * It contains components to display the ingredients and recipes collected, damage inflicted by obstacles, speed fines, time elapsed and the current score.

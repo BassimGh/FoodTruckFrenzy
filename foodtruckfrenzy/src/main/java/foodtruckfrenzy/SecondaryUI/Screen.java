@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.SecondaryUI;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

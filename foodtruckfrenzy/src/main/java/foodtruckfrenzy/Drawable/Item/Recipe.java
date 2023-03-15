@@ -1,4 +1,6 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * Recipie class extends Item class, representing a bonus item that can be collected

@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
 
 /**
  * Class which stores information about a score

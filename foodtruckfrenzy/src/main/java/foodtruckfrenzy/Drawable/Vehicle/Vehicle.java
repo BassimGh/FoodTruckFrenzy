@@ -1,4 +1,8 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Vehicle;
+
+import foodtruckfrenzy.Grid;
+import foodtruckfrenzy.Drawable.Drawable;
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * Represents a Vehicle object that capable of around on the grid

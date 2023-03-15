@@ -1,4 +1,7 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
+
+import foodtruckfrenzy.Drawable.Drawable;
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * Items are an abstract class which are to have a score type and score value associated to them

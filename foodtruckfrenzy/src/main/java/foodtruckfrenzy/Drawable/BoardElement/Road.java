@@ -1,6 +1,12 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.BoardElement;
 
 import java.awt.Graphics2D;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
+import foodtruckfrenzy.Drawable.Item.Glitter;
+import foodtruckfrenzy.Drawable.Item.Item;
+import foodtruckfrenzy.Drawable.Item.ScoreType;
+import foodtruckfrenzy.Drawable.Item.ScoreValue;
 
 /**
  * Road class represents a road on the game grid.

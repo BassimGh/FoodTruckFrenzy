@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.SecondaryUI;
 import java.awt.event.ActionListener;
 
 /**

@@ -1,5 +1,14 @@
 package foodtruckfrenzy;
 
+import foodtruckfrenzy.Drawable.DrawableEnum;
+import foodtruckfrenzy.Drawable.BoardElement.Obstruction;
+import foodtruckfrenzy.Drawable.BoardElement.Road;
+import foodtruckfrenzy.Drawable.BoardElement.BoardElement;
+import foodtruckfrenzy.Drawable.Item.Food;
+import foodtruckfrenzy.Drawable.Item.PotHole;
+import foodtruckfrenzy.Drawable.Item.Recipe;
+import foodtruckfrenzy.Drawable.Item.SpeedTrap;
+
 /**
  * Factory method class which allows for the creation of various board elements
  * These BoardElements can contain different graphics or items depending on the type

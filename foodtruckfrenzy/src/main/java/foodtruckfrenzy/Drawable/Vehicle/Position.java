@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Vehicle;
 
 public class Position {
 

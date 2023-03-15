@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import foodtruckfrenzy.Game;
 import foodtruckfrenzy.Main;
 import foodtruckfrenzy.Scoreboard;
-import foodtruckfrenzy.Screen;
 
 /**
  * The Frame class sets up the JFrame for the TitleScreen, GameLostScreen, and GameWonScreen to be displayed

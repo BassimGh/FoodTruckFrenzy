@@ -2,6 +2,9 @@ package foodtruckfrenzy;
 
 import java.awt.Graphics2D;
 
+import foodtruckfrenzy.Drawable.BoardElement.BoardElement;
+import foodtruckfrenzy.Drawable.Item.ScoreValue;
+
 /**
  * Grid class is an object which acts as a game grid
  * This object will store a 2d array of BoardElements in a predetermined size which can be set and updated accordingly
@@ -9,9 +12,9 @@ import java.awt.Graphics2D;
  */
 public class Grid {
 
-    final static int ROWS = 20; // Number of grid rows
-    final static int COLS = 41; // Number of grid columns
-    final static int CELL_SIZE = 32; // Size of each grid cell
+    public final static int ROWS = 20; // Number of grid rows
+    public final static int COLS = 41; // Number of grid columns
+    public final static int CELL_SIZE = 32; // Size of each grid cell
     
     private BoardElement[][] grid;
 

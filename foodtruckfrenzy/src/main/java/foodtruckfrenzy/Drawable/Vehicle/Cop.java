@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Vehicle;
 
 /**
  * Represents a Cop object that moves around on the grid autonomously following the foodtruck
@@ -9,6 +9,9 @@ package foodtruckfrenzy;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import foodtruckfrenzy.Grid;
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 public class Cop extends Vehicle{
 

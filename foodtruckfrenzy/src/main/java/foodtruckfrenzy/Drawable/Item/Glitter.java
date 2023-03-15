@@ -1,6 +1,8 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
 
 import java.awt.Graphics2D;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * Special glitter item that displays an animation to be used when emphasis is needed

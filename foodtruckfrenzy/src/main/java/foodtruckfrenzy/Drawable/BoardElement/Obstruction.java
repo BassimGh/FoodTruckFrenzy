@@ -1,4 +1,7 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.BoardElement;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
+import foodtruckfrenzy.Drawable.Item.ScoreValue;
 
 /**
  * The Obstruction class extends the BoardElement class and represents an obstruction on the game grid. 

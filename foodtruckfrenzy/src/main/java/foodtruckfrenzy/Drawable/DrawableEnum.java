@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable;
 
 /**
  * Enum representing all things Drawable in this game

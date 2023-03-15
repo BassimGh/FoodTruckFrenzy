@@ -1,4 +1,6 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * A SpeedTrap class is a type of Item which contains a negative SPEED score value

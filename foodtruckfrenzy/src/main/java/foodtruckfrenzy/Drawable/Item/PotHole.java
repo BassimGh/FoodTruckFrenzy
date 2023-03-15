@@ -1,4 +1,6 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * PotHole class class extends the Item clas and represents the pothole trap on a game grid.

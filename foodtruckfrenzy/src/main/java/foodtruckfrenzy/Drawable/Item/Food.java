@@ -1,4 +1,6 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
+
+import foodtruckfrenzy.Drawable.DrawableEnum;
 
 /**
  * Food class extends Item class, representing a standard item that can be collected

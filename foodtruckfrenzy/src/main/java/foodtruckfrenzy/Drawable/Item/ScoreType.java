@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Drawable.Item;
 
 /**
  * Enum corresponding to each type of score in the game
