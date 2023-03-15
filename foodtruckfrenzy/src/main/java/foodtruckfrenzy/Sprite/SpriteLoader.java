@@ -1,4 +1,4 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.Sprite;
 
 import javax.swing.ImageIcon;
 
