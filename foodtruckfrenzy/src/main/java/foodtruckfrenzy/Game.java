@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+import foodtruckfrenzy.SecondaryUI.Frame;
+import foodtruckfrenzy.SecondaryUI.ScreenType;
+
 /*
  * This class is the logic behind the game
  * Creating a new instance of this class creates a new game with everything

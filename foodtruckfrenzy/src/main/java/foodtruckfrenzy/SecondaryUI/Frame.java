@@ -1,8 +1,13 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.SecondaryUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
+
+import foodtruckfrenzy.Game;
+import foodtruckfrenzy.Main;
+import foodtruckfrenzy.Scoreboard;
+import foodtruckfrenzy.Screen;
 
 /**
  * The Frame class sets up the JFrame for the TitleScreen, GameLostScreen, and GameWonScreen to be displayed
@@ -94,13 +99,4 @@ public class Frame {
         _frame.setVisible(true);
     }
 }
-/**
- * An enumeration for the different ScreenTypes used in the game
- * Used to reduce display creation mistakes (3 options)
- * Can create a TitleScreen, GameWonScreen, or a GameLostScreen
- */
-enum ScreenType {
-    TITLE,
-    GAME_WON,
-    GAME_LOST
-}
+

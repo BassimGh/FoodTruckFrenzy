@@ -1,6 +1,8 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.SecondaryUI;
 
 import java.awt.event.ActionListener;
+
+import foodtruckfrenzy.Scoreboard;
 
 /**
  * The GameWonScreen class extends the GameOverScreen class to display a screen for when the game is won.

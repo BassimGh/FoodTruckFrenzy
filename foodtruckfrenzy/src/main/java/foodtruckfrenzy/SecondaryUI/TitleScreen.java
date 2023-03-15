@@ -1,6 +1,8 @@
-package foodtruckfrenzy;
+package foodtruckfrenzy.SecondaryUI;
 
 import java.awt.event.ActionListener;
+
+import foodtruckfrenzy.Screen;
 /**
  * The TitleScreen class extends the Screen class to display the initial Title Screen when the game is launched
  */
