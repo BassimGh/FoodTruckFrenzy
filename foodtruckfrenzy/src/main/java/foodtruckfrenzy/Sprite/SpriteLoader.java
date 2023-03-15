@@ -1,9 +1,7 @@
 package foodtruckfrenzy.Sprite;
 
-import javax.swing.ImageIcon;
-
 import foodtruckfrenzy.Drawable.DrawableEnum;
-
+import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.HashMap;
