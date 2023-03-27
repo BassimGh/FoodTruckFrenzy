@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 
 import foodtruckfrenzy.Drawable.BoardElement.BoardElement;
 import foodtruckfrenzy.Drawable.Item.ScoreValue;
+import foodtruckfrenzy.Helper.BoardElementFactory;
+import foodtruckfrenzy.Helper.MapLayout;
 
 /**
  * Grid class is an object which acts as a game grid
@@ -16,14 +18,20 @@ public class Grid {
     public final static int COLS = 41; // Number of grid columns
     public final static int CELL_SIZE = 32; // Size of each grid cell
     
-    private BoardElement[][] grid;
+    private BoardElement[][] _grid;
 
     /**
      * Construtor for the Grid class
      * Initliazes a new BoardElement 2d array at ROWS x COLS
+     * Fills the grid up with elements from Map Layout
      */
     public Grid() {
-        grid = new BoardElement[ROWS][COLS];
+        _grid = new BoardElement[ROWS][COLS];
+        for (int i = 0; i < Grid.ROWS; i++) {
+            for (int j = 0; j < Grid.COLS; j++) {
+                this.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
+            }
+        }
     }
 
     /**
@@ -33,7 +41,7 @@ public class Grid {
      * @return requested BoardElement object
      */
     public BoardElement getCell(int row, int col) {
-        return grid[row][col];
+        return _grid[row][col];
     }
 
     /**
@@ -43,7 +51,7 @@ public class Grid {
      * @param cell new BoardElement to be set
      */
     public void setCell(int row, int col, BoardElement cell) {
-        grid[row][col] = cell;
+        _grid[row][col] = cell;
     }
 
     /**
@@ -53,7 +61,7 @@ public class Grid {
      * @param g2d Graphics2D object which corresponds to the grid to be passed to the draw method
      */
     public void drawCell(int row, int col, Graphics2D g2d) {
-        grid[row][col].draw(g2d);
+        _grid[row][col].draw(g2d);
     }
 
     /**
@@ -63,7 +71,7 @@ public class Grid {
      * @return value returned by the BoardElement's isObstruction() method
      */
     public boolean isObstruction(int row, int col) {
-        return grid[row][col].isObstruction();
+        return _grid[row][col].isObstruction();
     }
 
     /**

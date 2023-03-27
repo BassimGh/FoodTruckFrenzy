@@ -37,6 +37,8 @@ public class Game {
     private final Scoreboard _scoreboardPanel;
     private final GamePanel _gamePanel;
     private final CardLayout _layout;
+    private final FoodTruck _mainCharacter;
+    private final Grid _grid;
     private boolean _paused = false;
 
     private int timerIndex;
@@ -49,6 +51,8 @@ public class Game {
         timerIndex = 0;
         Food.resetCount();
         Recipe.resetCount();
+
+        _grid = new Grid();
 
         /**
          * This frame is setup as follows:
@@ -72,8 +76,8 @@ public class Game {
         gameAndScorePane.setBackground(Color.BLACK);
         gameAndScorePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
-        _gamePanel = new GamePanel();
-        FoodTruck mainCharacter = _gamePanel.getMainCharacter();
+        _gamePanel = new GamePanel(_grid);
+        _mainCharacter = _gamePanel.getMainCharacter();
         ArrayList<Cop> cops = _gamePanel.getCops();
         cops.get(0).getDirections();
 
@@ -82,7 +86,7 @@ public class Game {
         _gamePanel.setBackground(new Color(54, 65, 79));
         _gamePanel.requestFocusInWindow();
 
-        _scoreboardPanel = new Scoreboard(mainCharacter); 
+        _scoreboardPanel = new Scoreboard(_mainCharacter); 
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
 
         _keyboardHandler = new KeyboardHandler();
@@ -138,23 +142,23 @@ public class Game {
 
                     boolean moved = false;
                     if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed() && !moved)
-                        moved = mainCharacter.moveUp();
+                        moved = _mainCharacter.moveUp();
 
                     if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed() && !moved)
-                        moved = mainCharacter.moveDown();
+                        moved = _mainCharacter.moveDown();
 
                     if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed() && !moved)
-                        moved = mainCharacter.moveLeft();
+                        moved = _mainCharacter.moveLeft();
                         
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
-                        moved = mainCharacter.moveRight();
+                        moved = _mainCharacter.moveRight();
 
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
                     
                     // Check if there is a collision after player movement
-                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
                         loss();
                     }
 
@@ -172,18 +176,18 @@ public class Game {
                     }
 
                     // Check if there is a collision after cop movement
-                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
                         loss();
                     }
 
                     _gamePanel.repaint();
                     _scoreboardPanel.update(); 
 
-                    if (!_paused && mainCharacter.getScoreInt() < 0) {
+                    if (!_paused && _mainCharacter.getScoreInt() < 0) {
                         loss();
                     }
 
-                    if (!_paused && checkWinCondition(mainCharacter)) {
+                    if (!_paused && checkWinCondition(_mainCharacter)) {
                         win();
                     }
 
