@@ -12,6 +12,7 @@ import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.Helper.KeyboardHandler;
+import foodtruckfrenzy.Helper.VehicleSpawner;
 import foodtruckfrenzy.SecondaryUI.Frame;
 import foodtruckfrenzy.SecondaryUI.ScreenType;
 
@@ -45,11 +46,16 @@ public class Game {
         Recipe.resetCount();
 
         Grid grid = new Grid();
-        _mainCharacter = new FoodTruck(3, 0, grid);
-        _cops = new ArrayList<Cop>();
-        _cops.add(new Cop(8, 13, grid, _mainCharacter));
-        _cops.add(new Cop(17, 40, grid, _mainCharacter));
-        _cops.add(new Cop(19, 13, grid, _mainCharacter));
+
+        VehicleSpawner spawner = new VehicleSpawner(grid);
+        _mainCharacter = spawner.getFoodTruck();
+        _cops = spawner.getCops();
+
+        // _mainCharacter = new FoodTruck(3, 0, grid);
+        // _cops = new ArrayList<Cop>();
+        // _cops.add(new Cop(8, 13, grid, _mainCharacter));
+        // _cops.add(new Cop(17, 40, grid, _mainCharacter));
+        // _cops.add(new Cop(19, 13, grid, _mainCharacter));
 
         _keyboardHandler = new KeyboardHandler();
 
