@@ -42,14 +42,14 @@ public class Game {
     private final ArrayList<Cop> _cops;
     private boolean _paused = false;
 
-    private int timerIndex;
+    private int _timerIndex;
 
     /*
      * Game constructor
      * Creates everything needed to run the game instance
      */
     public Game() {
-        timerIndex = 0;
+        _timerIndex = 0;
         Food.resetCount();
         Recipe.resetCount();
 
@@ -157,9 +157,9 @@ public class Game {
                     if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
                         moved = _mainCharacter.moveRight();
 
-                    timerIndex ++;
-                    if (timerIndex > Integer.MAX_VALUE - 1)
-                        timerIndex = 0;
+                    _timerIndex ++;
+                    if (_timerIndex > Integer.MAX_VALUE - 1)
+                        _timerIndex = 0;
                     
                     // Check if there is a collision after player movement
                     if (!_paused && checkCopCharacterCollision(_cops, _mainCharacter)) {
@@ -170,12 +170,12 @@ public class Game {
                         cop.trackTruck();
                     }
 
-                    if (timerIndex % 2 == 0) {
+                    if (_timerIndex % 2 == 0) {
                         _cops.get(0).chaseTruck();
                         _cops.get(1).chaseTruck();
                     }
 
-                    if (timerIndex % 3 == 0) {
+                    if (_timerIndex % 3 == 0) {
                         _cops.get(2).chaseTruck();
                     }
 
