@@ -18,19 +18,19 @@ class GamePanel extends JPanel {
     
     private final Grid _grid;
     private final FoodTruck _mainCharacter;
-    private final ArrayList<Cop> _cops = new ArrayList<>();
+    private final ArrayList<Cop> _cops;
 
     /**
      * GamePanel constructor which does all the creation of the FoodTruck, Cop, BoardElements
      * Initializes and places them on the grid
+     * @param grid Game grid object to be displayed
+     * @param mainCharacter Food Truck object to be displayed
+     * @param cops ArrayList of Cop object to display all these cops in the list
      */
-    public GamePanel(Grid grid) {
+    public GamePanel(Grid grid, FoodTruck mainCharacter, ArrayList<Cop> cops) {
         _grid = grid;
-
-        _mainCharacter = new FoodTruck(3, 0, _grid);
-        _cops.add(new Cop(8, 13, _grid, _mainCharacter));
-        _cops.add(new Cop(17, 40, _grid, _mainCharacter));
-        _cops.add(new Cop(19, 13, _grid, _mainCharacter));
+        _mainCharacter = mainCharacter;
+        _cops = cops;
     }
 
     /**
@@ -52,21 +52,5 @@ class GamePanel extends JPanel {
         for (Cop cop : _cops) {
             cop.draw(g2d);
         }
-    }
-
-    /**
-     * Gets the main character object
-     * @return FoodTruck object corresponding to the main character
-     */
-    public FoodTruck getMainCharacter() {
-        return _mainCharacter;
-    }
-
-    /**
-     * Gets all the cop objects
-     * @return ArrayList<Cop> object corresponding to the lsit of cops
-     */
-    public ArrayList<Cop> getCops() {
-        return _cops;
     }
 }

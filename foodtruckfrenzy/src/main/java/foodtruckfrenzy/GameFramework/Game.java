@@ -39,6 +39,7 @@ public class Game {
     private final CardLayout _layout;
     private final FoodTruck _mainCharacter;
     private final Grid _grid;
+    private final ArrayList<Cop> _cops;
     private boolean _paused = false;
 
     private int timerIndex;
@@ -53,6 +54,11 @@ public class Game {
         Recipe.resetCount();
 
         _grid = new Grid();
+        _mainCharacter = new FoodTruck(3, 0, _grid);
+        _cops = new ArrayList<Cop>();
+        _cops.add(new Cop(8, 13, _grid, _mainCharacter));
+        _cops.add(new Cop(17, 40, _grid, _mainCharacter));
+        _cops.add(new Cop(19, 13, _grid, _mainCharacter));
 
         /**
          * This frame is setup as follows:
@@ -76,10 +82,8 @@ public class Game {
         gameAndScorePane.setBackground(Color.BLACK);
         gameAndScorePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 
-        _gamePanel = new GamePanel(_grid);
-        _mainCharacter = _gamePanel.getMainCharacter();
-        ArrayList<Cop> cops = _gamePanel.getCops();
-        cops.get(0).getDirections();
+        _gamePanel = new GamePanel(_grid, _mainCharacter, _cops);
+        _cops.get(0).getDirections();
 
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setFocusable(true);
@@ -158,25 +162,25 @@ public class Game {
                         timerIndex = 0;
                     
                     // Check if there is a collision after player movement
-                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(_cops, _mainCharacter)) {
                         loss();
                     }
 
-                    for (Cop cop : cops) {
+                    for (Cop cop : _cops) {
                         cop.trackTruck();
                     }
 
                     if (timerIndex % 2 == 0) {
-                        cops.get(0).chaseTruck();
-                        cops.get(1).chaseTruck();
+                        _cops.get(0).chaseTruck();
+                        _cops.get(1).chaseTruck();
                     }
 
                     if (timerIndex % 3 == 0) {
-                        cops.get(2).chaseTruck();
+                        _cops.get(2).chaseTruck();
                     }
 
                     // Check if there is a collision after cop movement
-                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(_cops, _mainCharacter)) {
                         loss();
                     }
 
