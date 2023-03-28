@@ -15,19 +15,15 @@ public class VehicleSpawner {
     public VehicleSpawner(Grid grid) {
         this.foodTruck = new FoodTruck(3, 0, grid);
 
-        CopCreatorThread copThread = new CopCreatorThread(8, 13, grid, foodTruck);
-        copThread.start();
-        cops.add(copThread.getCop());
+        ArrayList<CopCreatorThread> copCreatorThreads = new ArrayList<>();
+        copCreatorThreads.add(new CopCreatorThread(8, 13, grid, foodTruck));
+        copCreatorThreads.add(new CopCreatorThread(17, 30, grid, foodTruck));
+        copCreatorThreads.add(new CopCreatorThread(19, 13, grid, foodTruck));
 
-        copThread = new CopCreatorThread(17, 30, grid, foodTruck);
-        copThread.start();
-        cops.add(copThread.getCop());
-
-        copThread = new CopCreatorThread(19, 13, grid, foodTruck);
-        copThread.start();
-        cops.add(copThread.getCop());
-
-        for (Cop cop : cops) {
+        for (CopCreatorThread copThread : copCreatorThreads) {
+            copThread.start();
+            Cop cop = copThread.getCop();
+            cops.add(cop);
             foodTruck.attach(cop);
         }
     }
