@@ -16,6 +16,10 @@ public class VehicleSpawner {
         cops.add(new Cop(8, 13, grid, foodTruck));
         cops.add(new Cop(17, 40, grid, foodTruck));
         cops.add(new Cop(19, 13, grid, foodTruck));
+
+        for (Cop cop : cops) {
+            foodTruck.attach(cop);
+        }
     }
 
     public FoodTruck getFoodTruck() {

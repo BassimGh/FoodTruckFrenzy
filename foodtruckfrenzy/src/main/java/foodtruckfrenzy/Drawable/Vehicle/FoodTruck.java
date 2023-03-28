@@ -1,5 +1,7 @@
 package foodtruckfrenzy.Drawable.Vehicle;
 
+import java.util.ArrayList;
+
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.Drawable.Item.ScoreType;
 import foodtruckfrenzy.Drawable.Item.ScoreValue;
@@ -17,6 +19,8 @@ public class FoodTruck extends Vehicle {
     private int score;  // total score incurred by Food Truck player
     private int ingredientsFound; 
     private int recipesFound;
+
+    private ArrayList<Cop> _cops = new ArrayList<Cop>();
 
 
     /**
@@ -208,4 +212,8 @@ public class FoodTruck extends Vehicle {
         this.score = this.score - fines - damage;
 
     } 
+
+    public void attach(Cop cop) {
+        _cops.add(cop);
+    }
 }
