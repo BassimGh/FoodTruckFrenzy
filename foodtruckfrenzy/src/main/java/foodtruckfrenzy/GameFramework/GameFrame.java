@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
-import foodtruckfrenzy.Helper.KeyboardHandler;
 import foodtruckfrenzy.SecondaryUI.PauseScreen;
 
 /**
@@ -44,7 +43,7 @@ public class GameFrame extends JFrame {
      * @param resumeListener ActionListener for on resume from pause
      * @param restartListener ActionListner for on restart from pause
      */
-    public GameFrame(FoodTruck mainCharacter, Grid grid, ArrayList<Cop> cops, KeyboardHandler keyboardHandler, ActionListener resumeListener, ActionListener restartListener) {
+    public GameFrame(FoodTruck mainCharacter, Grid grid, ArrayList<Cop> cops, ActionListener resumeListener, ActionListener restartListener) {
         super("Food Truck Frenzy");
 
         _mainPanel = new JPanel(new CardLayout());
@@ -59,14 +58,10 @@ public class GameFrame extends JFrame {
 
         _gamePanel = new GamePanel(grid, mainCharacter, cops);
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
-        _gamePanel.setFocusable(true);
         _gamePanel.setBackground(new Color(54, 65, 79));
-        _gamePanel.requestFocusInWindow();
 
         _scoreboardPanel = new Scoreboard(mainCharacter); 
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
-
-        _gamePanel.addKeyListener(keyboardHandler);
 
         gameAndScorePane.add(_gamePanel, BorderLayout.CENTER);
         gameAndScorePane.add(_scoreboardPanel, BorderLayout.NORTH);
@@ -100,8 +95,8 @@ public class GameFrame extends JFrame {
      */
     void showPauseScreen() {
         _layout.show(_mainPanel, "pause");
-        _gamePanel.setFocusable(true);
-        _gamePanel.requestFocusInWindow();
+        // _gamePanel.setFocusable(true);
+        // _gamePanel.requestFocusInWindow();
     }
 
     /**
@@ -109,8 +104,8 @@ public class GameFrame extends JFrame {
      */
     void showGameScreen() {
         _layout.show(_mainPanel, "game");
-        _gamePanel.setFocusable(true);
-        _gamePanel.requestFocusInWindow();
+        // _gamePanel.setFocusable(true);
+        // _gamePanel.requestFocusInWindow();
     }
 
     /**

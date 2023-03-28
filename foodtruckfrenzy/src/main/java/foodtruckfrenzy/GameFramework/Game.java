@@ -28,10 +28,8 @@ public class Game {
     private final int TIMER_DELAY = 75; // in milliseconds
 
     private final GameFrame _frame;
-    private final KeyboardHandler _keyboardHandler;
     private final Timer _timer;
     private final FoodTruck _mainCharacter;
-    private final ArrayList<Cop> _cops;
     private boolean _paused = false;
 
     private int _timerIndex;
@@ -49,15 +47,7 @@ public class Game {
 
         VehicleSpawner spawner = new VehicleSpawner(grid);
         _mainCharacter = spawner.getFoodTruck();
-        _cops = spawner.getCops();
-
-        // _mainCharacter = new FoodTruck(3, 0, grid);
-        // _cops = new ArrayList<Cop>();
-        // _cops.add(new Cop(8, 13, grid, _mainCharacter));
-        // _cops.add(new Cop(17, 40, grid, _mainCharacter));
-        // _cops.add(new Cop(19, 13, grid, _mainCharacter));
-
-        _keyboardHandler = new KeyboardHandler();
+        ArrayList<Cop> cops = spawner.getCops();
 
         /**
          * Action listener for the pause menu which resumes the game on interaction
@@ -80,8 +70,12 @@ public class Game {
             }
         };
 
-        _frame = new GameFrame(_mainCharacter, grid, _cops, _keyboardHandler, resumeListener, restartListener);
-        _cops.get(0).getDirections();
+        KeyboardHandler keyboardHandler = new KeyboardHandler();
+        _frame = new GameFrame(_mainCharacter, grid, cops, resumeListener, restartListener);
+        _frame.addKeyListener(keyboardHandler);
+        _frame.setFocusable(true);
+        _frame.requestFocusInWindow();
+        cops.get(0).getDirections();
 
         /*
          * Game tick timer which controls all game running logic
@@ -93,20 +87,20 @@ public class Game {
             public void actionPerformed(ActionEvent e) {
 
                 if (!_paused) {
-                    if (_keyboardHandler.pause())
+                    if (keyboardHandler.pause())
                         pause();
 
                     boolean moved = false;
-                    if (_keyboardHandler.upPressed() && !_keyboardHandler.downPressed() && !moved)
+                    if (keyboardHandler.upPressed() && !keyboardHandler.downPressed() && !moved)
                         moved = _mainCharacter.moveUp();
 
-                    if (_keyboardHandler.downPressed() && !_keyboardHandler.upPressed() && !moved)
+                    if (keyboardHandler.downPressed() && !keyboardHandler.upPressed() && !moved)
                         moved = _mainCharacter.moveDown();
 
-                    if (_keyboardHandler.leftPressed() && !_keyboardHandler.rightPressed() && !moved)
+                    if (keyboardHandler.leftPressed() && !keyboardHandler.rightPressed() && !moved)
                         moved = _mainCharacter.moveLeft();
                         
-                    if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved)
+                    if (keyboardHandler.rightPressed() && !keyboardHandler.leftPressed() && !moved)
                         moved = _mainCharacter.moveRight();
 
                     _timerIndex ++;
@@ -114,25 +108,25 @@ public class Game {
                         _timerIndex = 0;
                     
                     // Check if there is a collision after player movement
-                    if (!_paused && checkCopCharacterCollision(_cops, _mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
                         loss();
                     }
 
-                    for (Cop cop : _cops) {
+                    for (Cop cop : cops) {
                         cop.trackTruck();
                     }
 
                     if (_timerIndex % 2 == 0) {
-                        _cops.get(0).chaseTruck();
-                        _cops.get(1).chaseTruck();
+                        cops.get(0).chaseTruck();
+                        cops.get(1).chaseTruck();
                     }
 
                     if (_timerIndex % 3 == 0) {
-                        _cops.get(2).chaseTruck();
+                        cops.get(2).chaseTruck();
                     }
 
                     // Check if there is a collision after cop movement
-                    if (!_paused && checkCopCharacterCollision(_cops, _mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
                         loss();
                     }
 
@@ -163,7 +157,6 @@ public class Game {
      * While suspending the game loop through a boolean value update
      */
     private void pause() {
-        _keyboardHandler.resetKeys();
         _paused = true;
         _frame.showPauseScreen();
     }
