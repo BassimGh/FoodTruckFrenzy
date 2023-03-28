@@ -19,6 +19,10 @@ public class Position {
         this.prev = prev;
     }
 
+    /**
+     * Generates a unique key based of the row and column of each position
+     * @return returns a key in the form of row_col
+     */
     public String generateKey() {
         return row + "_" + col;
     }
