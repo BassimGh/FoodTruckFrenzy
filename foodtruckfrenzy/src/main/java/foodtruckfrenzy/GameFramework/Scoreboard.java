@@ -155,11 +155,11 @@ public class Scoreboard extends JPanel {
     public void update() {
         
         // fetch data from player
-        score = player.getScoreInt();
-        ingredientsFound = player.getIngredientsFound();
-        recipesFound = player.getRecipesFound();
-        damage = player.getDamage();
-        fines = player.getFines();
+        // score = player.getScoreInt();
+        // ingredientsFound = player.getIngredientsFound();
+        // recipesFound = player.getRecipesFound();
+        // damage = player.getDamage();
+        // fines = player.getFines();
 
         // adjust font color accordingly
         if(score < 0) {
@@ -176,10 +176,10 @@ public class Scoreboard extends JPanel {
         }
 
         // update scoreboard labels
-        _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
-        _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
-        _damageLabel.setText("Damages: " + damage);
-        _fineLabel.setText("Speed Fines: " + fines);
+        _ingredientsLabel.setText("Ingredients: " + player.getIngredientsFound() + "/" + ingredientsDiscoverable);
+        _recipesLabel.setText("Recipes: " + player.getRecipesFound() + "/" + recipesDiscoverable);
+        _damageLabel.setText("Damages: " + player.getDamage());
+        _fineLabel.setText("Speed Fines: " + player.getFines());
         _scoreTotal.setText(player.getScore());
       
     }
