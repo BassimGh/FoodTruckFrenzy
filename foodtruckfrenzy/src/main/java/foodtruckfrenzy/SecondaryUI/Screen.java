@@ -164,7 +164,6 @@ public class Screen extends JPanel {
 
         backgroundLabel.setLayout(new GridBagLayout());
         backgroundLabel.add(buttonPanel, gbc);
-
      }
 
     protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener resumeListener, ActionListener exitListener) {
