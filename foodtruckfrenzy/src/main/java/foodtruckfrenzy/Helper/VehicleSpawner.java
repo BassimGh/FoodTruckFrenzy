@@ -8,7 +8,7 @@ import foodtruckfrenzy.GameFramework.Grid;
 
 public class VehicleSpawner {
     private FoodTruck foodTruck;
-    private ArrayList<Cop> cops;
+    private ArrayList<Cop> cops = new ArrayList<Cop>();
     
 
     public VehicleSpawner(Grid grid) {
