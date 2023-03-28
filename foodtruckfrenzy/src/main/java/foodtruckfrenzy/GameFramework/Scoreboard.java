@@ -153,25 +153,18 @@ public class Scoreboard extends JPanel {
     </p>
     */
     public void update() {
-        
-        // fetch data from player
-        // score = player.getScoreInt();
-        // ingredientsFound = player.getIngredientsFound();
-        // recipesFound = player.getRecipesFound();
-        // damage = player.getDamage();
-        // fines = player.getFines();
 
         // adjust font color accordingly
-        if(score < 0) {
+        if(player.getScoreInt() < 0) {
             _scoreTotal.setForeground(_red);
         }
         if (score > 0) {
             _scoreTotal.setForeground(_yellow);
         }
-        if (ingredientsFound == ingredientsDiscoverable) {
+        if (player.getIngredientsFound() == ingredientsDiscoverable) {
             _ingredientsLabel.setForeground(_green);
         }
-        if (recipesFound == recipesDiscoverable) {
+        if (player.getRecipesFound() == recipesDiscoverable) {
             _recipesLabel.setForeground(_green);
         }
 
