@@ -134,7 +134,8 @@ public class Screen extends JPanel {
 
     /**
      * @param buttonPanel the JPanel for the buttons 
-     * @param gbc the gridBagConstraints for the buttons
+     * @param gbc the gridBagConstraints for the buttons and background
+     * @param backgroundLabel the JLabel for the background
      * @param resumeListener the listener to be notified when the first button is pressed
      * @param exitListener the listener to be notified when the second button is pressed
      * Sets the GridBagConstraints and spaces the buttons apart
