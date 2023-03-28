@@ -86,8 +86,10 @@ public class Game {
             public void actionPerformed(ActionEvent e) {
 
                 if (keyboardHandler.invinciblePressed() && _invinciblePressed == false) {
+                    _frame.setTitle("INVINCIBLE MODE ACTIVATED");
                     _invinciblePressed = true;
                 } else if (keyboardHandler.invinciblePressed() && _invinciblePressed == true) {
+                    _frame.setTitle("Food Truck Frenzy");
                     _invinciblePressed = false;
                 }
 
