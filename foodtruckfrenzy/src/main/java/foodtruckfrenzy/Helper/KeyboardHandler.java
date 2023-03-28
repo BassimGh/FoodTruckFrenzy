@@ -15,6 +15,7 @@ public class KeyboardHandler implements KeyListener {
     private boolean _rightPressed = false;
     private boolean _leftPressed = false;
     private boolean _pause = false;
+    private boolean _invinciblePressed = false;
 
     /**
      * Returns whether up/W is pressed
@@ -57,6 +58,14 @@ public class KeyboardHandler implements KeyListener {
     }
 
     /**
+     * Returns whether the invincible key is pressed
+     * @return true if pressed, false if not
+     */
+    public boolean invinciblePressed() {
+        return _invinciblePressed;
+    }
+
+    /**
      * Method invoked when a key is pressed
      * This updates the corresponding boolean values to true based on what keys are pressed
      */
@@ -82,6 +91,9 @@ public class KeyboardHandler implements KeyListener {
                 break;
             case KeyEvent.VK_P:
                 _pause = true;
+                break;
+            case KeyEvent.VK_BACK_QUOTE:
+                _invinciblePressed = true;
                 break;
         }
     }
@@ -112,6 +124,9 @@ public class KeyboardHandler implements KeyListener {
                 break;
             case KeyEvent.VK_P:
                 _pause = false;
+                break;
+            case KeyEvent.VK_BACK_QUOTE:
+                _invinciblePressed = false;
                 break;
         }
     }

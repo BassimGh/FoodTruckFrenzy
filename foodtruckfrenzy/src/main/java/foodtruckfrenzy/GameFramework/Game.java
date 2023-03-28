@@ -31,6 +31,7 @@ public class Game {
     private final Timer _timer;
     private final FoodTruck _mainCharacter;
     private boolean _paused = false;
+    private boolean _invinciblePressed = false;
 
     private int timerIndex;
 
@@ -83,6 +84,12 @@ public class Game {
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if (keyboardHandler.invinciblePressed() && _invinciblePressed == false) {
+                    _invinciblePressed = true;
+                } else if (keyboardHandler.invinciblePressed() && _invinciblePressed == true) {
+                    _invinciblePressed = false;
+                }
 
                 if (!_paused) {
                     if (keyboardHandler.pause())
@@ -180,6 +187,10 @@ public class Game {
      * Sets paused to true to prevent further loop progression
      */
     private void loss() {
+
+        if (_invinciblePressed)
+            return;
+        
         _paused = true;
         _timer.stop();
         _frame.dispose();
