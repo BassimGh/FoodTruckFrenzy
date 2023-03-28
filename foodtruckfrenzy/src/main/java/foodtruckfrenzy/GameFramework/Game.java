@@ -25,7 +25,7 @@ import foodtruckfrenzy.SecondaryUI.ScreenType;
 public class Game {
     
 
-    private final int TIMER_DELAY = 30; // in milliseconds
+    private final int TIMER_DELAY = 10; // in milliseconds
 
     private final GameFrame _frame;
     private final Timer _timer;
@@ -89,16 +89,16 @@ public class Game {
                         pause();
 
                     boolean moved = false;
-                    if (keyboardHandler.upPressed() && !keyboardHandler.downPressed() && !moved && timerIndex % 2 == 0)
+                    if (keyboardHandler.upPressed() && !keyboardHandler.downPressed() && !moved && timerIndex % 5 == 0)
                         moved = _mainCharacter.moveUp();
 
-                    if (keyboardHandler.downPressed() && !keyboardHandler.upPressed() && !moved && timerIndex % 2 == 0)
+                    if (keyboardHandler.downPressed() && !keyboardHandler.upPressed() && !moved && timerIndex % 5 == 0)
                         moved = _mainCharacter.moveDown();
 
-                    if (keyboardHandler.leftPressed() && !keyboardHandler.rightPressed() && !moved && timerIndex % 2 == 0)
+                    if (keyboardHandler.leftPressed() && !keyboardHandler.rightPressed() && !moved && timerIndex % 5 == 0)
                         moved = _mainCharacter.moveLeft();
                         
-                    if (keyboardHandler.rightPressed() && !keyboardHandler.leftPressed() && !moved && timerIndex % 2 == 0)
+                    if (keyboardHandler.rightPressed() && !keyboardHandler.leftPressed() && !moved && timerIndex % 5 == 0)
                         moved = _mainCharacter.moveRight();
 
                     timerIndex ++;
@@ -115,7 +115,7 @@ public class Game {
                     // }
 
                     for (int i = 0; i < cops.size(); i++) {
-                        if (timerIndex % (i + 4) == 0)
+                        if (timerIndex % (i * 2 + 8) == 0)
                             cops.get(i).chaseTruck();
                     }
 
