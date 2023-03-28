@@ -83,41 +83,7 @@ public class Cop extends Vehicle{
         this.setType(DrawableEnum.COP_RIGHT);
         return moved;
     }
-
-    /**
-     * Tracks the movements of the food truck and appends to the list of directions
-     * for the cop to follow the food truck
-     */
-    public void trackTruck() {
-        // System.out.println(directions.size());
-        target.row = foodtruck.getRow();
-        target.col = foodtruck.getCol();
-
-        // System.out.println("--- Queue -----");
-        // for (Position q : queue) {
-        //     if (q != null )System.out.println(q.col + " " + q.row);
-        //     else System.out.println("null");
-        // }
-
-        if (!queue.isEmpty())
-            target.prev = queue.get(0);
-        
-        // System.out.println("target pos \t" + target.col + " " + target.row);
-        // System.out.println("previous pos \t" + target.prev.col + " " + target.prev.row);
-        // System.out.println("\n");
-        // System.out.println("--- Queue -----");
-        // for (Position q : queue) {
-        //     if (q != null )System.out.println(q.col + " " + q.row);
-        // }
-        // System.out.println("#################################");
-
-        if (!(target.row == target.prev.row && target.col == target.prev.col)) {
-            // System.out.println("getting directinons");
-            queue.add(new Position(target.row, target.col, target.prev));
-            getDirections();
-        }
-    }
-
+    
     /**
      * Calls move the corresponding move functions to move the cop car according to the
      * next value in the directions list.
@@ -205,6 +171,14 @@ public class Cop extends Vehicle{
         //     System.out.println(d);
         // }
         // System.out.println("#################################");
+    }
+
+    /**
+     * Adds direction directions arrayList for cop movements
+     * @param direction new direction to be added to directions arrayList
+     */
+    void addDirection(Direction direction) {
+        directions.add(direction);
     }
 
     /**
