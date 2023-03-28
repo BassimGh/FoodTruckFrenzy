@@ -19,7 +19,7 @@ public class VehicleSpawner {
         copThread.start();
         cops.add(copThread.getCop());
 
-        copThread = new CopCreatorThread(17, 40, grid, foodTruck);
+        copThread = new CopCreatorThread(17, 30, grid, foodTruck);
         copThread.start();
         cops.add(copThread.getCop());
 
