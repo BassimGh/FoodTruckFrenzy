@@ -13,7 +13,7 @@ import java.util.List;
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.GameFramework.Grid;
 
-public class Cop extends Vehicle{
+public class Cop extends Vehicle {
 
     private FoodTruck foodtruck;
 
@@ -30,7 +30,7 @@ public class Cop extends Vehicle{
      * @param col the column of the cop's starting position.
      * @param grid the grid object that the cop will be moving on.
      */
-    public Cop(int row, int col, Grid grid, FoodTruck player) {
+    Cop(int row, int col, Grid grid, FoodTruck player) {
         super(row, col, grid, DrawableEnum.COP_RIGHT);
         this.foodtruck = player;
         target = new Position(player.getRow(), player.getCol(), null);
