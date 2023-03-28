@@ -112,9 +112,9 @@ public class Game {
                         loss();
                     }
 
-                    for (Cop cop : cops) {
-                        cop.trackTruck();
-                    }
+                    // for (Cop cop : cops) {
+                    //     cop.trackTruck();
+                    // }
 
                     if (timerIndex % 2 == 0) {
                         cops.get(0).chaseTruck();

@@ -42,8 +42,10 @@ public class FoodTruck extends Vehicle {
         boolean moved = super.moveUp();
         this.setType(DrawableEnum.FOODTRUCK_UP);
 
-        if (moved)
+        if (moved) {
             interact();
+            sendUpdate(Direction.UP);
+        }
 
         return moved;
     }
@@ -57,8 +59,10 @@ public class FoodTruck extends Vehicle {
         boolean moved = super.moveDown();
         this.setType(DrawableEnum.FOODTRUCK_DOWN);
 
-        if (moved)
+        if (moved) {
             interact();
+            sendUpdate(Direction.DOWN);
+        }
 
         return moved;
     }
@@ -72,8 +76,10 @@ public class FoodTruck extends Vehicle {
         boolean moved = super.moveRight();
         this.setType(DrawableEnum.FOODTRUCK_RIGHT);
         
-        if (moved)
+        if (moved) {
             interact();
+            sendUpdate(Direction.RIGHT);
+        }
 
         return moved;
     }
@@ -87,8 +93,10 @@ public class FoodTruck extends Vehicle {
         boolean moved = super.moveLeft();
         this.setType(DrawableEnum.FOODTRUCK_LEFT);
 
-        if (moved)
+        if (moved) {
             interact();
+            sendUpdate(Direction.LEFT);
+        }
 
         return moved;
     }
@@ -211,9 +219,23 @@ public class FoodTruck extends Vehicle {
 
         this.score = this.score - fines - damage;
 
-    } 
+    }
 
+    /**
+     * Attaches instance of cop for observer pattern
+     * @param cop is a cop instance to be added to the arrayList
+     */
     public void attach(Cop cop) {
         _cops.add(cop);
+    }
+    
+    /**
+     * Appends to movements for each cop to follow by calling addDirections for each cop instance
+     * @param direction is a enum for the direction the cop needs to move to
+     */
+    private void sendUpdate(Direction direction) {
+        for (Cop cop : _cops) {
+            cop.addDirection(direction);
+        }
     }
 }
