@@ -19,6 +19,10 @@ public class Position {
         this.prev = prev;
     }
 
+    public String generateKey() {
+        return row + "_" + col;
+    }
+
     public int row;
     public int col;
     public Position prev;

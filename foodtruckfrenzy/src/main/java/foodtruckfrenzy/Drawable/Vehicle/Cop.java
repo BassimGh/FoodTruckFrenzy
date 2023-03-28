@@ -5,10 +5,8 @@ package foodtruckfrenzy.Drawable.Vehicle;
  * Inherits from the Vehicle class for its movement
  */
 
-// import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.GameFramework.Grid;
@@ -17,9 +15,9 @@ public class Cop extends Vehicle {
 
     private FoodTruck foodtruck;
 
-    private List<Position> queue = new LinkedList<>();
-    private PositionList visited = new PositionList();
-    private List<Direction> directions = new LinkedList<>();
+    private LinkedList<Position> queue = new LinkedList<>();
+    private PositionMap visited = new PositionMap();
+    private LinkedList<Direction> directions = new LinkedList<>();
 
     private Position target;
     private Position searchOrigin;
@@ -109,41 +107,23 @@ public class Cop extends Vehicle {
      */
     public void getDirections() {
         target = new Position(foodtruck.getRow(), foodtruck.getCol(), null);
-        // ArrayList<Direction> directions = new ArrayList<>();
-        List<Position> path = new LinkedList<>();
+        LinkedList<Position> path = new LinkedList<>();
         
         Position currentPos = queue.get(0);
-        // System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
 
         while (!(currentPos.row == target.row && currentPos.col == target.col)) {
             currentPos = queue.get(0);
             checkAdjacentCells(currentPos);
-            visited.add(currentPos);
+            visited.put(currentPos);
 
             queue.remove(0);
         }
-        // Position lastPos = queue.get(queue.size()-1);
+
         queue.clear();
         queue.add(currentPos);
-        // System.out.println("Queue size: " + queue.size());
-        // System.out.println("Last element: " + queue.get(queue.size() - 1).col + " " + queue.get(queue.size() - 1).row);
-        // System.out.println("current Position: " + currentPos.col + " " + currentPos.row);
-        
-        // System.out.println("--- Queue -----");
-        // for (Position q : queue) {
-        //     if (q != null )System.out.println(q.col + " " + q.row);
-        // }
-        // System.out.println("#################################");
-        
+
         path = getPath(currentPos);
 
-        // System.out.println("--- Path -----");
-        // for (Position p : path) {
-        //     if (p != null)System.out.println(p.col + " " + p.row);
-        //     else System.out.println("null");
-        // }
-        // System.out.println("#################################");
-        
         if (path.size() > 0) {
             // Converts set of coordinates to set of directions
             for (int i = 0; i < path.size() - 1; i++) {
@@ -164,12 +144,6 @@ public class Cop extends Vehicle {
                     directions.add(Direction.RIGHT);
             }
         }
-
-        // System.out.println("--- Directions -----");
-        // for (Direction d : directions) {
-        //     System.out.println(d);
-        // }
-        // System.out.println("#################################");
     }
 
     /**
@@ -186,8 +160,8 @@ public class Cop extends Vehicle {
      * @return ArrayList of Position objects containing ordered coordinates the path
      * from the origin (cop) to the food truck.
      */
-    public List<Position> getPath(Position pos) {
-        List<Position> path = new LinkedList<>();
+    public LinkedList<Position> getPath(Position pos) {
+        LinkedList<Position> path = new LinkedList<>();
 
         path.add(pos);
         while (!(pos.row == searchOrigin.row && pos.col == searchOrigin.col)) {
@@ -209,22 +183,22 @@ public class Cop extends Vehicle {
     public void checkAdjacentCells(Position pos) {
 
         // check upper adjacent cell
-        if (pos.row - 1 >= 0 && !visited.containsPos(new Position(pos.row - 1, pos.col, pos)) 
+        if (pos.row - 1 >= 0 && !visited.contains(new Position(pos.row - 1, pos.col, pos)) 
         && !this.getGrid().getCell(pos.row - 1, pos.col).isObstruction())
             queue.add(new Position(pos.row - 1, pos.col, pos));
 
         // check lower adjacent cell
-        if (pos.row + 1 < Grid.ROWS && !visited.containsPos(new Position(pos.row + 1, pos.col, pos)) 
+        if (pos.row + 1 < Grid.ROWS && !visited.contains(new Position(pos.row + 1, pos.col, pos)) 
         && !this.getGrid().getCell(pos.row + 1, pos.col).isObstruction())
             queue.add(new Position(pos.row + 1, pos.col, pos));
 
         // check left adjacent cell
-        if (pos.col - 1 >= 0 && !visited.containsPos(new Position(pos.row, pos.col - 1, pos)) 
+        if (pos.col - 1 >= 0 && !visited.contains(new Position(pos.row, pos.col - 1, pos)) 
         && !this.getGrid().getCell(pos.row, pos.col - 1).isObstruction())
             queue.add(new Position(pos.row, pos.col - 1, pos));
 
         // check right adjacent cell
-        if (pos.col + 1 < Grid.COLS && !visited.containsPos(new Position(pos.row, pos.col + 1, pos)) 
+        if (pos.col + 1 < Grid.COLS && !visited.contains(new Position(pos.row, pos.col + 1, pos)) 
         && !this.getGrid().getCell(pos.row, pos.col + 1).isObstruction())
             queue.add(new Position(pos.row, pos.col + 1, pos));
 
