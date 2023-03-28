@@ -19,7 +19,7 @@ public class Food extends Item {
      * @param col the column of the Recipe on the game grid
      */
     public Food(int row, int col) {
-        super(row, col, DrawableEnum.FOOD, 200, ScoreType.FOOD);
+        super(row, col, DrawableEnum.FOOD, 100, ScoreType.FOOD);
         Food._count++;
     }
 
