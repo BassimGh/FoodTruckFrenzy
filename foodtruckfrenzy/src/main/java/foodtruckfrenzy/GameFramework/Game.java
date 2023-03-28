@@ -32,14 +32,13 @@ public class Game {
     private final FoodTruck _mainCharacter;
     private boolean _paused = false;
 
-    private int _timerIndex;
+    private int timerIndex;
 
     /*
      * Game constructor
      * Creates everything needed to run the game instance
      */
     public Game() {
-        _timerIndex = 0;
         Food.resetCount();
         Recipe.resetCount();
 
@@ -73,8 +72,8 @@ public class Game {
         KeyboardHandler keyboardHandler = new KeyboardHandler();
         _frame = new GameFrame(_mainCharacter, grid, cops, resumeListener, restartListener);
         _frame.addKeyListener(keyboardHandler);
-        _frame.setFocusable(true);
         _frame.requestFocusInWindow();
+
         cops.get(0).getDirections();
 
         /*
@@ -82,6 +81,7 @@ public class Game {
          * Controls player movement and cop movement
          * Checks for win and loss condidions
          */
+        timerIndex = 0;
         _timer = new Timer(TIMER_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,9 +103,9 @@ public class Game {
                     if (keyboardHandler.rightPressed() && !keyboardHandler.leftPressed() && !moved)
                         moved = _mainCharacter.moveRight();
 
-                    _timerIndex ++;
-                    if (_timerIndex > Integer.MAX_VALUE - 1)
-                        _timerIndex = 0;
+                    timerIndex ++;
+                    if (timerIndex > Integer.MAX_VALUE - 1)
+                        timerIndex = 0;
                     
                     // Check if there is a collision after player movement
                     if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
@@ -116,12 +116,12 @@ public class Game {
                         cop.trackTruck();
                     }
 
-                    if (_timerIndex % 2 == 0) {
+                    if (timerIndex % 2 == 0) {
                         cops.get(0).chaseTruck();
                         cops.get(1).chaseTruck();
                     }
 
-                    if (_timerIndex % 3 == 0) {
+                    if (timerIndex % 3 == 0) {
                         cops.get(2).chaseTruck();
                     }
 

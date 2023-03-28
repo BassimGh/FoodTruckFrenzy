@@ -76,6 +76,7 @@ public class GameFrame extends JFrame {
         _layout = (CardLayout) _mainPanel.getLayout();
         _layout.show(_mainPanel, "game");
 
+        this.setFocusable(true);
         this.pack();
         this.setVisible(true);
     }
