@@ -15,7 +15,7 @@ public class PotHole extends Item {
      * @param col the column of the PotHole on the game grid
      */
     public PotHole(int row, int col) {
-        super(row, col, DrawableEnum.POT_HOLE, -86, ScoreType.DAMAGE);
+        super(row, col, DrawableEnum.POT_HOLE, -286, ScoreType.DAMAGE);
     }
     
 }
