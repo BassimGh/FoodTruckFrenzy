@@ -4,8 +4,7 @@ import foodtruckfrenzy.SecondaryUI.Frame;
 import foodtruckfrenzy.SecondaryUI.ScreenType;
 
 /**
- * The Main Class sets up and displays the initial window frame and event listeners for the Title Screen of the Food Truck Frenzy game.
- * It has the option to Start or Exit the Game
+ * The Main Class creates a new Title Screen Frame object.
  * @param args arguments passed to the program
  */
 
