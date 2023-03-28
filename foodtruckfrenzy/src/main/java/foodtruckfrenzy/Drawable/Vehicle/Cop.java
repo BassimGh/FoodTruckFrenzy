@@ -37,7 +37,6 @@ public class Cop extends Vehicle{
         queue.add(new Position(row, col, null));
         // System.out.println("\n ONLY SHOULD PRINT ONCE \n");
         searchOrigin = new Position(row, col, null);
-        getDirections();
     }
 
     /**

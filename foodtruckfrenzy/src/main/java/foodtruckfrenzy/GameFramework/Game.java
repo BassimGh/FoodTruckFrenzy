@@ -74,7 +74,7 @@ public class Game {
         _frame.addKeyListener(keyboardHandler);
         _frame.requestFocusInWindow();
 
-        cops.get(0).getDirections();
+        // cops.get(0).getDirections();
 
         /*
          * Game tick timer which controls all game running logic
