@@ -160,15 +160,6 @@ public class Screen extends JPanel {
         return resizedImage;
     }
 
-///////////////////////MIGHT NOT  NEED THIS  ////////////////////////////
-    /**
-     * gets the preferred size
-     */
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(800, 600);
-    }
-
     protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener resumeListener, ActionListener exitListener) {
         buttonPanel.setOpaque(false); // makes the panel transparent
         buttonPanel.setBackground(new Color(0, 0, 0, 0)); // makes the panel background transparent
