@@ -3,7 +3,7 @@ package foodtruckfrenzy.Drawable.Vehicle;
 import java.util.HashMap;
 
 /**
- * PositionList stores position objects to be used for the player tracking algorithm
+ * PositionMap stores position objects to be used for the player tracking algorithm
  */
 public class PositionMap {
 
