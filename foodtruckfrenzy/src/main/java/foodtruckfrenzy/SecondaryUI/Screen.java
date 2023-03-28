@@ -80,29 +80,14 @@ public class Screen extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
 
         /**
-         * Creates a JLabel with an ImageIcon with the backgroud image and adds it to the screen
+         * Creates a JLabel with an ImageIcon with the background image and adds it to the screen
          * Creates a JPanel with a GridBagLayout, with a transparent background
-         * Sets the GridBagConstraints and spaces the buttons apart
-         * Creates a JButton with an ImageIcon containing the start image and adds an ActionListener
-         * Sets the size , removes the button border, removes the focus paint, and makes the content area painted on top of the button image
-         * Adds a MouseAdapter to the button to change the border to blue when the mouse goes over the button and remove the border when it leaves the button
-         * resumeListener ActionListener to be added to resume button
-         * startImage Image to be added to the resumeButton
-         * backgroundLabel the background image displayed on the screen
-         * gbc GridBagConstrainsts used to set the layout of the buttonpanel and resumeButton
-         * buttonPanel JPanel containing the resume button
-         * resumeButton JButton used to resume the game
-         * exitListener ActionListener to be added to exit button
-         * exitImage Image to be added to the exitButton
-         * gbc GridBagConstrainsts used to set the layout of the  exitButton
-         * buttonPanel JPanel containing the exit button
-         * exitButton JButton used to exit the game
-         * exitButton has the same properties as resumeButtons except for the image and the listener and it is positioned underneath the resumeButton
+         * Creates the buttons using the createButtons() method
          */
 
         // creates a new JLabel and add an ImageIcon with the background image
         JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
-        add(backgroundLabel, gbc);
+        
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
@@ -115,8 +100,7 @@ public class Screen extends JPanel {
         /**
          * Sets the backgroundLabel constraints and adds the button panel to it
          * Sets the layout of the backgroundLabel
-         * Resizes the resume and exit buttons to correct dimensions
-         * Displays the button panel and refreshes it
+         * Created the background using the createBackground() method
          */
 
         gbc = new GridBagConstraints();
@@ -126,24 +110,12 @@ public class Screen extends JPanel {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.CENTER;
 
-        backgroundLabel.setLayout(new GridBagLayout());
-        backgroundLabel.add(buttonPanel, gbc);
+        createBackground(backgroundLabel, gbc, buttonPanel);
 
-        
-        resumeButton.setPreferredSize(new Dimension(100, 50));
-        exitButton.setPreferredSize(new Dimension(100, 50));
-
-        buttonPanel.setVisible(true); // force display the panel
-
-        buttonPanel.revalidate();
-        buttonPanel.repaint();
-
-        
     }
 
     /**
      * resizes the BufferedImage to the specified width and height
-     * This is 
      * @param img image to be resized
      * @param width the specific width
      * @param height the specific height
@@ -159,6 +131,40 @@ public class Screen extends JPanel {
 
         return resizedImage;
     }
+
+    /**
+     * @param buttonPanel the JPanel for the buttons 
+     * @param gbc the gridBagConstraints for the buttons
+     * @param resumeListener the listener to be notified when the first button is pressed
+     * @param exitListener the listener to be notified when the second button is pressed
+     * Sets the GridBagConstraints and spaces the buttons apart
+     * Creates a JButton with an ImageIcon containing the start image and adds an ActionListener
+     * Sets the size , removes the button border, removes the focus paint, and makes the content area painted on top of the button image
+     * Adds a MouseAdapter to the button to change the border to blue when the mouse goes over the button and remove the border when it leaves the button
+     * resumeListener ActionListener to be added to resume button
+     * startImage Image to be added to the resumeButton
+     * backgroundLabel the background image displayed on the screen
+     * gbc GridBagConstrainsts used to set the layout of the buttonpanel and resumeButton
+     * buttonPanel JPanel containing the resume button
+     * resumeButton JButton used to resume the game
+     * exitListener ActionListener to be added to exit button
+     * exitImage Image to be added to the exitButton
+     * gbc GridBagConstrainsts used to set the layout of the  exitButton
+     * buttonPanel JPanel containing the exit button
+     * exitButton JButton used to exit the game
+     * exitButton has the same properties as resumeButtons except for the image and the listener and it is positioned underneath the resumeButton
+     */
+
+     protected void createBackground(JLabel backgroundLabel, GridBagConstraints gbc, JPanel buttonPanel) {
+        add(backgroundLabel, gbc);
+        /**
+         * Sets the backgroundLabel constraints and adds the button panel to it
+         * Sets the layout of the backgroundLabel
+         */
+
+        backgroundLabel.setLayout(new GridBagLayout());
+        backgroundLabel.add(buttonPanel, gbc);
+     }
 
     protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener resumeListener, ActionListener exitListener) {
         buttonPanel.setOpaque(false); // makes the panel transparent
@@ -207,5 +213,13 @@ public class Screen extends JPanel {
             }
         });
         buttonPanel.add(exitButton, gbc);
+
+        resumeButton.setPreferredSize(new Dimension(100, 50));
+        exitButton.setPreferredSize(new Dimension(100, 50));
+
+        buttonPanel.setVisible(true); // force display the panel
+
+        buttonPanel.revalidate();
+        buttonPanel.repaint();
     }
 }
