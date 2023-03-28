@@ -19,6 +19,8 @@ public class VehicleSpawner {
         copCreatorThreads.add(new CopCreatorThread(8, 13, grid, foodTruck));
         copCreatorThreads.add(new CopCreatorThread(17, 30, grid, foodTruck));
         copCreatorThreads.add(new CopCreatorThread(19, 13, grid, foodTruck));
+        copCreatorThreads.add(new CopCreatorThread(17, 30, grid, foodTruck));
+        copCreatorThreads.add(new CopCreatorThread(5, 23, grid, foodTruck));
 
         for (CopCreatorThread copThread : copCreatorThreads) {
             copThread.start();
