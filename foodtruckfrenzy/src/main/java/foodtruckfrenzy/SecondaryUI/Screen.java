@@ -40,6 +40,7 @@ public class Screen extends JPanel {
      * @param height the Desired height of the display
      */
 
+    /////////////////// Could change the input variable names to be more specific, and use enums for inputs for width and height instead of hard coding the dimensions////////////////////////////
     public Screen(ActionListener resumeListener, ActionListener exitListener, String bgImagePath, String startImagePath, String exitImagePath,int width,int height) {
         /**
          * Loads the images from the given file paths and resizes them to the correct dimensions for background and the two buttons
@@ -111,6 +112,8 @@ public class Screen extends JPanel {
         gbc.gridy = 0;
         gbc.insets = new Insets(0, 0, 20, 0); // adds some spacing between the buttons
         gbc.anchor = GridBagConstraints.CENTER;
+
+        ///////////////////////////////// Could have a button class //////////////////////////////
 
         resumeButton = new JButton(new ImageIcon(startImage));
         resumeButton.addActionListener(resumeListener);
@@ -197,6 +200,7 @@ public class Screen extends JPanel {
         return resizedImage;
     }
 
+///////////////////////MIGHT NOT  NEED THIS  ////////////////////////////
     /**
      * gets the preferred size
      */
