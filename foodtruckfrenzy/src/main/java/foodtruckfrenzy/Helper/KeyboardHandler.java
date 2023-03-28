@@ -57,18 +57,6 @@ public class KeyboardHandler implements KeyListener {
     }
 
     /**
-     * Resets all key boolean values to their false/unpressed state
-     */
-    public void resetKeys() {
-        _upPressed = false;
-        _downPressed = false;
-        _rightPressed = false;
-        _leftPressed = false;
-        _pause = false;
-
-    }
-
-    /**
      * Method invoked when a key is pressed
      * This updates the corresponding boolean values to true based on what keys are pressed
      */
