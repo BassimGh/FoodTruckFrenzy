@@ -9,8 +9,9 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
 import javax.imageio.ImageIO;
+
+
 
 /**
  * The Screen class represents a JPanel that displays a background image and two buttons: a "resume" button and an "exit" button.
@@ -40,6 +41,7 @@ public class Screen extends JPanel {
      * @param height the Desired height of the display
      */
 
+    /////////////////// Could change the input variable names to be more specific, and use enums for inputs for width and height instead of hard coding the dimensions////////////////////////////
     public Screen(ActionListener resumeListener, ActionListener exitListener, String bgImagePath, String startImagePath, String exitImagePath,int width,int height) {
         /**
          * Loads the images from the given file paths and resizes them to the correct dimensions for background and the two buttons
@@ -103,10 +105,74 @@ public class Screen extends JPanel {
         add(backgroundLabel, gbc);
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        
+
+        ///////////////////////////////// Could have a button class //////////////////////////////
+        createButtons(buttonPanel, gbc, resumeListener, exitListener);
+        
+
+        /**
+         * Sets the backgroundLabel constraints and adds the button panel to it
+         * Sets the layout of the backgroundLabel
+         * Resizes the resume and exit buttons to correct dimensions
+         * Displays the button panel and refreshes it
+         */
+
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.CENTER;
+
+        backgroundLabel.setLayout(new GridBagLayout());
+        backgroundLabel.add(buttonPanel, gbc);
+
+        
+        resumeButton.setPreferredSize(new Dimension(100, 50));
+        exitButton.setPreferredSize(new Dimension(100, 50));
+
+        buttonPanel.setVisible(true); // force display the panel
+
+        buttonPanel.revalidate();
+        buttonPanel.repaint();
+
+        
+    }
+
+    /**
+     * resizes the BufferedImage to the specified width and height
+     * This is 
+     * @param img image to be resized
+     * @param width the specific width
+     * @param height the specific height
+     * @return the resized image
+     */
+    private static BufferedImage resize(BufferedImage img, int width, int height) {
+        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = resizedImage.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+
+        return resizedImage;
+    }
+
+///////////////////////MIGHT NOT  NEED THIS  ////////////////////////////
+    /**
+     * gets the preferred size
+     */
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(800, 600);
+    }
+
+    protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener resumeListener, ActionListener exitListener) {
         buttonPanel.setOpaque(false); // makes the panel transparent
         buttonPanel.setBackground(new Color(0, 0, 0, 0)); // makes the panel background transparent
 
-        gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(0, 0, 20, 0); // adds some spacing between the buttons
@@ -150,58 +216,7 @@ public class Screen extends JPanel {
             }
         });
         buttonPanel.add(exitButton, gbc);
-
-        /**
-         * Sets the backgroundLabel constraints and adds the button panel to it
-         * Sets the layout of the backgroundLabel
-         * Resizes the resume and exit buttons to correct dimensions
-         * Displays the button panel and refreshes it
-         */
-
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.CENTER;
-
-        backgroundLabel.setLayout(new GridBagLayout());
-        backgroundLabel.add(buttonPanel, gbc);
-
-        
-        resumeButton.setPreferredSize(new Dimension(100, 50));
-        exitButton.setPreferredSize(new Dimension(100, 50));
-
-        buttonPanel.setVisible(true); // force display the panel
-
-        buttonPanel.revalidate();
-        buttonPanel.repaint();
-    }
-
-    /**
-     * resizes the BufferedImage to the specified width and height
-     * This is 
-     * @param img image to be resized
-     * @param width the specific width
-     * @param height the specific height
-     * @return the resized image
-     */
-    private static BufferedImage resize(BufferedImage img, int width, int height) {
-        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
-        Graphics2D g2d = resizedImage.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
-        g2d.dispose();
-
-        return resizedImage;
-    }
-
-    /**
-     * gets the preferred size
-     */
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(800, 600);
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
