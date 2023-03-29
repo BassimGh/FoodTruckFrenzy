@@ -119,10 +119,6 @@ public class Game {
                         loss();
                     }
 
-                    // for (Cop cop : cops) {
-                    //     cop.trackTruck();
-                    // }
-
                     for (int i = 0; i < cops.size(); i++) {
                         if (timerIndex % (i * 2 + 8) == 0)
                             cops.get(i).chaseTruck();
