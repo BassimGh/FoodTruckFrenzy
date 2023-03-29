@@ -13,10 +13,7 @@ import foodtruckfrenzy.GameFramework.Scoreboard;
  * It creates the specific Screen object to be displayed depending on what is needed
  */
 
-public class Frame {
-    private Screen _screen;
-    private JFrame _frame;
-
+public class Frame extends JFrame {
     /**
      * Constructs a Frame object with specified screenType and Scoreboard object
      * @param screenType specifies the type of screen to be displayed on the JFrame
@@ -34,7 +31,7 @@ public class Frame {
             public void actionPerformed(ActionEvent e) {
                 Game game = new Game();
                 game.startTimer();
-                _frame.dispose(); // close the TitleScreen window
+                dispose(); // close the TitleScreen window
             }
         };
 
@@ -57,7 +54,7 @@ public class Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.main(null);
-                _frame.dispose();
+                dispose();
             }
         };
 
@@ -74,28 +71,33 @@ public class Frame {
          * The JFrame is set to visible and shown using the setVisible() method
          */
         
+        Screen screen;
+        
         switch(screenType) {
             case GAME_WON:
-                _screen = new GameWonScreen(restartListener, closeAppListener, scoreboard);
-                _frame = new JFrame("Game Won!");
+                screen = new GameWonScreen(restartListener, closeAppListener, scoreboard);
+                this.setTitle("Game Won!");
                 break;
             
             case GAME_LOST:
-                _screen = new GameLostScreen(restartListener, closeAppListener, scoreboard);
-                _frame = new JFrame("Game Lost!");
+                screen = new GameLostScreen(restartListener, closeAppListener, scoreboard);
+                this.setTitle("Game Lost!");
                 break;
 
             case TITLE:
-                _screen = new TitleScreen(startGameListener, closeAppListener);
-                _frame = new JFrame("Food Truck Frenzy");
+                screen = new TitleScreen(startGameListener, closeAppListener);
+                this.setTitle("Food Truck Frenzy");
                 break;
+            default:
+                System.err.print("Invalid Frame Type");
+                throw new IllegalArgumentException();
         }
 
-        _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _frame.getContentPane().add(_screen);
-        _frame.pack();
-        _frame.setLocationRelativeTo(null);
-        _frame.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().add(screen);
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 }
 
