@@ -29,7 +29,7 @@ public class Glitter extends Item {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        if (drawn < 20) {
+        if (drawn < 40) {
             super.draw(g2d);
             drawn++;
         }
