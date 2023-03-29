@@ -154,26 +154,33 @@ public class Scoreboard extends JPanel {
     */
     public void update() {
 
+        // retrieve data from player
+        ingredientsFound = player.getIngredientsFound();
+        recipesFound = player.getRecipesFound();
+        damage = player.getDamage();
+        fines = player.getFines();
+        score = player.getScoreInt();
+
         // adjust font color accordingly
-        if(player.getScoreInt() < 0) {
+        if(score < 0) {
             _scoreTotal.setForeground(_red);
         }
         if (score > 0) {
             _scoreTotal.setForeground(_yellow);
         }
-        if (player.getIngredientsFound() == ingredientsDiscoverable) {
+        if (ingredientsFound == ingredientsDiscoverable) {
             _ingredientsLabel.setForeground(_green);
         }
-        if (player.getRecipesFound() == recipesDiscoverable) {
+        if (recipesFound == recipesDiscoverable) {
             _recipesLabel.setForeground(_green);
         }
 
         // update scoreboard labels
-        _ingredientsLabel.setText("Ingredients: " + player.getIngredientsFound() + "/" + ingredientsDiscoverable);
-        _recipesLabel.setText("Recipes: " + player.getRecipesFound() + "/" + recipesDiscoverable);
-        _damageLabel.setText("Damages: " + player.getDamage());
-        _fineLabel.setText("Speed Fines: " + player.getFines());
-        _scoreTotal.setText(player.getScore());
+        _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+        _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+        _damageLabel.setText("Damages: " + damage);
+        _fineLabel.setText("Speed Fines: " + fines);
+        _scoreTotal.setText(Integer.toString(score));
       
     }
 
