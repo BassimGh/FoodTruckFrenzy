@@ -7,11 +7,19 @@ import foodtruckfrenzy.Drawable.Vehicle.CopCreatorThread;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.GameFramework.Grid;
 
+
+/**
+ * Helper class used to initialize and return all vehicle objects
+ * used in the game
+ */
 public class VehicleSpawner {
     private FoodTruck foodTruck;
     private ArrayList<Cop> cops = new ArrayList<Cop>();
     
-
+    /**
+     * Initializes all vehicles in the game (food truck and cops)
+     * @param grid instance that is used by the game
+     */
     public VehicleSpawner(Grid grid) {
         this.foodTruck = new FoodTruck(3, 0, grid);
 
@@ -32,10 +40,18 @@ public class VehicleSpawner {
         }
     }
 
+    /**
+     * Gets the foodTruck object
+     * @return foodTruck instance
+     */
     public FoodTruck getFoodTruck() {
         return this.foodTruck;
     }
 
+    /**
+     * Gets ArrayList of cops
+     * @return ArrayList of Cop objects
+     */
     public ArrayList<Cop> getCops() {
         return cops;
     }
