@@ -128,15 +128,6 @@ public class Game {
                             cops.get(i).chaseTruck();
                     }
 
-                    // if (timerIndex % 4 == 0) {
-                    //     cops.get(0).chaseTruck();
-                    //     cops.get(1).chaseTruck();
-                    // }
-
-                    // if (timerIndex % 5 == 0) {
-                    //     cops.get(2).chaseTruck();
-                    // }
-
                     // Check if there is a collision after cop movement
                     if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
                         loss();

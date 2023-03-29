@@ -96,8 +96,6 @@ public class GameFrame extends JFrame {
      */
     void showPauseScreen() {
         _layout.show(_mainPanel, "pause");
-        // _gamePanel.setFocusable(true);
-        // _gamePanel.requestFocusInWindow();
     }
 
     /**
@@ -105,8 +103,6 @@ public class GameFrame extends JFrame {
      */
     void showGameScreen() {
         _layout.show(_mainPanel, "game");
-        // _gamePanel.setFocusable(true);
-        // _gamePanel.requestFocusInWindow();
     }
 
     /**
