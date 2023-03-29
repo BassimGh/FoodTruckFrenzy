@@ -32,11 +32,11 @@ public class Screen extends JPanel {
 
     /**
      * Constructs a new Screen object with the specified ActionListener objects and image paths.
-     * @param topListener the listener to be notified when the "resume" button is pressed
-     * @param bottomListener the listener to be notified when the "exit" button is pressed
+     * @param topListener the listener to be notified when the top button (first) is pressed
+     * @param bottomListener the listener to be notified when the bottom (second) button is pressed
      * @param bgImagePath the path to the background image file
-     * @param button1ImagePath the path to the "start" button image file
-     * @param button2ImagePath the path to the "exit" button image file
+     * @param button1ImagePath the path to the top button image file
+     * @param button2ImagePath the path to the bottom button image file
      * @param width The Desired width of the display
      * @param height the Desired height of the display
      */
@@ -92,8 +92,7 @@ public class Screen extends JPanel {
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
         
-
-        ///////////////////////////////// Could have a button class //////////////////////////////
+        //creates the buttons 
         createButtons(buttonPanel, gbc, topListener, bottomListener);
         
 
@@ -110,6 +109,7 @@ public class Screen extends JPanel {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.CENTER;
 
+        //creates the background label and displays the button panel over it
         createBackground(backgroundLabel, gbc, buttonPanel);
 
     }
@@ -136,24 +136,24 @@ public class Screen extends JPanel {
      * @param buttonPanel the JPanel for the buttons 
      * @param gbc the gridBagConstraints for the buttons and background
      * @param backgroundLabel the JLabel for the background
-     * @param topListener the listener to be notified when the first button is pressed
-     * @param bottomListener the listener to be notified when the second button is pressed
+     * @param topListener the listener to be notified when the top (first) button is pressed
+     * @param bottomListener the listener to be notified when the bottom (second) button is pressed
      * Sets the GridBagConstraints and spaces the buttons apart
-     * Creates a JButton with an ImageIcon containing the start image and adds an ActionListener
+     * Creates a JButton with an ImageIcon containing the first button image and adds an ActionListener
      * Sets the size , removes the button border, removes the focus paint, and makes the content area painted on top of the button image
      * Adds a MouseAdapter to the button to change the border to blue when the mouse goes over the button and remove the border when it leaves the button
-     * resumeListener ActionListener to be added to resume button
-     * startImage Image to be added to the resumeButton
+     * topListener ActionListener to be added to top button
+     * button1Image Image to be added to the topButton
      * backgroundLabel the background image displayed on the screen
      * gbc GridBagConstrainsts used to set the layout of the buttonpanel and resumeButton
      * buttonPanel JPanel containing the resume button
-     * resumeButton JButton used to resume the game
-     * exitListener ActionListener to be added to exit button
-     * exitImage Image to be added to the exitButton
+     * topButton JButton used to start or resume the game
+     * bottomListener ActionListener to be added to botton button
+     * button2 Image to be added to the bottomButton
      * gbc GridBagConstrainsts used to set the layout of the  exitButton
-     * buttonPanel JPanel containing the exit button
-     * exitButton JButton used to exit the game
-     * exitButton has the same properties as resumeButtons except for the image and the listener and it is positioned underneath the resumeButton
+     * buttonPanel JPanel containing the bottomButton
+     * bottomButton JButton used to exit or restart the game
+     * bottomButton has the same properties as topButtons except for the image and the listener and it is positioned underneath the topButton
      */
 
      protected void createBackground(JLabel backgroundLabel, GridBagConstraints gbc, JPanel buttonPanel) {
