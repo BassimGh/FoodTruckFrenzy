@@ -25,32 +25,32 @@ public class Screen extends JPanel {
     protected BufferedImage backgroundImage;
     protected BufferedImage startImage;
     protected BufferedImage exitImage;
-    private JButton resumeButton;
-    private JButton exitButton;
+    private JButton topButton;
+    private JButton bottomButton;
     protected int width;
     protected int height;
 
     /**
      * Constructs a new Screen object with the specified ActionListener objects and image paths.
-     * @param resumeListener the listener to be notified when the "resume" button is pressed
-     * @param exitListener the listener to be notified when the "exit" button is pressed
+     * @param topListener the listener to be notified when the "resume" button is pressed
+     * @param bottomListener the listener to be notified when the "exit" button is pressed
      * @param bgImagePath the path to the background image file
-     * @param startImagePath the path to the "start" button image file
-     * @param exitImagePath the path to the "exit" button image file
+     * @param button1ImagePath the path to the "start" button image file
+     * @param button2ImagePath the path to the "exit" button image file
      * @param width The Desired width of the display
      * @param height the Desired height of the display
      */
 
     /////////////////// Could change the input variable names to be more specific, and use enums for inputs for width and height instead of hard coding the dimensions////////////////////////////
-    public Screen(ActionListener resumeListener, ActionListener exitListener, String bgImagePath, String startImagePath, String exitImagePath,int width,int height) {
+    public Screen(ActionListener topListener, ActionListener bottomListener, String bgImagePath, String button1ImagePath, String button2ImagePath,int width,int height) {
         /**
          * Loads the images from the given file paths and resizes them to the correct dimensions for background and the two buttons
          * @throws IOException if there is a read or resize error 
          */
         try {
             InputStream backgroundInputStream = Screen.class.getResourceAsStream(bgImagePath);
-            InputStream startInputStream = Screen.class.getResourceAsStream(startImagePath);
-            InputStream exitInputStream = Screen.class.getResourceAsStream(exitImagePath);
+            InputStream startInputStream = Screen.class.getResourceAsStream(button1ImagePath);
+            InputStream exitInputStream = Screen.class.getResourceAsStream(button2ImagePath);
             backgroundImage = ImageIO.read(backgroundInputStream);
             backgroundImage = resize(backgroundImage, width, height);
             startImage = ImageIO.read(startInputStream);
@@ -94,7 +94,7 @@ public class Screen extends JPanel {
         
 
         ///////////////////////////////// Could have a button class //////////////////////////////
-        createButtons(buttonPanel, gbc, resumeListener, exitListener);
+        createButtons(buttonPanel, gbc, topListener, bottomListener);
         
 
         /**
@@ -136,8 +136,8 @@ public class Screen extends JPanel {
      * @param buttonPanel the JPanel for the buttons 
      * @param gbc the gridBagConstraints for the buttons and background
      * @param backgroundLabel the JLabel for the background
-     * @param resumeListener the listener to be notified when the first button is pressed
-     * @param exitListener the listener to be notified when the second button is pressed
+     * @param topListener the listener to be notified when the first button is pressed
+     * @param bottomListener the listener to be notified when the second button is pressed
      * Sets the GridBagConstraints and spaces the buttons apart
      * Creates a JButton with an ImageIcon containing the start image and adds an ActionListener
      * Sets the size , removes the button border, removes the focus paint, and makes the content area painted on top of the button image
@@ -167,7 +167,7 @@ public class Screen extends JPanel {
         backgroundLabel.add(buttonPanel, gbc);
      }
 
-    protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener resumeListener, ActionListener exitListener) {
+    protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener topListener, ActionListener bottomListener) {
         buttonPanel.setOpaque(false); // makes the panel transparent
         buttonPanel.setBackground(new Color(0, 0, 0, 0)); // makes the panel background transparent
 
@@ -176,47 +176,47 @@ public class Screen extends JPanel {
         gbc.insets = new Insets(0, 0, 20, 0); // adds some spacing between the buttons
         gbc.anchor = GridBagConstraints.CENTER;
 
-        resumeButton = new JButton(new ImageIcon(startImage));
-        resumeButton.addActionListener(resumeListener);
-        resumeButton.setPreferredSize(new Dimension(100, 50));
-        resumeButton.setBorder(null); // removes the button border
-        resumeButton.setFocusPainted(false); // removes the focus paint
-        resumeButton.setContentAreaFilled(false); // makes the content area painted directly on top of the button background
-        resumeButton.addMouseListener(new MouseAdapter() {
+        topButton = new JButton(new ImageIcon(startImage));
+        topButton.addActionListener(topListener);
+        topButton.setPreferredSize(new Dimension(100, 50));
+        topButton.setBorder(null); // removes the button border
+        topButton.setFocusPainted(false); // removes the focus paint
+        topButton.setContentAreaFilled(false); // makes the content area painted directly on top of the button background
+        topButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                resumeButton.setBorder(new LineBorder(Color.BLUE, 2));
+                topButton.setBorder(new LineBorder(Color.BLUE, 2));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                resumeButton.setBorder(null);
+                topButton.setBorder(null);
             }
         });
-        buttonPanel.add(resumeButton, gbc);
+        buttonPanel.add(topButton, gbc);
 
         gbc.gridy++;
-        exitButton = new JButton(new ImageIcon(exitImage));
-        exitButton.addActionListener(exitListener);
-        exitButton.setPreferredSize(new Dimension(100, 50));
-        exitButton.setBorder(null); // remove the button border
-        exitButton.setFocusPainted(false); // remove the focus paint
-        exitButton.setContentAreaFilled(false); // make the content area painted directly on top of the button background
-        exitButton.addMouseListener(new MouseAdapter() {
+        bottomButton = new JButton(new ImageIcon(exitImage));
+        bottomButton.addActionListener(bottomListener);
+        bottomButton.setPreferredSize(new Dimension(100, 50));
+        bottomButton.setBorder(null); // remove the button border
+        bottomButton.setFocusPainted(false); // remove the focus paint
+        bottomButton.setContentAreaFilled(false); // make the content area painted directly on top of the button background
+        bottomButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                exitButton.setBorder(new LineBorder(Color.BLUE, 2));
+                bottomButton.setBorder(new LineBorder(Color.BLUE, 2));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                exitButton.setBorder(null);
+                bottomButton.setBorder(null);
             }
         });
-        buttonPanel.add(exitButton, gbc);
+        buttonPanel.add(bottomButton, gbc);
 
-        resumeButton.setPreferredSize(new Dimension(100, 50));
-        exitButton.setPreferredSize(new Dimension(100, 50));
+        topButton.setPreferredSize(new Dimension(100, 50));
+        bottomButton.setPreferredSize(new Dimension(100, 50));
 
         buttonPanel.setVisible(true); // force display the panel
 
