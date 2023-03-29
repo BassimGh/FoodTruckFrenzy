@@ -29,9 +29,8 @@ public class Game {
 
     private final GameFrame _frame;
     private final Timer _timer;
-    private final FoodTruck _mainCharacter;
     private boolean _paused = false;
-    private boolean _invinciblePressed = false;
+    private boolean _invincible = false;
 
     private int timerIndex;
 
@@ -46,7 +45,7 @@ public class Game {
         Grid grid = new Grid();
 
         VehicleSpawner spawner = new VehicleSpawner(grid);
-        _mainCharacter = spawner.getFoodTruck();
+        FoodTruck mainCharacter = spawner.getFoodTruck();
         ArrayList<Cop> cops = spawner.getCops();
 
         /**
@@ -71,7 +70,7 @@ public class Game {
         };
 
         KeyboardHandler keyboardHandler = new KeyboardHandler();
-        _frame = new GameFrame(_mainCharacter, grid, cops, resumeListener, restartListener);
+        _frame = new GameFrame(mainCharacter, grid, cops, resumeListener, restartListener);
         _frame.addKeyListener(keyboardHandler);
         _frame.requestFocusInWindow();
         
@@ -85,12 +84,12 @@ public class Game {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (keyboardHandler.invinciblePressed() && _invinciblePressed == false) {
+                if (keyboardHandler.invinciblePressed() && _invincible == false) {
                     _frame.setTitle("INVINCIBLE MODE ACTIVATED");
-                    _invinciblePressed = true;
-                } else if (keyboardHandler.invinciblePressed() && _invinciblePressed == true) {
+                    _invincible = true;
+                } else if (keyboardHandler.invinciblePressed() && _invincible == true) {
                     _frame.setTitle("Food Truck Frenzy");
-                    _invinciblePressed = false;
+                    _invincible = false;
                 }
 
                 if (!_paused) {
@@ -99,23 +98,23 @@ public class Game {
 
                     boolean moved = false;
                     if (keyboardHandler.upPressed() && !keyboardHandler.downPressed() && !moved && timerIndex % 5 == 0)
-                        moved = _mainCharacter.moveUp();
+                        moved = mainCharacter.moveUp();
 
                     if (keyboardHandler.downPressed() && !keyboardHandler.upPressed() && !moved && timerIndex % 5 == 0)
-                        moved = _mainCharacter.moveDown();
+                        moved = mainCharacter.moveDown();
 
                     if (keyboardHandler.leftPressed() && !keyboardHandler.rightPressed() && !moved && timerIndex % 5 == 0)
-                        moved = _mainCharacter.moveLeft();
+                        moved = mainCharacter.moveLeft();
                         
                     if (keyboardHandler.rightPressed() && !keyboardHandler.leftPressed() && !moved && timerIndex % 5 == 0)
-                        moved = _mainCharacter.moveRight();
+                        moved = mainCharacter.moveRight();
 
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
                     
                     // Check if there is a collision after player movement
-                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
                         loss();
                     }
 
@@ -125,17 +124,17 @@ public class Game {
                     }
 
                     // Check if there is a collision after cop movement
-                    if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {
+                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
                         loss();
                     }
 
                     _frame.refresh();
 
-                    if (!_paused && _mainCharacter.getScoreInt() < 0) {
+                    if (!_paused && mainCharacter.getScoreInt() < 0) {
                         loss();
                     }
 
-                    if (!_paused && checkWinCondition(_mainCharacter)) {
+                    if (!_paused && checkWinCondition(mainCharacter)) {
                         win();
                     }
 
@@ -177,7 +176,7 @@ public class Game {
      */
     private void loss() {
 
-        if (_invinciblePressed)
+        if (_invincible)
             return;
         
         _paused = true;
