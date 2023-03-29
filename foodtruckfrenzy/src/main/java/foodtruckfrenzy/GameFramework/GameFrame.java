@@ -39,7 +39,6 @@ public class GameFrame extends JFrame {
      * @param mainCharacter FoodTruck object which is main character
      * @param grid Grid object for displayable grid
      * @param cops ArrayList of Cop objects
-     * @param keyboardHandler KeyboardHandler to attach to gamepanel
      * @param resumeListener ActionListener for on resume from pause
      * @param restartListener ActionListner for on restart from pause
      */
