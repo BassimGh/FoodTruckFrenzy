@@ -86,8 +86,10 @@ public class Game {
             public void actionPerformed(ActionEvent e) {
 
                 if (keyboardHandler.invinciblePressed() && _invinciblePressed == false) {
+                    _frame.setTitle("INVINCIBLE MODE ACTIVATED");
                     _invinciblePressed = true;
                 } else if (keyboardHandler.invinciblePressed() && _invinciblePressed == true) {
+                    _frame.setTitle("Food Truck Frenzy");
                     _invinciblePressed = false;
                 }
 
@@ -117,23 +119,10 @@ public class Game {
                         loss();
                     }
 
-                    // for (Cop cop : cops) {
-                    //     cop.trackTruck();
-                    // }
-
                     for (int i = 0; i < cops.size(); i++) {
                         if (timerIndex % (i * 2 + 8) == 0)
                             cops.get(i).chaseTruck();
                     }
-
-                    // if (timerIndex % 4 == 0) {
-                    //     cops.get(0).chaseTruck();
-                    //     cops.get(1).chaseTruck();
-                    // }
-
-                    // if (timerIndex % 5 == 0) {
-                    //     cops.get(2).chaseTruck();
-                    // }
 
                     // Check if there is a collision after cop movement
                     if (!_paused && checkCopCharacterCollision(cops, _mainCharacter)) {

@@ -1,16 +1,15 @@
 package foodtruckfrenzy.Drawable.Vehicle;
 
-/**
- * Represents a Cop object that moves around on the grid autonomously following the foodtruck
- * Inherits from the Vehicle class for its movement
- */
-
 import java.util.Collections;
 import java.util.LinkedList;
 
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.GameFramework.Grid;
 
+/**
+ * Represents a Cop object that moves around on the grid autonomously following the foodtruck
+ * Inherits from the Vehicle class for its movement
+ */
 public class Cop extends Vehicle {
 
     private FoodTruck foodtruck;
