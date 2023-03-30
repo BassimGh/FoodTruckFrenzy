@@ -153,19 +153,23 @@ public class Game {
     /**
      * Pauses the game and shows the pause menu 
      * While suspending the game loop through a boolean value update
+     * Pauses scoreboard timer
      */
     private void pause() {
         _paused = true;
         _frame.showPauseScreen();
+        _frame.getScoreboard().pauseTimer();
     }
 
     /**
      * Resumes the game and shows the game panel 
      * While resuming the game loop through a boolean value update
+     * Resumes scoreboard timer
      */
     private void resume() {
         _paused = false;
         _frame.showGameScreen();
+        _frame.getScoreboard().resumeTimer();
     }
 
     /**
