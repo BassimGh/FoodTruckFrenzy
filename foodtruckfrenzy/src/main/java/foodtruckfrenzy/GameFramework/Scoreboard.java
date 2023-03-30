@@ -17,25 +17,25 @@ public class Scoreboard extends JPanel {
     /** 
      * Fonts and Colors for the Score Board
     */
-    private final Font _sbFont1 = new Font("Comic Sans MS", Font.PLAIN, 16);
-    private final Font _sbFont2 = new Font("Comic Sans MS", Font.PLAIN, 22);
-    private final Font _sbFont3 = new Font("Comic Sans MS", Font.BOLD, 44);
+    private final static Font FONT_SMALL = new Font("Comic Sans MS", Font.PLAIN, 16);
+    private final static Font FONT_MEDIUM = new Font("Comic Sans MS", Font.PLAIN, 22);
+    private final static Font FONT_LARGE = new Font("Comic Sans MS", Font.BOLD, 44);
     
-    private final Color _backGroundColor = new Color(54, 65, 79); 
-    private final Color _red = new Color(227, 0, 39);
-    private final Color _yellow = new Color(255, 240, 75);
-    private final Color _green = new Color(80, 255, 90);
-    private final Color _white = Color.WHITE;
+    private final static Color COLOR_BACKGROUND = new Color(54, 65, 79); 
+    private final static Color COLOR_RED = new Color(227, 0, 39);
+    private final static Color COLOR_YELLOW = new Color(255, 240, 75);
+    private final static Color COLOR_GREEN = new Color(80, 255, 90);
+    private final static Color COLOR_WHITE = Color.WHITE;
     
     /**
      * Labels for the ScoreBoard Data
      */
     private JLabel _scoreLabel = new JLabel("Score: ");
-    private JLabel _scoreTotal = new JLabel();
-    private JLabel _ingredientsLabel = new JLabel("Ingredients");
-    private JLabel _recipesLabel = new JLabel("Recipes: ");
-    private JLabel _damageLabel = new JLabel("Damage: "); 
-    private JLabel _fineLabel = new JLabel("Fines: ");
+    private JLabel _scoreTotal = new JLabel("0");
+    private JLabel _ingredientsLabel = new JLabel();
+    private JLabel _recipesLabel = new JLabel();
+    private JLabel _damageLabel = new JLabel(); 
+    private JLabel _fineLabel = new JLabel();
     private JLabel _timeLabel = new JLabel("Time: 00:00");
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
@@ -68,23 +68,23 @@ public class Scoreboard extends JPanel {
         
         // Set the layout and background color of the scoreboard panel
         setLayout(new BorderLayout(10, 10));
-        setBackground(_backGroundColor);
+        setBackground(COLOR_BACKGROUND);
         
         // Left Panel - displays various statistics about the player
         JPanel leftPanel = new JPanel(new GridLayout(4, 1));
-        leftPanel.setBackground(_backGroundColor);
+        leftPanel.setBackground(COLOR_BACKGROUND);
 
         // Set the font and color attributes left panel stats
-        _ingredientsLabel.setFont(_sbFont1);
-        _ingredientsLabel.setForeground(_white);
-        _recipesLabel.setFont(_sbFont1);
-        _recipesLabel.setForeground(_white);
-        _fineLabel.setFont(_sbFont1);
-        _fineLabel.setForeground(_white);
-        _timeLabel.setFont(_sbFont1);
-        _timeLabel.setForeground(_white); 
-        _damageLabel.setFont(_sbFont1);
-        _damageLabel.setForeground(_white);
+        _ingredientsLabel.setFont(FONT_SMALL);
+        _ingredientsLabel.setForeground(COLOR_WHITE);
+        _recipesLabel.setFont(FONT_SMALL);
+        _recipesLabel.setForeground(COLOR_WHITE);
+        _fineLabel.setFont(FONT_SMALL);
+        _fineLabel.setForeground(COLOR_WHITE);
+        _timeLabel.setFont(FONT_SMALL);
+        _timeLabel.setForeground(COLOR_WHITE); 
+        _damageLabel.setFont(FONT_SMALL);
+        _damageLabel.setForeground(COLOR_WHITE);
 
         // Add stat labels to the left panel
         leftPanel.add(_ingredientsLabel); 
@@ -94,13 +94,13 @@ public class Scoreboard extends JPanel {
 
         // Centre Panel - displays the players Score
         JPanel centerPanel = new JPanel(new FlowLayout());
-        centerPanel.setBackground(_backGroundColor);
+        centerPanel.setBackground(COLOR_BACKGROUND);
 
         // Set the font and color of the Score Label
-        _scoreLabel.setFont(_sbFont3);       
-        _scoreLabel.setForeground(_white);
-        _scoreTotal.setFont(_sbFont3);
-        _scoreTotal.setForeground(_white);
+        _scoreLabel.setFont(FONT_LARGE);       
+        _scoreLabel.setForeground(COLOR_WHITE);
+        _scoreTotal.setFont(FONT_LARGE);
+        _scoreTotal.setForeground(COLOR_WHITE);
 
         // Add the score label and total score to center panel
         centerPanel.add(_scoreLabel);
@@ -109,13 +109,13 @@ public class Scoreboard extends JPanel {
 
         // Right Panel - displays the time elapsed and instructions to pause
         JPanel rightPanel = new JPanel(new GridLayout(2, 1, 10, 10));
-        rightPanel.setBackground(_backGroundColor);
+        rightPanel.setBackground(COLOR_BACKGROUND);
 
         // Set the font and color of the labels
-        _timeLabel.setFont(_sbFont2);
-        _timeLabel.setForeground(_white);      
-        _pauseInstructions.setFont(_sbFont1);
-        _pauseInstructions.setForeground(_white);
+        _timeLabel.setFont(FONT_MEDIUM);
+        _timeLabel.setForeground(COLOR_WHITE);      
+        _pauseInstructions.setFont(FONT_SMALL);
+        _pauseInstructions.setForeground(COLOR_WHITE);
     
         // Add time and pause instructions to the right panel
         rightPanel.add(_timeLabel);
@@ -132,6 +132,12 @@ public class Scoreboard extends JPanel {
         // Get totals for discoverable items
         ingredientsDiscoverable = Food.getCount(); 
         recipesDiscoverable = Recipe.getCount();
+
+        // Set initial values
+        _ingredientsLabel.setText("Ingredients: 0/" + ingredientsDiscoverable);
+        _recipesLabel.setText("Recipes: 0/" + recipesDiscoverable);
+        _damageLabel.setText("Damage: " + damage);
+        _fineLabel.setText("Fines: " + fines);
         
         // Create and start the scoreboard timer to keep track of game time
         _second = 00;
@@ -154,36 +160,50 @@ public class Scoreboard extends JPanel {
     */
     public void update() {
 
-        // retrieve data from player
-        ingredientsFound = player.getIngredientsFound();
-        recipesFound = player.getRecipesFound();
-        damage = player.getDamage();
-        fines = player.getFines();
-        score = player.getScoreInt();
+        // retrieve new data from player
+        int newIngredientsFound = player.getIngredientsFound();
+        int newRecipesFound = player.getRecipesFound();
+        int newDamage = player.getDamage();
+        int newFines = player.getFines();
+        int newScore = player.getScoreInt();
+
+        // update scoreboard values and labels if the values have changed
+        if (ingredientsFound != newIngredientsFound) {
+            ingredientsFound = newIngredientsFound;
+            _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+        }
+        if (recipesFound != newRecipesFound) { 
+            recipesFound = newRecipesFound;
+            _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+        }
+        if (damage != newDamage) {
+            damage = newDamage;
+            _damageLabel.setText("Damages: " + damage);
+        }
+        if (fines != newFines) {
+            fines = newFines;
+            _fineLabel.setText("Speed Fines: " + fines);
+        }
+        if (score != newScore) {
+            score = newScore;
+        _scoreTotal.setText(Integer.toString(score));
+        }
 
         // adjust font color accordingly
         if(score < 0) {
-            _scoreTotal.setForeground(_red);
+            _scoreTotal.setForeground(COLOR_RED);
         }
         if (score > 0) {
-            _scoreTotal.setForeground(_yellow);
+            _scoreTotal.setForeground(COLOR_YELLOW);
         }
-        if (ingredientsFound == ingredientsDiscoverable) {
-            _ingredientsLabel.setForeground(_green);
+        if (newIngredientsFound == ingredientsDiscoverable) {
+            _ingredientsLabel.setForeground(COLOR_GREEN);
         }
         if (recipesFound == recipesDiscoverable) {
-            _recipesLabel.setForeground(_green);
+            _recipesLabel.setForeground(COLOR_GREEN);
         }
-
-        // update scoreboard labels
-        _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
-        _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
-        _damageLabel.setText("Damages: " + damage);
-        _fineLabel.setText("Speed Fines: " + fines);
-        _scoreTotal.setText(Integer.toString(score));
       
     }
-
     /**
     * Sets up a simple timer to keep track of the time elapsed in the game.
     * The timer increments every second and updates the time elapsed on the scoreboard.
