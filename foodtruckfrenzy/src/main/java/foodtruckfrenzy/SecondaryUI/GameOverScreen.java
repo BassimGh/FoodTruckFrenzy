@@ -2,9 +2,7 @@ package foodtruckfrenzy.SecondaryUI;
 
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
-
 import foodtruckfrenzy.GameFramework.Scoreboard;
-
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
