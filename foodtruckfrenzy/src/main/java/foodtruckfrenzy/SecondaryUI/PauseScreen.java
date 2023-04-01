@@ -13,11 +13,11 @@ public class PauseScreen extends Screen {
      * 
      * @param resumeListener The ActionListener to handle resume button events.
      * @param restartListener The ActionListener to handle restart button events.
-     * @param 1312 The Desired width of the display
-     * @param 740 the Desired height of the display
+     * @param ImagePaths supplies the String image paths to the specified images used in the parent Screen class.
+     * @param Dimensions supplies the custom int values for the height and the width of the PauseScreen
      */ 
 
     public PauseScreen(ActionListener resumeListener, ActionListener restartListener) {
-        super(resumeListener, restartListener, "paused.png", "resume.png", "restart.png",1312,740);
+        super(resumeListener, restartListener, new ImagePaths("paused.png", "resume.png", "restart.png"), new Dimensions(1312,740));
     }
 }
