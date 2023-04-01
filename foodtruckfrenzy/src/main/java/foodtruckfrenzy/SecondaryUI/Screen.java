@@ -27,32 +27,29 @@ public class Screen extends JPanel {
     protected BufferedImage exitImage;
     private JButton topButton;
     private JButton bottomButton;
-    protected int width;
-    protected int height;
+    protected Dimensions dimensions;
+    protected ImagePaths imagePaths;
 
     /**
      * Constructs a new Screen object with the specified ActionListener objects and image paths.
      * @param topListener the listener to be notified when the top button (first) is pressed
      * @param bottomListener the listener to be notified when the bottom (second) button is pressed
-     * @param bgImagePath the path to the background image file
-     * @param button1ImagePath the path to the top button image file
-     * @param button2ImagePath the path to the bottom button image file
-     * @param width The Desired width of the display
-     * @param height the Desired height of the display
+     * @param imagePaths contains the paths to the background image file and the 2 button image files
+     * @param dimensions the object that holds the specific width and height for the specific type of screen
      */
 
     /////////////////// Could change the input variable names to be more specific, and use enums for inputs for width and height instead of hard coding the dimensions////////////////////////////
-    public Screen(ActionListener topListener, ActionListener bottomListener, String bgImagePath, String button1ImagePath, String button2ImagePath,int width,int height) {
+    public Screen(ActionListener topListener, ActionListener bottomListener, ImagePaths imagePaths, Dimensions dimensions) {
         /**
          * Loads the images from the given file paths and resizes them to the correct dimensions for background and the two buttons
          * @throws IOException if there is a read or resize error 
          */
         try {
-            InputStream backgroundInputStream = Screen.class.getResourceAsStream(bgImagePath);
-            InputStream startInputStream = Screen.class.getResourceAsStream(button1ImagePath);
-            InputStream exitInputStream = Screen.class.getResourceAsStream(button2ImagePath);
+            InputStream backgroundInputStream = Screen.class.getResourceAsStream(imagePaths.backgroundPath);
+            InputStream startInputStream = Screen.class.getResourceAsStream(imagePaths.button1Path);
+            InputStream exitInputStream = Screen.class.getResourceAsStream(imagePaths.button2Path);
             backgroundImage = ImageIO.read(backgroundInputStream);
-            backgroundImage = resize(backgroundImage, width, height);
+            backgroundImage = resize(backgroundImage, dimensions.width, dimensions.height);
             startImage = ImageIO.read(startInputStream);
             startImage = resize(startImage, 100, 50);
             exitImage = ImageIO.read(exitInputStream);

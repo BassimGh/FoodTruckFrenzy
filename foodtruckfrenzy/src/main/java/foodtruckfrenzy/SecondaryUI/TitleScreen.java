@@ -12,11 +12,12 @@ public class TitleScreen extends Screen {
      * 
      * @param startListener The ActionListener to handle start button events.
      * @param exitListener The ActionListener to handle exit button events.
-     * @param 800 The Desired width of the display
-     * @param 600 the Desired height of the display
+     * @param ImagePaths supplies the image paths
+     * @param Dimensions supplies the custom dimensions
      */
 
     public TitleScreen(ActionListener startListener, ActionListener exitListener) {
-        super(startListener, exitListener, "background.png", "start.png", "exit.png", 800, 600);
+        //passes listeners, the image file paths, and the custom screen dimensions
+        super(startListener, exitListener, new ImagePaths("background.png", "start.png", "exit.png"), new Dimensions(800, 600));
     }
 }
