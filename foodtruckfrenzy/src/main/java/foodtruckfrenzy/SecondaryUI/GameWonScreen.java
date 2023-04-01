@@ -1,7 +1,6 @@
 package foodtruckfrenzy.SecondaryUI;
 
 import java.awt.event.ActionListener;
-
 import foodtruckfrenzy.GameFramework.Scoreboard;
 
 /**

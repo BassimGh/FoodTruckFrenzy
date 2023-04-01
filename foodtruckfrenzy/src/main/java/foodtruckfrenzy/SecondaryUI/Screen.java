@@ -12,7 +12,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 
-
 /**
  * The Screen class represents a JPanel that displays a background image and two buttons: a "resume" button and an "exit" button.
  * The buttons have custom images and behavior when clicked or hovered over. 
@@ -38,7 +37,6 @@ public class Screen extends JPanel {
      * @param dimensions the object that holds the specific width and height for the specific type of screen
      */
 
-    /////////////////// Could change the input variable names to be more specific, and use enums for inputs for width and height instead of hard coding the dimensions////////////////////////////
     public Screen(ActionListener topListener, ActionListener bottomListener, ImagePaths imagePaths, Dimensions dimensions) {
         /**
          * Loads the images from the given file paths and resizes them to the correct dimensions for background and the two buttons
@@ -108,7 +106,6 @@ public class Screen extends JPanel {
 
         //creates the background label and displays the button panel over it
         createBackground(backgroundLabel, gbc, buttonPanel);
-
     }
 
     /**

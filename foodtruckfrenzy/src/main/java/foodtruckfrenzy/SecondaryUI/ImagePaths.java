@@ -50,5 +50,4 @@ public class ImagePaths {
     public String getButton2Path() {
         return button2Path;
     }
-    
 }
