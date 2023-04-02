@@ -30,10 +30,10 @@ public class Scoreboard extends JPanel {
     // Labels for the ScoreBoard Data
     private JLabel _scoreLabel = new JLabel("Score: ");
     private JLabel _scoreTotal = new JLabel("0");
-    private JLabel _ingredientsLabel = new JLabel();
-    private JLabel _recipesLabel = new JLabel();
-    private JLabel _damageLabel = new JLabel(); 
-    private JLabel _fineLabel = new JLabel();
+    private JLabel _ingredientsLabel = new JLabel("Ingredients Found: 0");
+    private JLabel _recipesLabel = new JLabel("Recipes Found: 0");
+    private JLabel _damageLabel = new JLabel("Damage: "); 
+    private JLabel _fineLabel = new JLabel("Fines: ");
     private JLabel _timeLabel = new JLabel("Time: 00:00");
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
