@@ -26,10 +26,11 @@ public class Grid {
      * Fills the grid up with elements from Map Layout
      */
     public Grid() {
+        BoardElementFactory boardElementFactory = new BoardElementFactory();
         _grid = new BoardElement[ROWS][COLS];
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
-                this.setCell(i, j, BoardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
+                this.setCell(i, j, boardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
             }
         }
     }
