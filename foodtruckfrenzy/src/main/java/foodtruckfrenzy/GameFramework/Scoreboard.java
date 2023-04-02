@@ -14,9 +14,8 @@ import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
  * It contains components to display the ingredients and recipes collected, damage inflicted by obstacles, speed fines, time elapsed and the current score.
  */
 public class Scoreboard extends JPanel {
-    /** 
-     * Fonts and Colors for the Score Board
-    */
+
+    // Fonts and Colors for the Score Board
     private final static Font FONT_SMALL = new Font("Comic Sans MS", Font.PLAIN, 16);
     private final static Font FONT_MEDIUM = new Font("Comic Sans MS", Font.PLAIN, 22);
     private final static Font FONT_LARGE = new Font("Comic Sans MS", Font.BOLD, 44);
@@ -27,9 +26,8 @@ public class Scoreboard extends JPanel {
     private final static Color COLOR_GREEN = new Color(80, 255, 90);
     private final static Color COLOR_WHITE = Color.WHITE;
     
-    /**
-     * Labels for the ScoreBoard Data
-     */
+
+    // Labels for the ScoreBoard Data
     private JLabel _scoreLabel = new JLabel("Score: ");
     private JLabel _scoreTotal = new JLabel("0");
     private JLabel _ingredientsLabel = new JLabel();
@@ -39,9 +37,8 @@ public class Scoreboard extends JPanel {
     private JLabel _timeLabel = new JLabel("Time: 00:00");
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
-    /**
-     * Scoreboard Data, Game State, and Player(data source)
-     */
+
+    //Scoreboard Data, Game State, and Player(data source)
     private FoodTruck player;
     private int score;
     private int ingredientsFound;
@@ -53,28 +50,48 @@ public class Scoreboard extends JPanel {
     private String timeElapsed;
     private boolean _paused = false;   
 
-    /**
-     * Timer object that updates the Scoreboards Timer
-     */
+
+    // Timer object that updates the Scoreboards Timer
     private Timer _timer;
     private int _minute;
     private int _second; 
+
 
     /**
      * Constructs a new scoreboard panel for the given player object.
      * @param player the player object to associate with this scoreboard
      */
     public Scoreboard(FoodTruck player) {
-        
-        // Set the layout and background color of the scoreboard panel
+
         setLayout(new BorderLayout(10, 10));
         setBackground(COLOR_BACKGROUND);
-        
-        // Left Panel - displays various statistics about the player
+    
+        JPanel leftPanel = createLeftPanel();
+        JPanel centerPanel = createCenterPanel();
+        JPanel rightPanel = createRightPanel();
+    
+        add(leftPanel, BorderLayout.WEST);
+        add(centerPanel, BorderLayout.CENTER);
+        add(rightPanel, BorderLayout.EAST);
+    
+        this.player = player;
+    
+        ingredientsDiscoverable = Food.getCount();
+        recipesDiscoverable = Recipe.getCount();
+        simpleTimer();
+        _timer.start();
+    }
+    
+
+    /**
+    Creates the left panel of the Scoreboard which displays the various statistics about the player.
+    @return JPanel - the left panel of the Scoreboard
+    */
+    private JPanel createLeftPanel() {
+
         JPanel leftPanel = new JPanel(new GridLayout(4, 1));
         leftPanel.setBackground(COLOR_BACKGROUND);
-
-        // Set the font and color attributes left panel stats
+    
         _ingredientsLabel.setFont(FONT_SMALL);
         _ingredientsLabel.setForeground(COLOR_WHITE);
         _recipesLabel.setFont(FONT_SMALL);
@@ -82,81 +99,71 @@ public class Scoreboard extends JPanel {
         _fineLabel.setFont(FONT_SMALL);
         _fineLabel.setForeground(COLOR_WHITE);
         _timeLabel.setFont(FONT_SMALL);
-        _timeLabel.setForeground(COLOR_WHITE); 
+        _timeLabel.setForeground(COLOR_WHITE);
         _damageLabel.setFont(FONT_SMALL);
         _damageLabel.setForeground(COLOR_WHITE);
-
-        // Add stat labels to the left panel
-        leftPanel.add(_ingredientsLabel); 
+    
+        leftPanel.add(_ingredientsLabel);
         leftPanel.add(_recipesLabel);
         leftPanel.add(_fineLabel);
         leftPanel.add(_damageLabel);
+    
+        return leftPanel;
+    }
+    
 
-        // Centre Panel - displays the players Score
+    /**
+    Creates the center panel of the game UI, which displays the player's score.
+    The center panel is a JPanel with a FlowLayout and a white background.
+    @return the JPanel object representing the center panel
+    */
+    private JPanel createCenterPanel() {
+
         JPanel centerPanel = new JPanel(new FlowLayout());
         centerPanel.setBackground(COLOR_BACKGROUND);
-
-        // Set the font and color of the Score Label
-        _scoreLabel.setFont(FONT_LARGE);       
+    
+        _scoreLabel.setFont(FONT_LARGE);
         _scoreLabel.setForeground(COLOR_WHITE);
         _scoreTotal.setFont(FONT_LARGE);
         _scoreTotal.setForeground(COLOR_WHITE);
-
-        // Add the score label and total score to center panel
+    
         centerPanel.add(_scoreLabel);
         centerPanel.add(_scoreTotal);
-
-
-        // Right Panel - displays the time elapsed and instructions to pause
-        JPanel rightPanel = new JPanel(new GridLayout(2, 1, 10, 10));
-        rightPanel.setBackground(COLOR_BACKGROUND);
-
-        // Set the font and color of the labels
-        _timeLabel.setFont(FONT_MEDIUM);
-        _timeLabel.setForeground(COLOR_WHITE);      
-        _pauseInstructions.setFont(FONT_SMALL);
-        _pauseInstructions.setForeground(COLOR_WHITE);
     
-        // Add time and pause instructions to the right panel
-        rightPanel.add(_timeLabel);
-        rightPanel.add(_pauseInstructions);
-        
-        // Add left, centre and right panels to the Scoreboard
-        add(leftPanel, BorderLayout.WEST);
-        add(centerPanel, BorderLayout.CENTER);
-        add(rightPanel, BorderLayout.EAST);
-      
-        // Assign player 
-        this.player = player;  
-        
-        // Get totals for discoverable items
-        ingredientsDiscoverable = Food.getCount(); 
-        recipesDiscoverable = Recipe.getCount();
-
-        // Set initial values
-        _ingredientsLabel.setText("Ingredients: 0/" + ingredientsDiscoverable);
-        _recipesLabel.setText("Recipes: 0/" + recipesDiscoverable);
-        _damageLabel.setText("Damage: " + damage);
-        _fineLabel.setText("Fines: " + fines);
-        
-        // Create and start the scoreboard timer to keep track of game time
-        _second = 00;
-        _minute = 00;
-        simpleTimer();
-        _timer.start();
+        return centerPanel;
     }
+    
 
     /**
-     * <p>
-    Updates the scoreboard data with the player's latest progress and score.
-    This function retrieves data from the player instance and updates the relevant
-    score board labels accordingly. It also sets the foreground color of the score and
-    ingredients labels depending on the player's progress. If the player has found all the
-    ingredients, the ingredients label foreground is set to green. If the player has found
-    all the recipes, the recipes label foreground is set to green. If the player's score is
-    positive, the score total foreground is set to yellow. If the player's score is negative,
-    the score total foreground is set to red.
-    </p>
+    Creates and returns the right panel of the game scoreboard, which displays the remaining time and
+    pause instructions.
+    @return the right panel of the game scoreboard
+    */
+    private JPanel createRightPanel() {
+
+        JPanel rightPanel = new JPanel(new GridLayout(2, 1, 10, 10));
+        rightPanel.setBackground(COLOR_BACKGROUND);
+    
+        _timeLabel.setFont(FONT_MEDIUM);
+        _timeLabel.setForeground(COLOR_WHITE);
+        _pauseInstructions.setFont(FONT_SMALL);
+        _pauseInstructions.setForeground(COLOR_WHITE);
+        
+        rightPanel.add(_timeLabel);
+        rightPanel.add(_pauseInstructions);
+    
+        return rightPanel;
+    }
+
+
+    /**
+    Updates the scoreboard to display the current game statistics, including the number of
+    ingredients and recipes found, the amount of damage and speed fines accumulated, and the player's
+    score. If any of these values have changed since the last update, the scoreboard is updated
+    accordingly. The font color of the score label is also adjusted based on the current score value,
+    with negative scores displayed in red, positive scores displayed in yellow, and scores of zero
+    displayed in white. If the player has found all of the discoverable items (either ingredients or
+    recipes), the corresponding label is displayed in green to indicate completion.
     */
     public void update() {
 
