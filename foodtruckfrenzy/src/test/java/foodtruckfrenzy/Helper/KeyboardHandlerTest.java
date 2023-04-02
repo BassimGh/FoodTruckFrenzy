@@ -1,12 +1,9 @@
 package foodtruckfrenzy.Helper;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import java.awt.event.KeyEvent;
-
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
+import java.awt.event.KeyEvent;
 
 class KeyboardHandlerTest {
 
@@ -23,6 +20,8 @@ class KeyboardHandlerTest {
         assertFalse(keyboardHandler.downPressed());
         assertFalse(keyboardHandler.leftPressed());
         assertFalse(keyboardHandler.rightPressed());
+        assertFalse(keyboardHandler.pausePressed());
+        assertFalse(keyboardHandler.invinciblePressed());
     }
 
     @Test
@@ -63,6 +62,26 @@ class KeyboardHandlerTest {
         assertTrue(keyboardHandler.leftPressed());
         keyboardHandler.keyReleased(mockedKey);
         assertFalse(keyboardHandler.leftPressed());
+    }
+
+    @Test
+    void testPausePressedAndReleased() {
+        KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
+        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_P);
+        keyboardHandler.keyPressed(mockedKey);
+        assertTrue(keyboardHandler.pausePressed());
+        keyboardHandler.keyReleased(mockedKey);
+        assertFalse(keyboardHandler.pausePressed());
+    }
+
+    @Test
+    void testInvinciblePressedAndReleased() {
+        KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
+        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_BACK_QUOTE);
+        keyboardHandler.keyPressed(mockedKey);
+        assertTrue(keyboardHandler.invinciblePressed());
+        keyboardHandler.keyReleased(mockedKey);
+        assertFalse(keyboardHandler.invinciblePressed());
     }
 
 }

@@ -53,7 +53,7 @@ public class KeyboardHandler implements KeyListener {
      * Returns whether p is pressed
      * @return true if p is pressed, false if not
      */
-    public boolean pause() {
+    public boolean pausePressed() {
         return _pause;
     }
 

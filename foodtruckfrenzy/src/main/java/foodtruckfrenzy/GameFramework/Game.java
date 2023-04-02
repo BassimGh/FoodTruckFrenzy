@@ -93,7 +93,7 @@ public class Game {
                 }
 
                 if (!_paused) {
-                    if (keyboardHandler.pause())
+                    if (keyboardHandler.pausePressed())
                         pause();
 
                     boolean moved = false;
