@@ -30,7 +30,7 @@ public class Grid {
         _grid = new BoardElement[ROWS][COLS];
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
-                this.setCell(i, j, boardElementFactory.create(MapLayout.getElementAt(i, j), i, j));
+                _grid[i][j] = boardElementFactory.create(MapLayout.getElementAt(i, j), i, j);
             }
         }
     }
@@ -43,16 +43,6 @@ public class Grid {
      */
     public BoardElement getCell(int row, int col) {
         return _grid[row][col];
-    }
-
-    /**
-     * Sets a specified BoardElement on the grid to a new one
-     * @param row row of specified BoardElement
-     * @param col col of specified BoardElement
-     * @param cell new BoardElement to be set
-     */
-    public void setCell(int row, int col, BoardElement cell) {
-        _grid[row][col] = cell;
     }
 
     /**
@@ -82,7 +72,6 @@ public class Grid {
      * @return value returned by the BoardElement's interact() method
      */
     public ScoreValue interact(int row, int col) {
-
         return getCell(row, col).interact();
     }
 
