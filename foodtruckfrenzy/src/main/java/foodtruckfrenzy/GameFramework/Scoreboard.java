@@ -30,11 +30,11 @@ public class Scoreboard extends JPanel {
     // Labels for the ScoreBoard Data
     private JLabel _scoreLabel = new JLabel("Score: ");
     private JLabel _scoreTotal = new JLabel("0");
-    private JLabel _ingredientsLabel = new JLabel("Ingredients Found: 0");
-    private JLabel _recipesLabel = new JLabel("Recipes Found: 0");
-    private JLabel _damageLabel = new JLabel("Damage: "); 
+    private JLabel _ingredientsLabel = new JLabel("Ingredients Found:");
+    private JLabel _recipesLabel = new JLabel("Recipes Found:");
+    private JLabel _damageLabel = new JLabel("Damage:"); 
     private JLabel _fineLabel = new JLabel("Fines: ");
-    private JLabel _timeLabel = new JLabel("Time: 00:00");
+    private JLabel _timeLabel = new JLabel("Time:");
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
 
@@ -66,6 +66,10 @@ public class Scoreboard extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBackground(COLOR_BACKGROUND);
     
+        // score = player.getScoreInt();
+        // ingredientsFound = player.getIngredientsFound();
+
+
         JPanel leftPanel = createLeftPanel();
         JPanel centerPanel = createCenterPanel();
         JPanel rightPanel = createRightPanel();
@@ -75,9 +79,17 @@ public class Scoreboard extends JPanel {
         add(rightPanel, BorderLayout.EAST);
     
         this.player = player;
+
     
         ingredientsDiscoverable = Food.getCount();
         recipesDiscoverable = Recipe.getCount();
+
+        updateScore(0);
+        updateIngredients(0);
+        updateRecipes(0);
+        updateFines(0);
+        updateDamage(0);
+        
         simpleTimer();
         _timer.start();
     }
@@ -174,26 +186,22 @@ public class Scoreboard extends JPanel {
         int newFines = player.getFines();
         int newScore = player.getScoreInt();
 
-        // update scoreboard values and labels if the values have changed
+
+        //make updates only if new values from gameplay
         if (ingredientsFound != newIngredientsFound) {
-            ingredientsFound = newIngredientsFound;
-            _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+            updateIngredients(newIngredientsFound);
         }
         if (recipesFound != newRecipesFound) { 
-            recipesFound = newRecipesFound;
-            _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+            updateRecipes(newRecipesFound);
         }
         if (damage != newDamage) {
-            damage = newDamage;
-            _damageLabel.setText("Damages: " + damage);
+            updateDamage(newDamage);
         }
         if (fines != newFines) {
-            fines = newFines;
-            _fineLabel.setText("Speed Fines: " + fines);
+            updateFines(newFines);
         }
         if (score != newScore) {
-            score = newScore;
-        _scoreTotal.setText(Integer.toString(score));
+            updateScore(newScore);
         }
 
         // adjust font color accordingly
@@ -211,6 +219,33 @@ public class Scoreboard extends JPanel {
         }
       
     }
+
+    private void updateScore(int score) {
+        this.score = score;
+        _scoreTotal.setText(Integer.toString(score));   
+    }
+
+    private void updateFines(int fines) {
+        this.fines = fines;
+        _fineLabel.setText("Speed Fines: " + fines);
+    }
+
+    private void updateDamage(int damage) {
+        this.damage = damage;
+        _damageLabel.setText("Damages: " + damage);
+    }
+
+    private void updateRecipes(int recipesFound) {
+        this.recipesFound = recipesFound;
+        _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+    }
+
+    private void updateIngredients(int ingredientsFound) {
+        this.ingredientsFound = ingredientsFound;
+        _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+    }
+
+    
     /**
     * Sets up a simple timer to keep track of the time elapsed in the game.
     * The timer increments every second and updates the time elapsed on the scoreboard.
