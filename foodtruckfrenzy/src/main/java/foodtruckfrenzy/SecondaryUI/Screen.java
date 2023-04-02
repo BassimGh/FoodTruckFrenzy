@@ -115,7 +115,7 @@ public class Screen extends JPanel {
      * @param height the specific height
      * @return the resized image
      */
-    private static BufferedImage resize(BufferedImage img, int width, int height) {
+    static BufferedImage resize(BufferedImage img, int width, int height) {
         Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
