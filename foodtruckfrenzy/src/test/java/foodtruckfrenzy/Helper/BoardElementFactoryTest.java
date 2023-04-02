@@ -254,7 +254,7 @@ public class BoardElementFactoryTest {
     }
 
     @Test
-    void testIllegalArgumentExceptionType() {
+    void testIllegalArgumentExceptionTypeNull() {
         assertThrows(IllegalArgumentException.class, () -> {
             boardElementFactory.create(null, 1, 2);
         });
@@ -289,7 +289,7 @@ public class BoardElementFactoryTest {
     }
 
     @Test
-    void testIllegalArgumentExceptionInvalidDrawable() {
+    void testIllegalArgumentExceptionTypeInvalid() {
         assertThrows(IllegalArgumentException.class, () -> {
             boardElementFactory.create(LayoutEnum.Z, 0, 0);
         });
