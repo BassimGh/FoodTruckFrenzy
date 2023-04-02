@@ -57,7 +57,7 @@ public class SpriteLoader {
             
             _imagesEnumMap.put(DrawableEnum.HORIZONTAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("road/Horizontal.png")));
             _imagesEnumMap.put(DrawableEnum.VERTICAL_ROAD, new ImageIcon(SpriteLoader.class.getResource("road/Vertical.png")));
-            _imagesEnumMap.put(DrawableEnum.FOUR_WAY_INTERSECT, new ImageIcon(SpriteLoader.class.getResource("road/FourWay.png")));
+            _imagesEnumMap.put(DrawableEnum.FOUR_WAY, new ImageIcon(SpriteLoader.class.getResource("road/FourWay.png")));
 
             _imagesEnumMap.put(DrawableEnum.SOUTH_EAST_CORNER, new ImageIcon(SpriteLoader.class.getResource("road/SouthEastCorner.png")));
             _imagesEnumMap.put(DrawableEnum.SOUTH_WEST_CORNER, new ImageIcon(SpriteLoader.class.getResource("road/SouthWestCorner.png")));

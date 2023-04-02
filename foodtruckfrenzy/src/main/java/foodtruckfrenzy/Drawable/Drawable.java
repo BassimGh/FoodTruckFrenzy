@@ -72,6 +72,10 @@ public abstract class Drawable {
         _image = SpriteLoader.getImage(this._type);
     }
 
+    public DrawableEnum getType() {
+        return _type;
+    }
+
     /**
      * Draws the Drawable object's sprite onto the specified grid
      * @param g2d Graphics2D object corresponding to the specified grid

@@ -8,6 +8,7 @@ import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.PotHole;
 import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Item.SpeedTrap;
+import foodtruckfrenzy.GameFramework.Grid;
 
 /**
  * Factory method class which allows for the creation of various board elements
@@ -22,13 +23,23 @@ public class BoardElementFactory {
      * @return new Boardelement object based off specified parameters
      */
     public BoardElement create(LayoutEnum type, int row, int col) {
+        
+        if (row < 0 || row >= Grid.ROWS)
+            throw new IllegalArgumentException("Invalid Row");
+
+        if (col < 0 || col >= Grid.COLS)
+            throw new IllegalArgumentException("Invalid Column");
+            
+        if (type == null)
+            throw new IllegalArgumentException("Type cannot be null", new NullPointerException());
+
         switch (type) {
             case H:
                 return new Road(row, col, null, DrawableEnum.HORIZONTAL_ROAD);
             case V:
                 return new Road(row, col, null, DrawableEnum.VERTICAL_ROAD);
             case X:
-                return new Road(row, col, null, DrawableEnum.FOUR_WAY_INTERSECT);
+                return new Road(row, col, null, DrawableEnum.FOUR_WAY);
 
             case U:
                 return new Road(row, col, null, DrawableEnum.NORTH_WEST_CORNER);
@@ -65,7 +76,7 @@ public class BoardElementFactory {
                 return new Road(row, col, new Recipe(row, col), DrawableEnum.HORIZONTAL_ROAD);
             
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid LayoutEnum type specified. Unable to find in switch statement.");
         }
     }
 }

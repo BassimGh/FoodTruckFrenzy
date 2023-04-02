@@ -28,8 +28,12 @@ package foodtruckfrenzy.Helper;
     B: East three-way
     M: South three-way
     C: West three-way 
+
+    Z: Invalid - used for testing
  */
 enum LayoutEnum {
+    Z,
+
     H,
     V,
     X,
