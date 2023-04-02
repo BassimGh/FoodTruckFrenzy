@@ -22,7 +22,7 @@ public enum DrawableEnum {
 
     HORIZONTAL_ROAD,
     VERTICAL_ROAD,
-    FOUR_WAY_INTERSECT,
+    FOUR_WAY,
 
     NORTH_WEST_CORNER,
     NORTH_EAST_CORNER,

@@ -62,4 +62,8 @@ public class Road extends BoardElement {
 
         return new ScoreValue(scoreType, value);
     }
+
+    public Item getItem() {
+        return _item;
+    }
 }

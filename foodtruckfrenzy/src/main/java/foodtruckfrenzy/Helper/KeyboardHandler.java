@@ -53,7 +53,7 @@ public class KeyboardHandler implements KeyListener {
      * Returns whether p is pressed
      * @return true if p is pressed, false if not
      */
-    public boolean pause() {
+    public boolean pausePressed() {
         return _pause;
     }
 
@@ -74,19 +74,15 @@ public class KeyboardHandler implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_UP:
-            case KeyEvent.VK_W:
                 _upPressed = true;
                 break;
             case KeyEvent.VK_DOWN:
-            case KeyEvent.VK_S:
                 _downPressed = true;
                 break;
             case KeyEvent.VK_LEFT:
-            case KeyEvent.VK_A:
                 _leftPressed = true;
                 break;
             case KeyEvent.VK_RIGHT:
-            case KeyEvent.VK_D:
                 _rightPressed = true;
                 break;
             case KeyEvent.VK_P:
