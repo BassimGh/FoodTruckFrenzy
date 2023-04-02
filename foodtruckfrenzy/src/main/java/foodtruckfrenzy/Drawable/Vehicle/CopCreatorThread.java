@@ -26,7 +26,7 @@ public class CopCreatorThread extends Thread {
      */
     @Override
     public void run() {
-        _cop.getDirections();
+        _cop.initDirections();
     }
 
     /**

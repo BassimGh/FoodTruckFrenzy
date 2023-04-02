@@ -104,7 +104,7 @@ public class Cop extends Vehicle {
      * directions arrayList.
      * Alrogirhtm is implemented with a breadth-first search.
      */
-    public void getDirections() {
+    void initDirections() {
         target = new Position(foodtruck.getRow(), foodtruck.getCol(), null);
         LinkedList<Position> path = new LinkedList<>();
         
@@ -159,7 +159,7 @@ public class Cop extends Vehicle {
      * @return ArrayList of Position objects containing ordered coordinates the path
      * from the origin (cop) to the food truck.
      */
-    public LinkedList<Position> getPath(Position pos) {
+    private LinkedList<Position> getPath(Position pos) {
         LinkedList<Position> path = new LinkedList<>();
 
         path.add(pos);
@@ -179,7 +179,7 @@ public class Cop extends Vehicle {
      * Checks whether adjeacent cells of a given position are roads and adds them
      * to the queue for the depth-first search if they are.
      */
-    public void checkAdjacentCells(Position pos) {
+    private void checkAdjacentCells(Position pos) {
 
         // check upper adjacent cell
         if (pos.row - 1 >= 0 && !visited.contains(new Position(pos.row - 1, pos.col, pos)) 
