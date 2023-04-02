@@ -21,7 +21,7 @@ public class BoardElementFactory {
      * @param col column that the new BoardElement will be on a grid
      * @return new Boardelement object based off specified parameters
      */
-    public static BoardElement create(LayoutEnum type, int row, int col) {
+    public BoardElement create(LayoutEnum type, int row, int col) {
         switch (type) {
             case H:
                 return new Road(row, col, null, DrawableEnum.HORIZONTAL_ROAD);
