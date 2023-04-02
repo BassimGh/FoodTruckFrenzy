@@ -12,9 +12,9 @@ import foodtruckfrenzy.GameFramework.Grid;
  */
 public class MapLayout {
 
-    private static LayoutEnum[][] layout;
+    private LayoutEnum[][] layout;
 
-    static {
+    public MapLayout() {
         InputStream inputStream = MapLayout.class.getResourceAsStream("layout.csv");
         Scanner scanner = new Scanner(inputStream);
         layout = new LayoutEnum[Grid.ROWS][Grid.COLS];
@@ -36,7 +36,7 @@ public class MapLayout {
      * @param col column of specified BoardElementEnumt to return
      * @return BoardElementEnum that was specified is returned
      */
-    public static LayoutEnum getElementAt(int row, int col) {
+    public LayoutEnum getElementAt(int row, int col) {
         return layout[row][col];
     }
 }

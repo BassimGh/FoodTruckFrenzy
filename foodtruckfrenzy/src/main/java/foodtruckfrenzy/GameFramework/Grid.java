@@ -27,10 +27,11 @@ public class Grid {
      */
     public Grid() {
         BoardElementFactory boardElementFactory = new BoardElementFactory();
+        MapLayout mapLayout = new MapLayout();
         _grid = new BoardElement[ROWS][COLS];
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
-                _grid[i][j] = boardElementFactory.create(MapLayout.getElementAt(i, j), i, j);
+                _grid[i][j] = boardElementFactory.create(mapLayout.getElementAt(i, j), i, j);
             }
         }
     }
