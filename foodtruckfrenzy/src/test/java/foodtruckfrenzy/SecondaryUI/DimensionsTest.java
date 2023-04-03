@@ -10,7 +10,7 @@ public class DimensionsTest {
     private Dimensions dimensions;
 
     @Before
-    public void setUp() {
+    public void setup() {
         dimensions = new Dimensions(10,15);
     }
 

@@ -10,7 +10,7 @@ public class ImagePathsTest {
     private ImagePaths imagePaths;
 
     @Before
-    public void setUp() {
+    public void setup() {
         imagePaths = new ImagePaths("backgroundPath", "button1path", "button2path");
     }
 

@@ -33,7 +33,7 @@ public class ScreenTest {
     private GridBagConstraints gbc;
 
     @Before
-    public void setUp() {
+    public void setup() {
         imagePaths = new ImagePaths("youlose.png", "restart.png", "exit.png");
         topListener = mock(ActionListener.class);
         bottomListener = mock(ActionListener.class);

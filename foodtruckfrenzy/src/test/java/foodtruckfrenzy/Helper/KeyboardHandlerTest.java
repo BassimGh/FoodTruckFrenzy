@@ -10,7 +10,7 @@ class KeyboardHandlerTest {
     private KeyboardHandler keyboardHandler;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         keyboardHandler = new KeyboardHandler();
     }
 

@@ -11,7 +11,7 @@ public class ScoreboardTest {
     private FoodTruck player;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         player = new FoodTruck(0, 0, null);
         scoreboard = new Scoreboard(player);
     }
