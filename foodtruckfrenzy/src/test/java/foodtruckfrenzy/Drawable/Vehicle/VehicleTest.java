@@ -6,14 +6,12 @@ import org.junit.jupiter.api.*;
 import foodtruckfrenzy.GameFramework.Grid;
 
 public class VehicleTest {
-    Grid grid;
-    FoodTruck player;
-    Vehicle vehicle;
+    private Grid grid;
+    private Vehicle vehicle;
 
     @BeforeEach                  
     void setup() {
         grid = new Grid();
-        player = new FoodTruck(0, 0, grid);
         vehicle = new Vehicle(11, 8, grid, null);
     }
 

@@ -8,9 +8,9 @@ import foodtruckfrenzy.GameFramework.Grid;
 
 
 public class CopTest {
-    Grid grid;
-    FoodTruck player;
-    Cop cop;
+    private Grid grid;
+    private FoodTruck player;
+    private Cop cop;
 
     @BeforeEach                                         
     void setup() {

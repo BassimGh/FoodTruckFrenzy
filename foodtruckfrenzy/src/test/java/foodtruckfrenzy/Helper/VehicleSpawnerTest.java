@@ -11,8 +11,8 @@ import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.GameFramework.Grid;
 
 public class VehicleSpawnerTest {
-    VehicleSpawner vehicleSpawner;
-    Grid grid;
+    private VehicleSpawner vehicleSpawner;
+    private Grid grid;
 
     @BeforeEach
     void setup() {

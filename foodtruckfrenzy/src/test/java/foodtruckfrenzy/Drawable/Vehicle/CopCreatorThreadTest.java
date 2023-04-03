@@ -5,9 +5,9 @@ import org.junit.jupiter.api.*;
 import foodtruckfrenzy.GameFramework.Grid;
 
 public class CopCreatorThreadTest {
-    Grid grid;
-    FoodTruck player;
-    CopCreatorThread copCreatorThread;
+    private Grid grid;
+    private FoodTruck player;
+    private CopCreatorThread copCreatorThread;
 
     @BeforeEach                                         
     void setup() {
