@@ -62,6 +62,8 @@ public class GameFrame extends JFrame {
         _scoreboardPanel = new Scoreboard(mainCharacter); 
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
 
+        mainCharacter.setScoreboard(_scoreboardPanel);
+
         gameAndScorePane.add(_gamePanel, BorderLayout.CENTER);
         gameAndScorePane.add(_scoreboardPanel, BorderLayout.NORTH);
 
