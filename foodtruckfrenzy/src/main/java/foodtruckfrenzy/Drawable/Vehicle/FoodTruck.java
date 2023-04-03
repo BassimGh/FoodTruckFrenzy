@@ -145,6 +145,22 @@ public class FoodTruck extends Vehicle {
     
     }
 
+    /*
+     * Increments ingredientsFound by 1
+     * created for testing
+     */
+    public void addIngredientsFound() {
+        ingredientsFound++;
+    }
+
+    /*
+     * Increments recipesFound by 1
+     * created for testing
+     */
+    public void addRecipesFound() {
+        recipesFound++;
+    }
+
     /**
      * Returns the number of recipes found by the Food Truck during gameplay.
      * @return an int representing the number of recipes found by the food truck.
@@ -183,6 +199,7 @@ public class FoodTruck extends Vehicle {
         this.fines -= fine;
     
     }
+
 
     /**
      * Returns the fines total amount accumulated by the Food Truck.

@@ -12,7 +12,7 @@ public class ScoreValue {
     /**
      * ScoreValue constructor to create a new pair of type and value
      * @param scoreType ScoreType type of score 
-     * @param value int vlaue of score
+     * @param value int value of score
      */
     public ScoreValue(ScoreType scoreType, int value){
         _scoreType = scoreType;
