@@ -6,11 +6,20 @@ import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 
+/**
+ * The GameConditions class is responsible for checking win and loss conditions
+ */
 public class GameConditions {
     
     private ArrayList<Cop> _cops;
     private FoodTruck _foodTruck;
 
+    /**
+     * Constructs a new GameConditions object that checks the win and loss
+     * conditions for the specified FoodTruck and Cop instances.
+     * @param cops      the ArrayList of Cop instances in the game
+     * @param foodTruck the FoodTruck instance representing the player
+     */
     GameConditions(ArrayList<Cop> cops, FoodTruck foodTruck) {
         _cops = cops;
         _foodTruck = foodTruck;
