@@ -354,5 +354,9 @@ public class Scoreboard extends JPanel {
         return score;
     }
 
+    public int getIngredientsDiscoverable() {
+        return ingredientsDiscoverable;
+    }
+
 }
 

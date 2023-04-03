@@ -2,7 +2,6 @@ package foodtruckfrenzy.GameFramework;
 
 import java.util.ArrayList;
 
-import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 
@@ -50,6 +49,6 @@ public class GameConditions {
      * @return true if there is a successful win, otherwise false
      */
     boolean checkWin() {
-        return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _scoreboard.getIngredientsFound() >= Food.getCount();
+        return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _scoreboard.getIngredientsFound() >= _scoreboard.getIngredientsDiscoverable();
     }
 }

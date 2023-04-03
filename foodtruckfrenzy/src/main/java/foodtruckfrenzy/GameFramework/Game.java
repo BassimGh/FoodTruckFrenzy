@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
-import foodtruckfrenzy.Drawable.Item.Food;
-import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.Helper.BoardElementFactory;
@@ -43,9 +41,6 @@ public class Game {
      * Creates everything needed to run the game instance
      */
     public Game() {
-        Food.resetCount();
-        Recipe.resetCount();
-
         Grid grid = new Grid(new BoardElementFactory(), new MapLayout());
         Scoreboard scoreboard = new Scoreboard(grid.getIngredientsDiscoverable(), grid.getRecipesDiscoverable());
         VehicleSpawner spawner = new VehicleSpawner(grid, scoreboard);
