@@ -1,15 +1,16 @@
 package foodtruckfrenzy.SecondaryUI;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+
+import static org.mockito.Mockito.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.junit.Before;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import foodtruckfrenzy.GameFramework.Scoreboard;
 
+import javax.swing.JLabel;
+
+import foodtruckfrenzy.GameFramework.Scoreboard;
 
 public class GameOverScreenTest {
 
@@ -19,23 +20,11 @@ public class GameOverScreenTest {
     private ImagePaths imagePaths;
     private Scoreboard scoreboard;
 
-    @Before
+    @BeforeEach
     public void setup() {
-        // Create a dummy ActionListener for the start button
-        ActionListener startListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Do nothing
-            }
-        };
-        
-        // Create a dummy ActionListener for the exit button
-        ActionListener exitListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Do nothing
-            }
-        };
+        startListener = mock(ActionListener.class);
+        exitListener = mock(ActionListener.class);
+        imagePaths = new ImagePaths("background.png", "restart.png", "exit.png");
 
 
         // Create a dummy Scoreboard object
@@ -71,5 +60,14 @@ public class GameOverScreenTest {
         assertEquals(100, fines);
         assertEquals(500, score);
         assertEquals("01:30", time);
+    }
+
+    @Test
+    public void testGameOverScreen() {
+        GameOverScreen gameOverScreen = new GameOverScreen(startListener, exitListener, imagePaths, scoreboard);
+
+        // Check that the final scores were correctly displayed
+        JLabel scoresLabel = (JLabel) gameOverScreen.getComponent(1);
+        assertEquals("FOUND: 10 Ingredients & 5 Recipes    TIME: 01:30    DAMAGE: 20   FINES: 100   SCORE: 500", scoresLabel.getText());
     }
 }

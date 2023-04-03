@@ -1,16 +1,12 @@
 package foodtruckfrenzy.SecondaryUI;
-
-import org.junit.Before;
-import org.junit.Test;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 import static org.mockito.Mockito.mock;
 
@@ -32,8 +27,8 @@ public class ScreenTest {
     private JPanel buttonPanel;
     private GridBagConstraints gbc;
 
-    @Before
-    public void setup() {
+    @BeforeEach
+    void setup() {
         imagePaths = new ImagePaths("youlose.png", "restart.png", "exit.png");
         topListener = mock(ActionListener.class);
         bottomListener = mock(ActionListener.class);

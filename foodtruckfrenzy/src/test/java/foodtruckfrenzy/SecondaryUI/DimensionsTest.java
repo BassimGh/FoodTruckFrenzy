@@ -1,15 +1,12 @@
 package foodtruckfrenzy.SecondaryUI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class DimensionsTest {
     private Dimensions dimensions;
 
-    @Before
+    @BeforeEach
     public void setup() {
         dimensions = new Dimensions(10,15);
     }
