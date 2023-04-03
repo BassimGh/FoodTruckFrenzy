@@ -4,7 +4,7 @@ import foodtruckfrenzy.GameFramework.Grid;
 
 /**
  * CopCreatorThread is responsible for creating a new cop instance
- * When calling start(), the cop will intialize and the getDirections is run
+ * When calling start(), the cop will intialize and the initDirections is run
  */
 public class CopCreatorThread extends Thread {
     
