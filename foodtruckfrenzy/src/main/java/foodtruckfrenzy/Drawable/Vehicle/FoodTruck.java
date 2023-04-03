@@ -6,6 +6,7 @@ import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.Drawable.Item.ScoreType;
 import foodtruckfrenzy.Drawable.Item.ScoreValue;
 import foodtruckfrenzy.GameFramework.Grid;
+import foodtruckfrenzy.GameFramework.Scoreboard;
 
 /**
  * Represents a Food Truck object that can move around a grid and interact with different score values on the grid.
@@ -19,6 +20,8 @@ public class FoodTruck extends Vehicle {
     private int score;  // total score incurred by Food Truck player
     private int ingredientsFound; 
     private int recipesFound;
+
+    private Scoreboard scoreboard;
 
     private ArrayList<Cop> _cops = new ArrayList<Cop>();
 
@@ -48,6 +51,15 @@ public class FoodTruck extends Vehicle {
         }
 
         return moved;
+    }
+
+    
+    /**
+     * 
+     * @param scoreboard
+     */
+    public void setScoreboard(Scoreboard scoreboard) {
+        this.scoreboard = scoreboard;
     }
 
     /**
