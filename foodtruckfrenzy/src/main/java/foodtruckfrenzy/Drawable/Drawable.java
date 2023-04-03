@@ -72,6 +72,10 @@ public abstract class Drawable {
         _image = SpriteLoader.getImage(this._type);
     }
 
+    /**
+     * Gets the DrawableEnum type stored in the object
+     * @return DrawableEnum type stored in the object
+     */
     public DrawableEnum getType() {
         return _type;
     }
