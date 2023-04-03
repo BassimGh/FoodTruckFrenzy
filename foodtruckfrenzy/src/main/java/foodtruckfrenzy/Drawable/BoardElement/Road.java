@@ -50,7 +50,7 @@ public class Road extends BoardElement {
     @Override
     public ScoreValue interact() {
         
-        if (_item == null)
+        if (_item == null || _item instanceof Glitter)
             return null;
 
         int value = _item.getValue();
