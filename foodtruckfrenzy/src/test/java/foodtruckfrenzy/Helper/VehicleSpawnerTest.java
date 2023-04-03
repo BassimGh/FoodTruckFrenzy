@@ -16,7 +16,7 @@ public class VehicleSpawnerTest {
 
     @BeforeEach
     void setup() {
-        grid = new Grid();
+        grid = new Grid(new BoardElementFactory(), new MapLayout());
         vehicleSpawner = new VehicleSpawner(grid);
     }
 
