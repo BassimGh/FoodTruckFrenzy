@@ -53,10 +53,10 @@ public class FoodTruck extends Vehicle {
         return moved;
     }
 
-    
+
     /**
-     * 
-     * @param scoreboard
+     * Sets the scoreboard value for the foodtruck 
+     * @param scoreboard represents the scoreboard where the stats / score are displayed
      */
     public void setScoreboard(Scoreboard scoreboard) {
         this.scoreboard = scoreboard;
