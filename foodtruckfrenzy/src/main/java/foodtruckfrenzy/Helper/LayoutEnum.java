@@ -31,7 +31,7 @@ package foodtruckfrenzy.Helper;
 
     Z: Invalid - used for testing
  */
-enum LayoutEnum {
+public enum LayoutEnum {
     Z,
 
     H,

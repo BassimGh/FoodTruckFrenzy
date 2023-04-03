@@ -3,6 +3,7 @@ package foodtruckfrenzy.GameFramework;
 import java.awt.Graphics2D;
 
 import foodtruckfrenzy.Drawable.BoardElement.BoardElement;
+import foodtruckfrenzy.Drawable.BoardElement.Obstruction;
 import foodtruckfrenzy.Drawable.Item.ScoreValue;
 import foodtruckfrenzy.Helper.BoardElementFactory;
 import foodtruckfrenzy.Helper.MapLayout;
@@ -25,9 +26,7 @@ public class Grid {
      * Initliazes a new BoardElement 2d array at ROWS x COLS
      * Fills the grid up with elements from Map Layout
      */
-    public Grid() {
-        BoardElementFactory boardElementFactory = new BoardElementFactory();
-        MapLayout mapLayout = new MapLayout();
+    public Grid(BoardElementFactory boardElementFactory, MapLayout mapLayout) {
         _grid = new BoardElement[ROWS][COLS];
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
@@ -57,13 +56,13 @@ public class Grid {
     }
 
     /**
-     * Calls the isObstruction() method of the specified BoardElement
+     * Checks if the specified row and column is an obstruction
      * @param row row of specified BoardElement
      * @param col column of specified BoardElement
-     * @return value returned by the BoardElement's isObstruction() method
+     * @return true is specified row and column of grid is an obstruction, false if not
      */
     public boolean isObstruction(int row, int col) {
-        return _grid[row][col].isObstruction();
+        return _grid[row][col] instanceof Obstruction;
     }
 
     /**

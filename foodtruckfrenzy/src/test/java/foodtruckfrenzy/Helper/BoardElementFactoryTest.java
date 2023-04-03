@@ -15,7 +15,7 @@ import foodtruckfrenzy.Drawable.Item.SpeedTrap;
 import foodtruckfrenzy.GameFramework.Grid;
 
 public class BoardElementFactoryTest {
-    BoardElementFactory boardElementFactory;
+    private BoardElementFactory boardElementFactory;
 
     @BeforeEach                                         
     void setup() {

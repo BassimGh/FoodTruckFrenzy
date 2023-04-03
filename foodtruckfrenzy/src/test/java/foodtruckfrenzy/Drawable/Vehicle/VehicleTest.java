@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 import foodtruckfrenzy.GameFramework.Grid;
+import foodtruckfrenzy.Helper.BoardElementFactory;
+import foodtruckfrenzy.Helper.MapLayout;
 
 public class VehicleTest {
     private Grid grid;
@@ -11,7 +13,7 @@ public class VehicleTest {
 
     @BeforeEach                  
     void setup() {
-        grid = new Grid();
+        grid = new Grid(new BoardElementFactory(), new MapLayout());
         vehicle = new Vehicle(11, 8, grid, null);
     }
 

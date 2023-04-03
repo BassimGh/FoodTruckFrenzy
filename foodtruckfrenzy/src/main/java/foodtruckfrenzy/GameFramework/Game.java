@@ -10,7 +10,9 @@ import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
+import foodtruckfrenzy.Helper.BoardElementFactory;
 import foodtruckfrenzy.Helper.KeyboardHandler;
+import foodtruckfrenzy.Helper.MapLayout;
 import foodtruckfrenzy.Helper.VehicleSpawner;
 import foodtruckfrenzy.SecondaryUI.Frame;
 import foodtruckfrenzy.SecondaryUI.ScreenType;
@@ -41,7 +43,7 @@ public class Game {
         Food.resetCount();
         Recipe.resetCount();
 
-        Grid grid = new Grid();
+        Grid grid = new Grid(new BoardElementFactory(), new MapLayout());
 
         VehicleSpawner spawner = new VehicleSpawner(grid);
         FoodTruck mainCharacter = spawner.getFoodTruck();
