@@ -68,7 +68,7 @@ public class ScreenTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void testScreenComponents() {
         Screen screen = new Screen(topListener, bottomListener, imagePaths, dimensions);
         assertEquals(foodtruckfrenzy.SecondaryUI.Screen.class, screen.getClass());
         assertEquals(GridBagLayout.class, screen.getLayout().getClass());
