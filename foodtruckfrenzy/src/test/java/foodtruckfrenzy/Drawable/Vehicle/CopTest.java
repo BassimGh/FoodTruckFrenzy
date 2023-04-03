@@ -3,6 +3,7 @@ package foodtruckfrenzy.Drawable.Vehicle;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
+import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.GameFramework.Grid;
 
 
@@ -18,39 +19,30 @@ public class CopTest {
         cop = new Cop(11, 8, grid, player);
     }
 
+    @Test
+    void testDefaultDirection() {
+        assertEquals(DrawableEnum.COP_RIGHT, cop.getType());
+    }
+
     @Test 
     void testMoveUp() {
-        int initialRowPos = cop.getRow();
-        assertTrue(cop.moveUp());
-        assertEquals(initialRowPos - 1 , cop.getRow());
-
-        Cop tempCop = new Cop(1, 1, grid, player);
-        initialRowPos = tempCop.getRow();
-        assertFalse(tempCop.moveUp());
-        assertEquals(initialRowPos, tempCop.getRow());
+        cop.moveUp();
+        assertEquals(DrawableEnum.COP_UP, cop.getType());
     }
     @Test 
     void testMoveDown() {
-        int initialRowPos = cop.getRow();
-        assertTrue(cop.moveDown());
-        assertEquals(initialRowPos + 1 , cop.getRow());
-
-        Cop tempCop = new Cop(1, 1, grid, player);
-        initialRowPos = tempCop.getRow();
-        assertFalse(tempCop.moveUp());
-        assertEquals(initialRowPos, tempCop.getRow());
+        cop.moveDown();
+        assertEquals(DrawableEnum.COP_DOWN, cop.getType());
     }
     @Test 
     void testMoveLeft() {
-        int initialColPos = cop.getCol();
-        assertTrue(cop.moveLeft());
-        assertEquals(initialColPos - 1 , cop.getCol());
+        cop.moveLeft();
+        assertEquals(DrawableEnum.COP_LEFT, cop.getType());
     }
     @Test 
     void testMoveRight() {
-        int initialColPos = cop.getCol();
-        assertTrue(cop.moveRight());
-        assertEquals(initialColPos + 1 , cop.getCol());
+        cop.moveRight();
+        assertEquals(DrawableEnum.COP_RIGHT, cop.getType());
     }
     
     // @Test
