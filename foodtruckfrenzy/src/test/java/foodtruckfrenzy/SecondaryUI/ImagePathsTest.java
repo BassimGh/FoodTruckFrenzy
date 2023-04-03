@@ -1,15 +1,12 @@
 package foodtruckfrenzy.SecondaryUI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class ImagePathsTest {
     private ImagePaths imagePaths;
 
-    @Before
+    @BeforeEach
     public void setup() {
         imagePaths = new ImagePaths("backgroundPath", "button1path", "button2path");
     }

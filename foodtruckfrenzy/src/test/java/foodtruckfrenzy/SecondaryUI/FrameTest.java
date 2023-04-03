@@ -1,25 +1,11 @@
 package foodtruckfrenzy.SecondaryUI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import foodtruckfrenzy.GameFramework.Scoreboard;
 
@@ -29,8 +15,8 @@ public class FrameTest {
     private Screen screen;
     private Scoreboard scoreboard;
     
-    @Before
-    public void setup() {
+    @BeforeEach
+    public void setUp() {
         // Create a dummy Scoreboard object
         scoreboard = mock(Scoreboard.class);
         // Define the expected values of the scoreboard's methods
@@ -46,15 +32,15 @@ public class FrameTest {
         
     }
 
-    // @Test
-    // public void testFrameCreation() {
-    //     ScreenType screenType = ScreenType.TITLE;
-    //     Frame frame = new Frame(screenType, scoreboard);
-    //     Dimension expectedDimension = new Dimension(816,639);
-    //     assertEquals(expectedDimension, frame.getSize());
-    //     assertEquals("Food Truck Frenzy", frame.getTitle());
-    //     assertTrue(frame.isVisible());
-    // }
+    @Test
+    public void testFrameCreation() {
+        ScreenType screenType = ScreenType.TITLE;
+        Frame frame = new Frame(screenType, scoreboard);
+        Dimension expectedDimension = new Dimension(816,639);
+        assertEquals(expectedDimension, frame.getSize());
+        assertEquals("Food Truck Frenzy", frame.getTitle());
+        assertTrue(frame.isVisible());
+    }
 
     
     @Test
@@ -62,7 +48,7 @@ public class FrameTest {
         Frame titleFrame = new Frame(ScreenType.TITLE, scoreboard);
         titleFrame.setVisible(false);
         assertEquals("Food Truck Frenzy", titleFrame.getTitle());
-        assertTrue(titleFrame.getContentPane().getComponent(0) instanceof foodtruckfrenzy.SecondaryUI.TitleScreen);
+        assertTrue(titleFrame.getContentPane().getComponent(0) instanceof TitleScreen);
     }
     
 
@@ -71,7 +57,7 @@ public class FrameTest {
         Frame gameWonFrame = new Frame(ScreenType.GAME_WON, scoreboard);
         gameWonFrame.setVisible(false);
         assertEquals("Game Won!", gameWonFrame.getTitle());
-        assertTrue(gameWonFrame.getContentPane().getComponent(0) instanceof foodtruckfrenzy.SecondaryUI.GameWonScreen);
+        assertTrue(gameWonFrame.getContentPane().getComponent(0) instanceof GameWonScreen);
     }
     
     @Test
@@ -79,16 +65,7 @@ public class FrameTest {
         Frame gameLostFrame = new Frame(ScreenType.GAME_LOST, scoreboard);
         gameLostFrame.setVisible(false);
         assertEquals("Game Lost!", gameLostFrame.getTitle());
-        assertTrue(gameLostFrame.getContentPane().getComponent(0) instanceof foodtruckfrenzy.SecondaryUI.GameLostScreen);
+        assertTrue(gameLostFrame.getContentPane().getComponent(0) instanceof GameLostScreen);
     }
-
-    // @Test
-    // public void testFrameCentering() {
-    //     Frame frame = new Frame(ScreenType.TITLE, scoreboard);
-    //     Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
-    //     int expectedX = (screenDim.width - frame.getWidth()) / 2;
-    //     int expectedY = (screenDim.height - frame.getHeight()) / 2 - 19;
-    //     assertEquals(expectedX, frame.getLocation().x);
-    //     assertEquals(expectedY, frame.getLocation().y);
-    // }   
+    
 }
