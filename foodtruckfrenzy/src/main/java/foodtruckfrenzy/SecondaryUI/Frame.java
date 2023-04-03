@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 
-import foodtruckfrenzy.Main;
 import foodtruckfrenzy.GameFramework.Game;
 import foodtruckfrenzy.GameFramework.Scoreboard;
 
@@ -46,17 +45,6 @@ public class Frame extends JFrame {
             }
         };
 
-        ActionListener restartListener = new ActionListener() {
-            /**
-             * Is invoked when the restart button is clicked (restarts the game)
-             * @param e is the action event that occurred
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.main(null);
-                dispose();
-            }
-        };
 
         /**
          * Sets up the JFrame and Screen object based on desired screenType
@@ -75,12 +63,12 @@ public class Frame extends JFrame {
         
         switch(screenType) {
             case GAME_WON:
-                screen = new GameWonScreen(restartListener, closeAppListener, scoreboard);
+                screen = new GameWonScreen(startGameListener, closeAppListener, scoreboard);
                 this.setTitle("Game Won!");
                 break;
             
             case GAME_LOST:
-                screen = new GameLostScreen(restartListener, closeAppListener, scoreboard);
+                screen = new GameLostScreen(startGameListener, closeAppListener, scoreboard);
                 this.setTitle("Game Lost!");
                 break;
 
