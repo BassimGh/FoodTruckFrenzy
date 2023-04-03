@@ -5,6 +5,9 @@ import org.junit.jupiter.api.*;
 
 import static org.mockito.Mockito.*;
 
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,6 +49,37 @@ public class GameOverScreenTest {
     }
 
     @Test
+    public void testCreateLabel() {
+        // Call createLabel with some dummy text and font
+        String labelText = "Hello, world!";
+        Font labelFont = new Font("Arial", Font.PLAIN, 12);
+        JLabel label = gameOverScreen.createLabel(labelText, labelFont);
+
+        // Assert that the label has the correct text and font
+        assertEquals(labelText, label.getText());
+        assertEquals(labelFont, label.getFont());
+        assertNotNull(label);
+    }
+
+    @Test 
+    public void testAddLabel() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        // Call createLabel with some dummy text and font
+        String labelText = "Hello, world!";
+        Font labelFont = new Font("Arial", Font.PLAIN, 12);
+        JLabel label = gameOverScreen.createLabel(labelText, labelFont);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gameOverScreen.addLabel(label, gbc);
+
+        // Assert that the label is added to the panel as expected
+        assertEquals(3, gameOverScreen.getComponentCount()); // Expect 3 components
+        assertEquals(label, gameOverScreen.getComponent(2)); // Expect the label to be the third component
+    }
+
+    @Test
     public void correctScoreboardValues() {
         int ingredientsFound = scoreboard.getIngredientsFound();
         int recipesFound = scoreboard.getRecipesFound();
@@ -68,6 +102,6 @@ public class GameOverScreenTest {
 
         // Check that the final scores were correctly displayed
         JLabel scoresLabel = (JLabel) gameOverScreen.getComponent(1);
-        assertEquals("FOUND: 10 Ingredients & 5 Recipes    TIME: 01:30    DAMAGE: 20   FINES: 100   SCORE: 500", scoresLabel.getText());
+        assertEquals("FOUND: 10 Ingredients & 5 Recipes   TIME: 01:30   DAMAGE: 20   FINES: 100   SCORE: 500", scoresLabel.getText());
     }
 }
