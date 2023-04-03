@@ -18,7 +18,7 @@ public class BoardElementFactoryTest {
     BoardElementFactory boardElementFactory;
 
     @BeforeEach                                         
-    void setUp() {
+    void setup() {
         boardElementFactory = new BoardElementFactory();
     }
 

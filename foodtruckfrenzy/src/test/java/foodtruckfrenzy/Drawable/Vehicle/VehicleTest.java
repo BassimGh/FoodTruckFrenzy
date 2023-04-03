@@ -11,7 +11,7 @@ public class VehicleTest {
     Vehicle vehicle;
 
     @BeforeEach                  
-    void setUp() {
+    void setup() {
         grid = new Grid();
         player = new FoodTruck(0, 0, grid);
         vehicle = new Vehicle(11, 8, grid, null);

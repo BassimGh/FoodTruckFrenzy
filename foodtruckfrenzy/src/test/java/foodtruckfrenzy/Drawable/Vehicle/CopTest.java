@@ -13,7 +13,7 @@ public class CopTest {
     Cop cop;
 
     @BeforeEach                                         
-    void setUp() {
+    void setup() {
         grid = new Grid();
         player = new FoodTruck(0, 0, grid);
         cop = new Cop(11, 8, grid, player);

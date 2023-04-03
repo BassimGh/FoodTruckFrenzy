@@ -30,7 +30,7 @@ public class FrameTest {
     private Scoreboard scoreboard;
     
     @Before
-    public void setUp() {
+    public void setup() {
         // Create a dummy Scoreboard object
         scoreboard = mock(Scoreboard.class);
         // Define the expected values of the scoreboard's methods

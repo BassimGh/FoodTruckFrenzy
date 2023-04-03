@@ -20,7 +20,7 @@ public class GameOverScreenTest {
     private Scoreboard scoreboard;
 
     @Before
-    public void setUp() {
+    public void setup() {
         // Create a dummy ActionListener for the start button
         ActionListener startListener = new ActionListener() {
             @Override
