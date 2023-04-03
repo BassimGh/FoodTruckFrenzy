@@ -138,10 +138,6 @@ public class Game {
 
                     _frame.refresh();
 
-                    if (!_paused && gameConditions.checkLoss()) {
-                        loss();
-                    }
-
                     if (!_paused && gameConditions.checkWin()) {
                         win();
                     }
