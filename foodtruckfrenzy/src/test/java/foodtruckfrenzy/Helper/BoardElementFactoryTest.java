@@ -28,7 +28,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -40,7 +40,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.VERTICAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.VERTICAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -52,7 +52,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.FOUR_WAY, road.getType());
+        assertEquals(DrawableEnum.FOUR_WAY, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -64,7 +64,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.NORTH_WEST_CORNER, road.getType());
+        assertEquals(DrawableEnum.NORTH_WEST_CORNER, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -76,7 +76,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.NORTH_EAST_CORNER, road.getType());
+        assertEquals(DrawableEnum.NORTH_EAST_CORNER, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -88,7 +88,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.SOUTH_EAST_CORNER, road.getType());
+        assertEquals(DrawableEnum.SOUTH_EAST_CORNER, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -100,7 +100,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.SOUTH_WEST_CORNER, road.getType());
+        assertEquals(DrawableEnum.SOUTH_WEST_CORNER, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -112,7 +112,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.THREE_WAY_NORTH, road.getType());
+        assertEquals(DrawableEnum.THREE_WAY_NORTH, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -124,7 +124,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.THREE_WAY_EAST, road.getType());
+        assertEquals(DrawableEnum.THREE_WAY_EAST, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -136,7 +136,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.THREE_WAY_SOUTH, road.getType());
+        assertEquals(DrawableEnum.THREE_WAY_SOUTH, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -148,7 +148,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.THREE_WAY_WEST, road.getType());
+        assertEquals(DrawableEnum.THREE_WAY_WEST, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         assertNull(castedRoad.getItem());
@@ -169,7 +169,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         Item item = castedRoad.getItem();
@@ -184,7 +184,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         Item item = castedRoad.getItem();
@@ -199,7 +199,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.VERTICAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.VERTICAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         Item item = castedRoad.getItem();
@@ -214,7 +214,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         Item item = castedRoad.getItem();
@@ -229,7 +229,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.VERTICAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.VERTICAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         Item item = castedRoad.getItem();
@@ -244,7 +244,7 @@ public class BoardElementFactoryTest {
         assertTrue(road instanceof Road);
         assertEquals(1, road.getRow());
         assertEquals(2, road.getCol());
-        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getType());
+        assertEquals(DrawableEnum.HORIZONTAL_ROAD, road.getDrawableType());
 
         Road castedRoad = (Road) road;
         Item item = castedRoad.getItem();

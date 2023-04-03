@@ -26,7 +26,7 @@ public class ObstructionTest {
 
     @Test
     void testType() {
-        assertEquals(DrawableEnum.OBSTRUCTION, obstruction.getType());
+        assertEquals(DrawableEnum.OBSTRUCTION, obstruction.getDrawableType());
     }
 
     @Test
