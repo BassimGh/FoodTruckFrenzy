@@ -238,14 +238,7 @@ public class Scoreboard extends JPanel {
         });
     }
 
-    
-    /**
-    * Starts the timer for the scoreboard.
-    */
-    public void startTimer() {
-        _timer.start();
-    }
-
+   
     /**
      * Pauses the timer for the scoreboard. 
      */
