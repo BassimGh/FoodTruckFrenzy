@@ -36,10 +36,16 @@ public class FrameTest {
     public void testFrameCreation() {
         ScreenType screenType = ScreenType.TITLE;
         Frame frame = new Frame(screenType, scoreboard);
-        Dimension expectedDimension = new Dimension(816,639);
-        assertEquals(expectedDimension, frame.getSize());
-        assertEquals("Food Truck Frenzy", frame.getTitle());
-        assertTrue(frame.isVisible());
+        Dimension expectedDimension = new Dimension(810,639);
+        int tolerance = 15; //15 pixel margin of error to make up for differences between devices
+        assertAll("frame",
+        () -> assertTrue(frame.isVisible()),
+        () -> assertEquals("Food Truck Frenzy", frame.getTitle()),
+        () -> assertTrue(frame.getSize().width >= expectedDimension.width - tolerance && 
+                        frame.getSize().width <= expectedDimension.width + tolerance),
+        () -> assertTrue(frame.getSize().height >= expectedDimension.height - tolerance && 
+                        frame.getSize().height <= expectedDimension.height + tolerance)
+    );
     }
 
     
