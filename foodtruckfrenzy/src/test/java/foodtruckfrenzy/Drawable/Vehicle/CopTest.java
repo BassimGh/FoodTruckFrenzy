@@ -24,28 +24,28 @@ public class CopTest {
 
     @Test
     void testDefaultDirection() {
-        assertEquals(DrawableEnum.COP_RIGHT, cop.getType());
+        assertEquals(DrawableEnum.COP_RIGHT, cop.getDrawableType());
     }
 
     @Test 
     void testMoveUp() {
         cop.moveUp();
-        assertEquals(DrawableEnum.COP_UP, cop.getType());
+        assertEquals(DrawableEnum.COP_UP, cop.getDrawableType());
     }
     @Test 
     void testMoveDown() {
         cop.moveDown();
-        assertEquals(DrawableEnum.COP_DOWN, cop.getType());
+        assertEquals(DrawableEnum.COP_DOWN, cop.getDrawableType());
     }
     @Test 
     void testMoveLeft() {
         cop.moveLeft();
-        assertEquals(DrawableEnum.COP_LEFT, cop.getType());
+        assertEquals(DrawableEnum.COP_LEFT, cop.getDrawableType());
     }
     @Test 
     void testMoveRight() {
         cop.moveRight();
-        assertEquals(DrawableEnum.COP_RIGHT, cop.getType());
+        assertEquals(DrawableEnum.COP_RIGHT, cop.getDrawableType());
     }
     
     // @Test

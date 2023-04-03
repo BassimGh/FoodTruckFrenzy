@@ -76,7 +76,7 @@ public abstract class Drawable {
      * Gets the DrawableEnum type stored in the object
      * @return DrawableEnum type stored in the object
      */
-    public DrawableEnum getType() {
+    public DrawableEnum getDrawableType() {
         return _type;
     }
 
