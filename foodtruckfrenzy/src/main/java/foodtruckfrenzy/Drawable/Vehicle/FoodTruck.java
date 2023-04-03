@@ -126,20 +126,21 @@ public class FoodTruck extends Vehicle {
         int value = scoreValue.getValue();
         ScoreType scoreType = scoreValue.getScoreType();
 
-        this.score += value;
+        // this.score += value;
+        scoreboard.addScore(value);
 
         switch(scoreType) {
             case FOOD:
-                ingredientsFound++;
+                scoreboard.addIngredientsFound();
                 break;
             case DAMAGE:
-                addDamage(value);
+                scoreboard.addDamage(value);
                 break;
             case SPEED:
-                addFines(value);
+                scoreboard.addFines(value);
                 break;
             case BONUS:
-                recipesFound++;
+                scoreboard.addRecipesFound();
                 break;
             default:
                 break;

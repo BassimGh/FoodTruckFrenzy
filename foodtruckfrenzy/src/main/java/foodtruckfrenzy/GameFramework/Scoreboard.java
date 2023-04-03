@@ -81,10 +81,10 @@ public class Scoreboard extends JPanel {
         recipesDiscoverable = Recipe.getCount();
 
         updateScore(0);
-        updateIngredients(0);
-        updateRecipes(0);
-        updateFines(0);
-        updateDamage(0);
+        updateIngredientsLabel();
+        updateRecipesLabel();
+        updateFinesLabel();
+        updateDamageLabel();
         
         simpleTimer();
         _timer.start();
@@ -176,7 +176,7 @@ public class Scoreboard extends JPanel {
     public void update() {
 
         // retrieve new data from player
-        int newIngredientsFound = player.getIngredientsFound();
+        // int newIngredientsFound = player.getIngredientsFound();
         int newRecipesFound = player.getRecipesFound();
         int newDamage = player.getDamage();
         int newFines = player.getFines();
@@ -184,21 +184,21 @@ public class Scoreboard extends JPanel {
 
 
         //make updates only if new values from gameplay
-        if (ingredientsFound != newIngredientsFound) {
-            updateIngredients(newIngredientsFound);
-        }
-        if (recipesFound != newRecipesFound) { 
-            updateRecipes(newRecipesFound);
-        }
-        if (damage != newDamage) {
-            updateDamage(newDamage);
-        }
-        if (fines != newFines) {
-            updateFines(newFines);
-        }
-        if (score != newScore) {
-            updateScore(newScore);
-        }
+        // if (ingredientsFound != newIngredientsFound) {
+        //     // updateIngredientsLabel(newIngredientsFound);
+        // }
+        // if (recipesFound != newRecipesFound) { 
+        //     updateRecipesLabel(newRecipesFound);
+        // }
+        // if (damage != newDamage) {
+        //     updateDamageLabel(newDamage);
+        // }
+        // if (fines != newFines) {
+        //     updateFinesLabel(newFines);
+        // }
+        // if (score != newScore) {
+        //     updateScore(newScore);
+        // }
 
         // adjust font color accordingly
         if(score < 0) {
@@ -207,9 +207,9 @@ public class Scoreboard extends JPanel {
         if (score > 0) {
             _scoreTotal.setForeground(COLOR_YELLOW);
         }
-        if (newIngredientsFound == ingredientsDiscoverable) {
-            _ingredientsLabel.setForeground(COLOR_GREEN);
-        }
+        // if (newIngredientsFound == ingredientsDiscoverable) {
+        //     _ingredientsLabel.setForeground(COLOR_GREEN);
+        // }
         if (recipesFound == recipesDiscoverable) {
             _recipesLabel.setForeground(COLOR_GREEN);
         }
@@ -221,23 +221,23 @@ public class Scoreboard extends JPanel {
         _scoreTotal.setText(Integer.toString(score));   
     }
 
-    private void updateFines(int fines) {
-        this.fines = fines;
+    private void updateFinesLabel() {
+        // this.fines = fines;
         _fineLabel.setText("Speed Fines: " + fines);
     }
 
-    private void updateDamage(int damage) {
-        this.damage = damage;
+    private void updateDamageLabel() {
+        // this.damage = damage;
         _damageLabel.setText("Damages: " + damage);
     }
 
-    private void updateRecipes(int recipesFound) {
-        this.recipesFound = recipesFound;
+    private void updateRecipesLabel() {
+        // this.recipesFound = recipesFound;
         _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
     }
 
-    private void updateIngredients(int ingredientsFound) {
-        this.ingredientsFound = ingredientsFound;
+    private void updateIngredientsLabel() {
+        // this.ingredientsFound = ingredientsFound;
         _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
     }
 
@@ -312,11 +312,27 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+    * 
+    */
+    public void addIngredientsFound() {
+        ingredientsFound++;
+        updateIngredientsLabel();
+    }
+
+    /**
      * Returns the number of ingredients found by the player.
      * @return an integer representing the number of ingredients found by the player.
      */
     public int getIngredientsFound() {
         return ingredientsFound;
+    }
+
+    /**
+     * 
+     */
+    public void addRecipesFound() {
+        recipesFound++;
+        updateRecipesLabel();
     }
 
     /**
@@ -328,6 +344,15 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+     * 
+     * @param newDamage
+     */
+    public void addDamage(int newDamage) {
+        damage += newDamage;
+        updateDamageLabel();
+    }
+
+    /**
      * Returns the damage accumulated on the players foodtruck during gameplay.
      * @return an integer representing the negative score from accumulating damage.
      */
@@ -336,11 +361,25 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+     * 
+     * @param newFines
+     */
+    public void addFines(int newFines) {
+        fines += newFines;
+        updateFinesLabel();
+    }
+
+    /**
      * Returns the fines accumulated by the player during gameplay.
      * @return an integer representing the negative score from accumulating damage.
      */
     public int getFines() {
         return fines;
+    }
+
+    public void addScore(int newScore) {
+        score += newScore;
+        updateScore(score);
     }
 
     /**
