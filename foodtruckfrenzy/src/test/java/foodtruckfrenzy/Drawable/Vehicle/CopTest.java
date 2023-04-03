@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*;
 
 import foodtruckfrenzy.Drawable.DrawableEnum;
 import foodtruckfrenzy.GameFramework.Grid;
+import foodtruckfrenzy.Helper.BoardElementFactory;
+import foodtruckfrenzy.Helper.MapLayout;
 
 
 public class CopTest {
@@ -14,7 +16,7 @@ public class CopTest {
 
     @BeforeEach                                         
     void setup() {
-        grid = new Grid();
+        grid = new Grid(new BoardElementFactory(), new MapLayout());
         player = new FoodTruck(0, 0, grid);
         cop = new Cop(11, 8, grid, player);
     }
