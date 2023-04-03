@@ -48,6 +48,7 @@ public class Game {
         VehicleSpawner spawner = new VehicleSpawner(grid);
         FoodTruck mainCharacter = spawner.getFoodTruck();
         ArrayList<Cop> cops = spawner.getCops();
+        GameConditions gameConditions = new GameConditions(cops, mainCharacter);
 
         /**
          * Action listener for the pause menu which resumes the game on interaction
@@ -115,8 +116,8 @@ public class Game {
                     if (timerIndex > Integer.MAX_VALUE - 1)
                         timerIndex = 0;
                     
-                    // Check if there is a collision after player movement
-                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
+                    // Check if there is a loss of game after player movement
+                    if (!_paused && gameConditions.checkLoss()) {
                         loss();
                     }
 
@@ -125,18 +126,14 @@ public class Game {
                             cops.get(i).chaseTruck();
                     }
 
-                    // Check if there is a collision after cop movement
-                    if (!_paused && checkCopCharacterCollision(cops, mainCharacter)) {
+                    // Check if there is a loss of game after cop movement
+                    if (!_paused && gameConditions.checkLoss()) {
                         loss();
                     }
 
                     _frame.refresh();
 
-                    if (!_paused && mainCharacter.getScoreInt() < 0) {
-                        loss();
-                    }
-
-                    if (!_paused && checkWinCondition(mainCharacter)) {
+                    if (!_paused && gameConditions.checkWin()) {
                         win();
                     }
 
@@ -202,33 +199,6 @@ public class Game {
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_WON, _frame.getScoreboard());
-    }
-
-    /**
-     * checks if the specified FoodTruck object is in the same grid location as any of the Cop objects in the specified array
-     * @param cops Cop object ArrayList
-     * @param foodTruck FoodTruck object to check collisons
-     * @return true if there is a collison between the foodTruck or any Cop in the array, false if not or if an argument is null
-     */
-    private boolean checkCopCharacterCollision(ArrayList<Cop> cops, FoodTruck foodTruck) {
-        
-        if (cops == null || foodTruck == null)
-            return false;
-
-        for (Cop cop : cops)
-            if (cop.getCol() == foodTruck.getCol() && cop.getRow() == foodTruck.getRow())
-                return true;
-        
-        return false;
-    }
-
-    /**
-     * Check win condition for the game, if foodTruck collected all Food items in the system and is on tile row 16, column 40
-     * @param foodTruck foodTruck corresponding to player being checked for a win
-     * @return true if there is a successful win, otherwise false
-     */
-    private boolean checkWinCondition(FoodTruck foodTruck) {
-        return foodTruck.getCol() == 40 && foodTruck.getRow() == 16 && foodTruck.getIngredientsFound() >= Food.getCount();
     }
 
 }
