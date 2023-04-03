@@ -54,12 +54,7 @@ public class Game {
         /**
          * Action listener for the pause menu which resumes the game on interaction
          */
-        ActionListener resumeListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                resume();
-            }
-        };
+        ActionListener resumeListener = e -> resume();
 
         /**
          * Action listener for the pause menu which goes to the title screen on interaction
