@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
-import foodtruckfrenzy.Main;
 import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.Recipe;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
@@ -64,7 +63,8 @@ public class Game {
         ActionListener restartListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.main(null);
+                Game game = new Game();
+                game.startTimer();
                 _frame.dispose();
             }
         };

@@ -30,7 +30,7 @@ public class Frame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Game game = new Game();
                 game.startTimer();
-                dispose(); // close the TitleScreen window
+                dispose();
             }
         };
 
