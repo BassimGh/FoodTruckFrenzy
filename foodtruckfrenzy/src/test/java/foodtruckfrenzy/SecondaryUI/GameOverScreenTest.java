@@ -80,7 +80,7 @@ public class GameOverScreenTest {
     }
 
     @Test
-    public void correctScoreboardValues() {
+    public void testScoreboardValues() {
         int ingredientsFound = scoreboard.getIngredientsFound();
         int recipesFound = scoreboard.getRecipesFound();
         int damage = scoreboard.getDamage();
