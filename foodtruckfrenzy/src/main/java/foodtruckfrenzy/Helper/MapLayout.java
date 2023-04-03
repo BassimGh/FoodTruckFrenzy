@@ -36,7 +36,7 @@ public class MapLayout {
                     try {
                         layout[row][col] = LayoutEnum.valueOf(items[col]);
                     } catch (IllegalArgumentException iae) {
-                        throw new RuntimeException("Invalid LayoutEnum valie in layout.csv file at row " + row + ", col " + col, iae);
+                        throw new RuntimeException("Invalid LayoutEnum value in layout.csv file at row " + row + ", col " + col, iae);
                     }
                     
                 }
