@@ -33,7 +33,7 @@ public class ImagePathsTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void testPaths() {
         ImagePaths paths = new ImagePaths("background.png", "button1.png", "button2.png");
         assertNotNull(paths);
     }
