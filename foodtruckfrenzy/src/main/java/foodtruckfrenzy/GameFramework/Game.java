@@ -99,6 +99,10 @@ public class Game {
                     if (keyboardHandler.pausePressed())
                         pause();
 
+                    if (!_paused && gameConditions.checkWin()) {
+                        win();
+                    }
+
                     boolean moved = false;
                     if (keyboardHandler.upPressed() && !keyboardHandler.downPressed() && !moved && timerIndex % 5 == 0)
                         moved = _mainCharacter.moveUp();
@@ -132,10 +136,6 @@ public class Game {
                     }
 
                     _frame.refresh();
-
-                    if (!_paused && gameConditions.checkWin()) {
-                        win();
-                    }
 
                 }
             }
