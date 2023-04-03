@@ -6,6 +6,7 @@ import foodtruckfrenzy.Drawable.BoardElement.BoardElement;
 import foodtruckfrenzy.Drawable.BoardElement.Obstruction;
 import foodtruckfrenzy.Drawable.Item.ScoreValue;
 import foodtruckfrenzy.Helper.BoardElementFactory;
+import foodtruckfrenzy.Helper.LayoutEnum;
 import foodtruckfrenzy.Helper.MapLayout;
 
 /**
@@ -18,6 +19,9 @@ public class Grid {
     public final static int ROWS = 20; // Number of grid rows
     public final static int COLS = 41; // Number of grid columns
     public final static int CELL_SIZE = 32; // Size of each grid cell
+
+    private int _ingredientsDiscoverable;
+    private int _recipesDiscoverable;
     
     private BoardElement[][] _grid;
 
@@ -27,10 +31,22 @@ public class Grid {
      * Fills the grid up with elements from Map Layout
      */
     public Grid(BoardElementFactory boardElementFactory, MapLayout mapLayout) {
+        _ingredientsDiscoverable = 0;
+        _recipesDiscoverable = 0;
+
         _grid = new BoardElement[ROWS][COLS];
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
-                _grid[i][j] = boardElementFactory.create(mapLayout.getElementAt(i, j), i, j);
+
+                LayoutEnum currLayout = mapLayout.getElementAt(i, j); 
+                _grid[i][j] = boardElementFactory.create(currLayout, i, j);
+
+                if (currLayout == LayoutEnum.R || currLayout == LayoutEnum.F)
+                    _ingredientsDiscoverable++;
+
+                if (currLayout == LayoutEnum.Q)
+                    _recipesDiscoverable++;
+                
             }
         }
     }
@@ -73,6 +89,14 @@ public class Grid {
      */
     public ScoreValue interact(int row, int col) {
         return getCell(row, col).interact();
+    }
+
+    public int getRecipesDiscoverable() {
+        return _recipesDiscoverable;
+    }
+
+    public int getIngredientsDiscoverable() {
+        return _ingredientsDiscoverable;
     }
 
 }

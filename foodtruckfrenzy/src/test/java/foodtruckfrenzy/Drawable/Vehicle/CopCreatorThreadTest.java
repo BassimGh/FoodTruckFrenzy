@@ -15,7 +15,7 @@ public class CopCreatorThreadTest {
     @BeforeEach                                         
     void setup() {
         grid = new Grid(new BoardElementFactory(), new MapLayout());
-        player = new FoodTruck(0, 0, grid, new Scoreboard());
+        player = new FoodTruck(0, 0, grid, new Scoreboard(0,0));
         copCreatorThread = new CopCreatorThread(11, 8, grid, player);
     }
 

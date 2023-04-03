@@ -9,7 +9,7 @@ public class ScoreboardTest {
 
     @BeforeEach
     void setup() {
-        scoreboard = new Scoreboard();
+        scoreboard = new Scoreboard(0,0);
     }
 
     // Test that the scoreboard displays the correct score when the game starts.

@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 
-import foodtruckfrenzy.Drawable.Item.Food;
-import foodtruckfrenzy.Drawable.Item.Recipe;
-
 /**
  * The Scoreboard class is responsible for displaying the current score and game progress.
  * It contains components to display the ingredients and recipes collected, damage inflicted by obstacles, speed fines, time elapsed and the current score.
@@ -59,7 +56,7 @@ public class Scoreboard extends JPanel {
      * Constructs a new scoreboard panel for the given player object.
      * @param player the player object to associate with this scoreboard
      */
-    public Scoreboard() {
+    public Scoreboard(int maxIngredients, int maxRecipes) {
 
         setLayout(new BorderLayout(10, 10));
         setBackground(COLOR_BACKGROUND);
@@ -72,8 +69,8 @@ public class Scoreboard extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
         add(rightPanel, BorderLayout.EAST);
     
-        ingredientsDiscoverable = Food.getCount();
-        recipesDiscoverable = Recipe.getCount();
+        ingredientsDiscoverable = maxIngredients;
+        recipesDiscoverable = maxRecipes;
 
         updateScore(0);
         updateIngredientsLabel();

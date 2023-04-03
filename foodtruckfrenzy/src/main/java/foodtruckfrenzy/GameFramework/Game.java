@@ -47,7 +47,7 @@ public class Game {
         Recipe.resetCount();
 
         Grid grid = new Grid(new BoardElementFactory(), new MapLayout());
-        Scoreboard scoreboard = new Scoreboard();
+        Scoreboard scoreboard = new Scoreboard(grid.getIngredientsDiscoverable(), grid.getRecipesDiscoverable());
         VehicleSpawner spawner = new VehicleSpawner(grid, scoreboard);
         _mainCharacter = spawner.getFoodTruck();
         ArrayList<Cop> cops = spawner.getCops();

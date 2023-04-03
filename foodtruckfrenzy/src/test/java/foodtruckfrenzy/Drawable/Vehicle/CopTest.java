@@ -18,7 +18,7 @@ public class CopTest {
     @BeforeEach                                         
     void setup() {
         grid = new Grid(new BoardElementFactory(), new MapLayout());
-        player = new FoodTruck(0, 0, grid, new Scoreboard());
+        player = new FoodTruck(0, 0, grid, new Scoreboard(0,0));
         cop = new Cop(11, 8, grid, player);
     }
 
