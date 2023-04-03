@@ -60,7 +60,6 @@ public class Game {
          */
         ActionListener restartListener = e -> restart();
 
-        
         PauseScreen pausePanel = new PauseScreen(resumeListener, restartListener);
         GamePanel gamePanel = new GamePanel(grid, _mainCharacter, _cops);
         _keyboardHandler = new KeyboardHandler();
@@ -91,7 +90,7 @@ public class Game {
                 pause();
 
             if (!_paused && _gameConditions.checkWin()) {
-                win();
+                handleWin();
             }
 
             boolean moved = false;
@@ -113,7 +112,7 @@ public class Game {
             
             // Check if there is a loss of game after player movement
             if (!_paused && _gameConditions.checkLoss()) {
-                loss();
+                handleLoss();
             }
 
             for (int i = 0; i < _cops.size(); i++) {
@@ -123,7 +122,7 @@ public class Game {
 
             // Check if there is a loss of game after cop movement
             if (!_paused && _gameConditions.checkLoss()) {
-                loss();
+                handleLoss();
             }
 
             _frame.refresh();
@@ -176,7 +175,7 @@ public class Game {
      * Shows a new GAME_LOST screen Frame
      * Sets paused to true to prevent further loop progression
      */
-    private void loss() {
+    private void handleLoss() {
 
         if (_invincible)
             return;
@@ -193,7 +192,7 @@ public class Game {
      * Shows a new GAME_WON screen Frame
      * Sets paused to true to prevent further loop progression
      */
-    private void win() {
+    private void handleWin() {
         _paused = true;
         _timer.stop();
         _frame.dispose();
