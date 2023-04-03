@@ -2,7 +2,6 @@ package foodtruckfrenzy.GameFramework;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
@@ -57,15 +56,9 @@ public class Game {
         ActionListener resumeListener = e -> resume();
 
         /**
-         * Action listener for the pause menu which goes to the title screen on interaction
+         * Action listener for the pause menu which restarts the game on interaction
          */
-        ActionListener restartListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                (new Game()).startTimer();
-                _frame.dispose();
-            }
-        };
+        ActionListener restartListener = e -> restart();
 
         
         PauseScreen pausePanel = new PauseScreen(resumeListener, restartListener);
@@ -165,6 +158,16 @@ public class Game {
         _paused = false;
         _frame.showGameScreen();
         _mainCharacter.getScoreboard().resumeTimer();
+    }
+
+    /**
+     * Restarts the game
+     * Creates a new instance of game and starts it
+     * disposes of current game frame
+     */
+    private void restart() {
+        (new Game()).startTimer();
+        _frame.dispose();
     }
 
     /**
