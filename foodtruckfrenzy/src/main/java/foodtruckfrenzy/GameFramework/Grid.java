@@ -26,9 +26,7 @@ public class Grid {
      * Initliazes a new BoardElement 2d array at ROWS x COLS
      * Fills the grid up with elements from Map Layout
      */
-    public Grid() {
-        BoardElementFactory boardElementFactory = new BoardElementFactory();
-        MapLayout mapLayout = new MapLayout();
+    public Grid(BoardElementFactory boardElementFactory, MapLayout mapLayout) {
         _grid = new BoardElement[ROWS][COLS];
         for (int i = 0; i < Grid.ROWS; i++) {
             for (int j = 0; j < Grid.COLS; j++) {
