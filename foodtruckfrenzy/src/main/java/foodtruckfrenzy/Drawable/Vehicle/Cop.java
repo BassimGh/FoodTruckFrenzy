@@ -183,22 +183,22 @@ public class Cop extends Vehicle {
 
         // check upper adjacent cell
         if (pos.row - 1 >= 0 && !visited.contains(new Position(pos.row - 1, pos.col, pos)) 
-        && !this.getGrid().getCell(pos.row - 1, pos.col).isObstruction())
+        && !this.getGrid().isObstruction(pos.row - 1, pos.col))
             queue.add(new Position(pos.row - 1, pos.col, pos));
 
         // check lower adjacent cell
         if (pos.row + 1 < Grid.ROWS && !visited.contains(new Position(pos.row + 1, pos.col, pos)) 
-        && !this.getGrid().getCell(pos.row + 1, pos.col).isObstruction())
+        && !this.getGrid().isObstruction(pos.row + 1, pos.col))
             queue.add(new Position(pos.row + 1, pos.col, pos));
 
         // check left adjacent cell
         if (pos.col - 1 >= 0 && !visited.contains(new Position(pos.row, pos.col - 1, pos)) 
-        && !this.getGrid().getCell(pos.row, pos.col - 1).isObstruction())
+        && !this.getGrid().isObstruction(pos.row, pos.col - 1))
             queue.add(new Position(pos.row, pos.col - 1, pos));
 
         // check right adjacent cell
         if (pos.col + 1 < Grid.COLS && !visited.contains(new Position(pos.row, pos.col + 1, pos)) 
-        && !this.getGrid().getCell(pos.row, pos.col + 1).isObstruction())
+        && !this.getGrid().isObstruction(pos.row, pos.col + 1))
             queue.add(new Position(pos.row, pos.col + 1, pos));
 
     }

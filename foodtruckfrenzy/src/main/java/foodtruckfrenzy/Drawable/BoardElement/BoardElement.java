@@ -20,14 +20,6 @@ public abstract class BoardElement extends Drawable {
     }
 
     /**
-     * Detect whether this object is an obstruction or not
-     * @return true if obstruction, false if not
-     */
-    public boolean isObstruction() {
-        return this instanceof Obstruction;
-    }
-
-    /**
      * Interact with board element cell
      * @return a ScoreValue object corresponding to the board elements contents
      */
