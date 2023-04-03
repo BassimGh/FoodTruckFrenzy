@@ -59,8 +59,10 @@ public class GameFrame extends JFrame {
         _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         _gamePanel.setBackground(new Color(54, 65, 79));
 
-        _scoreboardPanel = new Scoreboard(mainCharacter); 
+        _scoreboardPanel = new Scoreboard(); 
         _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
+
+        mainCharacter.setScoreboard(_scoreboardPanel);
 
         gameAndScorePane.add(_gamePanel, BorderLayout.CENTER);
         gameAndScorePane.add(_scoreboardPanel, BorderLayout.NORTH);
@@ -87,7 +89,6 @@ public class GameFrame extends JFrame {
      */
     void refresh() {
         _gamePanel.repaint();
-        _scoreboardPanel.update(); 
     }
 
     /**

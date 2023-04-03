@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.Recipe;
-import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 
 /**
  * The Scoreboard class is responsible for displaying the current score and game progress.
@@ -38,8 +37,7 @@ public class Scoreboard extends JPanel {
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
 
-    //Scoreboard Data, Game State, and Player(data source)
-    private FoodTruck player;
+    //Scoreboard Data & Game State
     private int score;
     private int ingredientsFound;
     private int ingredientsDiscoverable;
@@ -61,7 +59,7 @@ public class Scoreboard extends JPanel {
      * Constructs a new scoreboard panel for the given player object.
      * @param player the player object to associate with this scoreboard
      */
-    public Scoreboard(FoodTruck player) {
+    public Scoreboard() {
 
         setLayout(new BorderLayout(10, 10));
         setBackground(COLOR_BACKGROUND);
@@ -74,17 +72,14 @@ public class Scoreboard extends JPanel {
         add(centerPanel, BorderLayout.CENTER);
         add(rightPanel, BorderLayout.EAST);
     
-        this.player = player;
-
-    
         ingredientsDiscoverable = Food.getCount();
         recipesDiscoverable = Recipe.getCount();
 
         updateScore(0);
-        updateIngredients(0);
-        updateRecipes(0);
-        updateFines(0);
-        updateDamage(0);
+        updateIngredientsLabel();
+        updateRecipesLabel();
+        updateFinesLabel();
+        updateDamageLabel();
         
         simpleTimer();
         _timer.start();
@@ -163,82 +158,61 @@ public class Scoreboard extends JPanel {
         return rightPanel;
     }
 
-
     /**
-    Updates the scoreboard to display the current game statistics, including the number of
-    ingredients and recipes found, the amount of damage and speed fines accumulated, and the player's
-    score. If any of these values have changed since the last update, the scoreboard is updated
-    accordingly. The font color of the score label is also adjusted based on the current score value,
-    with negative scores displayed in red, positive scores displayed in yellow, and scores of zero
-    displayed in white. If the player has found all of the discoverable items (either ingredients or
-    recipes), the corresponding label is displayed in green to indicate completion.
-    */
-    public void update() {
-
-        // retrieve new data from player
-        int newIngredientsFound = player.getIngredientsFound();
-        int newRecipesFound = player.getRecipesFound();
-        int newDamage = player.getDamage();
-        int newFines = player.getFines();
-        int newScore = player.getScoreInt();
-
-
-        //make updates only if new values from gameplay
-        if (ingredientsFound != newIngredientsFound) {
-            updateIngredients(newIngredientsFound);
-        }
-        if (recipesFound != newRecipesFound) { 
-            updateRecipes(newRecipesFound);
-        }
-        if (damage != newDamage) {
-            updateDamage(newDamage);
-        }
-        if (fines != newFines) {
-            updateFines(newFines);
-        }
-        if (score != newScore) {
-            updateScore(newScore);
-        }
-
-        // adjust font color accordingly
+     * 
+     * @param score
+     */
+    private void updateScore(int score) {
+        this.score = score;
+        _scoreTotal.setText(Integer.toString(score));
+        
         if(score < 0) {
             _scoreTotal.setForeground(COLOR_RED);
         }
         if (score > 0) {
             _scoreTotal.setForeground(COLOR_YELLOW);
         }
-        if (newIngredientsFound == ingredientsDiscoverable) {
-            _ingredientsLabel.setForeground(COLOR_GREEN);
-        }
-        if (recipesFound == recipesDiscoverable) {
-            _recipesLabel.setForeground(COLOR_GREEN);
-        }
-      
+    
     }
 
-    private void updateScore(int score) {
-        this.score = score;
-        _scoreTotal.setText(Integer.toString(score));   
-    }
-
-    private void updateFines(int fines) {
-        this.fines = fines;
+    /**
+     * 
+     */
+    private void updateFinesLabel() {
+        // this.fines = fines;
         _fineLabel.setText("Speed Fines: " + fines);
     }
 
-    private void updateDamage(int damage) {
-        this.damage = damage;
+    /**
+     * 
+     */
+    private void updateDamageLabel() {
+        // this.damage = damage;
         _damageLabel.setText("Damages: " + damage);
     }
 
-    private void updateRecipes(int recipesFound) {
-        this.recipesFound = recipesFound;
+    /**
+     * 
+     */
+    private void updateRecipesLabel() {
+        // this.recipesFound = recipesFound;
         _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+
+        if (recipesFound == recipesDiscoverable) {
+            _recipesLabel.setForeground(COLOR_GREEN);
+        }
     }
 
-    private void updateIngredients(int ingredientsFound) {
-        this.ingredientsFound = ingredientsFound;
+    /**
+     * 
+     */
+    private void updateIngredientsLabel() {
+        // this.ingredientsFound = ingredientsFound;
         _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+
+        if (ingredientsFound == ingredientsDiscoverable) {
+            _ingredientsLabel.setForeground(COLOR_GREEN);
+        }
     }
 
     
@@ -312,11 +286,27 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+    * 
+    */
+    public void addIngredientsFound() {
+        ingredientsFound++;
+        updateIngredientsLabel();
+    }
+
+    /**
      * Returns the number of ingredients found by the player.
      * @return an integer representing the number of ingredients found by the player.
      */
     public int getIngredientsFound() {
         return ingredientsFound;
+    }
+
+    /**
+     * 
+     */
+    public void addRecipesFound() {
+        recipesFound++;
+        updateRecipesLabel();
     }
 
     /**
@@ -328,6 +318,15 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+     * 
+     * @param newDamage
+     */
+    public void addDamage(int newDamage) {
+        damage += newDamage;
+        updateDamageLabel();
+    }
+
+    /**
      * Returns the damage accumulated on the players foodtruck during gameplay.
      * @return an integer representing the negative score from accumulating damage.
      */
@@ -336,11 +335,25 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+     * 
+     * @param newFines
+     */
+    public void addFines(int newFines) {
+        fines += newFines;
+        updateFinesLabel();
+    }
+
+    /**
      * Returns the fines accumulated by the player during gameplay.
      * @return an integer representing the negative score from accumulating damage.
      */
     public int getFines() {
         return fines;
+    }
+
+    public void addScore(int newScore) {
+        score += newScore;
+        updateScore(score);
     }
 
     /**
