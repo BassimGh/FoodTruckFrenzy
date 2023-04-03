@@ -17,6 +17,8 @@ import foodtruckfrenzy.Helper.VehicleSpawner;
 import foodtruckfrenzy.SecondaryUI.Frame;
 import foodtruckfrenzy.SecondaryUI.ScreenType;
 
+import foodtruckfrenzy.GameFramework.Scoreboard;
+
 /*
  * This class is the logic behind the game
  * Creating a new instance of this class creates a new game with everything
@@ -35,6 +37,10 @@ public class Game {
 
     private int timerIndex;
 
+    private Scoreboard scoreboard;
+
+    
+
     /*
      * Game constructor
      * Creates everything needed to run the game instance
@@ -47,6 +53,7 @@ public class Game {
 
         VehicleSpawner spawner = new VehicleSpawner(grid);
         FoodTruck mainCharacter = spawner.getFoodTruck();
+        scoreboard = new Scoreboard(mainCharacter);
         ArrayList<Cop> cops = spawner.getCops();
 
         /**
@@ -132,7 +139,7 @@ public class Game {
 
                     _frame.refresh();
 
-                    if (!_paused && mainCharacter.getScoreInt() < 0) {
+                    if (!_paused && scoreboard.getScore() < 0) {
                         loss();
                     }
 
@@ -228,7 +235,7 @@ public class Game {
      * @return true if there is a successful win, otherwise false
      */
     private boolean checkWinCondition(FoodTruck foodTruck) {
-        return foodTruck.getCol() == 40 && foodTruck.getRow() == 16 && foodTruck.getIngredientsFound() >= Food.getCount();
+        return foodTruck.getCol() == 40 && foodTruck.getRow() == 16 && scoreboard.getIngredientsFound() >= Food.getCount();
     }
 
 }

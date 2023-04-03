@@ -14,15 +14,8 @@ import foodtruckfrenzy.GameFramework.Scoreboard;
  * for the number of ingredients and recipes found.
  */
 public class FoodTruck extends Vehicle {
-    
-    private int damage; // damage Food Truck has taken from colliding with obstructions.
-    private int fines;  // fines Food Truck has accumulated from speed traps
-    private int score;  // total score incurred by Food Truck player
-    private int ingredientsFound; 
-    private int recipesFound;
 
     private Scoreboard scoreboard;
-
     private ArrayList<Cop> _cops = new ArrayList<Cop>();
 
 
@@ -60,6 +53,10 @@ public class FoodTruck extends Vehicle {
      */
     public void setScoreboard(Scoreboard scoreboard) {
         this.scoreboard = scoreboard;
+    }
+
+    public Scoreboard getScoreboard() {
+        return scoreboard;
     }
 
     /**
@@ -126,7 +123,6 @@ public class FoodTruck extends Vehicle {
         int value = scoreValue.getValue();
         ScoreType scoreType = scoreValue.getScoreType();
 
-        // this.score += value;
         scoreboard.addScore(value);
 
         switch(scoreType) {
@@ -145,109 +141,6 @@ public class FoodTruck extends Vehicle {
             default:
                 break;
         }
-
-    }
-
-    /**
-     * Returns the number of ingredients found by the Food Truck during gameplay.
-     * @return an int representing the number of ingredients found by the food truck. 
-     */
-    public int getIngredientsFound() {
-       
-        return this.ingredientsFound;
-    
-    }
-
-    /*
-     * Increments ingredientsFound by 1
-     * created for testing
-     */
-    public void addIngredientsFound() {
-        ingredientsFound++;
-    }
-
-    /*
-     * Increments recipesFound by 1
-     * created for testing
-     */
-    public void addRecipesFound() {
-        recipesFound++;
-    }
-
-    /**
-     * Returns the number of recipes found by the Food Truck during gameplay.
-     * @return an int representing the number of recipes found by the food truck.
-     */
-    public int getRecipesFound() {
-
-        return this.recipesFound;
-    }
-
-    /**
-     * Adds damage to the Food Truck after collision occurs between obstruction and Food Truck. 
-     * @param damage is an int representing the value of damage caused by collision with the obstruction.
-     */
-    public void addDamage(int damage) {
-
-        this.damage -= damage;
-
-    } 
-
-    /**
-     * Returns the amount damage accumulated by the Food Truck during gameplay.
-     * @return an integer that represents the damage incurred by the truck during gameplay. 
-     */
-    public int getDamage() {
-
-        return this.damage;
-    
-    }
-
-    /**
-     * Adds fines to the Food Truck after passing through speed traps.
-     * @param fine is an integer that represents fines incurred by the Food Truck after interacting with speed traps.
-     */
-    public void addFines(int fine) {
-        
-        this.fines -= fine;
-    
-    }
-
-
-    /**
-     * Returns the fines total amount accumulated by the Food Truck.
-     * @return an integer representing the fines accumulated by the Food Truck during gameplay.
-     */
-    public int getFines() {
-
-        return this.fines;
-
-    }
-    /**
-     * Returns the total score achieved by the Food Truck during gameplay as a string.
-     * @return a string representing the score achieved by the player during gameplay.
-     */
-    public String getScore() {
-
-        return Integer.toString(this.score);
-
-    }
-
-    /**
-    * Returns the total score achieved by the Food Truck during gameplay as an integer.
-     * @return an integer representing the score achieved by the player during gameplay.
-     */
-    public int getScoreInt() {
-        return this.score;
-    }
-
-    /**
-     * Calculates and stores the total score accumulated by the Food Truck. The score is calculated by subtracting
-     * the value of fines and damage from the score attribute. 
-     */
-    public void calculateScore() {
-
-        this.score = this.score - fines - damage;
 
     }
 
