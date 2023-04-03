@@ -63,6 +63,7 @@ public class GameFrame extends JFrame {
         this.setFocusable(true);
         this.pack();
         this.setVisible(true);
+        this.requestFocusInWindow();
     }
 
     /**

@@ -51,7 +51,6 @@ public class Game {
         VehicleSpawner spawner = new VehicleSpawner(grid, scoreboard);
         _mainCharacter = spawner.getFoodTruck();
         ArrayList<Cop> cops = spawner.getCops();
-        GamePanel gamePanel = new GamePanel(grid, _mainCharacter, cops);
         GameConditions gameConditions = new GameConditions(cops, _mainCharacter);
 
         /**
@@ -78,12 +77,10 @@ public class Game {
 
         
         PauseScreen pausePanel = new PauseScreen(resumeListener, restartListener);
-
-
+        GamePanel gamePanel = new GamePanel(grid, _mainCharacter, cops);
         KeyboardHandler keyboardHandler = new KeyboardHandler();
         _frame = new GameFrame(gamePanel, scoreboard, pausePanel);
         _frame.addKeyListener(keyboardHandler);
-        _frame.requestFocusInWindow();
         
         /*
          * Game tick timer which controls all game running logic
