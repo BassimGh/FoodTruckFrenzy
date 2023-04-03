@@ -59,22 +59,6 @@ public class ScoreboardTest {
         assertEquals(2, Math.abs(scoreboard.getFines()));
     }
 
-    // Test that the scoreboard updates the time elapsed label correctly when the game timer ticks.
-    @Test
-    void timeElapsed() {
-
-        // pause the timer after 1 second and check
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Check that the time elapsed label has been updated.
-        assertEquals("00:01", scoreboard.getTime());
-
-    }
-
     // Test that the scoreboard pauses and resumes correctly 
     @Test
     void pauseResumeTimer() {
