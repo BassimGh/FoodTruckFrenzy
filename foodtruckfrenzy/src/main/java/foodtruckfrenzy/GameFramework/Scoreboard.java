@@ -66,10 +66,6 @@ public class Scoreboard extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBackground(COLOR_BACKGROUND);
     
-        // score = player.getScoreInt();
-        // ingredientsFound = player.getIngredientsFound();
-
-
         JPanel leftPanel = createLeftPanel();
         JPanel centerPanel = createCenterPanel();
         JPanel rightPanel = createRightPanel();
@@ -284,6 +280,15 @@ public class Scoreboard extends JPanel {
     }
 
     /**
+     * Returns if the timer is paused or not.
+     * @return a boolean representing if timer is paused.
+     */
+
+    public boolean isTimerPaused() {
+        return _paused;
+    }
+
+    /**
      * Resumes the timer for the scoreboard.
      */
     public void resumeTimer() {
@@ -295,6 +300,15 @@ public class Scoreboard extends JPanel {
      */
     public void restartTimer() {
         _timer.restart();
+    }
+    
+    
+    /**
+     * Returns the time elapsed during gameplay.
+     * @return a string representing the elapsed time during gameplay. (min : sec) Example for 1 minute and 30 seconds elapsed:  "01 : 30".
+     */
+    public String getTime() {
+        return timeElapsed;
     }
 
     /**
@@ -335,14 +349,6 @@ public class Scoreboard extends JPanel {
      */
     public int getScore() {
         return score;
-    }
-
-    /**
-     * Returns the time elapsed during gameplay.
-     * @return a string representing the elapsed time during gameplay. (min : sec) Example for 1 minute and 30 seconds elapsed:  "01 : 30".
-     */
-    public String getTime() {
-        return timeElapsed;
     }
 
 }
