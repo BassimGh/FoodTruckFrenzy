@@ -21,8 +21,11 @@ class GridTest {
         Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
         Grid grid = new Grid(boardElementFactory, mapLayout);
 
-        BoardElement result = grid.getCell(0, 0);
-        assertEquals(mockElement, result);
+        for (int i = 0; i<Grid.ROWS; i++) {
+            for (int j = 0; j<Grid.COLS; j++) {
+                assertEquals(mockElement, grid.getCell(i, j));
+            }
+        }
     }
 
     @Test
@@ -33,7 +36,11 @@ class GridTest {
         Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
         Grid grid = new Grid(boardElementFactory, mapLayout);
 
-        assertTrue(grid.isObstruction(0, 0));
+        for (int i = 0; i<Grid.ROWS; i++) {
+            for (int j = 0; j<Grid.COLS; j++) {
+                assertTrue(grid.isObstruction(i, j));
+            }
+        }
     }
 
     @Test
@@ -44,7 +51,11 @@ class GridTest {
         Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
         Grid grid = new Grid(boardElementFactory, mapLayout);
 
-        assertFalse(grid.isObstruction(0, 0));
+        for (int i = 0; i<Grid.ROWS; i++) {
+            for (int j = 0; j<Grid.COLS; j++) {
+                assertFalse(grid.isObstruction(i, j));
+            }
+        }
     }
 
 }
