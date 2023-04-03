@@ -63,7 +63,7 @@ public class GameOverScreenTest {
     }
 
     @Test
-    public void testGameOverScreen() {
+    public void testScoresLabel() {
         GameOverScreen gameOverScreen = new GameOverScreen(startListener, exitListener, imagePaths, scoreboard);
 
         // Check that the final scores were correctly displayed
