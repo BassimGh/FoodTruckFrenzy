@@ -26,7 +26,7 @@ public class DimensionsTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void testDimensions() {
         Dimensions dim = new Dimensions(2,3);
         assertNotNull(dim);
     }
