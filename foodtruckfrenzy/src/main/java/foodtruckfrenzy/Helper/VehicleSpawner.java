@@ -6,6 +6,7 @@ import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.CopCreatorThread;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.GameFramework.Grid;
+import foodtruckfrenzy.GameFramework.Scoreboard;
 
 
 /**
@@ -20,8 +21,8 @@ public class VehicleSpawner {
      * Initializes all vehicles in the game (food truck and cops)
      * @param grid instance that is used by the game
      */
-    public VehicleSpawner(Grid grid) {
-        this.foodTruck = new FoodTruck(3, 0, grid);
+    public VehicleSpawner(Grid grid, Scoreboard scoreboard) {
+        this.foodTruck = new FoodTruck(3, 0, grid, scoreboard);
 
         ArrayList<CopCreatorThread> copCreatorThreads = new ArrayList<>();
         copCreatorThreads.add(new CopCreatorThread(8, 13, grid, foodTruck));

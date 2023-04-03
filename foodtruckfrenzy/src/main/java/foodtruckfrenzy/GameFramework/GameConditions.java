@@ -13,6 +13,7 @@ public class GameConditions {
     
     private ArrayList<Cop> _cops;
     private FoodTruck _foodTruck;
+    private Scoreboard _scoreboard;
 
     /**
      * Constructs a new GameConditions object that checks the win and loss
@@ -23,6 +24,7 @@ public class GameConditions {
     GameConditions(ArrayList<Cop> cops, FoodTruck foodTruck) {
         _cops = cops;
         _foodTruck = foodTruck;
+        _scoreboard = foodTruck.getScoreboard();
     }
     
     /**
@@ -31,7 +33,7 @@ public class GameConditions {
      * @return true if there is a collison between the foodTruck or any Cop in the array or if score < 0, false if not
      */
     boolean checkLoss() {
-        if (_foodTruck.getScoreInt() < 0)
+        if (_scoreboard.getScore() < 0)
             return true;
 
         for (Cop cop : _cops)
@@ -48,6 +50,6 @@ public class GameConditions {
      * @return true if there is a successful win, otherwise false
      */
     boolean checkWin() {
-        return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _foodTruck.getIngredientsFound() >= Food.getCount();
+        return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _scoreboard.getIngredientsFound() >= Food.getCount();
     }
 }

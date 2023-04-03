@@ -2,11 +2,6 @@ package foodtruckfrenzy.GameFramework;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-import foodtruckfrenzy.Drawable.Vehicle.Cop;
-import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.SecondaryUI.PauseScreen;
 
 /**
@@ -29,7 +24,6 @@ public class GameFrame extends JFrame {
     private final int FRAME_HEIGHT = Grid.ROWS * Grid.CELL_SIZE;
     
     private final JPanel _mainPanel;
-    private final Scoreboard _scoreboardPanel;
     private final GamePanel _gamePanel;
     private final CardLayout _layout;
 
@@ -42,36 +36,25 @@ public class GameFrame extends JFrame {
      * @param resumeListener ActionListener for on resume from pause
      * @param restartListener ActionListner for on restart from pause
      */
-    public GameFrame(FoodTruck mainCharacter, Grid grid, ArrayList<Cop> cops, ActionListener resumeListener, ActionListener restartListener) {
+    public GameFrame(GamePanel gamePanel, Scoreboard scoreboardPanel, PauseScreen pausePanel) {
         super("Food Truck Frenzy");
-
-        _mainPanel = new JPanel(new CardLayout());
+        _gamePanel = gamePanel;
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
-
+        scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
+        
+        _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        _gamePanel.setBackground(new Color(54, 65, 79));
 
         JPanel gameAndScorePane = new JPanel(new BorderLayout());
         gameAndScorePane.setBackground(Color.BLACK);
         gameAndScorePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
-
-        _gamePanel = new GamePanel(grid, mainCharacter, cops);
-        _gamePanel.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
-        _gamePanel.setBackground(new Color(54, 65, 79));
-
-        _scoreboardPanel = new Scoreboard(); 
-        _scoreboardPanel.setPreferredSize(new Dimension(FRAME_WIDTH, SCOREBOARD_HEIGHT));
-
-        mainCharacter.setScoreboard(_scoreboardPanel);
-
         gameAndScorePane.add(_gamePanel, BorderLayout.CENTER);
-        gameAndScorePane.add(_scoreboardPanel, BorderLayout.NORTH);
+        gameAndScorePane.add(scoreboardPanel, BorderLayout.NORTH);
 
+        _mainPanel = new JPanel(new CardLayout());
         _mainPanel.add(gameAndScorePane, "game");
-
-
-        JPanel pausePanel = new PauseScreen(resumeListener, restartListener);
-
         _mainPanel.add(pausePanel, "pause");
         this.setContentPane(_mainPanel);
         _layout = (CardLayout) _mainPanel.getLayout();
@@ -105,11 +88,4 @@ public class GameFrame extends JFrame {
         _layout.show(_mainPanel, "game");
     }
 
-    /**
-     * Returns scoreboard panel
-     * @return returns scoreboard panel
-     */
-    Scoreboard getScoreboard() {
-        return _scoreboardPanel;
-    }
 }

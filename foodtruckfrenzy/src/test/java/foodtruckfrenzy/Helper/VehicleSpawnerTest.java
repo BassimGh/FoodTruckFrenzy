@@ -9,6 +9,7 @@ import org.junit.jupiter.api.*;
 import foodtruckfrenzy.Drawable.Vehicle.Cop;
 import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 import foodtruckfrenzy.GameFramework.Grid;
+import foodtruckfrenzy.GameFramework.Scoreboard;
 
 public class VehicleSpawnerTest {
     private VehicleSpawner vehicleSpawner;
@@ -17,7 +18,7 @@ public class VehicleSpawnerTest {
     @BeforeEach
     void setup() {
         grid = new Grid(new BoardElementFactory(), new MapLayout());
-        vehicleSpawner = new VehicleSpawner(grid);
+        vehicleSpawner = new VehicleSpawner(grid, new Scoreboard());
     }
 
     @Test

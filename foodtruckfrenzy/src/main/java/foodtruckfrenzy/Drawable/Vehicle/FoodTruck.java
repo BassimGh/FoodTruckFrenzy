@@ -15,7 +15,7 @@ import foodtruckfrenzy.GameFramework.Scoreboard;
  */
 public class FoodTruck extends Vehicle {
 
-    private Scoreboard scoreboard;
+    private Scoreboard _scoreboard;
     private ArrayList<Cop> _cops = new ArrayList<Cop>();
 
 
@@ -25,8 +25,9 @@ public class FoodTruck extends Vehicle {
      * @param col the column of the food truck's starting position.
      * @param grid the grid object that the food truck will be moving on.
      */
-    public FoodTruck(int row, int col, Grid grid) {
+    public FoodTruck(int row, int col, Grid grid, Scoreboard scoreboard) {
         super(row, col, grid, DrawableEnum.FOODTRUCK_RIGHT);
+        _scoreboard = scoreboard;
     }
 
     /**
@@ -46,17 +47,8 @@ public class FoodTruck extends Vehicle {
         return moved;
     }
 
-
-    /**
-     * Sets the scoreboard value for the foodtruck 
-     * @param scoreboard represents the scoreboard where the stats / score are displayed
-     */
-    public void setScoreboard(Scoreboard scoreboard) {
-        this.scoreboard = scoreboard;
-    }
-
     public Scoreboard getScoreboard() {
-        return scoreboard;
+        return _scoreboard;
     }
 
     /**
@@ -123,20 +115,20 @@ public class FoodTruck extends Vehicle {
         int value = scoreValue.getValue();
         ScoreType scoreType = scoreValue.getScoreType();
 
-        scoreboard.addScore(value);
+        _scoreboard.addScore(value);
 
         switch(scoreType) {
             case FOOD:
-                scoreboard.addIngredientsFound();
+                _scoreboard.addIngredientsFound();
                 break;
             case DAMAGE:
-                scoreboard.addDamage(value);
+                _scoreboard.addDamage(value);
                 break;
             case SPEED:
-                scoreboard.addFines(value);
+                _scoreboard.addFines(value);
                 break;
             case BONUS:
-                scoreboard.addRecipesFound();
+                _scoreboard.addRecipesFound();
                 break;
             default:
                 break;

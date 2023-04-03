@@ -15,9 +15,8 @@ import foodtruckfrenzy.Helper.KeyboardHandler;
 import foodtruckfrenzy.Helper.MapLayout;
 import foodtruckfrenzy.Helper.VehicleSpawner;
 import foodtruckfrenzy.SecondaryUI.Frame;
+import foodtruckfrenzy.SecondaryUI.PauseScreen;
 import foodtruckfrenzy.SecondaryUI.ScreenType;
-
-import foodtruckfrenzy.GameFramework.Scoreboard;
 
 /*
  * This class is the logic behind the game
@@ -31,15 +30,13 @@ public class Game {
     private final int TIMER_DELAY = 10; // in milliseconds
 
     private final GameFrame _frame;
+    private final FoodTruck _mainCharacter;
     private final Timer _timer;
     private boolean _paused = false;
     private boolean _invincible = false;
 
     private int timerIndex;
 
-    private Scoreboard scoreboard;
-
-    
 
     /*
      * Game constructor
@@ -50,12 +47,12 @@ public class Game {
         Recipe.resetCount();
 
         Grid grid = new Grid(new BoardElementFactory(), new MapLayout());
-
-        VehicleSpawner spawner = new VehicleSpawner(grid);
-        FoodTruck mainCharacter = spawner.getFoodTruck();
-        scoreboard = new Scoreboard();
+        Scoreboard scoreboard = new Scoreboard();
+        VehicleSpawner spawner = new VehicleSpawner(grid, scoreboard);
+        _mainCharacter = spawner.getFoodTruck();
         ArrayList<Cop> cops = spawner.getCops();
-        GameConditions gameConditions = new GameConditions(cops, mainCharacter);
+        GamePanel gamePanel = new GamePanel(grid, _mainCharacter, cops);
+        GameConditions gameConditions = new GameConditions(cops, _mainCharacter);
 
         /**
          * Action listener for the pause menu which resumes the game on interaction
@@ -79,8 +76,12 @@ public class Game {
             }
         };
 
+        
+        PauseScreen pausePanel = new PauseScreen(resumeListener, restartListener);
+
+
         KeyboardHandler keyboardHandler = new KeyboardHandler();
-        _frame = new GameFrame(mainCharacter, grid, cops, resumeListener, restartListener);
+        _frame = new GameFrame(gamePanel, scoreboard, pausePanel);
         _frame.addKeyListener(keyboardHandler);
         _frame.requestFocusInWindow();
         
@@ -108,16 +109,16 @@ public class Game {
 
                     boolean moved = false;
                     if (keyboardHandler.upPressed() && !keyboardHandler.downPressed() && !moved && timerIndex % 5 == 0)
-                        moved = mainCharacter.moveUp();
+                        moved = _mainCharacter.moveUp();
 
                     if (keyboardHandler.downPressed() && !keyboardHandler.upPressed() && !moved && timerIndex % 5 == 0)
-                        moved = mainCharacter.moveDown();
+                        moved = _mainCharacter.moveDown();
 
                     if (keyboardHandler.leftPressed() && !keyboardHandler.rightPressed() && !moved && timerIndex % 5 == 0)
-                        moved = mainCharacter.moveLeft();
+                        moved = _mainCharacter.moveLeft();
                         
                     if (keyboardHandler.rightPressed() && !keyboardHandler.leftPressed() && !moved && timerIndex % 5 == 0)
-                        moved = mainCharacter.moveRight();
+                        moved = _mainCharacter.moveRight();
 
                     timerIndex ++;
                     if (timerIndex > Integer.MAX_VALUE - 1)
@@ -168,7 +169,7 @@ public class Game {
     private void pause() {
         _paused = true;
         _frame.showPauseScreen();
-        _frame.getScoreboard().pauseTimer();
+        _mainCharacter.getScoreboard().pauseTimer();
     }
 
     /**
@@ -179,7 +180,7 @@ public class Game {
     private void resume() {
         _paused = false;
         _frame.showGameScreen();
-        _frame.getScoreboard().resumeTimer();
+        _mainCharacter.getScoreboard().resumeTimer();
     }
 
     /**
@@ -196,7 +197,7 @@ public class Game {
         _paused = true;
         _timer.stop();
         _frame.dispose();
-        new Frame(ScreenType.GAME_LOST, _frame.getScoreboard());
+        new Frame(ScreenType.GAME_LOST, _mainCharacter.getScoreboard());
     }
 
     /**
@@ -209,7 +210,7 @@ public class Game {
         _paused = true;
         _timer.stop();
         _frame.dispose();
-        new Frame(ScreenType.GAME_WON, _frame.getScoreboard());
+        new Frame(ScreenType.GAME_WON, _mainCharacter.getScoreboard());
     }
 
 }
