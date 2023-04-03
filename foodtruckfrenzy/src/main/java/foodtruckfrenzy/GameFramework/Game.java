@@ -53,7 +53,7 @@ public class Game {
 
         VehicleSpawner spawner = new VehicleSpawner(grid);
         FoodTruck mainCharacter = spawner.getFoodTruck();
-        scoreboard = new Scoreboard(mainCharacter);
+        scoreboard = new Scoreboard();
         ArrayList<Cop> cops = spawner.getCops();
 
         /**

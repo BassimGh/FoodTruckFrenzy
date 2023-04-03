@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import foodtruckfrenzy.Drawable.Item.Food;
 import foodtruckfrenzy.Drawable.Item.Recipe;
-import foodtruckfrenzy.Drawable.Vehicle.FoodTruck;
 
 /**
  * The Scoreboard class is responsible for displaying the current score and game progress.
@@ -38,8 +37,7 @@ public class Scoreboard extends JPanel {
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
 
-    //Scoreboard Data, Game State, and Player(data source)
-    private FoodTruck player;
+    //Scoreboard Data & Game State
     private int score;
     private int ingredientsFound;
     private int ingredientsDiscoverable;
@@ -61,7 +59,7 @@ public class Scoreboard extends JPanel {
      * Constructs a new scoreboard panel for the given player object.
      * @param player the player object to associate with this scoreboard
      */
-    public Scoreboard(FoodTruck player) {
+    public Scoreboard() {
 
         setLayout(new BorderLayout(10, 10));
         setBackground(COLOR_BACKGROUND);
@@ -73,9 +71,6 @@ public class Scoreboard extends JPanel {
         add(leftPanel, BorderLayout.WEST);
         add(centerPanel, BorderLayout.CENTER);
         add(rightPanel, BorderLayout.EAST);
-    
-        this.player = player;
-
     
         ingredientsDiscoverable = Food.getCount();
         recipesDiscoverable = Recipe.getCount();
@@ -163,82 +158,61 @@ public class Scoreboard extends JPanel {
         return rightPanel;
     }
 
-
     /**
-    Updates the scoreboard to display the current game statistics, including the number of
-    ingredients and recipes found, the amount of damage and speed fines accumulated, and the player's
-    score. If any of these values have changed since the last update, the scoreboard is updated
-    accordingly. The font color of the score label is also adjusted based on the current score value,
-    with negative scores displayed in red, positive scores displayed in yellow, and scores of zero
-    displayed in white. If the player has found all of the discoverable items (either ingredients or
-    recipes), the corresponding label is displayed in green to indicate completion.
-    */
-    public void update() {
-
-        // retrieve new data from player
-        // int newIngredientsFound = player.getIngredientsFound();
-        int newRecipesFound = player.getRecipesFound();
-        int newDamage = player.getDamage();
-        int newFines = player.getFines();
-        int newScore = player.getScoreInt();
-
-
-        //make updates only if new values from gameplay
-        // if (ingredientsFound != newIngredientsFound) {
-        //     // updateIngredientsLabel(newIngredientsFound);
-        // }
-        // if (recipesFound != newRecipesFound) { 
-        //     updateRecipesLabel(newRecipesFound);
-        // }
-        // if (damage != newDamage) {
-        //     updateDamageLabel(newDamage);
-        // }
-        // if (fines != newFines) {
-        //     updateFinesLabel(newFines);
-        // }
-        // if (score != newScore) {
-        //     updateScore(newScore);
-        // }
-
-        // adjust font color accordingly
+     * 
+     * @param score
+     */
+    private void updateScore(int score) {
+        this.score = score;
+        _scoreTotal.setText(Integer.toString(score));
+        
         if(score < 0) {
             _scoreTotal.setForeground(COLOR_RED);
         }
         if (score > 0) {
             _scoreTotal.setForeground(COLOR_YELLOW);
         }
-        // if (newIngredientsFound == ingredientsDiscoverable) {
-        //     _ingredientsLabel.setForeground(COLOR_GREEN);
-        // }
-        if (recipesFound == recipesDiscoverable) {
-            _recipesLabel.setForeground(COLOR_GREEN);
-        }
-      
+    
     }
 
-    private void updateScore(int score) {
-        this.score = score;
-        _scoreTotal.setText(Integer.toString(score));   
-    }
-
+    /**
+     * 
+     */
     private void updateFinesLabel() {
         // this.fines = fines;
         _fineLabel.setText("Speed Fines: " + fines);
     }
 
+    /**
+     * 
+     */
     private void updateDamageLabel() {
         // this.damage = damage;
         _damageLabel.setText("Damages: " + damage);
     }
 
+    /**
+     * 
+     */
     private void updateRecipesLabel() {
         // this.recipesFound = recipesFound;
         _recipesLabel.setText("Recipes: " + recipesFound + "/" + recipesDiscoverable);
+
+        if (recipesFound == recipesDiscoverable) {
+            _recipesLabel.setForeground(COLOR_GREEN);
+        }
     }
 
+    /**
+     * 
+     */
     private void updateIngredientsLabel() {
         // this.ingredientsFound = ingredientsFound;
         _ingredientsLabel.setText("Ingredients: " + ingredientsFound + "/" + ingredientsDiscoverable);
+
+        if (ingredientsFound == ingredientsDiscoverable) {
+            _ingredientsLabel.setForeground(COLOR_GREEN);
+        }
     }
 
     
