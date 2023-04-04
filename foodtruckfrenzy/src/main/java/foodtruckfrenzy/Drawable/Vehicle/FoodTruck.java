@@ -143,7 +143,15 @@ public class FoodTruck extends Vehicle {
     public void attach(Cop cop) {
         _cops.add(cop);
     }
-    
+
+    /**
+     * Returns an arrayList of cop objects for testing
+     * @return an arrayList of cop objects
+     */
+    public ArrayList<Cop> getCops() {
+        return _cops; 
+    }
+
     /**
      * Appends to movements for each cop to follow by calling addDirections for each cop instance
      * @param direction is a enum for the direction the cop needs to move to
