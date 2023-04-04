@@ -53,4 +53,28 @@ class GamePanel extends JPanel {
             cop.draw(g2d);
         }
     }
+
+    /**
+     * Gets the grid stored in the GamePanel
+     * @return Grid stored in the GamePanel
+     */
+    Grid getGrid() {
+        return _grid;
+    }
+    
+    /**
+     * Gets the ArrayList of Cop objects in the GamePanel
+     * @return ArrayList<Cop> in the GamePanel
+     */
+    ArrayList<Cop> getCops() {
+        return _cops;
+    }
+
+    /**
+     * Gets the main character in the GamePanel
+     * @return FoodTruck for the main character in the GamePanel
+     */
+    FoodTruck getFoodTruck() {
+        return _mainCharacter;
+    }
 }
