@@ -58,5 +58,27 @@ class GridTest {
         }
     }
 
+    @Test
+    public void testIngredientsDiscoverableZero() {
+        BoardElementFactory boardElementFactory = Mockito.mock(BoardElementFactory.class);
+        MapLayout mapLayout = Mockito.mock(MapLayout.class);
+        BoardElement mockElement = Mockito.mock(Road.class);
+        Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
+        Grid grid = new Grid(boardElementFactory, mapLayout);
+
+        assertEquals(0, grid.getIngredientsDiscoverable());
+    }
+
+    @Test
+    public void testRecipesDiscoverableZero() {
+        BoardElementFactory boardElementFactory = Mockito.mock(BoardElementFactory.class);
+        MapLayout mapLayout = Mockito.mock(MapLayout.class);
+        BoardElement mockElement = Mockito.mock(Road.class);
+        Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
+        Grid grid = new Grid(boardElementFactory, mapLayout);
+
+        assertEquals(0, grid.getRecipesDiscoverable());
+    }
+
 }
 

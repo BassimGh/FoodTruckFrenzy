@@ -91,10 +91,18 @@ public class Grid {
         return getCell(row, col).interact();
     }
 
+    /**
+     * Returns the total amount of recipes that are present on the grid
+     * @return int of total recipes on the grid
+     */
     public int getRecipesDiscoverable() {
         return _recipesDiscoverable;
     }
 
+    /**
+     * Returns the total amount of foods that are present on the grid
+     * @return int of total foods on the grid
+     */
     public int getIngredientsDiscoverable() {
         return _ingredientsDiscoverable;
     }
