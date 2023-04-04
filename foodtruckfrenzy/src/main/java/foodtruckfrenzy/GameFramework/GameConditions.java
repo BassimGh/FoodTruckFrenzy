@@ -13,6 +13,7 @@ public class GameConditions {
     private ArrayList<Cop> _cops;
     private FoodTruck _foodTruck;
     private Scoreboard _scoreboard;
+    private boolean _paused = false;
 
     /**
      * Constructs a new GameConditions object that checks the win and loss
@@ -32,6 +33,9 @@ public class GameConditions {
      * @return true if there is a collison between the foodTruck or any Cop in the array or if score < 0, false if not
      */
     boolean checkLoss() {
+        if (!checkRunning())
+            return false;
+
         if (_scoreboard.getScore() < 0)
             return true;
 
@@ -49,6 +53,31 @@ public class GameConditions {
      * @return true if there is a successful win, otherwise false
      */
     boolean checkWin() {
+        if (!checkRunning())
+            return false;
+        
         return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _scoreboard.getIngredientsFound() >= _scoreboard.getIngredientsDiscoverable();
+    }
+
+    /**
+     * Update pause to true
+     */
+    void pause() {
+        _paused = true;
+    }
+
+    /**
+     * Update pause to false
+     */
+    void resume() {
+        _paused = false;
+    }
+
+    /**
+     * check if game running (not paused)
+     * @return returns true if game running and false if paused
+     */
+    boolean checkRunning() {
+        return !_paused;
     }
 }

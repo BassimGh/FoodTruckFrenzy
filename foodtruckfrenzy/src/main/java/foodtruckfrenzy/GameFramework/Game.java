@@ -22,7 +22,6 @@ import foodtruckfrenzy.SecondaryUI.ScreenType;
  * Potentially should be refactored to a singleton object as only one of these should exist at a time
  */
 public class Game {
-    
 
     private final int TIMER_DELAY = 10; // in milliseconds
 
@@ -32,8 +31,6 @@ public class Game {
     private final Timer _timer;
     private final GameConditions _gameConditions;
     private final KeyboardHandler _keyboardHandler;
-    private boolean _paused = false;
-    private boolean _invincible = false;
 
     private int timerIndex;
 
@@ -53,12 +50,12 @@ public class Game {
         /**
          * Action listener for the pause menu which resumes the game on interaction
          */
-        ActionListener resumeListener = e -> resume();
+        ActionListener resumeListener = e -> handleResume();
 
         /**
          * Action listener for the pause menu which restarts the game on interaction
          */
-        ActionListener restartListener = e -> restart();
+        ActionListener restartListener = e -> handleRestart();
 
         PauseScreen pausePanel = new PauseScreen(resumeListener, restartListener);
         GamePanel gamePanel = new GamePanel(grid, _mainCharacter, _cops);
@@ -77,20 +74,13 @@ public class Game {
      * Checks for win and loss condidions
      */
     private void gameTick() {
-        if (_keyboardHandler.invinciblePressed() && _invincible == false) {
-            _frame.setTitle("INVINCIBLE MODE ACTIVATED");
-            _invincible = true;
-        } else if (_keyboardHandler.invinciblePressed() && _invincible == true) {
-            _frame.setTitle("Food Truck Frenzy");
-            _invincible = false;
-        }
-
-        if (!_paused) {
+        if (_gameConditions.checkRunning()) {
             if (_keyboardHandler.pausePressed())
-                pause();
+                handlePause();
 
-            if (!_paused && _gameConditions.checkWin()) {
+            if (_gameConditions.checkWin()) {
                 handleWin();
+                return;
             }
 
             boolean moved = false;
@@ -111,8 +101,9 @@ public class Game {
                 timerIndex = 0;
             
             // Check if there is a loss of game after player movement
-            if (!_paused && _gameConditions.checkLoss()) {
+            if (_gameConditions.checkLoss()) {
                 handleLoss();
+                return;
             }
 
             for (int i = 0; i < _cops.size(); i++) {
@@ -121,8 +112,9 @@ public class Game {
             }
 
             // Check if there is a loss of game after cop movement
-            if (!_paused && _gameConditions.checkLoss()) {
+            if (_gameConditions.checkLoss()) {
                 handleLoss();
+                return;
             }
 
             _frame.refresh();
@@ -142,8 +134,8 @@ public class Game {
      * While suspending the game loop through a boolean value update
      * Pauses scoreboard timer
      */
-    private void pause() {
-        _paused = true;
+    private void handlePause() {
+        _gameConditions.pause();
         _frame.showPauseScreen();
         _mainCharacter.getScoreboard().pauseTimer();
     }
@@ -153,8 +145,8 @@ public class Game {
      * While resuming the game loop through a boolean value update
      * Resumes scoreboard timer
      */
-    private void resume() {
-        _paused = false;
+    private void handleResume() {
+        _gameConditions.resume();
         _frame.showGameScreen();
         _mainCharacter.getScoreboard().resumeTimer();
     }
@@ -164,7 +156,7 @@ public class Game {
      * Creates a new instance of game and starts it
      * disposes of current game frame
      */
-    private void restart() {
+    private void handleRestart() {
         (new Game()).startTimer();
         _frame.dispose();
     }
@@ -176,11 +168,6 @@ public class Game {
      * Sets paused to true to prevent further loop progression
      */
     private void handleLoss() {
-
-        if (_invincible)
-            return;
-        
-        _paused = true;
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_LOST, _mainCharacter.getScoreboard());
@@ -193,7 +180,6 @@ public class Game {
      * Sets paused to true to prevent further loop progression
      */
     private void handleWin() {
-        _paused = true;
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_WON, _mainCharacter.getScoreboard());
