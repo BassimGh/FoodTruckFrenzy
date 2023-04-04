@@ -66,6 +66,7 @@ public class Game {
  
         timerIndex = 0;
         _timer = new Timer(TIMER_DELAY, e -> gameTick());
+        _timer.start();
     }
 
     /*
@@ -121,18 +122,11 @@ public class Game {
     }
 
     /**
-     * Starts the game timer, effectively starting the game
-     */
-    public void startTimer() {
-        _timer.start();
-    }
-
-    /**
      * Pauses the game and shows the pause menu 
      * While suspending the game loop through a boolean value update
      * Pauses scoreboard timer
      */
-    private void handlePause() {
+    void handlePause() {
         _gameConditions.pause();
         _frame.showPauseScreen();
         _mainCharacter.getScoreboard().pauseTimer();
@@ -143,7 +137,7 @@ public class Game {
      * While resuming the game loop through a boolean value update
      * Resumes scoreboard timer
      */
-    private void handleResume() {
+    void handleResume() {
         _gameConditions.resume();
         _frame.showGameScreen();
         _mainCharacter.getScoreboard().resumeTimer();
@@ -155,7 +149,7 @@ public class Game {
      * disposes of current game frame
      */
     private void handleRestart() {
-        (new Game()).startTimer();
+        new Game();
         _frame.dispose();
     }
 
@@ -181,6 +175,10 @@ public class Game {
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_WON, _mainCharacter.getScoreboard());
+    }
+
+    GameConditions getGameConditions() {
+        return _gameConditions;
     }
 
 }
