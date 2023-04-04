@@ -22,7 +22,6 @@ import foodtruckfrenzy.SecondaryUI.ScreenType;
  * Potentially should be refactored to a singleton object as only one of these should exist at a time
  */
 public class Game {
-    
 
     private final int TIMER_DELAY = 10; // in milliseconds
 
