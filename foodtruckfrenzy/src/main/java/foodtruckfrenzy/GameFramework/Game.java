@@ -74,7 +74,7 @@ public class Game {
      * Checks for win and loss condidions
      */
     private void gameTick() {
-        if (_gameConditions.checkNotPaused()) {
+        if (_gameConditions.checkRunning()) {
             if (_keyboardHandler.pausePressed())
                 handlePause();
 

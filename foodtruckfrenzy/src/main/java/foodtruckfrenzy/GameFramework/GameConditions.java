@@ -59,15 +59,25 @@ public class GameConditions {
         return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _scoreboard.getIngredientsFound() >= _scoreboard.getIngredientsDiscoverable();
     }
 
+    /**
+     * Update pause to true
+     */
     void pause() {
         _paused = true;
     }
 
+    /**
+     * Update pause to false
+     */
     void resume() {
         _paused = false;
     }
 
-    boolean checkNotPaused() {
+    /**
+     * check if game running (not paused)
+     * @return returns true if game running and false if paused
+     */
+    boolean checkRunning() {
         return !_paused;
     }
 }
