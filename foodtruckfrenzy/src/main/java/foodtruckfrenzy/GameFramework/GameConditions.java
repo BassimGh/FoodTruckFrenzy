@@ -33,7 +33,7 @@ public class GameConditions {
      * @return true if there is a collison between the foodTruck or any Cop in the array or if score < 0, false if not
      */
     boolean checkLoss() {
-        if (_paused)
+        if (!checkRunning())
             return false;
 
         if (_scoreboard.getScore() < 0)
@@ -53,7 +53,7 @@ public class GameConditions {
      * @return true if there is a successful win, otherwise false
      */
     boolean checkWin() {
-        if (_paused)
+        if (!checkRunning())
             return false;
         
         return _foodTruck.getCol() == 40 && _foodTruck.getRow() == 16 && _scoreboard.getIngredientsFound() >= _scoreboard.getIngredientsDiscoverable();

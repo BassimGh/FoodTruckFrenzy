@@ -28,17 +28,22 @@ public class GameConditionsTest {
 
     @Test
     void checkLossFalse() {
-        cops.add(new Cop(0, 1, null, foodTruck));
-        cops.add(new Cop(2, 3, null, foodTruck));
+        cops.add(new Cop(5, 5, null, foodTruck));
+        cops.add(new Cop(6, 6, null, foodTruck));
+        cops.add(new Cop(6, 5, null, foodTruck));
         assertFalse(gameConditions.checkLoss());
-        cops.clear();
     }
 
     @Test
     void checkLossTrueScoreNegative() {
         scoreboard.addScore(-1);
         assertTrue(gameConditions.checkLoss());
-        scoreboard.addScore(1);
+    }
+
+    @Test
+    void checkLossFalseScoreNegativePaused() {
+        gameConditions.pause();
+        scoreboard.addScore(-1);
         assertFalse(gameConditions.checkLoss());
     }
 
@@ -46,7 +51,12 @@ public class GameConditionsTest {
     void checkLossTrueCopCollisionFirstCar() {
         cops.add(new Cop(5, 6, null, foodTruck));
         assertTrue(gameConditions.checkLoss());
-        cops.clear();
+    }
+
+    @Test
+    void checkLossFalseCopCollisionFirstCarPaused() {
+        gameConditions.pause();
+        cops.add(new Cop(5, 6, null, foodTruck));
         assertFalse(gameConditions.checkLoss());
     }
 
@@ -56,20 +66,73 @@ public class GameConditionsTest {
         cops.add(new Cop(2, 3, null, foodTruck));
         cops.add(new Cop(5, 6, null, foodTruck));
         assertTrue(gameConditions.checkLoss());
-        cops.clear();
-        assertFalse(gameConditions.checkLoss());
+    }
+
+    @Test
+    void checkWinFalseNotEnoughIngredients() {
+        foodTruck.setCol(40);
+        foodTruck.setRow(16);
+        assertFalse(gameConditions.checkWin());
+    }
+
+    @Test
+    void checkWinFalseWrongCol() {
+        for( int i = 0; i < MAX_INGREDIENTS; i++) {
+            scoreboard.addIngredientsFound();
+        }
+        foodTruck.setCol(39);
+        foodTruck.setRow(16);
+        assertFalse(gameConditions.checkWin());
+        foodTruck.setCol(41);
+        foodTruck.setRow(16);
+        assertFalse(gameConditions.checkWin());
+    }
+
+    @Test
+    void checkWinFalseWrongRow() {
+        for( int i = 0; i < MAX_INGREDIENTS; i++) {
+            scoreboard.addIngredientsFound();
+        }
+        foodTruck.setCol(40);
+        foodTruck.setRow(15);
+        assertFalse(gameConditions.checkWin());
+        foodTruck.setCol(40);
+        foodTruck.setRow(17);
+        assertFalse(gameConditions.checkWin());
+    }
+    
+    @Test
+    void checkWinFalsePaused() {
+        gameConditions.pause();
+        for( int i = 0; i < MAX_INGREDIENTS; i++) {
+            scoreboard.addIngredientsFound();
+        }
+        foodTruck.setCol(40);
+        foodTruck.setRow(16);
+        assertFalse(gameConditions.checkWin());
     }
 
     @Test
     void checkWinTrue() {
-        foodTruck.setCol(40);
-        foodTruck.setRow(16);
         for( int i = 0; i < MAX_INGREDIENTS; i++) {
             scoreboard.addIngredientsFound();
         }
-
+        foodTruck.setCol(40);
+        foodTruck.setRow(16);
         assertTrue(gameConditions.checkWin());
-
     }
 
+    @Test
+    void testInitRunning() {
+        assertTrue(gameConditions.checkRunning());
+    }
+
+    @Test
+    void testToggleRunning() {
+        gameConditions.pause();
+        assertFalse(gameConditions.checkRunning());
+        gameConditions.resume();
+        assertTrue(gameConditions.checkRunning());
+        
+    }
 }
