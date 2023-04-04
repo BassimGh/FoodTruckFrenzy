@@ -16,7 +16,7 @@ class GridTest {
     @Test
     public void testGetCell() {
         BoardElementFactory boardElementFactory = Mockito.mock(BoardElementFactory.class);
-        MapLayout mapLayout = Mockito.mock(MapLayout.class);
+        MapLayout mapLayout = new MapLayout();
         BoardElement mockElement = Mockito.mock(BoardElement.class);
         Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
         Grid grid = new Grid(boardElementFactory, mapLayout);
