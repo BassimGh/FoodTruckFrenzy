@@ -96,9 +96,7 @@ public class Game {
             if (_keyboardHandler.rightPressed() && !_keyboardHandler.leftPressed() && !moved && timerIndex % 5 == 0)
                 moved = _mainCharacter.moveRight();
 
-            timerIndex ++;
-            if (timerIndex > Integer.MAX_VALUE - 1)
-                timerIndex = 0;
+            timerIndex = (timerIndex + 1) % Integer.MAX_VALUE;
             
             // Check if there is a loss of game after player movement
             if (_gameConditions.checkLoss()) {
