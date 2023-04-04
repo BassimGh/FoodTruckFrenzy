@@ -132,7 +132,7 @@ public class Game {
      * While suspending the game loop through a boolean value update
      * Pauses scoreboard timer
      */
-    private void handlePause() {
+    void handlePause() {
         _gameConditions.pause();
         _frame.showPauseScreen();
         _mainCharacter.getScoreboard().pauseTimer();
@@ -143,7 +143,7 @@ public class Game {
      * While resuming the game loop through a boolean value update
      * Resumes scoreboard timer
      */
-    private void handleResume() {
+    void handleResume() {
         _gameConditions.resume();
         _frame.showGameScreen();
         _mainCharacter.getScoreboard().resumeTimer();
@@ -181,6 +181,10 @@ public class Game {
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_WON, _mainCharacter.getScoreboard());
+    }
+
+    GameConditions getGameConditions() {
+        return _gameConditions;
     }
 
 }
