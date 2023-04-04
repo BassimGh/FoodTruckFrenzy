@@ -31,6 +31,7 @@ public class Game {
     private final Timer _timer;
     private final GameConditions _gameConditions;
     private final KeyboardHandler _keyboardHandler;
+    private boolean _invincible = false;
 
     private int timerIndex;
 
@@ -75,6 +76,11 @@ public class Game {
      * Checks for win and loss condidions
      */
     private void gameTick() {
+
+        if (_keyboardHandler.invinciblePressed()) {
+            _invincible = true;
+            _frame.setTitle("INVINCIBLE MODE ACTIVATED");
+        }
         if (_gameConditions.checkRunning()) {
             if (_keyboardHandler.pausePressed())
                 handlePause();
@@ -100,7 +106,7 @@ public class Game {
             timerIndex = (timerIndex + 1) % Integer.MAX_VALUE;
             
             // Check if there is a loss of game after player movement
-            if (_gameConditions.checkLoss()) {
+            if (!_invincible &&  _gameConditions.checkLoss()) {
                 handleLoss();
                 return;
             }
@@ -111,7 +117,7 @@ public class Game {
             }
 
             // Check if there is a loss of game after cop movement
-            if (_gameConditions.checkLoss()) {
+            if (!_invincible && _gameConditions.checkLoss()) {
                 handleLoss();
                 return;
             }
