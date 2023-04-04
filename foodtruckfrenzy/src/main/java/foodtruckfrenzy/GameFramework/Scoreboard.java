@@ -354,6 +354,10 @@ public class Scoreboard extends JPanel {
         return score;
     }
 
+    /**
+     * Returns the total number of ingredientsDiscoverable
+     * @return an integer representing the total number of ingredients discoverable
+     */
     public int getIngredientsDiscoverable() {
         return ingredientsDiscoverable;
     }
