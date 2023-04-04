@@ -295,5 +295,10 @@ public class BoardElementFactoryTest {
         });
     }
 
+    @Test
+    void testNullReturnTypeForDebuggin() {
+        assertNull(boardElementFactory.create(LayoutEnum.NULL, 0, 0));
+    }
+
 
 }
