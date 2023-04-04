@@ -10,6 +10,11 @@ public class GameTest {
         game = new Game();
     }
 
+    @AfterEach
+    public void close() {
+        game.forceClose();
+    }
+
     @Test
     public void testHandlePause() {
         game.handlePause();

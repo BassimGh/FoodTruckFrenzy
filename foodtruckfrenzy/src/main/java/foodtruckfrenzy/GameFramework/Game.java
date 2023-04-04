@@ -177,8 +177,22 @@ public class Game {
         new Frame(ScreenType.GAME_WON, _mainCharacter.getScoreboard());
     }
 
+    /**
+     * Get the GameConditions manager object for this game instance
+     * @return GameConditions object for this game instance
+     */
     GameConditions getGameConditions() {
         return _gameConditions;
+    }
+
+    /**
+     * Force closes the game
+     * Terminates the timer
+     * Disposes of the frame
+     */
+    void forceClose() {
+        _timer.stop();
+        _frame.dispose();
     }
 
 }
