@@ -15,7 +15,7 @@ To build, run, and test Food Truck Frenzy you need to have the following install
 To build the project, navigate to the root directory of the project (where the 'pom.xml' file is located) and run the following command:
 
 ```bash
-  mvn clean install
+  mvn clean package
 ```
 
 This command will clean any previous build artifacts, compile the source code, run the tests, and package the compiled code into a JAR file. The JAR file will be located in the target folder.

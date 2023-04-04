@@ -3,8 +3,6 @@ package foodtruckfrenzy.SecondaryUI;
 /**
  *The Dimensions class contains the width and height variable to be supplied by each type of child class to the Screen class
  *Each class will create a new Dimensions object that contains the custom height and width for the Screen class to use
- *@param width the width to be used for the Screen size
- *@param height the height to be used for the Screen size
  */
 
 public class Dimensions {

@@ -5,11 +5,14 @@ import foodtruckfrenzy.SecondaryUI.ScreenType;
 
 /**
  * The Main Class creates a new Title Screen Frame object.
- * @param args arguments passed to the program
  */
-
 public class Main {
 
+
+    /**
+     * Main function
+     * @param args arguments passed to the program
+     */
     public static void main(String[] args) {
         /**
          * Creates and Displays the Title Screen on program startup

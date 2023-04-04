@@ -15,6 +15,11 @@ import foodtruckfrenzy.GameFramework.Grid;
  * These BoardElements can contain different graphics or items depending on the type
  */
 public class BoardElementFactory {
+
+    /**
+     * Default constructor for BoardElementFactory
+     */
+    public BoardElementFactory() {}
     /**
      * Creates BoardElement object based on specified parameters
      * @param type BoardElementEnum to be converted into a BoardElement
