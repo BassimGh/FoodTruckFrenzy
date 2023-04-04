@@ -15,7 +15,7 @@ public class FoodTruckTest {
     private Scoreboard scoreboard;
     private FoodTruck foodTruck;
 
-    @BeforeEach                  
+    @BeforeEach
     void setup() {
         grid = new Grid(new BoardElementFactory(), new MapLayout());
         foodTruck = new FoodTruck(11, 8, grid, scoreboard);
