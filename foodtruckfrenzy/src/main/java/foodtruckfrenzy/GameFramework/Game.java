@@ -74,12 +74,13 @@ public class Game {
      * Checks for win and loss condidions
      */
     private void gameTick() {
-        if (_gameConditions.checkPaused()) {
+        if (_gameConditions.checkNotPaused()) {
             if (_keyboardHandler.pausePressed())
                 handlePause();
 
             if (_gameConditions.checkWin()) {
                 handleWin();
+                return;
             }
 
             boolean moved = false;
@@ -102,6 +103,7 @@ public class Game {
             // Check if there is a loss of game after player movement
             if (_gameConditions.checkLoss()) {
                 handleLoss();
+                return;
             }
 
             for (int i = 0; i < _cops.size(); i++) {
@@ -112,6 +114,7 @@ public class Game {
             // Check if there is a loss of game after cop movement
             if (_gameConditions.checkLoss()) {
                 handleLoss();
+                return;
             }
 
             _frame.refresh();

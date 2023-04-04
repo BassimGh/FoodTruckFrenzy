@@ -67,7 +67,7 @@ public class GameConditions {
         _paused = false;
     }
 
-    boolean checkPaused() {
-        return _paused;
+    boolean checkNotPaused() {
+        return !_paused;
     }
 }
