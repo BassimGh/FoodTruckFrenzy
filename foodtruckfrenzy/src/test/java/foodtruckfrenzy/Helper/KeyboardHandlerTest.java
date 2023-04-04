@@ -21,7 +21,6 @@ class KeyboardHandlerTest {
         assertFalse(keyboardHandler.leftPressed());
         assertFalse(keyboardHandler.rightPressed());
         assertFalse(keyboardHandler.pausePressed());
-        assertFalse(keyboardHandler.invinciblePressed());
     }
 
     @Test
@@ -72,16 +71,6 @@ class KeyboardHandlerTest {
         assertTrue(keyboardHandler.pausePressed());
         keyboardHandler.keyReleased(mockedKey);
         assertFalse(keyboardHandler.pausePressed());
-    }
-
-    @Test
-    void testInvinciblePressedAndReleased() {
-        KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
-        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_BACK_QUOTE);
-        keyboardHandler.keyPressed(mockedKey);
-        assertTrue(keyboardHandler.invinciblePressed());
-        keyboardHandler.keyReleased(mockedKey);
-        assertFalse(keyboardHandler.invinciblePressed());
     }
 
 }
