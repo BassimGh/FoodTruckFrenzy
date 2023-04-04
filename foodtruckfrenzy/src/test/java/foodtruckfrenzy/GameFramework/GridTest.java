@@ -6,7 +6,6 @@ import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
 import foodtruckfrenzy.Drawable.BoardElement.BoardElement;
-import foodtruckfrenzy.Drawable.BoardElement.Road;
 import foodtruckfrenzy.Helper.BoardElementFactory;
 import foodtruckfrenzy.Helper.LayoutEnum;
 import foodtruckfrenzy.Helper.MapLayout;
@@ -43,7 +42,7 @@ class GridTest {
     }
 
     @Test
-    public void testIsObstructionFalse() {
+    public void testIsObstructionFalseHorizontal() {
         BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
         Mockito.when(mapLayout.getElementAt(Mockito.anyInt(), Mockito.anyInt())).thenReturn(LayoutEnum.R);
@@ -57,11 +56,24 @@ class GridTest {
     }
 
     @Test
-    public void testIngredientsDiscoverableZero() {
-        BoardElementFactory boardElementFactory = Mockito.mock(BoardElementFactory.class);
+    public void testIsObstructionFalseVertical() {
+        BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
-        BoardElement mockElement = Mockito.mock(Road.class);
-        Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
+        Mockito.when(mapLayout.getElementAt(Mockito.anyInt(), Mockito.anyInt())).thenReturn(LayoutEnum.V);
+        Grid grid = new Grid(boardElementFactory, mapLayout);
+    
+        for (int i = 0; i < Grid.ROWS; i++) {
+            for (int j = 0; j < Grid.COLS; j++) {
+                assertFalse(grid.isObstruction(i, j));
+            }
+        }
+    }
+
+    @Test
+    public void testIngredientsDiscoverableZero() {
+        BoardElementFactory boardElementFactory = new BoardElementFactory();
+        MapLayout mapLayout = Mockito.mock(MapLayout.class);
+        Mockito.when(mapLayout.getElementAt(Mockito.anyInt(), Mockito.anyInt())).thenReturn(LayoutEnum.NULL);
         Grid grid = new Grid(boardElementFactory, mapLayout);
 
         assertEquals(0, grid.getIngredientsDiscoverable());
@@ -69,25 +81,33 @@ class GridTest {
 
     @Test
     public void testIngredientsDiscoverableMax() {
-        BoardElementFactory boardElementFactory = Mockito.mock(BoardElementFactory.class);
+        BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
-        BoardElement mockElement = Mockito.mock(Road.class);
-        Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
+        Mockito.when(mapLayout.getElementAt(Mockito.anyInt(), Mockito.anyInt())).thenReturn(LayoutEnum.F);
         Grid grid = new Grid(boardElementFactory, mapLayout);
 
-        assertEquals(0, grid.getIngredientsDiscoverable());
+        assertEquals(Grid.COLS * Grid.ROWS, grid.getIngredientsDiscoverable());
     }
 
     @Test
     public void testRecipesDiscoverableZero() {
-        BoardElementFactory boardElementFactory = Mockito.mock(BoardElementFactory.class);
+        BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
-        BoardElement mockElement = Mockito.mock(Road.class);
-        Mockito.when(boardElementFactory.create(Mockito.any(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockElement);
+        Mockito.when(mapLayout.getElementAt(Mockito.anyInt(), Mockito.anyInt())).thenReturn(LayoutEnum.NULL);
         Grid grid = new Grid(boardElementFactory, mapLayout);
 
         assertEquals(0, grid.getRecipesDiscoverable());
     }
 
+
+    @Test
+    public void testRecipesDiscoverableMax() {
+        BoardElementFactory boardElementFactory = new BoardElementFactory();
+        MapLayout mapLayout = Mockito.mock(MapLayout.class);
+        Mockito.when(mapLayout.getElementAt(Mockito.anyInt(), Mockito.anyInt())).thenReturn(LayoutEnum.Q);
+        Grid grid = new Grid(boardElementFactory, mapLayout);
+
+        assertEquals(Grid.COLS * Grid.ROWS, grid.getRecipesDiscoverable());
+    }
 }
 

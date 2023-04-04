@@ -74,6 +74,9 @@ public class BoardElementFactory {
                 return new Road(row, col, new Food(row, col), DrawableEnum.VERTICAL_ROAD);
             case Q:
                 return new Road(row, col, new Recipe(row, col), DrawableEnum.HORIZONTAL_ROAD);
+
+            case NULL:
+                return null;
             
             default:
                 throw new IllegalArgumentException("Invalid LayoutEnum type specified. Unable to find in switch statement.");
