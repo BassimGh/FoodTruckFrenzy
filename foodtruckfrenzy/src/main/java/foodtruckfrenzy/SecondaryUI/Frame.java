@@ -28,8 +28,7 @@ public class Frame extends JFrame {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                Game game = new Game();
-                game.startTimer();
+                new Game();
                 dispose();
             }
         };

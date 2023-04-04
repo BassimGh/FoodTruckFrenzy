@@ -12,14 +12,12 @@ public class GameTest {
 
     @Test
     public void testHandlePause() {
-        game.startTimer();
         game.handlePause();
         assertFalse(game.getGameConditions().checkRunning());
     }
 
     @Test
     public void testHandleResume() {
-        game.startTimer();
         game.handlePause();
         assertFalse(game.getGameConditions().checkRunning());
 
