@@ -94,13 +94,14 @@ public class GameTest {
 
         verify(game, times(1)).handleWin();
     }
-
+    
     @Test
     void testMoveUpInteraction() {
         GameConditions gameCondtions = Mockito.mock(GameConditions.class);
         when(gameCondtions.checkRunning()).thenReturn(true);
         KeyboardHandler keyboardHandler = Mockito.mock(KeyboardHandler.class);
         when(keyboardHandler.upPressed()).thenReturn(true);
+        when(keyboardHandler.downPressed()).thenReturn(false).thenReturn(true);
 
         BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
@@ -113,6 +114,9 @@ public class GameTest {
         game.gameTick();
 
         verify(foodTruck, times(1)).moveUp();
+        reset(foodTruck);
+        game.gameTick();
+        verify(foodTruck, times(0)).moveUp();
     }
     
     @Test
@@ -121,6 +125,7 @@ public class GameTest {
         when(gameCondtions.checkRunning()).thenReturn(true);
         KeyboardHandler keyboardHandler = Mockito.mock(KeyboardHandler.class);
         when(keyboardHandler.downPressed()).thenReturn(true);
+        when(keyboardHandler.upPressed()).thenReturn(false).thenReturn(false).thenReturn(true);
 
         BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
@@ -133,6 +138,9 @@ public class GameTest {
         game.gameTick();
 
         verify(foodTruck, times(1)).moveDown();
+        reset(foodTruck);
+        game.gameTick();
+        verify(foodTruck, times(0)).moveDown();
     }
 
     @Test
@@ -141,6 +149,7 @@ public class GameTest {
         when(gameCondtions.checkRunning()).thenReturn(true);
         KeyboardHandler keyboardHandler = Mockito.mock(KeyboardHandler.class);
         when(keyboardHandler.rightPressed()).thenReturn(true);
+        when(keyboardHandler.leftPressed()).thenReturn(false).thenReturn(false).thenReturn(true);
 
         BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
@@ -153,6 +162,9 @@ public class GameTest {
         game.gameTick();
 
         verify(foodTruck, times(1)).moveRight();
+        reset(foodTruck);
+        game.gameTick();
+        verify(foodTruck, times(0)).moveRight();
     }
 
     @Test
@@ -161,6 +173,7 @@ public class GameTest {
         when(gameCondtions.checkRunning()).thenReturn(true);
         KeyboardHandler keyboardHandler = Mockito.mock(KeyboardHandler.class);
         when(keyboardHandler.leftPressed()).thenReturn(true);
+        when(keyboardHandler.rightPressed()).thenReturn(false).thenReturn(true);
 
         BoardElementFactory boardElementFactory = new BoardElementFactory();
         MapLayout mapLayout = Mockito.mock(MapLayout.class);
@@ -173,7 +186,11 @@ public class GameTest {
         game.gameTick();
 
         verify(foodTruck, times(1)).moveLeft();
+        reset(foodTruck);
+        game.gameTick();
+        verify(foodTruck, times(0)).moveLeft();
     }
+
 
 
 
