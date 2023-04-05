@@ -202,4 +202,8 @@ public class Cop extends Vehicle {
             queue.add(new Position(pos.row, pos.col + 1, pos));
 
     }
+
+    Direction getAppendedDirection() {
+        return directions.getLast();
+    }
 }

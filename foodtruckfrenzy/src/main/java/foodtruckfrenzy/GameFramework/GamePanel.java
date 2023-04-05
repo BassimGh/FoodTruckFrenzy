@@ -42,16 +42,21 @@ class GamePanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
 
-        for (int i = 0; i < Grid.ROWS; i++) {
-            for (int j = 0; j < Grid.COLS; j++) {
-                _grid.drawCell(i,j,g2d);
+        if (_grid != null) {
+            for (int i = 0; i < Grid.ROWS; i++) {
+                for (int j = 0; j < Grid.COLS; j++) {
+                    _grid.drawCell(i,j,g2d);
+                }
             }
         }
-        _mainCharacter.draw(g2d);
+
+        if (_mainCharacter != null)
+            _mainCharacter.draw(g2d);
         
-        for (Cop cop : _cops) {
-            cop.draw(g2d);
-        }
+        if (_cops != null)
+            for (Cop cop : _cops) {
+                cop.draw(g2d);
+            }
     }
 
     /**

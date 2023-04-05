@@ -25,7 +25,7 @@ public class GameFrame extends JFrame {
     
     private final JPanel _mainPanel;
     private final GamePanel _gamePanel;
-    private final CardLayout _layout;
+    private final CardLayout _layoutManager;
 
 
     /**
@@ -57,12 +57,11 @@ public class GameFrame extends JFrame {
         _mainPanel.add(gameAndScorePane, "game");
         _mainPanel.add(pausePanel, "pause");
         this.setContentPane(_mainPanel);
-        _layout = (CardLayout) _mainPanel.getLayout();
-        _layout.show(_mainPanel, "game");
+        _layoutManager = (CardLayout) _mainPanel.getLayout();
+        _layoutManager.show(_mainPanel, "game");
 
         this.setFocusable(true);
         this.pack();
-        this.setVisible(true);
         this.requestFocusInWindow();
     }
 
@@ -79,14 +78,21 @@ public class GameFrame extends JFrame {
      * Shows pause screen by flipping card layout
      */
     void showPauseScreen() {
-        _layout.show(_mainPanel, "pause");
+        _layoutManager.show(_mainPanel, "pause");
     }
 
     /**
      * Shows game screen by flipping card layout
      */
     void showGameScreen() {
-        _layout.show(_mainPanel, "game");
+        _layoutManager.show(_mainPanel, "game");
     }
 
+    /**
+     * Getter for the content pane main panel
+     * @return JPanel main panel
+     */
+    JPanel getMainPanel() {
+        return _mainPanel;
+    }
 }

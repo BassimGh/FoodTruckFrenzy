@@ -62,6 +62,7 @@ public class Game {
         _keyboardHandler = new KeyboardHandler();
         _frame = new GameFrame(gamePanel, scoreboard, pausePanel);
         _frame.addKeyListener(_keyboardHandler);
+        _frame.setVisible(true);
         
  
         timerIndex = 0;
@@ -75,6 +76,8 @@ public class Game {
      * Checks for win and loss condidions
      */
     private void gameTick() {
+        _frame.refresh();
+
         if (_gameConditions.checkRunning()) {
             if (_keyboardHandler.pausePressed())
                 handlePause();
@@ -115,9 +118,6 @@ public class Game {
                 handleLoss();
                 return;
             }
-
-            _frame.refresh();
-
         }
     }
 

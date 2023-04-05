@@ -38,6 +38,18 @@ The project includes JUnit tests which can be run using the following command:
   mvn test
 ```
 
+To generate coverage reports with JaCoCo run the following command:
+
+```bash
+  mvn jacoco:prepare-agent test jacoco:report
+```
+
+The coverage report will output to:
+
+```bash
+  target/site/jacoco/index.html
+```
+
 # Authors
  - Kyle Deliyannides
  - Bassim Ghasemzadeh
