@@ -29,8 +29,8 @@ public class Game {
     private final FoodTruck _mainCharacter;
     private final ArrayList<Cop> _cops;
     private final Timer _timer;
-    private final GameConditions _gameConditions;
-    private final KeyboardHandler _keyboardHandler;
+    private GameConditions _gameConditions;
+    private KeyboardHandler _keyboardHandler;
 
     private int timerIndex;
 
@@ -75,7 +75,7 @@ public class Game {
      * Controls player movement and cop movement
      * Checks for win and loss condidions
      */
-    private void gameTick() {
+    void gameTick() {
         _frame.refresh();
 
         if (_gameConditions.checkRunning()) {
@@ -159,7 +159,7 @@ public class Game {
      * Shows a new GAME_LOST screen Frame
      * Sets paused to true to prevent further loop progression
      */
-    private void handleLoss() {
+    void handleLoss() {
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_LOST, _mainCharacter.getScoreboard());
@@ -171,7 +171,7 @@ public class Game {
      * Shows a new GAME_WON screen Frame
      * Sets paused to true to prevent further loop progression
      */
-    private void handleWin() {
+    void handleWin() {
         _timer.stop();
         _frame.dispose();
         new Frame(ScreenType.GAME_WON, _mainCharacter.getScoreboard());
@@ -193,6 +193,14 @@ public class Game {
     void forceClose() {
         _timer.stop();
         _frame.dispose();
+    }
+
+    void overrideKeyboardHandler(KeyboardHandler keyboardHandler) {
+        _keyboardHandler = keyboardHandler;
+    }
+
+    void overrideGameConditions(GameConditions gameConditions) {
+        _gameConditions = gameConditions;
     }
 
 }
