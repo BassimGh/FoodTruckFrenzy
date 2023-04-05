@@ -26,7 +26,7 @@ public class Game {
     private final int TIMER_DELAY = 10; // in milliseconds
 
     private final GameFrame _frame;
-    private final FoodTruck _mainCharacter;
+    private FoodTruck _mainCharacter;
     private final ArrayList<Cop> _cops;
     private final Timer _timer;
     private GameConditions _gameConditions;
@@ -201,6 +201,10 @@ public class Game {
 
     void overrideGameConditions(GameConditions gameConditions) {
         _gameConditions = gameConditions;
+    }
+
+    void overrideFoodTruck(FoodTruck foodTruck) {
+        _mainCharacter = foodTruck;
     }
 
 }
