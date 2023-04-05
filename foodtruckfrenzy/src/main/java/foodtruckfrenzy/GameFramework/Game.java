@@ -62,6 +62,7 @@ public class Game {
         _keyboardHandler = new KeyboardHandler();
         _frame = new GameFrame(gamePanel, scoreboard, pausePanel);
         _frame.addKeyListener(_keyboardHandler);
+        _frame.setVisible(true);
         
  
         timerIndex = 0;
