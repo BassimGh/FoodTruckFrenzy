@@ -81,4 +81,5 @@ public class CopTest {
         assertFalse(cop.moveRight());
         assertEquals(initialColPos, cop.getCol());
     }
+
 }

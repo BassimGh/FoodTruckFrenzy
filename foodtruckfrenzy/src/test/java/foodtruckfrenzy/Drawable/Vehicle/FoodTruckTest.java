@@ -1,6 +1,9 @@
 package foodtruckfrenzy.Drawable.Vehicle;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.*;
 
 import foodtruckfrenzy.GameFramework.Grid;
@@ -60,6 +63,27 @@ public class FoodTruckTest {
         assertTrue(foodTruck.moveUp());
         assertEquals(initialRowPos - 1 , foodTruck.getRow());
     }
+
+    @Test
+    void testMoveUpSendDirection() {
+        int initialRowPos = foodTruck.getRow();
+
+        ArrayList<Cop> cops = new ArrayList<>();
+        Cop cop1 = new Cop(0,0,grid,foodTruck);
+        Cop cop2 = new Cop(0,0,grid,foodTruck);
+        cops.add(cop1);
+        cops.add(cop2);
+        foodTruck.attach(cop1);
+        foodTruck.attach(cop2);
+
+        assertTrue(foodTruck.moveUp());
+        assertEquals(initialRowPos - 1 , foodTruck.getRow());
+
+        for (Cop cop : cops) {
+            assertEquals(Direction.UP, cop.getAppendedDirection());
+        }
+    }
+
     @Test 
     void testMoveUpFail() {
         FoodTruck tempFoodTruck = new FoodTruck(1, 1, grid, null);
@@ -74,6 +98,27 @@ public class FoodTruckTest {
         assertTrue(foodTruck.moveDown());
         assertEquals(initialRowPos + 1 , foodTruck.getRow());
     }
+
+    @Test
+    void testMoveDownSendDirection() {
+        int initialRowPos = foodTruck.getRow();
+
+        ArrayList<Cop> cops = new ArrayList<>();
+        Cop cop1 = new Cop(0,0,grid,foodTruck);
+        Cop cop2 = new Cop(0,0,grid,foodTruck);
+        cops.add(cop1);
+        cops.add(cop2);
+        foodTruck.attach(cop1);
+        foodTruck.attach(cop2);
+
+        assertTrue(foodTruck.moveDown());
+        assertEquals(initialRowPos + 1 , foodTruck.getRow());
+
+        for (Cop cop : cops) {
+            assertEquals(Direction.DOWN, cop.getAppendedDirection());
+        }
+    }
+
     @Test
     void testMoveDownFail() {
         FoodTruck tempFoodTruck = new FoodTruck(1, 2, grid, null);
@@ -88,6 +133,27 @@ public class FoodTruckTest {
         assertTrue(foodTruck.moveLeft());
         assertEquals(initialColPos - 1 , foodTruck.getCol());
     }
+
+    @Test
+    void testMoveLeftSendDirection() {
+        int initialColPos = foodTruck.getCol();
+
+        ArrayList<Cop> cops = new ArrayList<>();
+        Cop cop1 = new Cop(0,0,grid,foodTruck);
+        Cop cop2 = new Cop(0,0,grid,foodTruck);
+        cops.add(cop1);
+        cops.add(cop2);
+        foodTruck.attach(cop1);
+        foodTruck.attach(cop2);
+
+        assertTrue(foodTruck.moveLeft());
+        assertEquals(initialColPos - 1 , foodTruck.getCol());
+
+        for (Cop cop : cops) {
+            assertEquals(Direction.LEFT, cop.getAppendedDirection());
+        }
+    }
+
     @Test
     void testMoveLeftFail() {
         FoodTruck tempFoodTruck = new FoodTruck(2, 1, grid, null);
@@ -102,6 +168,27 @@ public class FoodTruckTest {
         assertTrue(foodTruck.moveRight());
         assertEquals(initialColPos + 1 , foodTruck.getCol());
     }
+
+    @Test
+    void testMoveRightSendDirection() {
+        int initialColPos = foodTruck.getCol();
+
+        ArrayList<Cop> cops = new ArrayList<>();
+        Cop cop1 = new Cop(0,0,grid,foodTruck);
+        Cop cop2 = new Cop(0,0,grid,foodTruck);
+        cops.add(cop1);
+        cops.add(cop2);
+        foodTruck.attach(cop1);
+        foodTruck.attach(cop2);
+
+        assertTrue(foodTruck.moveRight());
+        assertEquals(initialColPos + 1 , foodTruck.getCol());
+
+        for (Cop cop : cops) {
+            assertEquals(Direction.RIGHT, cop.getAppendedDirection());
+        }
+    }
+
     @Test
     void testMoveRightFail() {
         FoodTruck tempFoodTruck = new FoodTruck(2, 1, grid, null);
