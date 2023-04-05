@@ -94,6 +94,5 @@ public class FoodTruckTest {
         foodTruck.attach(cop);
         assertTrue(foodTruck.getCops().contains(cop));
     }
-
 }
 
