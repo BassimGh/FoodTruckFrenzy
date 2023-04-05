@@ -82,4 +82,65 @@ public class CopTest {
         assertEquals(initialColPos, cop.getCol());
     }
 
+    @Test
+    void ChaseTruckFail() {
+        int row = 1;
+        int col = 1;
+        Cop cop = new Cop(row, col, _grid, new FoodTruck(row, col, _grid, null));
+        assertEquals(col, cop.getCol());
+        assertEquals(row, cop.getRow());
+        cop.chaseTruck();
+        assertEquals(col, cop.getCol());
+        assertEquals(row, cop.getRow());
+    }
+
+    @Test
+    void ChaseTruckUp() {
+        int row = 3;
+        int col = 1;
+        Cop cop = new Cop(row, col, _grid, new FoodTruck(row+1, col, _grid, null));
+        cop.addDirection(Direction.UP);
+        assertEquals(col, cop.getCol());
+        assertEquals(row, cop.getRow());
+        cop.chaseTruck();
+        assertEquals(col, cop.getCol());
+        assertEquals(row-1, cop.getRow());
+    }
+    @Test
+    void ChaseTruckDown() {
+        int row = 3;
+        int col = 1;
+        Cop cop = new Cop(row, col, _grid, new FoodTruck(row+1, col, _grid, null));
+        cop.addDirection(Direction.DOWN);
+        assertEquals(row, cop.getRow());
+        assertEquals(col, cop.getCol());
+        cop.chaseTruck();
+        assertEquals(row+1, cop.getRow());
+        assertEquals(col, cop.getCol());
+    }
+    @Test
+    void ChaseTruckLeft() {
+        int row = 1;
+        int col = 2;
+        Cop cop = new Cop(row, col, _grid, new FoodTruck(row, col-1, _grid, null));
+        cop.addDirection(Direction.LEFT);
+        assertEquals(row, cop.getRow());
+        assertEquals(col, cop.getCol());
+        cop.chaseTruck();
+        assertEquals(row, cop.getRow());
+        assertEquals(col-1, cop.getCol());
+    }
+    @Test
+    void ChaseTruckRight() {
+        int row = 1;
+        int col = 1;
+        Cop cop = new Cop(row, col, _grid, new FoodTruck(row, col, _grid, null));
+        cop.addDirection(Direction.RIGHT);
+        assertEquals(row, cop.getRow());
+        assertEquals(col, cop.getCol());
+        cop.chaseTruck();
+        assertEquals(row, cop.getRow());
+        assertEquals(col+1, cop.getCol());
+    }
+
 }
