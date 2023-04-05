@@ -195,14 +195,26 @@ public class Game {
         _frame.dispose();
     }
 
+    /**
+     * For testing purposes, overrides the keyboard handler
+     * @param keyboardHandler to override the keyboard handler
+     */
     void overrideKeyboardHandler(KeyboardHandler keyboardHandler) {
         _keyboardHandler = keyboardHandler;
     }
 
+    /**
+     * For testing purposes, overrides the game conditions
+     * @param gameConditions to override the game conditions
+     */
     void overrideGameConditions(GameConditions gameConditions) {
         _gameConditions = gameConditions;
     }
 
+    /**
+     * For testing purposes, overrides the food truck
+     * @param foodTruck to override the food truck
+     */
     void overrideFoodTruck(FoodTruck foodTruck) {
         _mainCharacter = foodTruck;
     }
