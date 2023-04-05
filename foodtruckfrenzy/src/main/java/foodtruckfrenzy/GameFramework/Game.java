@@ -148,7 +148,7 @@ public class Game {
      * Creates a new instance of game and starts it
      * disposes of current game frame
      */
-    private void handleRestart() {
+    void handleRestart() {
         new Game();
         _frame.dispose();
     }
@@ -217,6 +217,10 @@ public class Game {
      */
     void overrideFoodTruck(FoodTruck foodTruck) {
         _mainCharacter = foodTruck;
+    }
+
+    GameFrame getFrame() {
+        return _frame;
     }
 
 }

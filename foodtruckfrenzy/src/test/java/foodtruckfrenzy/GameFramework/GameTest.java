@@ -41,6 +41,14 @@ public class GameTest {
     }
 
     @Test
+    public void testHandleRestart() {
+        GameFrame frame = game.getFrame();
+        assertTrue(frame.isDisplayable());
+        game.handleRestart();
+        assertFalse(frame.isDisplayable());
+    }
+
+    @Test
     void testPausePressed() {
         KeyboardHandler keyboardHandler = Mockito.mock(KeyboardHandler.class);
         when(keyboardHandler.pausePressed()).thenReturn(true);
