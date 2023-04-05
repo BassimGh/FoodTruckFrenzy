@@ -35,8 +35,7 @@ public class GameFrameTest {
     @Test
     void testGameFrameCreation() {
         assertNotNull(gameFrame);
-        assertEquals(gamePanel, gameFrame.getGamePanel());
-        assertTrue(gameFrame.getMainPanel().getComponent(0) instanceof JPanel);
+        assertEquals(gamePanel, gameFrame.getMainPanel().getComponent(0));
         assertEquals(pauseScreen, gameFrame.getMainPanel().getComponent(1));
     }
 
@@ -51,7 +50,7 @@ public class GameFrameTest {
     void testShowGameScreen() {
         gameFrame.showGameScreen();
         Component visibleComponent = gameFrame.getMainPanel().getComponents()[getVisibleComponentIndex(gameFrame.getMainPanel())];
-        assertEquals(gameFrame.getGamePanel().getParent(), visibleComponent);
+        assertEquals(gamePanel, visibleComponent);
     }
 
     @Test
