@@ -89,4 +89,18 @@ public class GameFrame extends JFrame {
         _layout.show(_mainPanel, "game");
     }
 
+    GamePanel getGamePanel() {
+        return _gamePanel;
+    }
+
+    CardLayout getCardLayout() {
+        return _layout;
+    }
+
+    JPanel getMainPanel() {
+        return _mainPanel;
+    }
+
+
+
 }
