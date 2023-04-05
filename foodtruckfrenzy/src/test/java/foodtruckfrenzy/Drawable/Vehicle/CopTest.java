@@ -11,57 +11,74 @@ import foodtruckfrenzy.Helper.MapLayout;
 
 
 public class CopTest {
-    private Grid grid;
-    private FoodTruck player;
-    private Cop cop;
+    private Grid _grid;
+    private FoodTruck _player;
+    private Cop _cop;
 
     @BeforeEach                                         
     void setup() {
-        grid = new Grid(new BoardElementFactory(), new MapLayout());
-        player = new FoodTruck(0, 0, grid, new Scoreboard(0,0));
-        cop = new Cop(11, 8, grid, player);
+        _grid = new Grid(new BoardElementFactory(), new MapLayout());
+        _player = new FoodTruck(0, 0, _grid, new Scoreboard(0,0));
+        _cop = new Cop(11, 8, _grid, _player);
     }
 
+    @Test 
+    void testMoveUpSuccess() {
+        int initialRowPos = _cop.getRow();
+        assertTrue(_cop.moveUp());
+        assertEquals(DrawableEnum.COP_UP, _cop.getDrawableType());
+        assertEquals(initialRowPos - 1 , _cop.getRow());
+    }
     @Test
-    void testDefaultDirection() {
-        assertEquals(DrawableEnum.COP_RIGHT, cop.getDrawableType());
+    void testMoveUpFail() {
+        Cop cop = new Cop(1, 1, _grid, new FoodTruck(0, 0, _grid, null));
+        int initialRowPos = cop.getRow();
+        assertFalse(cop.moveUp());
+        assertEquals(initialRowPos, cop.getRow());
     }
 
     @Test 
-    void testMoveUp() {
-        cop.moveUp();
-        assertEquals(DrawableEnum.COP_UP, cop.getDrawableType());
+    void testMoveDownSuccess() {
+        int initialRowPos = _cop.getRow();
+        assertTrue(_cop.moveDown());
+        assertEquals(DrawableEnum.COP_DOWN, _cop.getDrawableType());
+        assertEquals(initialRowPos + 1 , _cop.getRow());
     }
-    @Test 
-    void testMoveDown() {
-        cop.moveDown();
-        assertEquals(DrawableEnum.COP_DOWN, cop.getDrawableType());
+    @Test
+    void testMoveDownFail() {
+        Cop cop = new Cop(1, 2, _grid, new FoodTruck(0, 0, _grid, null));
+        int initialRowPos = cop.getRow();
+        assertFalse(cop.moveDown());
+        assertEquals(initialRowPos, cop.getRow());
     }
-    @Test 
-    void testMoveLeft() {
-        cop.moveLeft();
-        assertEquals(DrawableEnum.COP_LEFT, cop.getDrawableType());
-    }
-    @Test 
-    void testMoveRight() {
-        cop.moveRight();
-        assertEquals(DrawableEnum.COP_RIGHT, cop.getDrawableType());
-    }
-    
-    // @Test
-    // void chaseTruck() {
-    //     cop.
-    // }
-    
-    // @Test
-    // void initDirections() {
-    //     cop.initDirections();
-    // }
-    
-    // @Test
-    // void addDirections() {
-        
-    // }
 
-
+    @Test 
+    void testMoveLeftSuccess() {
+        int initialColPos = _cop.getCol();
+        assertTrue(_cop.moveLeft());
+        assertEquals(DrawableEnum.COP_LEFT, _cop.getDrawableType());
+        assertEquals(initialColPos - 1 , _cop.getCol());
+    }
+    @Test
+    void testMoveLeftFail() {
+        Cop cop = new Cop(2, 1, _grid, new FoodTruck(0, 0, _grid, null));
+        int initialColPos = cop.getCol();
+        assertFalse(cop.moveLeft());
+        assertEquals(initialColPos, cop.getCol());
+    }
+    
+    @Test 
+    void testMoveRightSuccess() {
+        int initialColPos = _cop.getCol();
+        assertTrue(_cop.moveRight());
+        assertEquals(DrawableEnum.COP_RIGHT, _cop.getDrawableType());
+        assertEquals(initialColPos + 1 , _cop.getCol());
+    }
+    @Test
+    void testMoveRightFail() {
+        Cop cop = new Cop(2, 1, _grid, new FoodTruck(0, 0, _grid, null));
+        int initialColPos = cop.getCol();
+        assertFalse(cop.moveRight());
+        assertEquals(initialColPos, cop.getCol());
+    }
 }
