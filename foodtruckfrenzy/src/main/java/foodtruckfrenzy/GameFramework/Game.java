@@ -76,6 +76,8 @@ public class Game {
      * Checks for win and loss condidions
      */
     private void gameTick() {
+        _frame.refresh();
+
         if (_gameConditions.checkRunning()) {
             if (_keyboardHandler.pausePressed())
                 handlePause();
@@ -116,9 +118,6 @@ public class Game {
                 handleLoss();
                 return;
             }
-
-            _frame.refresh();
-
         }
     }
 
