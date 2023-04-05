@@ -15,10 +15,43 @@ public class FoodTruckTest {
     private Scoreboard scoreboard;
     private FoodTruck foodTruck;
 
+
     @BeforeEach
     void setup() {
         grid = new Grid(new BoardElementFactory(), new MapLayout());
         foodTruck = new FoodTruck(11, 8, grid, scoreboard);
+    }
+
+    @Test 
+    void testMoveEdgesFailUp() {
+        FoodTruck tempFoodTruck = new FoodTruck(0, 0, grid, null);
+        int initialRowPos = tempFoodTruck.getRow();
+        assertFalse(tempFoodTruck.moveUp());
+        assertEquals(initialRowPos, tempFoodTruck.getRow());
+    }
+
+    @Test 
+    void testMoveEdgesFailLeft() {
+        FoodTruck tempFoodTruck = new FoodTruck(0, 0, grid, null);
+        int initialRowPos = tempFoodTruck.getRow();
+        assertFalse(tempFoodTruck.moveLeft());
+        assertEquals(initialRowPos, tempFoodTruck.getRow());
+    }
+
+    @Test 
+    void testMoveEdgesFailDown() {
+        FoodTruck tempFoodTruck = new FoodTruck(Grid.ROWS-1, Grid.COLS-1, grid, null);
+        int initialRowPos = tempFoodTruck.getRow();
+        assertFalse(tempFoodTruck.moveDown());
+        assertEquals(initialRowPos, tempFoodTruck.getRow());
+    }
+
+    @Test 
+    void testMoveEdgesFailRight() {
+        FoodTruck tempFoodTruck = new FoodTruck(Grid.ROWS-1, Grid.COLS-1, grid, null);
+        int initialRowPos = tempFoodTruck.getRow();
+        assertFalse(tempFoodTruck.moveRight());
+        assertEquals(initialRowPos, tempFoodTruck.getRow());
     }
 
     @Test
