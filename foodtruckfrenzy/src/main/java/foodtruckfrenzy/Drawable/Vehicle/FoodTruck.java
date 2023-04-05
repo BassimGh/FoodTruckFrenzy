@@ -106,7 +106,7 @@ public class FoodTruck extends Vehicle {
      * Interacts with the current cell on the grid that the Food Truck is in, adding score and updating 
      * attributes as necessary.
      */
-    private void interact() {
+    public void interact() {
         ScoreValue scoreValue = this.getGrid().interact(this.getRow(), this.getCol());
 
         if (scoreValue == null) 
