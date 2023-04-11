@@ -3,57 +3,100 @@ package foodtruckfrenzy.Helper;
 /**
  * Enum which contains the shorthand codes for all the board elements which can be created
  * These elements are to be read from the layout.csv file and translated using the board element factory
- * The mapping is as follows:
- * 
-    O: Obstruction
-    S: Speed Trap
-    Q: Recipe
-
-    P: Pot Hole
-    L: Pot Hole Vertical
-
-    F: Food
-    R: Food Vertical
-
-    H: Horizontal Road
-    V: Vertical Road
-    X: 4 way intersect
-
-    U: North-West corner
-    I: North-East corner
-    J: South-East corner
-    K: South-West corner
-
-    N: North three-way
-    B: East three-way
-    M: South three-way
-    C: West three-way 
-
-    Z: Invalid - used for testing
  */
 public enum LayoutEnum {
+    /**
+     * Specifies no layout. Used for testing purposes.
+     */
     NULL,
-    Z,
 
+    /**
+     * Horizontal Road
+     */
     H,
+
+    /**
+     * Vertical Road
+     */
     V,
+
+    /**
+     * Four-Way Intersection
+     */
     X,
 
+    /**
+     * North-West Corner
+     */
     U,
+
+    /**
+     * North-East Corner
+     */
     I,
+
+    /**
+     * South-East Corner
+     */
     J,
+
+    /**
+     * South-West Corner
+     */
     K,
     
+    /**
+     * North Three-Way Intersection
+     */
     N,
+
+    /**
+     * East Three-Way Intersection
+     */
     B,
+
+    /**
+     * South Three-Way Intersection
+     */
     M,
+
+    /**
+     * West Three-Way Intersection
+     */
     C,
 
+    /**
+     * Obstruction/House
+     */
     O,
+
+    /**
+     * Horizontal Road with Speed Trap
+     */
     S,
+
+    /**
+     * Horiztonal Road with Pot Hole
+     */
     P,
-    F,
-    R,
+
+    /**
+     * Vertical Road with Pot Hole
+     */
     L,
+
+    /**
+     * Horizontal Road with Food
+     */
+    F,
+
+    /**
+     * Vertical Road with Food
+     */
+    R,
+
+    /**
+     * Horizontal Road with Recipe/Bonus Item
+     */
     Q
 }
