@@ -8,15 +8,16 @@ import foodtruckfrenzy.SecondaryUI.ScreenType;
  */
 public class Main {
 
-
     /**
-     * Main function
+     * Default Main constructor used to start the game.
+     */
+    public Main() {}
+    /**
+     * Main function of the program.
+     * Creates and Displays the Title Screen on program startup
      * @param args arguments passed to the program
      */
     public static void main(String[] args) {
-        /**
-         * Creates and Displays the Title Screen on program startup
-         */
         new Frame(ScreenType.TITLE, null);
     }
 }
