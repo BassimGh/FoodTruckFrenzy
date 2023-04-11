@@ -15,7 +15,7 @@ import foodtruckfrenzy.SecondaryUI.Frame;
 import foodtruckfrenzy.SecondaryUI.PauseScreen;
 import foodtruckfrenzy.SecondaryUI.ScreenType;
 
-/*
+/**
  * This class is the logic behind the game
  * Creating a new instance of this class creates a new game with everything
  * Includes the Frame, all panels, the charactes and everything
@@ -35,7 +35,7 @@ public class Game {
     private int timerIndex;
 
 
-    /*
+    /**
      * Game constructor
      * Creates everything needed to run the game instance
      */
