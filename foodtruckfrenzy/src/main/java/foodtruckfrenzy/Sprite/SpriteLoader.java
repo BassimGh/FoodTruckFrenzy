@@ -13,13 +13,32 @@ import java.util.EnumMap;
  */
 public class SpriteLoader {
 
-    // house and food are ArrayLists because they have multiple images for the same object, selected at random
+    /**
+     * ArrayList of ImageIcon objects corresponding to the different random house images.
+     */
     private static ArrayList<ImageIcon> _houseImages = new ArrayList<ImageIcon>();
-    private static ArrayList<ImageIcon> _foodImages = new ArrayList<ImageIcon>();
-    private static EnumMap<DrawableEnum, ImageIcon> _imagesEnumMap = new EnumMap<>(DrawableEnum.class);
 
+    /**
+     * ArrayList of ImageIcon objects corresponding to the different random food images.
+     */
+    private static ArrayList<ImageIcon> _foodImages = new ArrayList<ImageIcon>();
+
+    /**
+     * EnumMap of ImageIcon objects corresponding to the different images that are not randomized.
+     */
+    private static EnumMap<DrawableEnum, ImageIcon> _imagesEnumMap = new EnumMap<DrawableEnum, ImageIcon>(DrawableEnum.class);
+
+    /**
+     * Random number generator used for random image selection.
+     */
     private static Random random = new Random();
 
+    /**
+     * Private constructor to disallow instantiation of the SpriteLoader class.
+     * SpriteLoader provides static functionality instead.
+     */
+    private SpriteLoader() {}
+    
     static {
             
         try {
