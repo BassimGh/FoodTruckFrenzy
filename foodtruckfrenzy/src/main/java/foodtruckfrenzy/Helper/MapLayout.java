@@ -12,8 +12,16 @@ import foodtruckfrenzy.GameFramework.Grid;
  */
 public class MapLayout {
 
+    /**
+     * 2D array of LayoutEnum corresponding to the read file.
+     */
     private LayoutEnum[][] layout;
 
+    /*
+     * Constructor to create a new instance of the Map Layout.
+     * Constructor does all the reading of the layout.csv file and stores them in the array.
+     * Throws RumtimeException if there are errors in the csv file layout.
+     */
     public MapLayout() {
         InputStream inputStream = MapLayout.class.getResourceAsStream("layout.csv");
         if (inputStream == null) {
