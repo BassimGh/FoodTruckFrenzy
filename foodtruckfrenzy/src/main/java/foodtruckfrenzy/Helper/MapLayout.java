@@ -17,7 +17,7 @@ public class MapLayout {
      */
     private LayoutEnum[][] layout;
 
-    /*
+    /**
      * Constructor to create a new instance of the Map Layout.
      * Constructor does all the reading of the layout.csv file and stores them in the array.
      * Throws RumtimeException if there are errors in the csv file layout.
