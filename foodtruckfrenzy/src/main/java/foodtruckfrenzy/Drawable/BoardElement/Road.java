@@ -63,6 +63,10 @@ public class Road extends BoardElement {
         return new ScoreValue(scoreType, value);
     }
 
+    /**
+     * Gets the Item object placed on the road.
+     * @return Item object from the road.
+     */
     public Item getItem() {
         return _item;
     }
