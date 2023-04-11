@@ -11,7 +11,10 @@ import foodtruckfrenzy.Drawable.DrawableEnum;
  */
 public class Glitter extends Item {
 
-    private int drawn = 0;
+    /**
+     * Counter for the amount of frames the Glitter object has been drawn for.
+     */
+    private int _drawn = 0;
 
     /**
      * Glitter constructor to be displayed at specified row and column on a grid
@@ -29,9 +32,9 @@ public class Glitter extends Item {
      */
     @Override
     public void draw(Graphics2D g2d) {
-        if (drawn < 40) {
+        if (_drawn < 40) {
             super.draw(g2d);
-            drawn++;
+            _drawn++;
         }
     }
 }
