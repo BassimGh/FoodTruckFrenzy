@@ -16,19 +16,33 @@ import foodtruckfrenzy.Helper.MapLayout;
  */
 public class Grid {
 
-    public final static int ROWS = 20; // Number of grid rows
-    public final static int COLS = 41; // Number of grid columns
-    public final static int CELL_SIZE = 32; // Size of each grid cell
+    /**
+     * Static constant of number of grid rows.
+     */
+    public final static int ROWS = 20;
+
+    /**
+     * Static constant of number of grid columns.
+     */
+    public final static int COLS = 41;
+
+    /**
+     * Static constant of number of pixels per grid cell.
+     */
+    public final static int CELL_SIZE = 32;
 
     private int _ingredientsDiscoverable;
     private int _recipesDiscoverable;
     
     private BoardElement[][] _grid;
 
+
     /**
      * Construtor for the Grid class
      * Initliazes a new BoardElement 2d array at ROWS x COLS
      * Fills the grid up with elements from Map Layout
+     * @param boardElementFactory BoardElementFactory object to be used for populating the grid content.
+     * @param mapLayout MapLayout object corresponding to the layout translated to board elements.
      */
     public Grid(BoardElementFactory boardElementFactory, MapLayout mapLayout) {
         _ingredientsDiscoverable = 0;
