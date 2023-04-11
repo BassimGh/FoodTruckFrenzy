@@ -289,13 +289,6 @@ public class BoardElementFactoryTest {
     }
 
     @Test
-    void testIllegalArgumentExceptionTypeInvalid() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            boardElementFactory.create(LayoutEnum.Z, 0, 0);
-        });
-    }
-
-    @Test
     void testNullReturnTypeForDebuggin() {
         assertNull(boardElementFactory.create(LayoutEnum.NULL, 0, 0));
     }

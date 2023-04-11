@@ -9,12 +9,42 @@ import java.awt.event.KeyListener;
  */
 public class KeyboardHandler implements KeyListener {
 
-    // Boolean state of whether the keys are pressed or not
-    private boolean _upPressed = false;
-    private boolean _downPressed = false;
-    private boolean _rightPressed = false;
-    private boolean _leftPressed = false;
-    private boolean _pause = false;
+    /**
+     * Boolean state of whether up is pressed or not.
+     */
+    private boolean _upPressed;
+
+    /**
+     * Boolean state of whether down is pressed or not.
+     */
+    private boolean _downPressed;
+
+    /**
+     * Boolean state of whether right is pressed or not.
+     */
+    private boolean _rightPressed;
+
+    /**
+     * Boolean state of whether left is pressed or not.
+     */
+    private boolean _leftPressed;
+
+    /**
+     * Boolean state of whether pause is pressed or not.
+     */
+    private boolean _pause;
+
+    /**
+     * Constructor to create a new KeyboardHandler object.
+     * Takes in no parameters and sets all the button states to false.
+     */
+    public KeyboardHandler() {
+        _upPressed = false;
+        _downPressed = false;
+        _rightPressed = false;
+        _leftPressed = false;
+        _pause = false;
+    }
 
     /**
      * Returns whether up/W is pressed

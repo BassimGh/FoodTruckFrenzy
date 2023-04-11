@@ -15,7 +15,14 @@ import foodtruckfrenzy.GameFramework.Scoreboard;
  */
 public class FoodTruck extends Vehicle {
 
+    /**
+     * Scoreboard object that observes the FoodTruck.
+     */
     private Scoreboard _scoreboard;
+
+    /**
+     * ArrayList of Cop objects that observe the FoodTruck
+     */
     private ArrayList<Cop> _cops = new ArrayList<Cop>();
 
 
@@ -24,6 +31,7 @@ public class FoodTruck extends Vehicle {
      * @param row the row of the food truck's starting position.
      * @param col the column of the food truck's starting position.
      * @param grid the grid object that the food truck will be moving on.
+     * @param scoreboard Scoreboard object that is to be observing the FoodTruck.
      */
     public FoodTruck(int row, int col, Grid grid, Scoreboard scoreboard) {
         super(row, col, grid, DrawableEnum.FOODTRUCK_RIGHT);
@@ -47,6 +55,10 @@ public class FoodTruck extends Vehicle {
         return moved;
     }
 
+    /**
+     * Gets the scoreboard object reference which is observing the FoodTruck.
+     * @return Scoreboard object reference which is observing the FoodTruck.
+     */
     public Scoreboard getScoreboard() {
         return _scoreboard;
     }

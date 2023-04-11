@@ -6,7 +6,19 @@ package foodtruckfrenzy.SecondaryUI;
  * Can create a TitleScreen, GameWonScreen, or a GameLostScreen
  */
 public enum ScreenType {
+
+    /**
+     * Title Screen Type.
+     */
     TITLE,
+
+    /**
+     * Game Won Type.
+     */
     GAME_WON,
+
+    /**
+     * Game Lost Type.
+     */
     GAME_LOST
 }
