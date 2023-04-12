@@ -6,16 +6,13 @@ package foodtruckfrenzy.SecondaryUI;
  */
 
 public class Dimensions {
-    //The dimension variables to be used
     protected final int width;
     protected final int height;
-
-    /**
+     /**
      * Constructs a new Dimensions object to pass Screen Dimensions through
      * @param width the custom width is set by the child Screen class
      * @param height the custom height is set by the child Screen class
      */
-
     public Dimensions(int width, int height) {
         this.width = width;
         this.height = height;
