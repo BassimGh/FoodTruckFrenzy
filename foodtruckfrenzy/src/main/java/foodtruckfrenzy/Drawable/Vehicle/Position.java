@@ -5,12 +5,21 @@ package foodtruckfrenzy.Drawable.Vehicle;
  * to be used for backtracking in the cop's depth first search
  */
 public class Position {
-    // represents row value in grid
+    /**
+     * Represents the row value in the grid.
+     */
     public int row;
-    // represents column value in grid
+
+    /**
+     * Represents the column value in the grid.
+     */
     public int col;
-    // prev stores position instance used for back tracking in the cop's breadth first search
+
+    /**
+     * The previous position instance used for backtracking in the cop's breadth-first search.
+     */
     public Position prev;
+
     /**
      * Creates a new Position object holding the specified row and column of the grid.
      * Also holds a position object prev referencing a previous position
