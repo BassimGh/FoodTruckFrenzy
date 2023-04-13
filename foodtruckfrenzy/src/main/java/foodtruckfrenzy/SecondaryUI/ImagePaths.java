@@ -8,15 +8,17 @@ package foodtruckfrenzy.SecondaryUI;
 public class ImagePaths {
 
     /**
-     * The paths to the background image file path
+     * The path to the background image file.
      */
     protected String backgroundPath;
+
     /**
-     * The paths to the button1 image file path
+     * The path to the first button image file.
      */
     protected String button1Path;
+
     /**
-     * The paths to the button2 image file path
+     * The path to the second button image file.
      */
     protected String button2Path;
 
@@ -35,7 +37,7 @@ public class ImagePaths {
 
     /**
      * Returns the path to the background image file
-     * @return the path to the background image file
+     * @return path to background image
      */
     public String getBackgroundPath() {
         return backgroundPath;
@@ -43,18 +45,16 @@ public class ImagePaths {
 
     /**
      * Returns the path to the first button image file
-     * @return the path to the first button image file
+     * @return button1 img path
      */
-
     public String getButton1Path() {
         return button1Path;
     }
 
     /**
      * Returns the path to the second button image file
-     * @return the path to the second button image file
+     * @return button2 img path
      */
-
     public String getButton2Path() {
         return button2Path;
     }

@@ -26,6 +26,7 @@ public class Cop extends Vehicle {
      * @param row the row of the cop's starting position.
      * @param col the column of the cop's starting position.
      * @param grid the grid object that the cop will be moving on.
+     * @param player player the cop will be chasing.
      */
     public Cop(int row, int col, Grid grid, FoodTruck player) {
         super(row, col, grid, DrawableEnum.COP_RIGHT);

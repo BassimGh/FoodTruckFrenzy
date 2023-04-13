@@ -18,7 +18,8 @@ public class PositionMap {
     }
     /**
      * Checks if PositionList contains a Position with matching row and col
-     * values as the input positoin
+     * values as the input position
+     * @param pos position that is searched
      * @return true if the input Position row and col match a Position in PositionList
     */
     public boolean contains(Position pos) {

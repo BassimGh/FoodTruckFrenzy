@@ -19,7 +19,8 @@ public class VehicleSpawner {
     
     /**
      * Initializes all vehicles in the game (food truck and cops)
-     * @param grid instance that is used by the game
+     * @param grid grid instance used in game
+     * @param scoreboard scoreboard instance that is shown in game
      */
     public VehicleSpawner(Grid grid, Scoreboard scoreboard) {
         this.foodTruck = new FoodTruck(3, 0, grid, scoreboard);
