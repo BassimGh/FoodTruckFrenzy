@@ -26,7 +26,7 @@ class KeyboardHandlerTest {
     @Test
     void testUpPressedAndReleased() {
         KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
-        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_UP);
+        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_W);
         keyboardHandler.keyPressed(mockedKey);
         assertTrue(keyboardHandler.upPressed());
         keyboardHandler.keyReleased(mockedKey);
@@ -36,7 +36,7 @@ class KeyboardHandlerTest {
     @Test
     void testDownPressedAndReleased() {
         KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
-        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_DOWN);
+        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_S);
         keyboardHandler.keyPressed(mockedKey);
         assertTrue(keyboardHandler.downPressed());
         keyboardHandler.keyReleased(mockedKey);
@@ -46,7 +46,7 @@ class KeyboardHandlerTest {
     @Test
     void testRightPressedAndReleased() {
         KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
-        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_RIGHT);
+        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_D);
         keyboardHandler.keyPressed(mockedKey);
         assertTrue(keyboardHandler.rightPressed());
         keyboardHandler.keyReleased(mockedKey);
@@ -56,7 +56,7 @@ class KeyboardHandlerTest {
     @Test
     void testLeftPressedAndReleased() {
         KeyEvent mockedKey = Mockito.mock(KeyEvent.class);
-        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_LEFT);
+        Mockito.when(mockedKey.getKeyCode()).thenReturn(KeyEvent.VK_A);
         keyboardHandler.keyPressed(mockedKey);
         assertTrue(keyboardHandler.leftPressed());
         keyboardHandler.keyReleased(mockedKey);
