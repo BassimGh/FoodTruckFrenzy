@@ -156,9 +156,6 @@ public class Screen extends JPanel {
     }
 
     /**
-     * @param buttonPanel the JPanel for the buttons 
-     * @param gbc the gridBagConstraints for the buttons and background
-     * @param backgroundLabel the JLabel for the background
      * Sets the GridBagConstraints and spaces the buttons apart
      * Creates a JButton with an ImageIcon containing the first button image and adds an ActionListener
      * Sets the size , removes the button border, removes the focus paint, and makes the content area painted on top of the button image
@@ -175,6 +172,9 @@ public class Screen extends JPanel {
      * buttonPanel JPanel containing the bottomButton
      * bottomButton JButton used to exit or restart the game
      * bottomButton has the same properties as topButtons except for the image and the listener and it is positioned underneath the topButton
+     * @param buttonPanel the JPanel for the buttons 
+     * @param gbc the gridBagConstraints for the buttons and background
+     * @param backgroundLabel the JLabel for the background
      */
 
      protected void createBackground(JLabel backgroundLabel, GridBagConstraints gbc, JPanel buttonPanel) {
@@ -189,6 +189,7 @@ public class Screen extends JPanel {
      }
 
      /**
+      * This method creates two buttons on a JPanel with the provided GridBagConstraints and ActionListeners for top and bottom buttons.
       * @param buttonPanel button panel to display the screen buttons
       * @param gbc gridbagconstraints of the buttons
       * @param topListener the listener to be notified when the top (first) button is pressed
