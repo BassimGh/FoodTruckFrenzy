@@ -11,50 +11,163 @@ import javax.swing.*;
  */
 public class Scoreboard extends JPanel {
 
-    // Fonts and Colors for the Score Board
-    private final static Font FONT_SMALL = new Font("Comic Sans MS", Font.PLAIN, 16);
-    private final static Font FONT_MEDIUM = new Font("Comic Sans MS", Font.PLAIN, 22);
-    private final static Font FONT_LARGE = new Font("Comic Sans MS", Font.BOLD, 44);
-    
-    private final static Color COLOR_BACKGROUND = new Color(54, 65, 79); 
-    private final static Color COLOR_RED = new Color(227, 0, 39);
-    private final static Color COLOR_YELLOW = new Color(255, 240, 75);
-    private final static Color COLOR_GREEN = new Color(80, 255, 90);
-    private final static Color COLOR_WHITE = Color.WHITE;
-    
 
-    // Labels for the ScoreBoard Data
+    // ------------- Fonts and Colors ------------- //
+    
+    /**
+     * Font used for small text in the score board.
+     */
+    private final static Font FONT_SMALL = new Font("Comic Sans MS", Font.PLAIN, 16);
+
+    /**
+     * Font used for medium-sized text in the score board.
+     */
+    private final static Font FONT_MEDIUM = new Font("Comic Sans MS", Font.PLAIN, 22);
+
+    /**
+     * Font used for large text in the score board.
+     */
+    private final static Font FONT_LARGE = new Font("Comic Sans MS", Font.BOLD, 44);
+
+    /**
+     * Background color for the score board.
+     */
+    private final static Color COLOR_BACKGROUND = new Color(54, 65, 79);
+
+    /**
+     * Color for displaying red elements in the score board.
+     */
+    private final static Color COLOR_RED = new Color(227, 0, 39);
+
+    /**
+     * Color for displaying yellow elements in the score board.
+     */
+    private final static Color COLOR_YELLOW = new Color(255, 240, 75);
+
+    /**
+     * Color for displaying green elements in the score board.
+     */
+    private final static Color COLOR_GREEN = new Color(80, 255, 90);
+
+    /**
+     * Color for displaying white elements in the score board.
+     */
+    private final static Color COLOR_WHITE = Color.WHITE;
+
+
+
+    // ------------- Labels ------------- //
+    
+    /**
+     * Label for displaying the player's score.
+     */
     private JLabel _scoreLabel = new JLabel("Score: ");
+
+    /**
+     * Label for displaying the player's total accumulated score.
+     */
     private JLabel _scoreTotal = new JLabel("0");
+
+    /**
+     * Label for displaying the number of ingredients found by the player.
+     */
     private JLabel _ingredientsLabel = new JLabel("Ingredients Found:");
+
+    /**
+     * Label for displaying the number of recipes found by the player.
+     */
     private JLabel _recipesLabel = new JLabel("Recipes Found:");
-    private JLabel _damageLabel = new JLabel("Damage:"); 
+
+    /**
+     * Label for displaying the amount of damage incurred by the player.
+     */
+    private JLabel _damageLabel = new JLabel("Damage:");
+
+    /**
+     * Label for displaying the fines incurred by the player.
+     */
     private JLabel _fineLabel = new JLabel("Fines: ");
+
+    /**
+     * Label for displaying the elapsed time in the game.
+     */
     private JLabel _timeLabel = new JLabel("Time:");
+
+    /**
+     * Label for displaying instructions on how to pause the game.
+     */
     private JLabel _pauseInstructions = new JLabel("Press 'P' to pause");
 
 
-    //Scoreboard Data & Game State
-    private int score;
-    private int ingredientsFound;
-    private int ingredientsDiscoverable;
-    private int recipesFound;
-    private int recipesDiscoverable;
-    private int damage;
-    private int fines;
-    private String timeElapsed;
-    private boolean _paused = false;   
 
-
-    // Timer object that updates the Scoreboards Timer
-    private Timer _timer;
-    private int _minute;
-    private int _second; 
-
+    // ------------- Player Data ------------- //
 
     /**
+     * Represents the player's total accumulated score.
+     */
+    private int score;
+
+    /**
+     * Represents the number of ingredients found by the player.
+     */
+    private int ingredientsFound;
+
+    /**
+     * Represents the number of discoverable ingredients in the game.
+     */
+    private int ingredientsDiscoverable;
+
+    /**
+     * Represents the number of recipes found by the player.
+     */
+    private int recipesFound;
+
+    /**
+     * Represents the number of discoverable recipes in the game.
+     */
+    private int recipesDiscoverable;
+
+    /**
+     * Represents the amount of damage incurred by the player.
+     */
+    private int damage;
+
+    /**
+     * Represents the fines incurred by the player.
+     */
+    private int fines;
+
+    /**
+     * Represents the elapsed time in the game.
+     */
+    private String timeElapsed;
+
+    /**
+     * Represents the pause state of the game.
+     */
+    private boolean _paused = false;
+
+    /**
+     * Timer object used to update the score board's timer.
+     */
+    private Timer _timer;
+
+    /**
+     * Represents the minute value in the timer.
+     */
+    private int _minute;
+
+    /**
+     * Represents the second value in the timer.
+     */
+    private int _second;
+
+
+    
+    /**
      * Constructs a new scoreboard panel for the given player object.
-     * @param player the player object to associate with this scoreboard
+     * @param maxIngredients an integer representing the total ingredients discoverable on the map
+     * @param maxRecipes an integer representing the total recipes discoverable on the map
      */
     public Scoreboard(int maxIngredients, int maxRecipes) {
 
@@ -72,7 +185,7 @@ public class Scoreboard extends JPanel {
         ingredientsDiscoverable = maxIngredients;
         recipesDiscoverable = maxRecipes;
 
-        updateScore(0);
+        updateScoreLabel(0);
         updateIngredientsLabel();
         updateRecipesLabel();
         updateFinesLabel();
@@ -156,11 +269,11 @@ public class Scoreboard extends JPanel {
     }
 
     /**
-     * 
-     * @param score
+     * Updates the score label. If the score total is negative scoreboard label turns red. 
+     * If the positive the label displays yellow.
+     * @param score an integer represting the total score for the foodtruck player. 
      */
-    private void updateScore(int score) {
-        this.score = score;
+    private void updateScoreLabel(int score) {
         _scoreTotal.setText(Integer.toString(score));
         
         if(score < 0) {
@@ -276,7 +389,8 @@ public class Scoreboard extends JPanel {
     }
 
     /**
-    * 
+    * Increments the total number of ingredients found by the foodtruck player. 
+    * Updates the ingredients found label.
     */
     public void addIngredientsFound() {
         ingredientsFound++;
@@ -292,7 +406,8 @@ public class Scoreboard extends JPanel {
     }
 
     /**
-     * 
+     * Increments the total number of recipes found by the foodtruck player. 
+     * Updates the recipes found label.
      */
     public void addRecipesFound() {
         recipesFound++;
@@ -308,8 +423,9 @@ public class Scoreboard extends JPanel {
     }
 
     /**
-     * 
-     * @param newDamage
+     * Updates the damage property when new damage occurs.
+     * Updates the damage label.
+     * @param newDamage an int representing the new damage accumulated by the foodtruck player during gameplay.
      */
     public void addDamage(int newDamage) {
         damage += newDamage;
@@ -325,8 +441,9 @@ public class Scoreboard extends JPanel {
     }
 
     /**
-     * 
-     * @param newFines
+     * Updates the fines property when new fines occur.
+     * Updates the fines label.
+     * @param newFines an int representing the new fines accumulated by the foodtruck player during gameplay. 
      */
     public void addFines(int newFines) {
         fines += newFines;
@@ -341,9 +458,14 @@ public class Scoreboard extends JPanel {
         return fines;
     }
 
+    /**
+     * Adds new score to the score property. 
+     * Calls updateScore to update the scoreboard label.
+     * @param newScore an int representing the new score accumulated by the foodtruck player during gameplay.
+     */
     public void addScore(int newScore) {
         score += newScore;
-        updateScore(score);
+        updateScoreLabel(score);
     }
 
     /**
