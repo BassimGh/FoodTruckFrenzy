@@ -38,10 +38,16 @@ public class GameOverScreen extends Screen {
         String scoreText;
         JLabel scoreLabel;
 
-        // sets the font for the label
+        /**
+         * sets the font for the label
+         */
+
         Font font = new Font("Arial", Font.BOLD, 16);
 
-        // add the score, values, and time to the display
+        /**
+         * add the score, values, and time to the display
+         */
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -56,7 +62,6 @@ public class GameOverScreen extends Screen {
     
     /**
      * Creates a JLabel with the specified text and font.
-     * 
      * @param text The text to display in the JLabel.
      * @param font The font to use for the JLabel.
      * @return The created JLabel.
@@ -70,7 +75,6 @@ public class GameOverScreen extends Screen {
     
     /**
      * Adds the specified JLabel to the panel at the specified GridBagConstraints.
-     * 
      * @param label The JLabel to add to the panel.
      * @param gbc The GridBagConstraints to use for the JLabel.
      */

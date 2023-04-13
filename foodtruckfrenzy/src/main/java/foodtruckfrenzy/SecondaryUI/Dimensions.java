@@ -6,7 +6,13 @@ package foodtruckfrenzy.SecondaryUI;
  */
 
 public class Dimensions {
+    /**
+     * The dimension width variable to be used
+     */
     protected final int width;
+    /**
+     * The dimension height variable to be used
+     */
     protected final int height;
      /**
      * Constructs a new Dimensions object to pass Screen Dimensions through

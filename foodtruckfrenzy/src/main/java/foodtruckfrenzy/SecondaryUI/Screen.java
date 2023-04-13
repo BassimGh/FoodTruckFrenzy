@@ -18,15 +18,38 @@ import javax.imageio.ImageIO;
  * The background image and button images can be set through the constructor with a path to the image files.
  * The buttons have ActionListeners that can be passed in through the constructor, which will be triggered when the buttons are clicked.
  * The Screen class is the Parent class of all other UI screens such as TitleScreen, PauseScreen, GameOverDisplay and it's children: GameLostScreen and GameWonScreen
+ * Protected Jbutton topButton represents the top button that will be displayed on the screen
+ * Protected Jbutton bottomButton represents the bottom button that will be displayed on the screen
  */
 
 public class Screen extends JPanel {
+    /**
+     * BufferedImage backgroundImage to be used to display the background image
+     */
     protected BufferedImage backgroundImage;
+    /**
+     * BufferedImage startImage to be used for the start button
+     */
     protected BufferedImage startImage;
+    /**
+     * BufferedImage exitImage to be used for the exit button
+     */
     protected BufferedImage exitImage;
-    private JButton topButton;
-    private JButton bottomButton;
+    /**
+     * Button to be used for start or resume button
+     */
+    protected JButton topButton;
+    /**
+     * Button to be used for exit or restart button
+     */
+    protected JButton bottomButton;
+    /**
+     * dimensions object to set size of the desired screen
+     */
     protected Dimensions dimensions;
+    /**
+     * imagePaths object to set the image paths of the background and buttons
+     */
     protected ImagePaths imagePaths;
 
     /**
@@ -80,14 +103,18 @@ public class Screen extends JPanel {
          * Creates the buttons using the createButtons() method
          */
 
-        // creates a new JLabel and add an ImageIcon with the background image
+        /**
+         * creates a new JLabel and add an ImageIcon with the background image
+         */
         JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
         
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
         
-        //creates the buttons 
+        /**
+         * creates the buttons 
+         */
         createButtons(buttonPanel, gbc, topListener, bottomListener);
         
 
@@ -104,7 +131,9 @@ public class Screen extends JPanel {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.CENTER;
 
-        //creates the background label and displays the button panel over it
+        /**
+         * creates the background label and displays the button panel over it
+         */
         createBackground(backgroundLabel, gbc, buttonPanel);
     }
 
@@ -130,8 +159,6 @@ public class Screen extends JPanel {
      * @param buttonPanel the JPanel for the buttons 
      * @param gbc the gridBagConstraints for the buttons and background
      * @param backgroundLabel the JLabel for the background
-     * @param topListener the listener to be notified when the top (first) button is pressed
-     * @param bottomListener the listener to be notified when the bottom (second) button is pressed
      * Sets the GridBagConstraints and spaces the buttons apart
      * Creates a JButton with an ImageIcon containing the first button image and adds an ActionListener
      * Sets the size , removes the button border, removes the focus paint, and makes the content area painted on top of the button image
@@ -161,21 +188,44 @@ public class Screen extends JPanel {
         backgroundLabel.add(buttonPanel, gbc);
      }
 
-    protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener topListener, ActionListener bottomListener) {
-        buttonPanel.setOpaque(false); // makes the panel transparent
-        buttonPanel.setBackground(new Color(0, 0, 0, 0)); // makes the panel background transparent
+     /**
+      * @param buttonPanel button panel to display the screen buttons
+      * @param gbc gridbagconstraints of the buttons
+      * @param topListener the listener to be notified when the top (first) button is pressed
+      * @param bottomListener the listener to be notified when the bottom (second) button is pressed
+      */
 
+    protected void createButtons(JPanel buttonPanel, GridBagConstraints gbc, ActionListener topListener, ActionListener bottomListener) {
+        /**
+         * makes the panel transparent
+         */
+        buttonPanel.setOpaque(false);
+        /**
+         * makes the panel background transparent
+         */
+        buttonPanel.setBackground(new Color(0, 0, 0, 0));
+
+        /**
+         * adds some spacing between the buttons
+         */
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(0, 0, 20, 0); // adds some spacing between the buttons
+        gbc.insets = new Insets(0, 0, 20, 0);
         gbc.anchor = GridBagConstraints.CENTER;
 
+        /**
+         * creates new button
+         * resizes button
+         * removes the button border
+         * removes the focus paint
+         * makes the content area painted directly on top of the button background
+         */
         topButton = new JButton(new ImageIcon(startImage));
         topButton.addActionListener(topListener);
         topButton.setPreferredSize(new Dimension(100, 50));
-        topButton.setBorder(null); // removes the button border
-        topButton.setFocusPainted(false); // removes the focus paint
-        topButton.setContentAreaFilled(false); // makes the content area painted directly on top of the button background
+        topButton.setBorder(null); 
+        topButton.setFocusPainted(false); 
+        topButton.setContentAreaFilled(false); 
         topButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -190,12 +240,20 @@ public class Screen extends JPanel {
         buttonPanel.add(topButton, gbc);
 
         gbc.gridy++;
+
+        /**
+         * creates new button
+         * resizes button
+         * removes the button border
+         * removes the focus paint
+         * makes the content area painted directly on top of the button background
+         */
         bottomButton = new JButton(new ImageIcon(exitImage));
         bottomButton.addActionListener(bottomListener);
         bottomButton.setPreferredSize(new Dimension(100, 50));
-        bottomButton.setBorder(null); // remove the button border
-        bottomButton.setFocusPainted(false); // remove the focus paint
-        bottomButton.setContentAreaFilled(false); // make the content area painted directly on top of the button background
+        bottomButton.setBorder(null); 
+        bottomButton.setFocusPainted(false); 
+        bottomButton.setContentAreaFilled(false); 
         bottomButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -209,10 +267,15 @@ public class Screen extends JPanel {
         });
         buttonPanel.add(bottomButton, gbc);
 
+        /**
+         * Sizes the buttons
+         * Force displays the button panel and repaints the content
+         */
+
         topButton.setPreferredSize(new Dimension(100, 50));
         bottomButton.setPreferredSize(new Dimension(100, 50));
 
-        buttonPanel.setVisible(true); // force display the panel
+        buttonPanel.setVisible(true);
 
         buttonPanel.revalidate();
         buttonPanel.repaint();
