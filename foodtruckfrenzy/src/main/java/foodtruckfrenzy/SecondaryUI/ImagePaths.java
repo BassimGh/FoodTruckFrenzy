@@ -7,9 +7,17 @@ package foodtruckfrenzy.SecondaryUI;
 
 public class ImagePaths {
 
-    //The paths to the background, button1, and button2 image file paths
+    /**
+     * The paths to the background image file path
+     */
     protected String backgroundPath;
+    /**
+     * The paths to the button1 image file path
+     */
     protected String button1Path;
+    /**
+     * The paths to the button2 image file path
+     */
     protected String button2Path;
 
 /**

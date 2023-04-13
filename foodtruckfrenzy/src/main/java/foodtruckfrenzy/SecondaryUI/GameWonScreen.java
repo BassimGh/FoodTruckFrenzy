@@ -16,10 +16,12 @@ public class GameWonScreen extends GameOverScreen {
      * @param startListener The ActionListener to handle start button events.
      * @param exitListener The ActionListener to handle exit button events.
      * @param scoreboard The Scoreboard object to display the final score, values, and time on the screen.
-     * @param ImagePaths Set the image paths for the screen to display
+     * {@code ImagePaths} supplies the String image paths to the specified images used in the parent Screen class.
      */
     public GameWonScreen(ActionListener startListener, ActionListener exitListener, Scoreboard scoreboard) {
-        //passes listeners, the image file paths, and the scoreboard object
+        /**
+         * passes listeners, the image file paths, and the scoreboard object
+         */
         super(startListener, exitListener, new ImagePaths("youwin.png", "restart.png", "exit.png"), scoreboard);
     }
 }
