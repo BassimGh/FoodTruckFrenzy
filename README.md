@@ -4,6 +4,7 @@
 Welcome to "Food Truck Frenzy," an exciting 2D maze adventure where you become a food truck chef on a mission to collect ingredients and recipes while avoiding obstacles and outsmarting the police! Test your skills as you navigate a maze of houses and roads to reach the endpoint after collecting all the ingredients and create the ultimate food truck experience. Will you rise to the challenge and claim victory in this deliciously addictive game?
 
 How to Play:
+
     1. Navigate your food truck through a 2D maze filled with houses and roads.
     2. Collect ingredients scattered around the maze. Each ingredient is worth 100 points.
     3. Optional: Look out for bonus recipes which are worth 200 points. While not necessary to win the game, they can help you rack up an impressive high score!
