@@ -14,6 +14,8 @@ How to Play:
 
 Do you have what it takes to become the ultimate food truck chef in "Food Truck Frenzy"? Put your skills to the test and see if you can emerge victorious in this thrilling 2D maze adventure! Happy cooking and good luck!
 
+Video Demo: https://youtu.be/VXR-AHahh6Y
+
 # Prerequisites
 
 To build, run, and test Food Truck Frenzy you need to have the following setup on your computer:
